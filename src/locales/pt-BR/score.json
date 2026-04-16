@@ -1,0 +1,35 @@
+{
+  "explainerToggle": "O que isso significa?",
+  "explainerIntro": {
+    "high": "O Nudge Score mede a saúde do seu dinheiro em cripto. {{score}} = você está bem!",
+    "medium": "O Nudge Score mede a saúde do seu dinheiro em cripto. {{score}} = precisa de atenção.",
+    "low": "O Nudge Score mede a saúde do seu dinheiro em cripto. {{score}} = precisa de cuidado agora."
+  },
+  "metrics": {
+    "diversification": {
+      "label": "DIVERSIFICAÇÃO",
+      "good": "Seus tokens estão bem espalhados",
+      "ok": "Vale diversificar um pouco mais",
+      "bad": "Muito concentrado em poucos tokens"
+    },
+    "stablecoinRatio": {
+      "label": "RESERVA ESTÁVEL",
+      "good": "Você tem stablecoins suficientes",
+      "ok": "Ter mais stablecoins ajudaria",
+      "bad": "Sem reserva estável no portfolio"
+    },
+    "concentrationRisk": {
+      "label": "CONCENTRAÇÃO",
+      "good": "Nenhum token domina demais",
+      "ok": "Um token tem peso alto",
+      "bad": "Portfolio muito dependente de 1 token"
+    },
+    "kaminoHealth": {
+      "label": "HEALTH FACTOR (KAMINO)",
+      "good": "Empréstimo seguro",
+      "ok": "Empréstimo precisa de atenção",
+      "bad": "Empréstimo em risco"
+    }
+  },
+  "improveLink": "Saiba como melhorar seu score"
+}

@@ -1,0 +1,141 @@
+{
+  "sectionTitle": "ALERTAS E NUDGES",
+  "badge": "{{count}} novos",
+  "showMore": "Ver mais {{count}} alertas",
+  "showLess": "Mostrar menos",
+  "timeAgo": {
+    "minutes": "{{count}}min",
+    "hours": "{{count}}h",
+    "days": "{{count}}d"
+  },
+  "hf-alert": {
+    "title": {
+      "urgent": {
+        "gentle": "Seu empréstimo no Kamino precisa de atenção agora",
+        "encouraging": "Atenção urgente no Kamino!",
+        "direct": "Empréstimo em risco — liquidação possível",
+        "technical": "HF crítico: {{hf}}"
+      },
+      "warning": {
+        "gentle": "Seu empréstimo no Kamino merece uma olhada",
+        "encouraging": "Hora de cuidar do empréstimo no Kamino",
+        "direct": "Health Factor do empréstimo caindo",
+        "technical": "HF em declínio: {{hf}}"
+      }
+    },
+    "body": {
+      "urgent": {
+        "gentle": "O Health Factor do seu empréstimo está em {{hf}} — isso significa que sua garantia está muito perto de ser liquidada (vendida automaticamente). Margem: {{margin}}%. Adicionar colateral pode ajudar.",
+        "encouraging": "HF em {{hf}} e margem em {{margin}}%. Está apertado, mas você pode resolver! Adicione colateral ou pague parte da dívida no Kamino.",
+        "direct": "HF: {{hf}}. Margem: {{margin}}%. Risco de liquidação. Ação necessária no Kamino.",
+        "technical": "HF: {{hf}}. Margem: {{margin}}%. LTV próximo do limite. Deposite colateral ou faça repay parcial."
+      },
+      "warning": {
+        "gentle": "O Health Factor do seu empréstimo está em {{hf}} — não é crítico, mas vale ficar de olho. Margem em {{margin}}%.",
+        "encouraging": "HF em {{hf}} com margem de {{margin}}%. Bom momento pra reforçar sua posição no Kamino!",
+        "direct": "HF: {{hf}}. Margem: {{margin}}%. Considere adicionar colateral.",
+        "technical": "HF: {{hf}}. Margem: {{margin}}%. LTV subindo. Monitoramento recomendado."
+      }
+    }
+  },
+  "score-drop": {
+    "title": {
+      "gentle": "Seu score diminuiu um pouco",
+      "encouraging": "Score teve uma queda",
+      "direct": "Score caiu {{delta}} pontos",
+      "technical": "Score: −{{delta}} pontos"
+    },
+    "body": {
+      "gentle": "Seu NudgeScore foi de {{previous}} para {{current}}. Faz parte — vamos ver como melhorar?",
+      "encouraging": "Score saiu de {{previous}} para {{current}}. Não desanime! Veja as ações recomendadas pra voltar a subir.",
+      "direct": "Score: {{previous}} → {{current}} (−{{delta}}). Revise seu portfolio.",
+      "technical": "NudgeScore: {{previous}} → {{current}} (−{{delta}}). Revise métricas individuais."
+    }
+  },
+  "concentration": {
+    "title": {
+      "gentle": "Muito do seu dinheiro está em 1 moeda",
+      "encouraging": "Oportunidade de diversificar!",
+      "direct": "{{symbol}} concentra {{percent}}% do portfolio",
+      "technical": "Concentração: {{symbol}} em {{percent}}%"
+    },
+    "body": {
+      "gentle": "{{symbol}} representa {{percent}}% do seu portfolio. Ter tudo num só lugar é arriscado — diversificar protege seu dinheiro.",
+      "encouraging": "{{symbol}} está com {{percent}}% do portfolio. Que tal espalhar um pouco? Mais moedas = mais proteção!",
+      "direct": "{{symbol}} em {{percent}}% do portfolio. Exposição excessiva. Considere diversificar.",
+      "technical": "{{symbol}}: {{percent}}% do portfolio. Risco de concentração elevado. Rebalanceamento sugerido."
+    }
+  },
+  "volatility": {
+    "title": {
+      "up": {
+        "gentle": "SOL subiu bastante",
+        "encouraging": "SOL em alta!",
+        "direct": "SOL +{{percent}}% desde última visita",
+        "technical": "SOL: +{{percent}}%"
+      },
+      "down": {
+        "gentle": "SOL caiu um pouco",
+        "encouraging": "SOL teve uma queda",
+        "direct": "SOL −{{percent}}% desde última visita",
+        "technical": "SOL: −{{percent}}%"
+      }
+    },
+    "body": {
+      "up": {
+        "gentle": "O preço do SOL subiu {{percent}}% desde sua última visita. Bom momento pra revisar sua posição.",
+        "encouraging": "SOL subiu {{percent}}%! Isso pode afetar seu portfolio — vale dar uma olhada.",
+        "direct": "SOL valorizado {{percent}}%. Revise impacto no portfolio e empréstimos.",
+        "technical": "SOL +{{percent}}%. Avaliar impacto no LTV e colateral se aplicável."
+      },
+      "down": {
+        "gentle": "O preço do SOL caiu {{percent}}% desde sua última visita. Sem pânico — vamos ver como você está.",
+        "encouraging": "SOL recuou {{percent}}%. Faz parte do mercado! Veja se precisa ajustar alguma posição.",
+        "direct": "SOL desvalorizou {{percent}}%. Verifique impacto nas posições.",
+        "technical": "SOL −{{percent}}%. Verificar impacto no colateral e HF se aplicável."
+      }
+    }
+  },
+  "goal-milestone": {
+    "title": {
+      "gentle": "Você completou uma etapa!",
+      "encouraging": "Conquista desbloqueada!",
+      "direct": "Meta: etapa concluída",
+      "technical": "Progresso: {{completed}}/{{total}}"
+    },
+    "body": {
+      "gentle": "Mais uma etapa concluída na sua jornada! Você está no passo {{completed}} de {{total}}. Continue no seu ritmo.",
+      "encouraging": "Parabéns! Etapa {{completed}} de {{total}} concluída! Cada passo conta. Bora pro próximo?",
+      "direct": "Progresso: {{completed}}/{{total}} etapas concluídas.",
+      "technical": "Progresso: {{completed}}/{{total}} etapas concluídas."
+    }
+  },
+  "inactivity": {
+    "title": {
+      "gentle": "Sentimos sua falta!",
+      "encouraging": "Faz tempo que não te vemos!",
+      "direct": "{{days}} dias sem acessar",
+      "technical": "Inatividade: {{days}} dias"
+    },
+    "body": {
+      "gentle": "Faz {{days}} dias que você não visita seu dashboard. Seu portfolio pode ter mudado — vamos dar uma olhada?",
+      "encouraging": "Já se passaram {{days}} dias! Muita coisa pode mudar no mercado. Que tal conferir como está seu portfolio?",
+      "direct": "{{days}} dias sem acesso. Revise seu portfolio e posições.",
+      "technical": "Último acesso: {{days}} dias atrás. Dados desatualizados. Recomendado atualizar."
+    }
+  },
+  "score-improvement": {
+    "title": {
+      "gentle": "Seu score melhorou!",
+      "encouraging": "Parabéns, score subindo!",
+      "direct": "Score subiu {{delta}} pontos",
+      "technical": "Score: +{{delta}} pontos"
+    },
+    "body": {
+      "gentle": "Seu NudgeScore subiu de {{previous}} para {{current}}. Ótimo trabalho — suas decisões estão fazendo diferença!",
+      "encouraging": "Score de {{previous}} pra {{current}}! Você está evoluindo! Continue assim que os resultados aparecem.",
+      "direct": "Score: {{previous}} → {{current}} (+{{delta}}). Portfolio mais saudável.",
+      "technical": "NudgeScore: {{previous}} → {{current}} (+{{delta}}). Métricas melhorando."
+    }
+  }
+}

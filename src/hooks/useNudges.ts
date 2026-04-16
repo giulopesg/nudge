@@ -1,0 +1,97 @@
+'use client';
+
+import { useState, useEffect, useCallback, useRef } from 'react';
+import type { EnrichedPosition } from '@/hooks/usePosition';
+import type { GoalProgress } from '@/lib/goals';
+import type { Nudge } from '@/lib/nudges';
+import type { DemoPersonaId } from '@/lib/demo';
+import { generateNudges, createSnapshot } from '@/lib/nudges';
+import { getDemoNudges } from '@/lib/demo-nudges';
+import {
+  getSnapshot, saveSnapshot,
+  getNudgeHistory, saveNudges,
+  markNudgeRead as storeMarkNudgeRead,
+} from '@/lib/store';
+
+interface UseNudgesResult {
+  nudges: Nudge[];
+  unreadCount: number;
+  markAsRead: (nudgeId: string) => void;
+  markAllAsRead: () => void;
+}
+
+export function useNudges(
+  wallet: string | null,
+  position: EnrichedPosition | null,
+  goalProgress: GoalProgress[],
+  isDemo: boolean,
+  personaId: DemoPersonaId | null,
+): UseNudgesResult {
+  const [nudges, setNudges] = useState<Nudge[]>([]);
+  const lastPositionRef = useRef<string | null>(null);
+
+  // Demo mode: load static demo nudges
+  useEffect(() => {
+    if (!isDemo || !personaId) return;
+    setNudges(getDemoNudges(personaId));
+  }, [isDemo, personaId]);
+
+  // Real mode: compare snapshots and generate nudges
+  useEffect(() => {
+    if (isDemo || !wallet || !position) return;
+
+    // Dedupe: skip if same timestamp
+    const ts = position.position.timestamp;
+    if (ts === lastPositionRef.current) return;
+    lastPositionRef.current = ts;
+
+    const lastSnapshot = getSnapshot(wallet);
+    const history = getNudgeHistory(wallet);
+
+    const newNudges = generateNudges(position, lastSnapshot, goalProgress);
+
+    // Merge: new nudges first, then existing history (deduped by type+severity within 1h)
+    const oneHourAgo = Date.now() - 3600_000;
+    const recentTypes = new Set(
+      history
+        .filter((n) => new Date(n.timestamp).getTime() > oneHourAgo)
+        .map((n) => `${n.type}:${n.severity}`),
+    );
+
+    const uniqueNew = newNudges.filter(
+      (n) => !recentTypes.has(`${n.type}:${n.severity}`),
+    );
+
+    const merged = [...uniqueNew, ...history];
+    setNudges(merged);
+
+    // Persist
+    if (uniqueNew.length > 0) {
+      saveNudges(wallet, merged);
+    }
+    saveSnapshot(wallet, createSnapshot(position));
+  }, [isDemo, wallet, position, goalProgress]);
+
+  const markAsRead = useCallback(
+    (nudgeId: string) => {
+      setNudges((prev) =>
+        prev.map((n) => (n.id === nudgeId ? { ...n, read: true } : n)),
+      );
+      if (wallet && !isDemo) {
+        storeMarkNudgeRead(wallet, nudgeId);
+      }
+    },
+    [wallet, isDemo],
+  );
+
+  const markAllAsRead = useCallback(() => {
+    setNudges((prev) => prev.map((n) => ({ ...n, read: true })));
+    if (wallet && !isDemo) {
+      nudges.filter((n) => !n.read).forEach((n) => storeMarkNudgeRead(wallet, n.id));
+    }
+  }, [wallet, isDemo, nudges]);
+
+  const unreadCount = nudges.filter((n) => !n.read).length;
+
+  return { nudges, unreadCount, markAsRead, markAllAsRead };
+}

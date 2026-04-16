@@ -1,0 +1,174 @@
+/* ===== Character Sheet Overlay ===== */
+
+.character-sheet-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(8, 6, 14, 0.98);
+  overflow-y: auto;
+}
+
+/* RE-style scan line sweeping over photo */
+.re-scan {
+  position: relative;
+  overflow: hidden;
+}
+
+.re-scan::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 212, 170, 0.08) 48%,
+    rgba(0, 212, 170, 0.15) 50%,
+    rgba(0, 212, 170, 0.08) 52%,
+    transparent 100%
+  );
+  background-size: 100% 200%;
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+}
+
+/* Tactical corner brackets */
+.tactical-frame {
+  position: relative;
+}
+
+.tactical-frame::before,
+.tactical-frame::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--plum);
+  pointer-events: none;
+}
+
+.tactical-frame::before {
+  top: -4px;
+  left: -4px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+
+.tactical-frame::after {
+  bottom: -4px;
+  right: -4px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
+
+/* Inventory slot */
+.inventory-slot {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(107, 79, 160, 0.05);
+  border: 1px solid rgba(107, 79, 160, 0.12);
+  font-family: var(--font-fira-code), monospace;
+  font-size: 10px;
+  text-align: center;
+  padding: 6px;
+  transition: all 0.15s ease;
+  color: var(--plum-light);
+}
+
+.inventory-slot:hover {
+  border-color: var(--plum);
+  box-shadow: 0 0 12px var(--plum-glow);
+  background: rgba(107, 79, 160, 0.12);
+}
+
+.inventory-slot-empty {
+  color: var(--text-muted);
+  opacity: 0.3;
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--plum-muted), transparent);
+}
+
+/* Sheet entry animation */
+@keyframes sheet-enter {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-sheet-enter {
+  animation: sheet-enter 0.3s ease-out;
+}
+
+/* ===== ECG Monitor ===== */
+
+.ecg-container {
+  position: relative;
+}
+
+.ecg-monitor {
+  background: rgba(14, 12, 20, 0.8);
+  border: 1px solid var(--surface-border);
+  height: 80px;
+}
+
+.ecg-grid {
+  background-image:
+    linear-gradient(rgba(107, 79, 160, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(107, 79, 160, 0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.ecg-scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(107, 79, 160, 0.015) 0px,
+    rgba(107, 79, 160, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ===== Action Cards ===== */
+
+.action-card {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  padding: 12px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.action-card:hover {
+  border-color: var(--plum);
+  box-shadow: 0 0 16px var(--plum-glow);
+  transform: translateY(-1px);
+}
+
+.action-card-attention {
+  border-color: rgba(255, 184, 77, 0.3);
+}
+
+.action-card-attention:hover {
+  border-color: var(--attention);
+  box-shadow: 0 0 16px var(--attention-glow);
+}
+
+.action-card-urgent {
+  border-color: rgba(255, 107, 157, 0.3);
+}
+
+.action-card-urgent:hover {
+  border-color: var(--danger);
+  box-shadow: 0 0 16px var(--danger-glow);
+}
+
+.action-card-disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}

@@ -1,0 +1,61 @@
+{
+  "stepTitle": "O QUE VOCE QUER CONSTRUIR?",
+  "stepSubtitle": "Escolha ate 3 objetivos. Vamos te guiar nesse caminho.",
+  "options": {
+    "reserva": {
+      "label": "Ter uma reserva protegida da inflacao",
+      "icon": "shield"
+    },
+    "independencia": {
+      "label": "Guardar dinheiro pro futuro sem depender de banco",
+      "icon": "key"
+    },
+    "aprender": {
+      "label": "Aprender como funciona esse mundo",
+      "icon": "book"
+    },
+    "rendimento": {
+      "label": "Fazer meu dinheiro render mais",
+      "icon": "chart"
+    },
+    "remessas": {
+      "label": "Mandar dinheiro pro exterior sem taxas altas",
+      "icon": "globe"
+    }
+  },
+  "validation": {
+    "min": "Escolha pelo menos 1 objetivo",
+    "max": "Maximo 3 objetivos"
+  },
+  "continue": "Continuar",
+  "journeyTitle": "SEU CAMINHO",
+  "journeyEmpty": "Complete o onboarding pra definir seus objetivos.",
+  "journeyEncouragement": {
+    "starting": "Voce esta comecando. Cada passo conta!",
+    "progress": "Voce ja deu os primeiros passos. Continue!",
+    "almost": "Quase la! Voce esta indo muito bem.",
+    "complete": "Objetivo concluido! Parabens!"
+  },
+  "steps": {
+    "quiz-done": "Completar o quiz",
+    "read-whatIsHF": "Ler sobre Health Factor",
+    "read-whatAreStablecoins": "Ler sobre stablecoins",
+    "read-whatIsDiversification": "Ler sobre diversificacao",
+    "read-whatIsKamino": "Ler sobre Kamino",
+    "read-whatIsNudgeScore": "Entender seu score",
+    "has-stablecoins": "Ter stablecoins no portfolio",
+    "stables-10pct": "Stablecoins > 10% do portfolio",
+    "hold-7days": "Manter por 7 dias",
+    "wallet-created": "Criar wallet",
+    "has-kamino-position": "Ter posicao ativa no Kamino",
+    "hf-above-1.5": "Manter HF acima de 1.5",
+    "has-usdc": "Ter USDC",
+    "read-transfers": "Aprender sobre transferencias",
+    "first-transfer": "Primeira transferencia"
+  },
+  "stepsCount": "{{completed}}/{{total}} passos",
+  "journeyProgress": "{{percent}}% completo",
+  "stepAction": "Ir",
+  "profileGoalsTitle": "SEUS OBJETIVOS",
+  "profileGoalSelected": "Voce quer:"
+}

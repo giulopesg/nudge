@@ -1,26 +1,386 @@
 @import "tailwindcss";
+@import "./components.css";
+@import "./navigation.css";
+
+/* ===== Nudge Design System — Cypherpunk meets Giuliana ===== */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Background — Giuliana's dark (#0e0c14) */
+  --background: #0e0c14;
+  --surface: #151320;
+  --surface-hover: #1e1a2e;
+  --surface-border: rgba(107, 79, 160, 0.15);
+
+  /* Text */
+  --foreground: rgba(255, 255, 255, 0.88);
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --text-muted: rgba(255, 255, 255, 0.42);
+
+  /* Brand — Nudge teal (neon) */
+  --primary: #00D4AA;
+  --primary-hover: #00E8BB;
+  --primary-muted: rgba(0, 212, 170, 0.12);
+  --primary-glow: rgba(0, 212, 170, 0.3);
+
+  /* Giuliana plum (secondary) */
+  --plum: #6B4FA0;
+  --plum-light: #8B6FC0;
+  --plum-muted: rgba(107, 79, 160, 0.15);
+  --plum-glow: rgba(107, 79, 160, 0.3);
+
+  /* Status — with glow variants */
+  --safe: #00CC88;
+  --safe-bg: rgba(0, 204, 136, 0.1);
+  --safe-glow: rgba(0, 204, 136, 0.25);
+  --attention: #FFB84D;
+  --attention-bg: rgba(255, 184, 77, 0.1);
+  --attention-glow: rgba(255, 184, 77, 0.25);
+  --danger: #FF6B9D;
+  --danger-bg: rgba(255, 107, 157, 0.1);
+  --danger-glow: rgba(255, 107, 157, 0.25);
+
+  /* XP / RPG */
+  --xp: #BD00FF;
+  --xp-muted: rgba(189, 0, 255, 0.12);
+  --xp-glow: rgba(189, 0, 255, 0.3);
+
+  /* Chamfered corners */
+  --chamfer-sm: 4px;
+  --chamfer-md: 8px;
+  --chamfer-lg: 12px;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-border: var(--surface-border);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-muted: var(--primary-muted);
+  --color-primary-glow: var(--primary-glow);
+  --color-plum: var(--plum);
+  --color-plum-light: var(--plum-light);
+  --color-plum-muted: var(--plum-muted);
+  --color-plum-glow: var(--plum-glow);
+  --color-safe: var(--safe);
+  --color-safe-bg: var(--safe-bg);
+  --color-safe-glow: var(--safe-glow);
+  --color-attention: var(--attention);
+  --color-attention-bg: var(--attention-bg);
+  --color-attention-glow: var(--attention-glow);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-danger-glow: var(--danger-glow);
+  --color-xp: var(--xp);
+  --color-xp-muted: var(--xp-muted);
+  --color-xp-glow: var(--xp-glow);
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-fira-code);
+  --font-display: var(--font-orbitron);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* ===== Base ===== */
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-weight: 400;
 }
+
+/* Cypherpunk grid background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(107, 79, 160, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(107, 79, 160, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+}
+
+/* Subtle scanlines */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(107, 79, 160, 0.008) 0px,
+    rgba(107, 79, 160, 0.008) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+}
+
+/* ===== Scrollbar ===== */
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--plum-muted); border-radius: 2px; }
+
+/* ===== Chamfered corners utility ===== */
+
+.chamfer-sm {
+  clip-path: polygon(
+    var(--chamfer-sm) 0%, calc(100% - var(--chamfer-sm)) 0%,
+    100% var(--chamfer-sm), 100% calc(100% - var(--chamfer-sm)),
+    calc(100% - var(--chamfer-sm)) 100%, var(--chamfer-sm) 100%,
+    0% calc(100% - var(--chamfer-sm)), 0% var(--chamfer-sm)
+  );
+}
+
+.chamfer-md {
+  clip-path: polygon(
+    var(--chamfer-md) 0%, calc(100% - var(--chamfer-md)) 0%,
+    100% var(--chamfer-md), 100% calc(100% - var(--chamfer-md)),
+    calc(100% - var(--chamfer-md)) 100%, var(--chamfer-md) 100%,
+    0% calc(100% - var(--chamfer-md)), 0% var(--chamfer-md)
+  );
+}
+
+.chamfer-lg {
+  clip-path: polygon(
+    var(--chamfer-lg) 0%, calc(100% - var(--chamfer-lg)) 0%,
+    100% var(--chamfer-lg), 100% calc(100% - var(--chamfer-lg)),
+    calc(100% - var(--chamfer-lg)) 100%, var(--chamfer-lg) 100%,
+    0% calc(100% - var(--chamfer-lg)), 0% var(--chamfer-lg)
+  );
+}
+
+/* ===== Glow utilities ===== */
+
+.glow-primary {
+  box-shadow: 0 0 20px var(--primary-glow), inset 0 0 20px rgba(0, 212, 170, 0.05);
+}
+
+.glow-plum {
+  box-shadow: 0 0 20px var(--plum-glow), inset 0 0 20px rgba(107, 79, 160, 0.05);
+}
+
+.glow-safe {
+  box-shadow: 0 0 16px var(--safe-glow);
+}
+
+.glow-attention {
+  box-shadow: 0 0 16px var(--attention-glow);
+}
+
+.glow-danger {
+  box-shadow: 0 0 16px var(--danger-glow);
+}
+
+.glow-xp {
+  box-shadow: 0 0 20px var(--xp-glow), inset 0 0 20px rgba(189, 0, 255, 0.05);
+}
+
+.text-glow-primary {
+  text-shadow: 0 0 12px var(--primary-glow);
+}
+
+.text-glow-plum {
+  text-shadow: 0 0 12px var(--plum-glow);
+}
+
+/* ===== Animations ===== */
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes xp-fill {
+  from { width: 0%; }
+}
+
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 170, 0.15), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+.animate-xp-fill { animation: xp-fill 1s ease-out; }
+
+/* ===== Card base ===== */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  background: var(--surface-hover);
+  border-color: rgba(107, 79, 160, 0.35);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.card:hover .text-text-secondary { color: rgba(255,255,255,0.78) !important; }
+.card:hover .text-text-muted { color: rgba(255,255,255,0.55) !important; }
+
+/* ===== Neon status badge ===== */
+
+.status-badge {
+  font-family: var(--font-fira-code), monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+}
+
+.status-safe {
+  color: var(--safe);
+  background: var(--safe-bg);
+  border: 1px solid rgba(0, 204, 136, 0.3);
+  box-shadow: 0 0 12px var(--safe-glow);
+}
+
+.status-attention {
+  color: var(--attention);
+  background: var(--attention-bg);
+  border: 1px solid rgba(255, 184, 77, 0.3);
+  box-shadow: 0 0 12px var(--attention-glow);
+}
+
+.status-danger {
+  color: var(--danger);
+  background: var(--danger-bg);
+  border: 1px solid rgba(255, 107, 157, 0.3);
+  box-shadow: 0 0 12px var(--danger-glow);
+}
+
+/* ===== RPG stat bar ===== */
+
+.stat-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== Trait tag (replaces flat neurotag pills) ===== */
+
+.trait-tag {
+  font-family: var(--font-fira-code), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 5px 12px;
+  border: 1px solid var(--surface-border);
+  background: rgba(107, 79, 160, 0.08);
+  color: var(--plum-light);
+  transition: all 0.15s ease;
+}
+
+.trait-tag:hover {
+  border-color: var(--plum);
+  box-shadow: 0 0 12px var(--plum-glow);
+  background: rgba(107, 79, 160, 0.15);
+}
+
+/* ===== Wallet adapter overrides ===== */
+
+.wallet-adapter-button {
+  background-color: transparent !important;
+  color: var(--primary) !important;
+  border: 1px solid var(--primary) !important;
+  font-family: var(--font-fira-code), monospace !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  letter-spacing: 0.05em !important;
+  height: 40px !important;
+  padding: 0 16px !important;
+  box-shadow: 0 0 12px var(--primary-glow), inset 0 0 12px rgba(0, 212, 170, 0.05) !important;
+  transition: all 0.15s ease !important;
+}
+
+.wallet-adapter-button:hover {
+  background: linear-gradient(135deg, var(--primary), rgba(0, 212, 170, 0.3)) !important;
+  color: var(--background) !important;
+  box-shadow: 0 0 24px var(--primary-glow) !important;
+}
+
+.wallet-adapter-modal-wrapper {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--surface-border) !important;
+}
+
+.wallet-adapter-modal-title {
+  color: var(--foreground) !important;
+  font-family: var(--font-orbitron), monospace !important;
+  letter-spacing: 0.05em !important;
+}
+
+.wallet-adapter-modal-list li {
+  background-color: var(--surface-hover) !important;
+}
+
+/* ===== Demo mode indicator ===== */
+
+.demo-badge {
+  font-family: var(--font-fira-code), monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--xp);
+  background: var(--xp-muted);
+  border: 1px solid rgba(189, 0, 255, 0.3);
+  padding: 2px 8px;
+  box-shadow: 0 0 8px var(--xp-glow);
+}
+
+/* ===== Status Hero ===== */
+
+.status-hero-safe {
+  background: rgba(0, 204, 136, 0.04);
+  border: 1px solid rgba(0, 204, 136, 0.15);
+}
+
+.status-hero-attention {
+  background: rgba(255, 184, 77, 0.04);
+  border: 1px solid rgba(255, 184, 77, 0.15);
+}
+
+.status-hero-danger {
+  background: rgba(255, 107, 157, 0.04);
+  border: 1px solid rgba(255, 107, 157, 0.15);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.status-hero-neutral {
+  background: rgba(0, 212, 170, 0.04);
+  border: 1px solid rgba(0, 212, 170, 0.15);
+}
+
+

@@ -1,0 +1,85 @@
+{
+  "sectionTitle": "POR QUE",
+  "kaminoHF": {
+    "title": {
+      "gentle": "Seu empréstimo no Kamino precisa de cuidado",
+      "encouraging": "Atenção no empréstimo do Kamino",
+      "direct": "Margem do empréstimo baixa",
+      "technical": "Health Factor em declínio"
+    },
+    "body": {
+      "gentle": "Você tem um empréstimo no Kamino. A margem está em {{margin}}% — quanto menor, mais perto da liquidação (venda automática da garantia). Mas dá pra resolver.",
+      "encouraging": "Seu empréstimo no Kamino tem margem de {{margin}}%. Vale agir pra ficar mais seguro. Você consegue!",
+      "direct": "Margem do empréstimo: {{margin}}%. HF: {{hf}}. Considere adicionar colateral.",
+      "technical": "HF: {{hf}}. LTV subindo. Margem: {{margin}}%. Liquidação projetada se HF < 1.0."
+    },
+    "action": {
+      "gentle": "Ver o que fazer",
+      "encouraging": "Agir agora",
+      "direct": "Adicionar colateral",
+      "technical": "Depositar colateral"
+    }
+  },
+  "concentration": {
+    "title": {
+      "gentle": "Muito concentrado num só ativo",
+      "encouraging": "Oportunidade de diversificar",
+      "direct": "Concentração alta",
+      "technical": "Risco de concentração"
+    },
+    "body": {
+      "gentle": "{{symbol}} representa {{percent}}% do seu portfolio. Diversificar ajuda a proteger seu dinheiro se esse ativo cair.",
+      "encouraging": "{{symbol}} concentra {{percent}}% do total. Diversificar entre mais ativos é mais seguro — e você já tem o caminho!",
+      "direct": "{{symbol}} em {{percent}}% do portfolio. Considere rebalancear para reduzir exposição.",
+      "technical": "{{symbol}}: {{percent}}% do portfolio. Risco de concentração elevado. Rebalanceamento recomendado."
+    }
+  },
+  "stablecoin": {
+    "title": {
+      "gentle": "Pouca reserva estável",
+      "encouraging": "Que tal uma reserva segura?",
+      "direct": "Stablecoins baixo",
+      "technical": "Alocação stablecoin baixa"
+    },
+    "body": {
+      "gentle": "Apenas {{percent}}% do seu portfolio está em stablecoins (moedas estáveis). Ter uma parte em stablecoins protege quando o mercado cai.",
+      "encouraging": "Você tem {{percent}}% em stablecoins. O ideal é entre 10-30% — assim você tem uma reserva pra oportunidades!",
+      "direct": "Stablecoins em {{percent}}% do portfolio. Faixa ideal: 10-30%.",
+      "technical": "Alocação stablecoin: {{percent}}%. Target: 10-30% para hedge de volatilidade."
+    },
+    "action": {
+      "gentle": "Entender stablecoins",
+      "encouraging": "Ver como ter stablecoins",
+      "direct": "Converter para USDC",
+      "technical": "Swap para USDC via Jupiter"
+    }
+  },
+  "smallPortfolio": {
+    "title": {
+      "gentle": "Você está começando — e tá ótimo!",
+      "encouraging": "Primeiros passos!",
+      "direct": "Portfolio pequeno",
+      "technical": "Portfolio: ${{total}}"
+    },
+    "body": {
+      "gentle": "Seu portfolio tem ${{total}}. Todo mundo começa de algum lugar. O importante é ir aprendendo.",
+      "encouraging": "Você já tem ${{total}} no portfolio! Continue aprendendo e construindo no seu ritmo.",
+      "direct": "Portfolio atual: ${{total}}. Acompanhe sua evolução aqui.",
+      "technical": "AUM: ${{total}}. Exposição limitada. Monitoramento ativo."
+    }
+  },
+  "goodDiversification": {
+    "title": {
+      "gentle": "Seu portfolio está bem diversificado",
+      "encouraging": "Boa diversificação!",
+      "direct": "Diversificação adequada",
+      "technical": "Diversificação OK"
+    },
+    "body": {
+      "gentle": "Você tem {{count}} ativos diferentes. Isso é bom — ajuda a proteger seu dinheiro.",
+      "encouraging": "{{count}} ativos no portfolio! Ótima estratégia de diversificação. Continue assim!",
+      "direct": "{{count}} ativos em carteira. Concentração dentro do aceitável.",
+      "technical": "{{count}} ativos. Diversificação dentro dos parâmetros adequados."
+    }
+  }
+}

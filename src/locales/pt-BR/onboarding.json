@@ -1,0 +1,173 @@
+{
+  "permissions": {
+    "title": "O que o Nudge faz (e não faz)",
+    "subtitle": "Transparência total antes de começar.",
+    "canDo": {
+      "title": "O Nudge pode:",
+      "items": [
+        "Ler suas posições na blockchain (dados públicos)",
+        "Traduzir termos técnicos pra linguagem humana",
+        "Monitorar sua segurança e te avisar",
+        "Te ensinar sobre cripto no seu ritmo"
+      ]
+    },
+    "cantDo": {
+      "title": "O Nudge NÃO pode:",
+      "items": [
+        "Mover seu dinheiro",
+        "Fazer transações por você",
+        "Acessar sua chave privada",
+        "Tomar decisões por você"
+      ]
+    },
+    "readOnly": "Acesso somente leitura. Seus fundos sempre ficam sob seu controle.",
+    "continue": "Entendi, continuar"
+  },
+  "quiz": {
+    "title": "Vamos te conhecer",
+    "subtitle": "5 perguntas rápidas. Não existe resposta certa ou errada.",
+    "q1": {
+      "question": "Quem configurou sua wallet?",
+      "options": {
+        "self": "Eu mesma",
+        "other": "Outra pessoa configurou pra mim",
+        "together": "Fiz junto com alguém"
+      }
+    },
+    "q2": {
+      "question": "Se o preço do SOL caísse 20% hoje, o que você faria?",
+      "options": {
+        "sell": "Venderia tudo",
+        "ask": "Pediria opinião pra alguém",
+        "unsure": "Não sei o que faria",
+        "hold": "Não faria nada, faz parte"
+      }
+    },
+    "q3": {
+      "question": "Com que frequência você checa suas posições em cripto?",
+      "options": {
+        "daily": "Todo dia",
+        "weekly": "Toda semana",
+        "sometimes": "De vez em quando",
+        "rarely": "Quase nunca"
+      }
+    },
+    "q4": {
+      "question": "O que é \"Health Factor\"?",
+      "options": {
+        "knows": "Sei o que é e acompanho",
+        "heard": "Já ouvi falar mas não sei direito",
+        "noIdea": "Não faço ideia"
+      }
+    },
+    "q5": {
+      "question": "O que você quer do Nudge?",
+      "hint": "Pode escolher mais de uma.",
+      "options": {
+        "safety": "Saber se tá tudo bem com meu dinheiro",
+        "learn": "Aprender sobre cripto",
+        "opportunities": "Encontrar oportunidades",
+        "monitor": "Monitorar o mercado"
+      }
+    },
+    "next": "Próxima",
+    "previous": "Voltar",
+    "finish": "Ver meu perfil",
+    "progress": "{{current}} de {{total}}"
+  },
+  "profile": {
+    "title": "Seu perfil Nudge",
+    "subtitle": "Baseado nas suas respostas, identificamos seu momento:",
+    "tagsTitle": "Suas neurotags",
+    "whatItMeans": "O que isso significa",
+    "nudgeWill": "O Nudge vai:",
+    "actions": {
+      "translateAll": "Traduzir TUDO sem usar jargão",
+      "teachPace": "Te ensinar conceitos no seu ritmo",
+      "helpIndependence": "Te ajudar a depender menos dos outros",
+      "alertClearly": "Avisar de forma clara quando precisar da sua atenção",
+      "showOpportunities": "Mostrar oportunidades quando aparecerem",
+      "monitorMarket": "Monitorar o mercado pra você"
+    },
+    "goToDashboard": "Ir pro dashboard",
+    "profileSaved": "Perfil salvo com sucesso!"
+  },
+  "neurotags": {
+    "iniciante": {
+      "label": "#iniciante",
+      "description": "Você está começando — e tudo bem. O Nudge vai traduzir cada conceito pra você."
+    },
+    "delegadora": {
+      "label": "#delegadora",
+      "description": "Você costuma depender de alguém pra decisões financeiras. O Nudge vai te ajudar a ganhar autonomia, passo a passo."
+    },
+    "indecisa-sob-pressao": {
+      "label": "#indecisa-sob-pressão",
+      "description": "Em momentos de tensão, você trava. O Nudge vai te mostrar dados reais pra tomar decisões com calma."
+    },
+    "negligente": {
+      "label": "#negligente",
+      "description": "Você esquece de checar suas posições. O Nudge vai cuidar disso pra você e avisar quando for importante."
+    },
+    "avessa-a-jargao": {
+      "label": "#avessa-a-jargão",
+      "description": "Termos técnicos te paralisam. O Nudge nunca vai usar jargão sem traduzir antes."
+    },
+    "quer-seguranca": {
+      "label": "#quer-segurança",
+      "description": "Você quer paz de espírito com seu dinheiro. O Nudge monitora tudo e te avisa quando precisa."
+    },
+    "curiosa": {
+      "label": "#curiosa",
+      "description": "Você quer aprender! O Nudge vai trazer conteúdo educacional no seu ritmo."
+    },
+    "calma-sob-pressao": {
+      "label": "#calma-sob-pressão",
+      "description": "Você não age por pânico. O Nudge vai reforçar sua confiança com dados reais."
+    },
+    "autonoma-inicial": {
+      "label": "#autônoma-inicial",
+      "description": "Você já deu os primeiros passos sozinha. O Nudge vai te ajudar a ir além."
+    },
+    "semi-autonoma": {
+      "label": "#semi-autônoma",
+      "description": "Você fez junto com alguém — ótimo começo. O Nudge te ajuda a dar os próximos passos sozinha."
+    },
+    "intermediaria": {
+      "label": "#intermediária",
+      "description": "Você já tem uma base sólida. O Nudge vai te mostrar dados mais detalhados."
+    },
+    "reativa": {
+      "label": "#reativa",
+      "description": "Você tende a agir por impulso. O Nudge vai te mostrar dados reais antes de qualquer decisão."
+    },
+    "atenta": {
+      "label": "#atenta",
+      "description": "Você acompanha o mercado. O Nudge vai complementar sua atenção com alertas inteligentes."
+    },
+    "exploradora": {
+      "label": "#exploradora",
+      "description": "Você busca novas oportunidades. O Nudge vai te ajudar a explorar com segurança."
+    }
+  },
+  "registration": {
+    "title": "REGISTRO ON-CHAIN",
+    "subtitle": "Registre seu perfil na blockchain Solana como prova do seu Nudge.",
+    "hashLabel": "Hash do perfil",
+    "classLabel": "Classe",
+    "networkLabel": "Rede",
+    "network": "Solana Mainnet",
+    "cta": "Registrar no Solana",
+    "skip": "Pular \u2192 ir pro dashboard",
+    "cost": "Custa ~0.000005 SOL (menos de $0.01)",
+    "signing": "Assinando...",
+    "confirming": "Confirmando na rede...",
+    "success": "Registrado com sucesso!",
+    "viewTx": "Ver transa\u00e7\u00e3o no Solscan",
+    "xpEarned": "+150 XP",
+    "goToDashboard": "Ir pro dashboard",
+    "error": "Erro ao registrar. Sua wallet pode ter rejeitado a transa\u00e7\u00e3o.",
+    "retry": "Tentar novamente",
+    "demoSuccess": "Registro simulado no modo demo!"
+  }
+}

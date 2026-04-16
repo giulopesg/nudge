@@ -1,0 +1,224 @@
+/* ===== Dashboard layout ===== */
+
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .dashboard-main {
+    padding-left: 180px;
+  }
+}
+
+@media (max-width: 767px) {
+  .dashboard-main {
+    padding-bottom: 88px;
+  }
+}
+
+/* ===== Nav sidebar (desktop) ===== */
+
+.nav-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 180px;
+  height: 100vh;
+  z-index: 40;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 20px 12px;
+  gap: 0;
+  background: var(--background);
+  border-right: 1px solid var(--surface-border);
+}
+
+.nav-sidebar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 8px;
+  height: 36px;
+  margin-bottom: 24px;
+  font-family: var(--font-orbitron), monospace;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+  text-shadow: 0 0 12px var(--primary-glow);
+  text-decoration: none;
+}
+
+.nav-sidebar-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--surface-border);
+  margin-bottom: 16px;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  margin: 2px 0;
+  border-radius: 10px;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.nav-item-active {
+  color: var(--primary);
+  background: rgba(0, 212, 170, 0.08);
+}
+
+.nav-item-active::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+  border-radius: 0 2px 2px 0;
+  background: var(--primary);
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.nav-icon {
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.nav-label {
+  font-family: var(--font-fira-code), monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nav-item-active .nav-label {
+  opacity: 1;
+}
+
+.nav-badge {
+  margin-left: auto;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: var(--primary);
+  color: var(--background);
+  font-family: var(--font-fira-code), monospace;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 0 5px;
+}
+
+.nav-badge-mobile {
+  position: absolute;
+  top: 2px;
+  right: 14px;
+  min-width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--primary);
+  color: var(--background);
+  font-family: var(--font-fira-code), monospace;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 0 4px;
+}
+
+/* ===== Nav floating bottom bar (mobile — Nubank style) ===== */
+
+.nav-bottom {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 56px;
+  z-index: 40;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px;
+  background: rgba(21, 19, 32, 0.85);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(107, 79, 160, 0.2);
+  border-radius: 20px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(107, 79, 160, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.nav-item-mobile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 6px 20px;
+  border-radius: 14px;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.nav-item-mobile-active {
+  color: var(--primary);
+  background: rgba(0, 212, 170, 0.1);
+}
+
+.nav-icon-mobile {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.nav-label-mobile {
+  font-family: var(--font-fira-code), monospace;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Safe area for devices with home indicator */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .nav-bottom {
+    bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+  @media (max-width: 767px) {
+    .dashboard-main {
+      padding-bottom: calc(88px + env(safe-area-inset-bottom));
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "app": {
+    "name": "Nudge",
+    "tagline": "Blockchain é liberdade. O Nudge te ensina a exercer a sua."
+  },
+  "wallet": {
+    "connect": "Conectar Wallet",
+    "disconnect": "Desconectar",
+    "connected": "Conectada",
+    "notConnected": "Wallet não conectada",
+    "connectDescription": "Conecte sua wallet Solana para começar"
+  },
+  "nav": {
+    "home": "Início",
+    "dashboard": "Dashboard",
+    "onboarding": "Configurar",
+    "profile": "Perfil"
+  },
+  "landing": {
+    "hero": "De zero a livre.",
+    "subtitle": "O Nudge traduz, educa, protege e inclui. Para quem quer liberdade financeira com blockchain — sem precisar virar especialista.",
+    "cta": "Começar agora"
+  },
+  "onboarding": {
+    "title": "Vamos te conhecer",
+    "subtitle": "Algumas perguntas rápidas para personalizar sua experiência."
+  },
+  "dashboard": {
+    "title": "Seu painel",
+    "subtitle": "Tudo sobre sua posição, traduzido pra você.",
+    "noPosition": "Você ainda não tem posição ativa no Kamino.",
+    "noPositionHint": "Quando tiver, o Nudge traduz tudo pra você."
+  },
+  "status": {
+    "safe": "Segura",
+    "attention": "Atenção",
+    "danger": "Perigo"
+  },
+  "errors": {
+    "generic": "Algo deu errado. Tente novamente.",
+    "walletNotConnected": "Conecte sua wallet para continuar.",
+    "networkError": "Erro de conexão. Verifique sua internet."
+  }
+}
