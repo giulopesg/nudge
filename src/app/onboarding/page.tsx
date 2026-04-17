@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useRouter } from 'next/navigation';
 import WalletButton from '@/components/WalletButton';
+import LanguageToggle from '@/components/LanguageToggle';
 import PermissionsStep from '@/components/onboarding/PermissionsStep';
 import QuizStep from '@/components/onboarding/QuizStep';
 import GoalsStep from '@/components/onboarding/GoalsStep';
@@ -80,7 +81,10 @@ export default function OnboardingPage() {
         >
           {t('app.name')}
         </Link>
-        <WalletButton />
+        <div className="flex items-center gap-3">
+          <LanguageToggle />
+          <WalletButton />
+        </div>
       </header>
 
       {/* Content */}

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import WalletButton from '@/components/WalletButton';
 import DemoToggle from '@/components/DemoToggle';
+import LanguageToggle from '@/components/LanguageToggle';
 
 function LandingContent() {
   const { t } = useTranslation();
@@ -17,6 +18,7 @@ function LandingContent() {
           {t('app.name')}
         </span>
         <div className="flex items-center gap-3">
+          <LanguageToggle />
           <Suspense><DemoToggle /></Suspense>
           <WalletButton />
         </div>

@@ -8,6 +8,7 @@ import { DashboardProvider, useDashboard } from '@/contexts/DashboardContext';
 import DashboardNav from '@/components/dashboard/DashboardNav';
 import WalletButton from '@/components/WalletButton';
 import DemoToggle from '@/components/DemoToggle';
+import LanguageToggle from '@/components/LanguageToggle';
 import CharacterBadge from '@/components/dashboard/CharacterBadge';
 import CharacterSheet from '@/components/dashboard/CharacterSheet';
 
@@ -42,6 +43,7 @@ function ShellInner({ children }: { children: React.ReactNode }) {
             )}
           </div>
           <div className="flex items-center gap-3">
+            <LanguageToggle />
             <DemoToggle />
             {!isDemo && <WalletButton />}
           </div>
