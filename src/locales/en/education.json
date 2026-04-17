@@ -1,0 +1,107 @@
+{
+  "whatIsHF": {
+    "title": "HEALTH FACTOR (HF)",
+    "subtitle": "The number that protects your Kamino loan",
+    "sections": [
+      {
+        "heading": "IN PLAIN LANGUAGE",
+        "body": "The Health Factor (HF) measures the safety of your loan on Kamino. The higher the number, the more protected you are. If it reaches 1.0, the protocol liquidates (sells) your collateral automatically."
+      },
+      {
+        "heading": "THE ZONES",
+        "body": "Above 1.5 = safe. Between 1.2 and 1.5 = attention. Below 1.2 = caution. Below 1.0 = automatic liquidation."
+      },
+      {
+        "heading": "WHAT TO DO",
+        "body": "To raise your HF, you can add more collateral or pay down part of your debt. Nudge monitors your HF in real time and alerts you when action is needed."
+      }
+    ],
+    "realLifeConnection": "Think of the HF as your bank balance before an auto-debit. If it gets too low, the bank won't cover it — on Kamino, the protocol sells your collateral.",
+    "actionLabel": "Got it",
+    "nextStep": "Nudge monitors your Health Factor in real time and alerts you before any risk."
+  },
+  "whatAreStablecoins": {
+    "title": "STABLECOINS",
+    "subtitle": "Digital currencies that don't swing",
+    "sections": [
+      {
+        "heading": "IN PLAIN LANGUAGE",
+        "body": "Stablecoins are digital currencies that are always worth approximately 1 dollar. Unlike Bitcoin or SOL, they don't go up or down — that's the whole point."
+      },
+      {
+        "heading": "WHAT ARE THEY FOR",
+        "body": "Protecting your money from volatility (price swings). When the market drops, stablecoin holders don't lose value. They're like having digital dollars in your wallet."
+      },
+      {
+        "heading": "WHICH ONES EXIST",
+        "body": "The most popular are USDC (by Circle) and USDT (by Tether). On Solana, USDC is the most widely used. You can swap SOL for USDC in seconds."
+      }
+    ],
+    "realLifeConnection": "It's like keeping part of your savings in a stable currency to protect against inflation. Stablecoins do this digitally, without needing a bank or exchange.",
+    "actionLabel": "Got it",
+    "nextStep": "Having 10-30% of your portfolio in stablecoins is a good practice. Nudge tracks this for you."
+  },
+  "whatIsDiversification": {
+    "title": "DIVERSIFICATION",
+    "subtitle": "Why not to put everything in one place",
+    "sections": [
+      {
+        "heading": "IN PLAIN LANGUAGE",
+        "body": "Diversifying means spreading your money across several different assets. If one drops, the others can compensate."
+      },
+      {
+        "heading": "WHY IT MATTERS",
+        "body": "If you have 100% in SOL and SOL drops 30%, you lost 30% of everything. If you have half in SOL and half in stablecoins, you only lost 15%."
+      },
+      {
+        "heading": "HOW TO DO IT",
+        "body": "Having at least 3 different assets is a good start. SOL + stablecoins + another token already helps a lot."
+      }
+    ],
+    "realLifeConnection": "It's like not putting your entire paycheck into savings. Some in savings, some in investments, some in accessible cash. In crypto, the logic is the same.",
+    "actionLabel": "Got it",
+    "nextStep": "Nudge Score measures your diversification automatically. You can track it on your dashboard."
+  },
+  "whatIsKamino": {
+    "title": "KAMINO LENDING",
+    "subtitle": "Borrowing and lending in crypto",
+    "sections": [
+      {
+        "heading": "IN PLAIN LANGUAGE",
+        "body": "Kamino is a protocol on Solana where you can use your tokens as collateral to take out a crypto loan. It's like pawning a valuable item at a bank — you leave something of value and receive money."
+      },
+      {
+        "heading": "HOW IT WORKS",
+        "body": "You deposit tokens (e.g., SOL) as collateral on Kamino. The protocol lends you stablecoins (e.g., USDC). You repay whenever you want. If your collateral loses too much value, it can be liquidated (sold automatically)."
+      },
+      {
+        "heading": "WHAT'S THE RISK",
+        "body": "If the price of your collateral token drops too much, the protocol liquidates it to cover the loan. That's why the Health Factor (HF) is so important — it shows how close you are to that risk."
+      }
+    ],
+    "realLifeConnection": "It's like a mortgage loan. You use something you own (tokens) to get money without selling. But if the value drops too much, the bank (protocol) takes the asset.",
+    "actionLabel": "Got it",
+    "nextStep": "If you decide to use Kamino, Nudge monitors everything in real time and alerts you about any risk."
+  },
+  "whatIsNudgeScore": {
+    "title": "NUDGE SCORE",
+    "subtitle": "What this number means",
+    "sections": [
+      {
+        "heading": "IN PLAIN LANGUAGE",
+        "body": "The Nudge Score measures the overall health of your crypto portfolio, from 0 to 100. The higher it is, the more balanced and protected you are."
+      },
+      {
+        "heading": "WHAT IT MEASURES",
+        "body": "Diversification (are your tokens spread out?), stable reserve (do you have stablecoins?), concentration (does one token dominate too much?), and if you have a Kamino loan, its Health Factor."
+      },
+      {
+        "heading": "HOW TO IMPROVE",
+        "body": "Diversify across 3+ tokens, keep 10-30% in stablecoins, and if you have a loan, keep your Health Factor above 1.5."
+      }
+    ],
+    "realLifeConnection": "Think of the Nudge Score as a health check-up for your money. It shows whether everything is healthy or needs attention, without complication.",
+    "actionLabel": "Got it",
+    "nextStep": "Nudge updates your score in real time. Use the tips below to improve."
+  }
+}

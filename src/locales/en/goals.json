@@ -1,0 +1,61 @@
+{
+  "stepTitle": "WHAT DO YOU WANT TO BUILD?",
+  "stepSubtitle": "Choose up to 3 goals. We'll guide you along the way.",
+  "options": {
+    "reserva": {
+      "label": "Have an inflation-protected reserve",
+      "icon": "shield"
+    },
+    "independencia": {
+      "label": "Save money for the future without depending on banks",
+      "icon": "key"
+    },
+    "aprender": {
+      "label": "Learn how this world works",
+      "icon": "book"
+    },
+    "rendimento": {
+      "label": "Make my money grow more",
+      "icon": "chart"
+    },
+    "remessas": {
+      "label": "Send money abroad without high fees",
+      "icon": "globe"
+    }
+  },
+  "validation": {
+    "min": "Choose at least 1 goal",
+    "max": "Maximum 3 goals"
+  },
+  "continue": "Continue",
+  "journeyTitle": "YOUR PATH",
+  "journeyEmpty": "Complete onboarding to set your goals.",
+  "journeyEncouragement": {
+    "starting": "You're just getting started. Every step counts!",
+    "progress": "You've taken the first steps. Keep going!",
+    "almost": "Almost there! You're doing great.",
+    "complete": "Goal complete! Congratulations!"
+  },
+  "steps": {
+    "quiz-done": "Complete the quiz",
+    "read-whatIsHF": "Read about Health Factor",
+    "read-whatAreStablecoins": "Read about stablecoins",
+    "read-whatIsDiversification": "Read about diversification",
+    "read-whatIsKamino": "Read about Kamino",
+    "read-whatIsNudgeScore": "Understand your score",
+    "has-stablecoins": "Have stablecoins in portfolio",
+    "stables-10pct": "Stablecoins > 10% of portfolio",
+    "hold-7days": "Hold for 7 days",
+    "wallet-created": "Create wallet",
+    "has-kamino-position": "Have an active Kamino position",
+    "hf-above-1.5": "Keep HF above 1.5",
+    "has-usdc": "Have USDC",
+    "read-transfers": "Learn about transfers",
+    "first-transfer": "First transfer"
+  },
+  "stepsCount": "{{completed}}/{{total}} steps",
+  "journeyProgress": "{{percent}}% complete",
+  "stepAction": "Go",
+  "profileGoalsTitle": "YOUR GOALS",
+  "profileGoalSelected": "You want to:"
+}

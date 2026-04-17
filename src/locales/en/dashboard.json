@@ -1,0 +1,379 @@
+{
+  "title": "Your dashboard",
+  "subtitle": "Everything about your finances, translated for you.",
+  "loading": "Loading your data...",
+  "error": "We couldn't load your data. Please try again.",
+  "retry": "Try again",
+  "nav": {
+    "painel": "DASHBOARD",
+    "alertas": "ALERTS",
+    "jornada": "JOURNEY",
+    "perfil": "PROFILE"
+  },
+  "demo": {
+    "prev": "Previous persona",
+    "next": "Next persona",
+    "orDemo": "or",
+    "enterDemo": "enter demo mode",
+    "personas": {
+      "marina": { "name": "Giuliana", "description": "Cautious beginner, safe loan" },
+      "rafael": { "name": "Rafael", "description": "Attentive learner, loan needs attention" },
+      "luna": { "name": "Luna", "description": "Experienced practitioner, loan at risk" },
+      "semposicao": { "name": "Nyx", "description": "Curious beginner, small portfolio" }
+    }
+  },
+  "hero": {
+    "scoreLabel": "NUDGE SCORE",
+    "noPosition": {
+      "title": "CONNECTED",
+      "subtitle": "Connect your wallet to see your personalized dashboard."
+    },
+    "score": {
+      "safe": {
+        "title": {
+          "gentle": "ALL GOOD",
+          "encouraging": "GREAT JOB",
+          "direct": "HEALTHY POSITION",
+          "technical": "HEALTHY SCORE"
+        },
+        "subtitle": {
+          "gentle": "Your money is protected. You can breathe easy.",
+          "encouraging": "Great work! Your portfolio is well balanced. Keep it up!",
+          "direct": "Healthy position. Score {{score}}/100. Comfortable margin.",
+          "technical": "Score {{score}}/100. Metrics within parameters. No intervention needed."
+        }
+      },
+      "attention": {
+        "title": {
+          "gentle": "WORTH A LOOK",
+          "encouraging": "KEEP AN EYE",
+          "direct": "ATTENTION",
+          "technical": "SCORE DECLINING"
+        },
+        "subtitle": {
+          "gentle": "Some things deserve your attention. No rush — Nudge guides you.",
+          "encouraging": "You're on the right track, but worth staying alert. Check the tips below!",
+          "direct": "Score {{score}}/100. Margin shrinking. Monitor closely.",
+          "technical": "Score {{score}}/100. Downward trend. Review metrics below."
+        }
+      },
+      "danger": {
+        "title": {
+          "gentle": "NEEDS YOUR CARE",
+          "encouraging": "LET'S DO THIS TOGETHER",
+          "direct": "ELEVATED RISK",
+          "technical": "CRITICAL SCORE"
+        },
+        "subtitle": {
+          "gentle": "Some things need your care. Nudge shows you the way.",
+          "encouraging": "Time to act together! You have the tools. See below what to do.",
+          "direct": "Score {{score}}/100. Elevated risk. Action recommended.",
+          "technical": "Score {{score}}/100. Immediate intervention recommended."
+        }
+      }
+    }
+  },
+  "ecg": {
+    "label": "HF",
+    "bpmLabel": "HEALTH FACTOR",
+    "status": { "safe": "SAFE", "attention": "ATTENTION", "danger": "CAUTION" }
+  },
+  "portfolio": {
+    "title": "Your portfolio",
+    "diversification": "Diversification",
+    "diversified": "Diversified",
+    "concentrated": "Concentrated",
+    "concentratedHint": "Most of your money is in just 1 coin. If it drops, everything drops with it.",
+    "stableReserve": "Stable reserve"
+  },
+  "kamino": {
+    "title": "Kamino — Your loan",
+    "subtitleDetail": "Details of what you borrowed",
+    "noPosition": "You don't have an active loan on Kamino yet.",
+    "noPositionHint": "When you do, Nudge translates everything for you.",
+    "collateral": "Collateral",
+    "debt": "Debt",
+    "margin": "Safety margin",
+    "netValue": "Net value",
+    "healthFactor": "Health Factor (HF)",
+    "loanToValue": "Loan-to-Value (LTV)",
+    "ctaView": "View on Kamino \u2197",
+    "explain": {
+      "collateral": "Tokens you deposited as collateral on Kamino",
+      "debt": "How much you borrowed",
+      "margin": "How much margin you have before risk",
+      "marginGood": "Plenty of margin!",
+      "marginOk": "Reasonable",
+      "marginTight": "Very tight",
+      "netValue": "What's left if you pay everything back now"
+    },
+    "translated": {
+      "safe": {
+        "gentle": "Your Kamino loan is safe. Your collateral is worth {{margin}}% more than your debt. Relax.",
+        "encouraging": "Great news! Your Kamino loan is healthy. {{margin}}% margin — keep it up!",
+        "direct": "Safe position. {{margin}}% margin. Health Factor: {{hf}}.",
+        "technical": "HF: {{hf}}. Margin: {{margin}}%. Nominal LTV. No risk."
+      },
+      "attention": {
+        "gentle": "Your Kamino loan needs a bit of attention. Your margin is at {{margin}}% — let's look at what to do together.",
+        "encouraging": "Your Kamino loan is in attention zone. {{margin}}% margin — you can improve! Check the actions below.",
+        "direct": "Attention: margin dropping to {{margin}}%. Health Factor: {{hf}}. Consider adding collateral.",
+        "technical": "HF: {{hf}}. Margin: {{margin}}%. LTV rising. Monitor proactively."
+      },
+      "danger": {
+        "gentle": "Your Kamino loan deserves your attention. Margin is at {{margin}}% — but it's fixable. See below.",
+        "encouraging": "Let's take care of your Kamino loan together! {{margin}}% margin. You have the tools — see below.",
+        "direct": "Elevated risk. Margin: {{margin}}%. Health Factor: {{hf}}. Add collateral or reduce debt.",
+        "technical": "HF: {{hf}}. Critical LTV. Margin: {{margin}}%. Liquidation possible if HF reaches 1.0."
+      }
+    }
+  },
+  "actions": {
+    "title": {
+      "gentle": "USEFUL LINKS",
+      "encouraging": "USEFUL LINKS",
+      "direct": "USEFUL LINKS",
+      "technical": "USEFUL LINKS"
+    },
+    "comingSoon": "Coming soon",
+    "cards": {
+      "diversify": {
+        "label": {
+          "gentle": "Better protection",
+          "encouraging": "Diversify!",
+          "direct": "Rebalance",
+          "technical": "Rebalance allocation"
+        },
+        "desc": {
+          "gentle": "Spreading your money across more coins helps protect it",
+          "encouraging": "Spread your portfolio to grow safely",
+          "direct": "Diversify across multiple coins",
+          "technical": "Swap via Jupiter to reduce concentration"
+        }
+      },
+      "learnStables": {
+        "label": {
+          "gentle": "What are stablecoins?",
+          "encouraging": "Discover stablecoins",
+          "direct": "Stablecoins",
+          "technical": "Stablecoin reserve"
+        },
+        "desc": {
+          "gentle": "Stable currencies that don't swing like crypto",
+          "encouraging": "Learn about currencies that don't fluctuate in price",
+          "direct": "Dollar-pegged currencies for reserve",
+          "technical": "USDC/USDT as volatility hedge"
+        }
+      },
+      "exploreKamino": {
+        "label": {
+          "gentle": "What is lending?",
+          "encouraging": "Explore Kamino",
+          "direct": "Kamino — Lending",
+          "technical": "Kamino Lending"
+        },
+        "desc": {
+          "gentle": "Understand how crypto lending works",
+          "encouraging": "Discover how to use your crypto to earn yield",
+          "direct": "Borrow using your tokens as collateral",
+          "technical": "Open a lending position on Kamino"
+        }
+      },
+      "learnHF": {
+        "label": {
+          "gentle": "Understand Health Factor",
+          "encouraging": "Learn about HF",
+          "direct": "Health Factor (HF)",
+          "technical": "Health Factor — reference"
+        },
+        "desc": {
+          "gentle": "Learn what the Health Factor means and how it protects your loan",
+          "encouraging": "Find out how your loan's Health Factor works",
+          "direct": "What it is and how to monitor it",
+          "technical": "HF zones and limits reference"
+        }
+      },
+      "viewKamino": {
+        "label": {
+          "gentle": "View my loan",
+          "encouraging": "View on Kamino",
+          "direct": "View on Kamino",
+          "technical": "Kamino Dashboard"
+        },
+        "desc": {
+          "gentle": "Open your loan on the Kamino website",
+          "encouraging": "See the details on the Kamino site",
+          "direct": "Open position on the protocol",
+          "technical": "Protocol native interface"
+        }
+      },
+      "addCollateral": {
+        "label": {
+          "gentle": "Add collateral",
+          "encouraging": "Add collateral",
+          "direct": "Add collateral",
+          "technical": "Deposit collateral"
+        },
+        "desc": {
+          "gentle": "Add more collateral to your loan to increase safety",
+          "encouraging": "Deposit more collateral to increase your margin",
+          "direct": "Deposit additional collateral on Kamino",
+          "technical": "Increase HF via collateral deposit on Kamino"
+        }
+      },
+      "reduceDebt": {
+        "label": {
+          "gentle": "Pay down some debt",
+          "encouraging": "Reduce debt",
+          "direct": "Reduce debt",
+          "technical": "Partial repay"
+        },
+        "desc": {
+          "gentle": "Pay a little to relieve pressure on your loan",
+          "encouraging": "Pay part of your loan to stay safer",
+          "direct": "Partial loan repayment on Kamino",
+          "technical": "Partial repay to reduce LTV"
+        }
+      },
+      "simulate": {
+        "label": {
+          "gentle": "Simulate scenario",
+          "encouraging": "Simulate scenario",
+          "direct": "Simulate scenario",
+          "technical": "Scenario simulation"
+        },
+        "desc": {
+          "gentle": "Test what happens if the price changes",
+          "encouraging": "See what would happen in different scenarios",
+          "direct": "Project price change impact",
+          "technical": "Stress test: HF and margin impact"
+        }
+      }
+    }
+  },
+  "education": {
+    "title": "HEALTH FACTOR (HF)",
+    "subtitle": "The number that protects your loan",
+    "whatIsHF": "The Health Factor (HF) measures how protected your Kamino loan is. The higher the number, the safer you are. If it reaches 1.0, your collateral can be automatically sold (liquidation).",
+    "zones": {
+      "safe": { "label": "Safe", "desc": "Comfortable position, no worries" },
+      "attention": { "label": "Attention", "desc": "Margin shrinking, worth monitoring" },
+      "danger": { "label": "Caution", "desc": "High risk, worth acting" },
+      "liquidation": { "label": "Liquidation", "desc": "Collateral sold automatically by the protocol" }
+    },
+    "whatToDoTitle": "WHAT TO DO",
+    "actions": {
+      "addCollateral": "Adding more collateral increases your HF and moves you away from liquidation",
+      "reduceDebt": "Paying down part of the debt reduces LTV and improves your margin",
+      "monitor": "Monitor closely when the market is volatile"
+    },
+    "gotIt": "Got it"
+  },
+  "status": { "safe": "Safe", "attention": "Attention", "danger": "Caution" },
+  "characterSheet": {
+    "title": "DOSSIER",
+    "close": "Close",
+    "classLabel": "Class",
+    "levelLabel": "Level",
+    "profileTitle": "PROFILE",
+    "statsTitle": "ATTRIBUTES",
+    "stats": { "clarity": "Clarity", "confidence": "Confidence", "reactivity": "Serenity" },
+    "inventoryTitle": "INVENTORY",
+    "emptySlot": "???",
+    "itemObtained": "Achievement unlocked",
+    "itemLocked": "How to unlock",
+    "itemXp": "+{{xp}} XP",
+    "itemDate": "Obtained on {{date}}",
+    "xpLabel": "XP to next level",
+    "xpProgress": "{{current}}/{{needed}}"
+  },
+  "tiers": {
+    "iniciante": "BEGINNER",
+    "aprendiz": "APPRENTICE",
+    "praticante": "PRACTITIONER",
+    "estrategista": "STRATEGIST",
+    "soberana": "SOVEREIGN"
+  },
+  "items": {
+    "chave-wallet": {
+      "name": "Wallet Key",
+      "description": "Your first step. You introduced yourself to Nudge.",
+      "howToGet": "Complete the profile quiz during onboarding."
+    },
+    "mapa-kamino": {
+      "name": "Kamino Map",
+      "description": "You saw your data for the first time. Knowledge is power.",
+      "howToGet": "Open the dashboard for the first time."
+    },
+    "escritura-kamino": {
+      "name": "Kamino Deed",
+      "description": "An active position. Your first protocol operation.",
+      "howToGet": "Have an active loan on Kamino."
+    },
+    "lente-clareza": {
+      "name": "Clarity Lens",
+      "description": "You came back 3 times. Attention is a skill.",
+      "howToGet": "Return to the dashboard and read your status 3 times."
+    },
+    "escudo-serenidade": {
+      "name": "Serenity Shield",
+      "description": "The market shook, you didn't. Resilience unlocked.",
+      "howToGet": "Survive an attention period without being liquidated."
+    },
+    "lamina-coragem": {
+      "name": "Courage Blade",
+      "description": "Real danger, real calm. You faced the worst.",
+      "howToGet": "Survive a danger period with composure."
+    },
+    "orbe-vigilancia": {
+      "name": "Vigilance Orb",
+      "description": "7 consecutive days of monitoring. Discipline forged.",
+      "howToGet": "Access Nudge for 7 consecutive days."
+    },
+    "grimorio-basico": {
+      "name": "Basic Grimoire",
+      "description": "You learned what the Health Factor means. Knowledge is protection.",
+      "howToGet": "Read the Health Factor explanation on the dashboard."
+    },
+    "runa-acao": {
+      "name": "Action Rune",
+      "description": "You acted when Nudge warned you. Informed decision.",
+      "howToGet": "Execute an action recommended by Nudge."
+    },
+    "emblema-mentora": {
+      "name": "Mentor Emblem",
+      "description": "You referred Nudge. Helping others is the highest level.",
+      "howToGet": "Refer Nudge to someone else."
+    },
+    "selo-solana": {
+      "name": "Solana Seal",
+      "description": "Your profile was registered on-chain. Immutable proof on the blockchain.",
+      "howToGet": "Register your profile on Solana during onboarding."
+    }
+  },
+  "beginnerKamino": {
+    "title": "KAMINO — CRYPTO LENDING",
+    "body": {
+      "gentle": "Did you know you can use your tokens as collateral to borrow crypto? On Kamino, Nudge monitors everything for you in real time. When you feel ready, we're here.",
+      "encouraging": "Did you know you can use your tokens as collateral to borrow crypto? Kamino does this and Nudge monitors everything for you. It's simpler than it looks!",
+      "direct": "Collateral-backed crypto lending on Kamino. Nudge monitors your position in real time.",
+      "technical": "Kamino Lending: on-chain lending protocol. Deposit collateral, take a loan. Nudge monitors HF automatically."
+    },
+    "cta": {
+      "gentle": "Learn how it works",
+      "encouraging": "I want to understand!",
+      "direct": "View Kamino",
+      "technical": "Explore Kamino"
+    },
+    "ctaBorrow": "Take a loan \u2197"
+  },
+  "alertas": {
+    "title": "Your alerts",
+    "subtitle": "Nudge notification history.",
+    "markAllRead": "Mark all as read",
+    "empty": "No alerts yet.",
+    "miniLink": "{{count}} unread alerts \u2192 view all",
+    "summary": { "urgent": "Urgent", "warning": "Warning", "info": "Info" }
+  },
+  "lastUpdate": "Updated {{time}}"
+}

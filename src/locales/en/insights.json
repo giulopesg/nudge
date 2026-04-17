@@ -1,0 +1,85 @@
+{
+  "sectionTitle": "WHY",
+  "kaminoHF": {
+    "title": {
+      "gentle": "Your Kamino loan needs some care",
+      "encouraging": "Heads up on your Kamino loan",
+      "direct": "Loan margin is low",
+      "technical": "Health Factor declining"
+    },
+    "body": {
+      "gentle": "You have a loan on Kamino. Your margin is at {{margin}}% — the lower it gets, the closer to liquidation (automatic sell of your collateral). But it's fixable.",
+      "encouraging": "Your Kamino loan has a {{margin}}% margin. Worth acting to stay safe. You've got this!",
+      "direct": "Loan margin: {{margin}}%. HF: {{hf}}. Consider adding collateral.",
+      "technical": "HF: {{hf}}. LTV rising. Margin: {{margin}}%. Liquidation projected if HF < 1.0."
+    },
+    "action": {
+      "gentle": "See what to do",
+      "encouraging": "Act now",
+      "direct": "Add collateral",
+      "technical": "Deposit collateral"
+    }
+  },
+  "concentration": {
+    "title": {
+      "gentle": "Too concentrated in one asset",
+      "encouraging": "Opportunity to diversify",
+      "direct": "High concentration",
+      "technical": "Concentration risk"
+    },
+    "body": {
+      "gentle": "{{symbol}} represents {{percent}}% of your portfolio. Diversifying helps protect your money if that asset drops.",
+      "encouraging": "{{symbol}} makes up {{percent}}% of the total. Spreading across more assets is safer — and you already know how!",
+      "direct": "{{symbol}} at {{percent}}% of portfolio. Consider rebalancing to reduce exposure.",
+      "technical": "{{symbol}}: {{percent}}% of portfolio. Elevated concentration risk. Rebalancing recommended."
+    }
+  },
+  "stablecoin": {
+    "title": {
+      "gentle": "Low stable reserve",
+      "encouraging": "How about a safe reserve?",
+      "direct": "Stablecoins low",
+      "technical": "Low stablecoin allocation"
+    },
+    "body": {
+      "gentle": "Only {{percent}}% of your portfolio is in stablecoins (stable currencies). Having some in stablecoins protects you when the market drops.",
+      "encouraging": "You have {{percent}}% in stablecoins. Ideal is 10-30% — that way you have a reserve for opportunities!",
+      "direct": "Stablecoins at {{percent}}% of portfolio. Ideal range: 10-30%.",
+      "technical": "Stablecoin allocation: {{percent}}%. Target: 10-30% for volatility hedge."
+    },
+    "action": {
+      "gentle": "Understand stablecoins",
+      "encouraging": "See how to get stablecoins",
+      "direct": "Convert to USDC",
+      "technical": "Swap to USDC via Jupiter"
+    }
+  },
+  "smallPortfolio": {
+    "title": {
+      "gentle": "You're just starting — and that's great!",
+      "encouraging": "First steps!",
+      "direct": "Small portfolio",
+      "technical": "Portfolio: ${{total}}"
+    },
+    "body": {
+      "gentle": "Your portfolio has ${{total}}. Everyone starts somewhere. The important thing is to keep learning.",
+      "encouraging": "You already have ${{total}} in your portfolio! Keep learning and building at your own pace.",
+      "direct": "Current portfolio: ${{total}}. Track your progress here.",
+      "technical": "AUM: ${{total}}. Limited exposure. Active monitoring."
+    }
+  },
+  "goodDiversification": {
+    "title": {
+      "gentle": "Your portfolio is well diversified",
+      "encouraging": "Great diversification!",
+      "direct": "Adequate diversification",
+      "technical": "Diversification OK"
+    },
+    "body": {
+      "gentle": "You have {{count}} different assets. That's good — it helps protect your money.",
+      "encouraging": "{{count}} assets in your portfolio! Great diversification strategy. Keep it up!",
+      "direct": "{{count}} assets in portfolio. Concentration within acceptable range.",
+      "technical": "{{count}} assets. Diversification within adequate parameters."
+    }
+  }
+}

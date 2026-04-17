@@ -1,0 +1,141 @@
+{
+  "sectionTitle": "ALERTS & NUDGES",
+  "badge": "{{count}} new",
+  "showMore": "Show {{count}} more alerts",
+  "showLess": "Show less",
+  "timeAgo": {
+    "minutes": "{{count}}min",
+    "hours": "{{count}}h",
+    "days": "{{count}}d"
+  },
+  "hf-alert": {
+    "title": {
+      "urgent": {
+        "gentle": "Your Kamino loan needs attention now",
+        "encouraging": "Urgent attention on Kamino!",
+        "direct": "Loan at risk — liquidation possible",
+        "technical": "Critical HF: {{hf}}"
+      },
+      "warning": {
+        "gentle": "Your Kamino loan deserves a look",
+        "encouraging": "Time to check your Kamino loan",
+        "direct": "Loan Health Factor dropping",
+        "technical": "HF declining: {{hf}}"
+      }
+    },
+    "body": {
+      "urgent": {
+        "gentle": "Your loan's Health Factor is at {{hf}} — this means your collateral is very close to being liquidated (sold automatically). Margin: {{margin}}%. Adding collateral can help.",
+        "encouraging": "HF at {{hf}} and margin at {{margin}}%. It's tight, but you can fix it! Add collateral or pay down some debt on Kamino.",
+        "direct": "HF: {{hf}}. Margin: {{margin}}%. Liquidation risk. Action needed on Kamino.",
+        "technical": "HF: {{hf}}. Margin: {{margin}}%. LTV near limit. Deposit collateral or partial repay."
+      },
+      "warning": {
+        "gentle": "Your loan's Health Factor is at {{hf}} — not critical, but worth keeping an eye on. Margin at {{margin}}%.",
+        "encouraging": "HF at {{hf}} with {{margin}}% margin. Good time to strengthen your position on Kamino!",
+        "direct": "HF: {{hf}}. Margin: {{margin}}%. Consider adding collateral.",
+        "technical": "HF: {{hf}}. Margin: {{margin}}%. LTV rising. Monitoring recommended."
+      }
+    }
+  },
+  "score-drop": {
+    "title": {
+      "gentle": "Your score dropped a bit",
+      "encouraging": "Score took a dip",
+      "direct": "Score dropped {{delta}} points",
+      "technical": "Score: -{{delta}} points"
+    },
+    "body": {
+      "gentle": "Your Nudge Score went from {{previous}} to {{current}}. It happens — let's see how to improve?",
+      "encouraging": "Score went from {{previous}} to {{current}}. Don't worry! Check the recommended actions to bounce back.",
+      "direct": "Score: {{previous}} → {{current}} (-{{delta}}). Review your portfolio.",
+      "technical": "NudgeScore: {{previous}} → {{current}} (-{{delta}}). Review individual metrics."
+    }
+  },
+  "concentration": {
+    "title": {
+      "gentle": "Too much of your money is in 1 coin",
+      "encouraging": "Opportunity to diversify!",
+      "direct": "{{symbol}} makes up {{percent}}% of portfolio",
+      "technical": "Concentration: {{symbol}} at {{percent}}%"
+    },
+    "body": {
+      "gentle": "{{symbol}} represents {{percent}}% of your portfolio. Having everything in one place is risky — diversifying protects your money.",
+      "encouraging": "{{symbol}} is at {{percent}}% of your portfolio. How about spreading it out? More coins = more protection!",
+      "direct": "{{symbol}} at {{percent}}% of portfolio. Excessive exposure. Consider diversifying.",
+      "technical": "{{symbol}}: {{percent}}% of portfolio. Elevated concentration risk. Rebalancing suggested."
+    }
+  },
+  "volatility": {
+    "title": {
+      "up": {
+        "gentle": "SOL went up significantly",
+        "encouraging": "SOL is rising!",
+        "direct": "SOL +{{percent}}% since last visit",
+        "technical": "SOL: +{{percent}}%"
+      },
+      "down": {
+        "gentle": "SOL dropped a bit",
+        "encouraging": "SOL took a dip",
+        "direct": "SOL -{{percent}}% since last visit",
+        "technical": "SOL: -{{percent}}%"
+      }
+    },
+    "body": {
+      "up": {
+        "gentle": "SOL's price went up {{percent}}% since your last visit. Good time to review your position.",
+        "encouraging": "SOL is up {{percent}}%! This may affect your portfolio — worth a look.",
+        "direct": "SOL up {{percent}}%. Review impact on portfolio and loans.",
+        "technical": "SOL +{{percent}}%. Evaluate impact on LTV and collateral if applicable."
+      },
+      "down": {
+        "gentle": "SOL's price dropped {{percent}}% since your last visit. No panic — let's see how you're doing.",
+        "encouraging": "SOL pulled back {{percent}}%. Part of the market! Check if you need to adjust any positions.",
+        "direct": "SOL down {{percent}}%. Check impact on positions.",
+        "technical": "SOL -{{percent}}%. Check impact on collateral and HF if applicable."
+      }
+    }
+  },
+  "goal-milestone": {
+    "title": {
+      "gentle": "You completed a step!",
+      "encouraging": "Achievement unlocked!",
+      "direct": "Goal: step completed",
+      "technical": "Progress: {{completed}}/{{total}}"
+    },
+    "body": {
+      "gentle": "Another step done on your journey! You're on step {{completed}} of {{total}}. Keep going at your pace.",
+      "encouraging": "Congrats! Step {{completed}} of {{total}} completed! Every step counts. On to the next?",
+      "direct": "Progress: {{completed}}/{{total}} steps completed.",
+      "technical": "Progress: {{completed}}/{{total}} steps completed."
+    }
+  },
+  "inactivity": {
+    "title": {
+      "gentle": "We missed you!",
+      "encouraging": "It's been a while!",
+      "direct": "{{days}} days without access",
+      "technical": "Inactivity: {{days}} days"
+    },
+    "body": {
+      "gentle": "It's been {{days}} days since you visited your dashboard. Your portfolio may have changed — shall we take a look?",
+      "encouraging": "It's been {{days}} days! A lot can change in the market. How about checking on your portfolio?",
+      "direct": "{{days}} days without access. Review your portfolio and positions.",
+      "technical": "Last access: {{days}} days ago. Data outdated. Update recommended."
+    }
+  },
+  "score-improvement": {
+    "title": {
+      "gentle": "Your score improved!",
+      "encouraging": "Congrats, score is rising!",
+      "direct": "Score up {{delta}} points",
+      "technical": "Score: +{{delta}} points"
+    },
+    "body": {
+      "gentle": "Your Nudge Score went from {{previous}} to {{current}}. Great job — your decisions are making a difference!",
+      "encouraging": "Score from {{previous}} to {{current}}! You're growing! Keep it up and the results will show.",
+      "direct": "Score: {{previous}} → {{current}} (+{{delta}}). Healthier portfolio.",
+      "technical": "NudgeScore: {{previous}} → {{current}} (+{{delta}}). Metrics improving."
+    }
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "permissions": {
+    "title": "What Nudge does (and doesn't)",
+    "subtitle": "Full transparency before we start.",
+    "canDo": {
+      "title": "Nudge can:",
+      "items": [
+        "Read your on-chain positions (public data)",
+        "Translate technical terms into plain language",
+        "Monitor your safety and alert you",
+        "Teach you about crypto at your pace"
+      ]
+    },
+    "cantDo": {
+      "title": "Nudge CANNOT:",
+      "items": [
+        "Move your money",
+        "Make transactions for you",
+        "Access your private key",
+        "Make decisions for you"
+      ]
+    },
+    "readOnly": "Read-only access. Your funds always stay under your control.",
+    "continue": "Got it, continue"
+  },
+  "quiz": {
+    "title": "Let's get to know you",
+    "subtitle": "5 quick questions. There are no right or wrong answers.",
+    "q1": {
+      "question": "Who set up your wallet?",
+      "options": {
+        "self": "I did it myself",
+        "other": "Someone else set it up for me",
+        "together": "I did it with someone's help"
+      }
+    },
+    "q2": {
+      "question": "If SOL's price dropped 20% today, what would you do?",
+      "options": {
+        "sell": "Sell everything",
+        "ask": "Ask someone for advice",
+        "unsure": "I don't know what I'd do",
+        "hold": "Nothing, it's part of the game"
+      }
+    },
+    "q3": {
+      "question": "How often do you check your crypto positions?",
+      "options": {
+        "daily": "Every day",
+        "weekly": "Every week",
+        "sometimes": "Once in a while",
+        "rarely": "Almost never"
+      }
+    },
+    "q4": {
+      "question": "What is \"Health Factor\"?",
+      "options": {
+        "knows": "I know what it is and I track it",
+        "heard": "I've heard of it but don't really know",
+        "noIdea": "No idea"
+      }
+    },
+    "q5": {
+      "question": "What do you want from Nudge?",
+      "hint": "You can pick more than one.",
+      "options": {
+        "safety": "Know if my money is safe",
+        "learn": "Learn about crypto",
+        "opportunities": "Find opportunities",
+        "monitor": "Monitor the market"
+      }
+    },
+    "next": "Next",
+    "previous": "Back",
+    "finish": "See my profile",
+    "progress": "{{current}} of {{total}}"
+  },
+  "profile": {
+    "title": "Your Nudge profile",
+    "subtitle": "Based on your answers, we identified where you are:",
+    "tagsTitle": "Your neurotags",
+    "whatItMeans": "What this means",
+    "nudgeWill": "Nudge will:",
+    "actions": {
+      "translateAll": "Translate EVERYTHING without jargon",
+      "teachPace": "Teach you concepts at your pace",
+      "helpIndependence": "Help you become more independent",
+      "alertClearly": "Alert you clearly when you need to pay attention",
+      "showOpportunities": "Show opportunities when they appear",
+      "monitorMarket": "Monitor the market for you"
+    },
+    "goToDashboard": "Go to dashboard",
+    "profileSaved": "Profile saved successfully!"
+  },
+  "neurotags": {
+    "iniciante": {
+      "label": "#beginner",
+      "description": "You're just starting — and that's OK. Nudge will translate every concept for you."
+    },
+    "delegadora": {
+      "label": "#delegator",
+      "description": "You tend to rely on someone else for financial decisions. Nudge will help you gain autonomy, step by step."
+    },
+    "indecisa-sob-pressao": {
+      "label": "#indecisive-under-pressure",
+      "description": "In tense moments, you freeze. Nudge will show you real data to help you decide calmly."
+    },
+    "negligente": {
+      "label": "#neglectful",
+      "description": "You forget to check your positions. Nudge will take care of that and alert you when it matters."
+    },
+    "avessa-a-jargao": {
+      "label": "#jargon-averse",
+      "description": "Technical terms paralyze you. Nudge will never use jargon without translating first."
+    },
+    "quer-seguranca": {
+      "label": "#wants-safety",
+      "description": "You want peace of mind with your money. Nudge monitors everything and alerts you when needed."
+    },
+    "curiosa": {
+      "label": "#curious",
+      "description": "You want to learn! Nudge will bring educational content at your pace."
+    },
+    "calma-sob-pressao": {
+      "label": "#calm-under-pressure",
+      "description": "You don't panic. Nudge will reinforce your confidence with real data."
+    },
+    "autonoma-inicial": {
+      "label": "#early-autonomous",
+      "description": "You've already taken the first steps on your own. Nudge will help you go further."
+    },
+    "semi-autonoma": {
+      "label": "#semi-autonomous",
+      "description": "You started with someone's help — great beginning. Nudge helps you take the next steps alone."
+    },
+    "intermediaria": {
+      "label": "#intermediate",
+      "description": "You already have a solid foundation. Nudge will show you more detailed data."
+    },
+    "reativa": {
+      "label": "#reactive",
+      "description": "You tend to act on impulse. Nudge will show you real data before any decision."
+    },
+    "atenta": {
+      "label": "#attentive",
+      "description": "You follow the market. Nudge will complement your attention with smart alerts."
+    },
+    "exploradora": {
+      "label": "#explorer",
+      "description": "You seek new opportunities. Nudge will help you explore safely."
+    }
+  },
+  "registration": {
+    "title": "ON-CHAIN REGISTRATION",
+    "subtitle": "Register your profile on the Solana blockchain as proof of your Nudge.",
+    "hashLabel": "Profile hash",
+    "classLabel": "Class",
+    "networkLabel": "Network",
+    "network": "Solana Mainnet",
+    "cta": "Register on Solana",
+    "skip": "Skip \u2192 go to dashboard",
+    "cost": "Costs ~0.000005 SOL (less than $0.01)",
+    "signing": "Signing...",
+    "confirming": "Confirming on network...",
+    "success": "Registered successfully!",
+    "viewTx": "View transaction on Solscan",
+    "xpEarned": "+150 XP",
+    "goToDashboard": "Go to dashboard",
+    "error": "Registration failed. Your wallet may have rejected the transaction.",
+    "retry": "Try again",
+    "demoSuccess": "Simulated registration in demo mode!"
+  }
+}
