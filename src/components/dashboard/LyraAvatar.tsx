@@ -20,9 +20,10 @@ export default function LyraAvatar({ size = 56, className = '' }: Props) {
       <Image
         src="/lyra-avatar.png"
         alt="Lyra"
-        width={size}
-        height={size}
-        className="absolute inset-0 h-full w-full object-cover object-[50%_15%] scale-[1.15] transition-all duration-300 group-hover:scale-[1.25] group-hover:brightness-110"
+        fill
+        sizes={`${size * 3}px`}
+        quality={90}
+        className="object-cover object-[50%_15%] scale-[1.15] transition-all duration-300 group-hover:scale-[1.25] group-hover:brightness-110"
       />
     </div>
   );

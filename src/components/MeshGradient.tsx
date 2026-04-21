@@ -211,9 +211,8 @@ export default function MeshGradient({ className }: { className?: string }) {
 
     function resize() {
       const dpr = Math.min(window.devicePixelRatio, 2);
-      const scale = dpr > 1 ? 0.5 : 0.75;
-      canvas!.width = canvas!.clientWidth * dpr * scale;
-      canvas!.height = canvas!.clientHeight * dpr * scale;
+      canvas!.width = canvas!.clientWidth * dpr * 0.75;
+      canvas!.height = canvas!.clientHeight * dpr * 0.75;
       gl!.viewport(0, 0, canvas!.width, canvas!.height);
     }
 
