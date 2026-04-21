@@ -28,24 +28,24 @@ export default function InsightCards({ insights, commProfile }: Props) {
 
   return (
     <div className="space-y-2">
-      <h3 className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted">
+      <h3 className="font-mono text-[12px] uppercase tracking-[0.15em] text-text-muted">
         {t('sectionTitle')}
       </h3>
       <div className="space-y-2">
         {insights.map((insight) => (
           <div
             key={insight.id}
-            className={`card chamfer-sm border ${TYPE_STYLES[insight.type] ?? TYPE_STYLES.info}`}
+            className={`card rounded-lg border ${TYPE_STYLES[insight.type] ?? TYPE_STYLES.info}`}
           >
             <div className="flex items-start gap-3">
-              <span className="text-base flex-shrink-0 mt-0.5">
+              <span className="text-[17px] flex-shrink-0 mt-0.5">
                 {TYPE_ICONS[insight.type]}
               </span>
               <div className="flex-1 min-w-0">
-                <h4 className="font-mono text-xs font-semibold text-foreground">
+                <h4 className="font-mono text-[13px] font-semibold text-foreground">
                   {t(`${insight.titleKey}.${commProfile}`, insight.interpolation)}
                 </h4>
-                <p className="mt-1 text-[12px] leading-relaxed text-text-secondary">
+                <p className="mt-1 text-[13px] leading-relaxed text-text-secondary">
                   {t(`${insight.bodyKey}.${commProfile}`, insight.interpolation)}
                 </p>
                 {insight.actionKey && (
@@ -55,13 +55,13 @@ export default function InsightCards({ insights, commProfile }: Props) {
                         href={insight.actionHref}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block chamfer-sm border border-danger/30 bg-danger/10 px-3 py-1.5 font-mono text-[11px] font-semibold text-danger hover:bg-danger/20 transition-colors"
+                        className="inline-block rounded-lg border border-danger/30 bg-danger/10 px-3 py-1.5 font-mono text-[13px] font-semibold text-danger hover:bg-danger/20 transition-colors"
                       >
                         {t(`${insight.actionKey}.${commProfile}`)}
                         <span className="ml-1">&#8599;</span>
                       </a>
                     ) : (
-                      <span className="font-mono text-[11px] font-semibold text-primary">
+                      <span className="font-mono text-[13px] font-semibold text-primary">
                         {t(`${insight.actionKey}.${commProfile}`)}
                       </span>
                     )}

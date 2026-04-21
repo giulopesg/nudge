@@ -13,15 +13,15 @@ export default function CharacterBadge({ character, onClick }: Props) {
   return (
     <button
       onClick={onClick}
-      className="chamfer-sm flex items-center gap-2 border border-plum/20 bg-plum-muted px-3 py-1.5 transition-all hover:border-plum hover:shadow-[0_0_12px_var(--plum-glow)]"
+      className="rounded-full flex items-center gap-2 border border-primary/20 bg-primary-muted px-3 py-1.5 transition-all hover:border-primary hover:shadow-[0_0_12px_var(--primary-glow)]"
     >
-      <span className="text-sm">{character.class.icon}</span>
-      <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-plum-light">
+      <span className="text-[15px]">{character.class.icon}</span>
+      <span className="font-mono text-[12px] font-semibold uppercase tracking-wider text-primary">
         LV {character.level}
       </span>
       <div className="h-[2px] w-8 overflow-hidden rounded-full bg-white/10">
         <div
-          className="h-full bg-xp"
+          className="h-full stat-bar-fill-xp"
           style={{ width: `${xpPercent}%` }}
         />
       </div>

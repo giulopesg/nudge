@@ -109,7 +109,7 @@ export function useECGAnimation(
     ctx.clearRect(cursor, 0, clearWidth, height);
 
     // Grid
-    ctx.strokeStyle = 'rgba(107, 79, 160, 0.08)';
+    ctx.strokeStyle = 'rgba(163, 102, 255, 0.08)';
     ctx.lineWidth = 0.5;
     const gridSize = 20;
     for (let gx = cursor; gx < cursor + speed + 1; gx += gridSize) {
@@ -145,9 +145,9 @@ export function useECGAnimation(
       + (1 - config.amplitude) * drawHeight * 0.5;
 
     const colors: Record<PositionStatus, string> = {
-      safe: '#00CC88',
-      attention: '#FFB84D',
-      danger: '#FF6B9D',
+      safe: '#2ED88A',
+      attention: '#F5A623',
+      danger: '#FF4D6A',
     };
 
     ctx.strokeStyle = colors[status];

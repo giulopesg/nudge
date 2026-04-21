@@ -1,10 +1,23 @@
-import type { Metadata } from 'next';
-import { DM_Sans, Fira_Code, Orbitron } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
+import { Lora, Cormorant_Garamond, Outfit, Fira_Code } from 'next/font/google';
 import Providers from '@/components/Providers';
+import MeshGradient from '@/components/MeshGradient';
 import './globals.css';
 
-const dmSans = DM_Sans({
-  variable: '--font-dm-sans',
+const lora = Lora({
+  variable: '--font-lora',
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: '--font-cormorant',
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+});
+
+const outfit = Outfit({
+  variable: '--font-outfit',
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
 });
@@ -15,16 +28,17 @@ const firaCode = Fira_Code({
   weight: ['400', '500', '600'],
 });
 
-const orbitron = Orbitron({
-  variable: '--font-orbitron',
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-});
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  viewportFit: 'cover',
+};
 
 export const metadata: Metadata = {
-  title: 'Nudge — Coach comportamental para DeFi',
+  title: 'Nudge — Blockchain é liberdade',
   description:
-    'Blockchain é liberdade. O Nudge te ensina a exercer a sua. Traduza, aprenda e proteja suas posições DeFi.',
+    'Traduza, aprenda e proteja suas posições DeFi. Sem jargão. Sem complexidade. Só você e seu dinheiro.',
 };
 
 export default function RootLayout({
@@ -35,10 +49,13 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${dmSans.variable} ${firaCode.variable} ${orbitron.variable} h-full antialiased`}
+      className={`${lora.variable} ${cormorant.variable} ${outfit.variable} ${firaCode.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
-        <Providers>{children}</Providers>
+      <body className="min-h-full flex flex-col bg-background text-foreground overflow-x-hidden">
+        <MeshGradient />
+        <Providers>
+          <div className="relative z-10">{children}</div>
+        </Providers>
       </body>
     </html>
   );

@@ -21,7 +21,7 @@ export default function LanguageToggle() {
   return (
     <button
       onClick={toggle}
-      className="demo-badge chamfer-sm opacity-60 hover:opacity-100 transition-all flex items-center gap-1 text-[10px]"
+      className="n2-btn-ghost !py-1 !px-3 !text-[11px] opacity-60 hover:opacity-100 transition-all flex items-center gap-1"
       aria-label="Toggle language"
     >
       {LANGS.map((lang) => (

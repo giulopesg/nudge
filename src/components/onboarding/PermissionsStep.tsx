@@ -14,23 +14,23 @@ export default function PermissionsStep({ onContinue }: Props) {
 
   return (
     <div className="flex flex-col items-center px-4">
-      <h1 className="font-display text-xl font-bold uppercase tracking-wider">
+      <h1 className="font-display text-2xl font-bold uppercase tracking-wider">
         {t('permissions.title')}
       </h1>
-      <p className="mt-2 text-sm text-text-secondary">
+      <p className="mt-2 text-[15px] leading-[1.7] text-text-secondary">
         {t('permissions.subtitle')}
       </p>
 
       <div className="mt-8 w-full max-w-md space-y-4">
         {/* Can do */}
-        <div className="card chamfer-md border-safe/20 bg-safe-bg/50">
-          <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-safe">
+        <div className="card rounded-xl border-safe/20 bg-safe-bg/50">
+          <h3 className="font-mono text-[13px] font-semibold uppercase tracking-wider text-safe">
             {t('permissions.canDo.title')}
           </h3>
           <ul className="mt-3 space-y-2">
             {canDo.map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-foreground">
-                <span className="mt-0.5 text-safe text-xs">&#9656;</span>
+              <li key={i} className="flex items-start gap-2 text-[15px] text-foreground">
+                <span className="mt-0.5 text-safe text-[13px]">&#9656;</span>
                 <span>{item}</span>
               </li>
             ))}
@@ -38,28 +38,28 @@ export default function PermissionsStep({ onContinue }: Props) {
         </div>
 
         {/* Can't do */}
-        <div className="card chamfer-md border-danger/20 bg-danger-bg/50">
-          <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-danger">
+        <div className="card rounded-xl border-danger/20 bg-danger-bg/50">
+          <h3 className="font-mono text-[13px] font-semibold uppercase tracking-wider text-danger">
             {t('permissions.cantDo.title')}
           </h3>
           <ul className="mt-3 space-y-2">
             {cantDo.map((item, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-foreground">
-                <span className="mt-0.5 text-danger text-xs">&#9747;</span>
+              <li key={i} className="flex items-start gap-2 text-[15px] text-foreground">
+                <span className="mt-0.5 text-danger text-[13px]">&#9747;</span>
                 <span>{item}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <p className="text-center font-mono text-[10px] text-text-muted tracking-wider">
+        <p className="text-center font-mono text-[12px] text-text-muted tracking-wider">
           {t('permissions.readOnly')}
         </p>
       </div>
 
       <button
         onClick={onContinue}
-        className="mt-8 chamfer-md border border-primary bg-transparent px-8 py-3 font-mono text-sm font-semibold uppercase tracking-wider text-primary transition-all glow-primary hover:bg-primary hover:text-background"
+        className="n2-btn-primary mt-8"
       >
         {t('permissions.continue')}
       </button>

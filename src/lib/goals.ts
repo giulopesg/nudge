@@ -5,6 +5,8 @@ export type GoalId = 'reserva' | 'independencia' | 'aprender' | 'rendimento' | '
 export interface GoalStep {
   id: string;
   type: 'quiz' | 'education' | 'portfolio' | 'kamino' | 'action';
+  /** XP reward for completing this step */
+  xp: number;
   /** For education steps: which topicId must be read */
   topicId?: string;
   /** For portfolio steps: condition checker key */
@@ -13,33 +15,38 @@ export interface GoalStep {
 
 export const GOAL_STEPS: Record<GoalId, GoalStep[]> = {
   aprender: [
-    { id: 'quiz-done', type: 'quiz' },
-    { id: 'read-whatIsHF', type: 'education', topicId: 'whatIsHF' },
-    { id: 'read-whatAreStablecoins', type: 'education', topicId: 'whatAreStablecoins' },
-    { id: 'read-whatIsDiversification', type: 'education', topicId: 'whatIsDiversification' },
-    { id: 'read-whatIsKamino', type: 'education', topicId: 'whatIsKamino' },
+    { id: 'quiz-done', type: 'quiz', xp: 100 },
+    { id: 'read-whatIsHF', type: 'education', xp: 75, topicId: 'whatIsHF' },
+    { id: 'read-whatAreStablecoins', type: 'education', xp: 75, topicId: 'whatAreStablecoins' },
+    { id: 'read-whatIsDiversification', type: 'education', xp: 75, topicId: 'whatIsDiversification' },
+    { id: 'read-whatIsKamino', type: 'education', xp: 75, topicId: 'whatIsKamino' },
   ],
   reserva: [
-    { id: 'has-stablecoins', type: 'portfolio', conditionKey: 'hasStablecoins' },
-    { id: 'stables-10pct', type: 'portfolio', conditionKey: 'stablesAbove10' },
-    { id: 'hold-7days', type: 'action', conditionKey: 'holdStables7d' },
+    { id: 'has-stablecoins', type: 'portfolio', xp: 75, conditionKey: 'hasStablecoins' },
+    { id: 'stables-10pct', type: 'portfolio', xp: 75, conditionKey: 'stablesAbove10' },
+    { id: 'hold-7days', type: 'action', xp: 150, conditionKey: 'holdStables7d' },
   ],
   independencia: [
-    { id: 'wallet-created', type: 'action', conditionKey: 'walletCreated' },
-    { id: 'quiz-done', type: 'quiz' },
-    { id: 'read-whatIsNudgeScore', type: 'education', topicId: 'whatIsNudgeScore' },
+    { id: 'wallet-created', type: 'action', xp: 150, conditionKey: 'walletCreated' },
+    { id: 'quiz-done', type: 'quiz', xp: 100 },
+    { id: 'read-whatIsNudgeScore', type: 'education', xp: 75, topicId: 'whatIsNudgeScore' },
   ],
   rendimento: [
-    { id: 'read-whatIsKamino', type: 'education', topicId: 'whatIsKamino' },
-    { id: 'has-kamino-position', type: 'kamino', conditionKey: 'hasKaminoPosition' },
-    { id: 'hf-above-1.5', type: 'kamino', conditionKey: 'hfAbove1_5' },
+    { id: 'read-whatIsKamino', type: 'education', xp: 75, topicId: 'whatIsKamino' },
+    { id: 'has-kamino-position', type: 'kamino', xp: 100, conditionKey: 'hasKaminoPosition' },
+    { id: 'hf-above-1.5', type: 'kamino', xp: 100, conditionKey: 'hfAbove1_5' },
   ],
   remessas: [
-    { id: 'has-usdc', type: 'portfolio', conditionKey: 'hasUSDC' },
-    { id: 'read-transfers', type: 'education', topicId: 'whatAreStablecoins' },
-    { id: 'first-transfer', type: 'action', conditionKey: 'firstTransfer' },
+    { id: 'has-usdc', type: 'portfolio', xp: 75, conditionKey: 'hasUSDC' },
+    { id: 'read-transfers', type: 'education', xp: 75, topicId: 'whatAreStablecoins' },
+    { id: 'first-transfer', type: 'action', xp: 150, conditionKey: 'firstTransfer' },
   ],
 };
+
+/** Sum all XP for a given goal's steps */
+export function calcGoalTotalXp(goalId: GoalId): number {
+  return GOAL_STEPS[goalId].reduce((sum, step) => sum + step.xp, 0);
+}
 
 // ── Education progress tracking ─────────────────────────────────────
 

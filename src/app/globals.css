@@ -1,53 +1,59 @@
 @import "tailwindcss";
 @import "./components.css";
 @import "./navigation.css";
+@import "./buttons.css";
+@import "./animations.css";
 
-/* ===== Nudge Design System — Cypherpunk meets Giuliana ===== */
+/* ===== Nudge Design System v2 — Feminine Cypherpunk ===== */
 
 :root {
-  /* Background — Giuliana's dark (#0e0c14) */
-  --background: #0e0c14;
-  --surface: #151320;
-  --surface-hover: #1e1a2e;
-  --surface-border: rgba(107, 79, 160, 0.15);
+  /* Background — deep void */
+  --background: #07050E;
+  --surface: rgba(255, 248, 245, 0.03);
+  --surface-hover: rgba(255, 248, 245, 0.06);
+  --surface-border: rgba(163, 102, 255, 0.10);
 
-  /* Text */
-  --foreground: rgba(255, 255, 255, 0.88);
-  --text-secondary: rgba(255, 255, 255, 0.65);
-  --text-muted: rgba(255, 255, 255, 0.42);
+  /* Text — warm white */
+  --foreground: rgba(255, 248, 240, 0.92);
+  --text-secondary: rgba(255, 248, 240, 0.72);
+  --text-muted: rgba(255, 248, 240, 0.48);
 
-  /* Brand — Nudge teal (neon) */
-  --primary: #00D4AA;
-  --primary-hover: #00E8BB;
-  --primary-muted: rgba(0, 212, 170, 0.12);
-  --primary-glow: rgba(0, 212, 170, 0.3);
+  /* Brand — orchid purple */
+  --primary: #A366FF;
+  --primary-hover: #B87AFF;
+  --primary-muted: rgba(163, 102, 255, 0.12);
+  --primary-glow: rgba(163, 102, 255, 0.3);
 
-  /* Giuliana plum (secondary) */
-  --plum: #6B4FA0;
-  --plum-light: #8B6FC0;
-  --plum-muted: rgba(107, 79, 160, 0.15);
-  --plum-glow: rgba(107, 79, 160, 0.3);
+  /* Rose (secondary, was plum) */
+  --plum: #FF6B9D;
+  --plum-light: #FF8DB5;
+  --plum-muted: rgba(255, 107, 157, 0.15);
+  --plum-glow: rgba(255, 107, 157, 0.3);
 
-  /* Status — with glow variants */
-  --safe: #00CC88;
-  --safe-bg: rgba(0, 204, 136, 0.1);
-  --safe-glow: rgba(0, 204, 136, 0.25);
-  --attention: #FFB84D;
-  --attention-bg: rgba(255, 184, 77, 0.1);
-  --attention-glow: rgba(255, 184, 77, 0.25);
-  --danger: #FF6B9D;
-  --danger-bg: rgba(255, 107, 157, 0.1);
-  --danger-glow: rgba(255, 107, 157, 0.25);
+  /* Accent */
+  --mint: #3DDBA4;
+
+  /* Status */
+  --safe: #2ED88A;
+  --safe-bg: rgba(46, 216, 138, 0.1);
+  --safe-glow: rgba(46, 216, 138, 0.25);
+  --attention: #F5A623;
+  --attention-bg: rgba(245, 166, 35, 0.1);
+  --attention-glow: rgba(245, 166, 35, 0.25);
+  --danger: #FF4D6A;
+  --danger-bg: rgba(255, 77, 106, 0.1);
+  --danger-glow: rgba(255, 77, 106, 0.25);
 
   /* XP / RPG */
-  --xp: #BD00FF;
-  --xp-muted: rgba(189, 0, 255, 0.12);
-  --xp-glow: rgba(189, 0, 255, 0.3);
+  --xp: #B57AFF;
+  --xp-muted: rgba(181, 122, 255, 0.12);
+  --xp-glow: rgba(181, 122, 255, 0.3);
 
-  /* Chamfered corners */
-  --chamfer-sm: 4px;
-  --chamfer-md: 8px;
-  --chamfer-lg: 12px;
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
 }
 
 @theme inline {
@@ -66,6 +72,7 @@
   --color-plum-light: var(--plum-light);
   --color-plum-muted: var(--plum-muted);
   --color-plum-glow: var(--plum-glow);
+  --color-mint: var(--mint);
   --color-safe: var(--safe);
   --color-safe-bg: var(--safe-bg);
   --color-safe-glow: var(--safe-glow);
@@ -78,9 +85,11 @@
   --color-xp: var(--xp);
   --color-xp-muted: var(--xp-muted);
   --color-xp-glow: var(--xp-glow);
-  --font-sans: var(--font-dm-sans);
+  --font-sans: var(--font-outfit);
   --font-mono: var(--font-fira-code);
-  --font-display: var(--font-orbitron);
+  --font-display: var(--font-lora);
+  --font-accent: var(--font-cormorant);
+  --font-serif: var(--font-lora);
 }
 
 /* ===== Base ===== */
@@ -88,37 +97,10 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  font-size: 16px;
   font-weight: 400;
-}
-
-/* Cypherpunk grid background */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  background-image:
-    linear-gradient(rgba(107, 79, 160, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(107, 79, 160, 0.03) 1px, transparent 1px);
-  background-size: 64px 64px;
-  pointer-events: none;
-}
-
-/* Subtle scanlines */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(107, 79, 160, 0.008) 0px,
-    rgba(107, 79, 160, 0.008) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-  pointer-events: none;
+  line-height: 1.7;
 }
 
 /* ===== Scrollbar ===== */
@@ -127,43 +109,14 @@ body::after {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--plum-muted); border-radius: 2px; }
 
-/* ===== Chamfered corners utility ===== */
-
-.chamfer-sm {
-  clip-path: polygon(
-    var(--chamfer-sm) 0%, calc(100% - var(--chamfer-sm)) 0%,
-    100% var(--chamfer-sm), 100% calc(100% - var(--chamfer-sm)),
-    calc(100% - var(--chamfer-sm)) 100%, var(--chamfer-sm) 100%,
-    0% calc(100% - var(--chamfer-sm)), 0% var(--chamfer-sm)
-  );
-}
-
-.chamfer-md {
-  clip-path: polygon(
-    var(--chamfer-md) 0%, calc(100% - var(--chamfer-md)) 0%,
-    100% var(--chamfer-md), 100% calc(100% - var(--chamfer-md)),
-    calc(100% - var(--chamfer-md)) 100%, var(--chamfer-md) 100%,
-    0% calc(100% - var(--chamfer-md)), 0% var(--chamfer-md)
-  );
-}
-
-.chamfer-lg {
-  clip-path: polygon(
-    var(--chamfer-lg) 0%, calc(100% - var(--chamfer-lg)) 0%,
-    100% var(--chamfer-lg), 100% calc(100% - var(--chamfer-lg)),
-    calc(100% - var(--chamfer-lg)) 100%, var(--chamfer-lg) 100%,
-    0% calc(100% - var(--chamfer-lg)), 0% var(--chamfer-lg)
-  );
-}
-
 /* ===== Glow utilities ===== */
 
 .glow-primary {
-  box-shadow: 0 0 20px var(--primary-glow), inset 0 0 20px rgba(0, 212, 170, 0.05);
+  box-shadow: 0 0 20px var(--primary-glow), inset 0 0 20px rgba(163, 102, 255, 0.05);
 }
 
 .glow-plum {
-  box-shadow: 0 0 20px var(--plum-glow), inset 0 0 20px rgba(107, 79, 160, 0.05);
+  box-shadow: 0 0 20px var(--plum-glow), inset 0 0 20px rgba(255, 107, 157, 0.05);
 }
 
 .glow-safe {
@@ -179,7 +132,7 @@ body::after {
 }
 
 .glow-xp {
-  box-shadow: 0 0 20px var(--xp-glow), inset 0 0 20px rgba(189, 0, 255, 0.05);
+  box-shadow: 0 0 20px var(--xp-glow), inset 0 0 20px rgba(181, 122, 255, 0.05);
 }
 
 .text-glow-primary {
@@ -190,90 +143,65 @@ body::after {
   text-shadow: 0 0 12px var(--plum-glow);
 }
 
-/* ===== Animations ===== */
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-@keyframes scan {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
-}
-
-@keyframes xp-fill {
-  from { width: 0%; }
-}
-
-.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
-.animate-float { animation: float 3s ease-in-out infinite; }
-.animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(0, 212, 170, 0.15), transparent);
-  background-size: 200% 100%;
-  animation: shimmer 2s linear infinite;
-}
-.animate-xp-fill { animation: xp-fill 1s ease-out; }
-
 /* ===== Card base ===== */
 
 .card {
   background: var(--surface);
   border: 1px solid var(--surface-border);
-  border-radius: 16px;
-  padding: 20px;
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .card {
+    padding: 24px;
+  }
 }
 
 .card:hover {
   background: var(--surface-hover);
-  border-color: rgba(107, 79, 160, 0.35);
+  border-color: rgba(163, 102, 255, 0.25);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
   transform: translateY(-2px);
 }
 
-.card:hover .text-text-secondary { color: rgba(255,255,255,0.78) !important; }
-.card:hover .text-text-muted { color: rgba(255,255,255,0.55) !important; }
+.card:hover .text-text-secondary { color: rgba(255, 248, 240, 0.82) !important; }
+.card:hover .text-text-muted { color: rgba(255, 248, 240, 0.60) !important; }
 
 /* ===== Neon status badge ===== */
 
 .status-badge {
   font-family: var(--font-fira-code), monospace;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 4px 12px;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
 }
 
 .status-safe {
   color: var(--safe);
   background: var(--safe-bg);
-  border: 1px solid rgba(0, 204, 136, 0.3);
+  border: 1px solid rgba(46, 216, 138, 0.3);
   box-shadow: 0 0 12px var(--safe-glow);
 }
 
 .status-attention {
   color: var(--attention);
   background: var(--attention-bg);
-  border: 1px solid rgba(255, 184, 77, 0.3);
+  border: 1px solid rgba(245, 166, 35, 0.3);
   box-shadow: 0 0 12px var(--attention-glow);
 }
 
 .status-danger {
   color: var(--danger);
   background: var(--danger-bg);
-  border: 1px solid rgba(255, 107, 157, 0.3);
+  border: 1px solid rgba(255, 77, 106, 0.3);
   box-shadow: 0 0 12px var(--danger-glow);
 }
 
@@ -281,32 +209,35 @@ body::after {
 
 .stat-bar {
   height: 6px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 248, 240, 0.06);
+  border-radius: var(--radius-full);
   overflow: hidden;
 }
 
 .stat-bar-fill {
   height: 100%;
+  border-radius: var(--radius-full);
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ===== Trait tag (replaces flat neurotag pills) ===== */
+/* ===== Trait tag ===== */
 
 .trait-tag {
   font-family: var(--font-fira-code), monospace;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  padding: 5px 12px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  padding: 8px 16px;
   border: 1px solid var(--surface-border);
-  background: rgba(107, 79, 160, 0.08);
-  color: var(--plum-light);
+  border-radius: var(--radius-full);
+  background: var(--primary-muted);
+  color: var(--primary);
   transition: all 0.15s ease;
 }
 
 .trait-tag:hover {
-  border-color: var(--plum);
-  box-shadow: 0 0 12px var(--plum-glow);
-  background: rgba(107, 79, 160, 0.15);
+  border-color: var(--primary);
+  box-shadow: 0 0 16px var(--primary-glow);
+  background: rgba(163, 102, 255, 0.15);
 }
 
 /* ===== Wallet adapter overrides ===== */
@@ -317,16 +248,17 @@ body::after {
   border: 1px solid var(--primary) !important;
   font-family: var(--font-fira-code), monospace !important;
   font-weight: 600 !important;
-  font-size: 12px !important;
+  font-size: 14px !important;
   letter-spacing: 0.05em !important;
   height: 40px !important;
   padding: 0 16px !important;
-  box-shadow: 0 0 12px var(--primary-glow), inset 0 0 12px rgba(0, 212, 170, 0.05) !important;
+  border-radius: var(--radius-full) !important;
+  box-shadow: 0 0 12px var(--primary-glow), inset 0 0 12px rgba(163, 102, 255, 0.05) !important;
   transition: all 0.15s ease !important;
 }
 
 .wallet-adapter-button:hover {
-  background: linear-gradient(135deg, var(--primary), rgba(0, 212, 170, 0.3)) !important;
+  background: linear-gradient(135deg, var(--primary), rgba(163, 102, 255, 0.3)) !important;
   color: var(--background) !important;
   box-shadow: 0 0 24px var(--primary-glow) !important;
 }
@@ -334,12 +266,14 @@ body::after {
 .wallet-adapter-modal-wrapper {
   background-color: var(--surface) !important;
   border: 1px solid var(--surface-border) !important;
+  border-radius: var(--radius-lg) !important;
+  backdrop-filter: blur(24px) !important;
 }
 
 .wallet-adapter-modal-title {
   color: var(--foreground) !important;
-  font-family: var(--font-orbitron), monospace !important;
-  letter-spacing: 0.05em !important;
+  font-family: var(--font-lora), serif !important;
+  letter-spacing: 0.02em !important;
 }
 
 .wallet-adapter-modal-list li {
@@ -350,37 +284,79 @@ body::after {
 
 .demo-badge {
   font-family: var(--font-fira-code), monospace;
-  font-size: 9px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--xp);
   background: var(--xp-muted);
-  border: 1px solid rgba(189, 0, 255, 0.3);
-  padding: 2px 8px;
+  border: 1px solid rgba(181, 122, 255, 0.3);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
   box-shadow: 0 0 8px var(--xp-glow);
 }
 
 /* ===== Status Hero ===== */
 
 .status-hero-safe {
-  background: rgba(0, 204, 136, 0.04);
-  border: 1px solid rgba(0, 204, 136, 0.15);
+  background: linear-gradient(135deg, rgba(46, 216, 138, 0.06), rgba(61, 219, 164, 0.02));
+  border: 1px solid rgba(46, 216, 138, 0.12);
+  border-radius: 24px;
 }
 
 .status-hero-attention {
-  background: rgba(255, 184, 77, 0.04);
-  border: 1px solid rgba(255, 184, 77, 0.15);
+  background: linear-gradient(135deg, rgba(245, 166, 35, 0.06), rgba(245, 166, 35, 0.02));
+  border: 1px solid rgba(245, 166, 35, 0.12);
+  border-radius: 24px;
 }
 
 .status-hero-danger {
-  background: rgba(255, 107, 157, 0.04);
-  border: 1px solid rgba(255, 107, 157, 0.15);
-  animation: pulse-glow 2s ease-in-out infinite;
+  background: linear-gradient(135deg, rgba(255, 77, 106, 0.06), rgba(255, 77, 106, 0.02));
+  border: 1px solid rgba(255, 77, 106, 0.12);
+  border-radius: 24px;
+  animation: n2-breathe 4s ease-in-out infinite;
 }
 
 .status-hero-neutral {
-  background: rgba(0, 212, 170, 0.04);
-  border: 1px solid rgba(0, 212, 170, 0.15);
+  background: linear-gradient(135deg, rgba(163, 102, 255, 0.06), rgba(163, 102, 255, 0.02));
+  border: 1px solid rgba(163, 102, 255, 0.12);
+  border-radius: 24px;
 }
 
+/* ===== v2 — Gradient text animado ===== */
+
+.n2-gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--plum), var(--mint));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: n2-gradient-shift 6s ease infinite;
+}
+
+@keyframes n2-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== v2 — Stat bar gradient fills ===== */
+
+.stat-bar-fill-primary {
+  background: linear-gradient(90deg, var(--primary), var(--plum));
+}
+
+.stat-bar-fill-safe {
+  background: linear-gradient(90deg, var(--safe), var(--mint));
+}
+
+.stat-bar-fill-xp {
+  background: linear-gradient(90deg, var(--primary), var(--xp));
+}
+
+/* ===== v2 — Divider ===== */
+
+.n2-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(163, 102, 255, 0.12), rgba(255, 107, 157, 0.10), transparent);
+}
 

@@ -3,6 +3,7 @@
 import { useTranslation } from 'react-i18next';
 import ECGMonitor from '@/components/dashboard/ECGMonitor';
 import ScoreExplainer from '@/components/dashboard/ScoreExplainer';
+import ScoreRing from '@/components/dashboard/ScoreRing';
 import type { HealthZone, NudgeScore } from '@/lib/portfolio';
 import type { CommProfile } from '@/lib/communication';
 
@@ -14,15 +15,9 @@ interface Props {
 }
 
 const ZONE_STYLES: Record<HealthZone, string> = {
-  safe: 'status-hero-safe text-safe text-shadow-[0_0_20px_var(--safe-glow)]',
-  attention: 'status-hero-attention text-attention text-shadow-[0_0_20px_var(--attention-glow)]',
-  danger: 'status-hero-danger text-danger text-shadow-[0_0_20px_var(--danger-glow)]',
-};
-
-const SCORE_COLOR: Record<HealthZone, string> = {
-  safe: 'text-safe',
-  attention: 'text-attention',
-  danger: 'text-danger',
+  safe: 'status-hero-safe',
+  attention: 'status-hero-attention',
+  danger: 'status-hero-danger',
 };
 
 export default function StatusHero({ nudgeScore, commProfile, healthFactor, onLearnScore }: Props) {
@@ -31,21 +26,22 @@ export default function StatusHero({ nudgeScore, commProfile, healthFactor, onLe
   const { zone, overall, metrics } = nudgeScore;
 
   return (
-    <div className={`rounded-2xl px-6 py-6 ${ZONE_STYLES[zone]}`}>
+    <div className={`p-6 sm:p-10 ${ZONE_STYLES[zone]}`}>
       <div className="text-center">
-        {/* Score number */}
-        <div className={`font-display text-5xl font-bold tabular-nums ${SCORE_COLOR[zone]}`}>
-          {overall}
-        </div>
-        <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted">
-          {t('hero.scoreLabel')}
-        </p>
+        {/* Score Ring */}
+        <ScoreRing score={overall} status={zone} />
 
-        {/* Profile-adapted title */}
-        <h2 className="mt-3 font-display text-2xl font-bold uppercase tracking-wider sm:text-3xl">
-          {t(`hero.score.${zone}.title.${commProfile}`)}
+        {/* Mixed-font title */}
+        <h2 className="mt-3 sm:mt-4">
+          <span className="font-display text-[22px] sm:text-[28px] font-bold">
+            {t(`hero.score.${zone}.titlePrefix.${commProfile}`)}
+          </span>
+          {' '}
+          <span className="font-accent text-[26px] sm:text-[34px] italic font-bold text-foreground">
+            {t(`hero.score.${zone}.titleAccent.${commProfile}`)}
+          </span>
         </h2>
-        <p className="mt-2 text-sm text-text-secondary leading-relaxed">
+        <p className="mt-2 text-[14px] sm:text-[15px] text-text-secondary leading-relaxed">
           {t(`hero.score.${zone}.subtitle.${commProfile}`, { score: overall })}
         </p>
       </div>

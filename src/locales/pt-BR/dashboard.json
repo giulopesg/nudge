@@ -1,14 +1,16 @@
 {
   "title": "Seu painel",
+  "titlePrefix": "Seu",
+  "titleAccent": "painel",
   "subtitle": "Tudo sobre suas finanças, traduzido pra você.",
   "loading": "Carregando seus dados...",
   "error": "Não conseguimos carregar seus dados. Tente novamente.",
   "retry": "Tentar de novo",
   "nav": {
-    "painel": "PAINEL",
-    "alertas": "ALERTAS",
-    "jornada": "JORNADA",
-    "perfil": "PERFIL"
+    "painel": "Painel",
+    "alertas": "Alertas",
+    "jornada": "Jornada",
+    "perfil": "Perfil"
   },
   "demo": {
     "prev": "Persona anterior",
@@ -36,6 +38,18 @@
           "direct": "POSIÇÃO SAUDÁVEL",
           "technical": "SCORE SAUDÁVEL"
         },
+        "titlePrefix": {
+          "gentle": "Tudo",
+          "encouraging": "Parabéns",
+          "direct": "Posição",
+          "technical": "Score"
+        },
+        "titleAccent": {
+          "gentle": "Bem",
+          "encouraging": "Arrasou",
+          "direct": "Saudável",
+          "technical": "Saudável"
+        },
         "subtitle": {
           "gentle": "Seu dinheiro está protegido. Pode respirar tranquila.",
           "encouraging": "Ótimo trabalho! Seu portfolio está bem equilibrado. Continue assim!",
@@ -50,6 +64,18 @@
           "direct": "ATENÇÃO",
           "technical": "SCORE EM DECLÍNIO"
         },
+        "titlePrefix": {
+          "gentle": "Vale uma",
+          "encouraging": "Fique de",
+          "direct": "Requer",
+          "technical": "Score em"
+        },
+        "titleAccent": {
+          "gentle": "Olhada",
+          "encouraging": "Olho",
+          "direct": "Atenção",
+          "technical": "Declínio"
+        },
         "subtitle": {
           "gentle": "Algumas coisas merecem sua atenção. Sem pressa — o Nudge te guia.",
           "encouraging": "Você está no caminho certo, mas vale ficar atento. Veja as dicas abaixo!",
@@ -63,6 +89,18 @@
           "encouraging": "VAMOS JUNTOS",
           "direct": "RISCO ELEVADO",
           "technical": "SCORE CRÍTICO"
+        },
+        "titlePrefix": {
+          "gentle": "Vale sua",
+          "encouraging": "Vamos",
+          "direct": "Risco",
+          "technical": "Score"
+        },
+        "titleAccent": {
+          "gentle": "Atenção",
+          "encouraging": "Juntos",
+          "direct": "Elevado",
+          "technical": "Crítico"
         },
         "subtitle": {
           "gentle": "Algumas coisas merecem seu cuidado. O Nudge te mostra o caminho.",
@@ -80,15 +118,42 @@
   },
   "portfolio": {
     "title": "Seu portfolio",
+    "titlePrefix": "Seu",
+    "titleAccent": "portfolio",
     "diversification": "Diversificação",
     "diversified": "Diversificada",
     "concentrated": "Concentrada",
     "concentratedHint": "A maior parte do seu dinheiro está em 1 só moeda. Se ela cair, tudo cai junto.",
-    "stableReserve": "Reserva estável"
+    "stableReserve": "Reserva estável",
+    "amountLabel": "Quantidade",
+    "usdLabel": "Valor USD",
+    "compositionTitle": "Composição",
+    "addWallet": "Adicionar wallet",
+    "removeWallet": "Remover wallet",
+    "addWalletTitle": "Adicionar wallet",
+    "addWalletSubtitle": "Cole o endereço da wallet Solana que deseja monitorar.",
+    "addWalletPlaceholder": "Endereço (ex: ABC...xyz)",
+    "addWalletConfirm": "Adicionar",
+    "removeWalletTitle": "Remover wallet",
+    "removeWalletSubtitle": "Essa wallet será removida do monitoramento. Você pode adicioná-la novamente depois.",
+    "removeWalletSelectSubtitle": "Selecione as wallets que deseja remover do monitoramento.",
+    "removeWalletConfirm": "Remover",
+    "walletCancel": "Cancelar",
+    "walletAdded": "Wallet adicionada!",
+    "walletRemoved": "Wallet removida.",
+    "selectAll": "Selecionar todas",
+    "removeCount": "{{count}} wallet(s) selecionada(s)"
   },
   "kamino": {
     "title": "Kamino — Seu empréstimo",
+    "titlePrefix": "Kamino",
+    "titleAccent": "seu empréstimo",
     "subtitleDetail": "Detalhes do que você pegou emprestado",
+    "explanationAccent": {
+      "safe": "relaxa, está tudo ótimo",
+      "attention": "vale ficar de olho",
+      "danger": "ação necessária agora"
+    },
     "noPosition": "Você ainda não tem empréstimo ativo no Kamino.",
     "noPositionHint": "Quando tiver, o Nudge traduz tudo pra você.",
     "collateral": "Colateral (garantia)",
@@ -270,6 +335,12 @@
     "gotIt": "Entendi"
   },
   "status": { "safe": "Seguro", "attention": "Atenção", "danger": "Cuidado" },
+  "perfil": {
+    "titlePrefix": "Seu",
+    "titleAccent": "perfil",
+    "classLevel": "{{className}} · Nível {{level}}",
+    "xpToNext": "XP próximo nível"
+  },
   "characterSheet": {
     "title": "DOSSIÊ",
     "close": "Fechar",
@@ -351,8 +422,20 @@
       "howToGet": "Registre seu perfil no Solana durante o onboarding."
     }
   },
+  "jornada": {
+    "titlePrefix": "Sua",
+    "titleAccent": "jornada"
+  },
+  "wallet": {
+    "title": "Sua carteira",
+    "titlePrefix": "Sua",
+    "titleAccent": "carteira",
+    "solValue": "~US$ {{value}}"
+  },
   "beginnerKamino": {
     "title": "KAMINO — EMPRÉSTIMO EM CRIPTO",
+    "titlePrefix": "Kamino",
+    "titleAccent": "empréstimo em cripto",
     "body": {
       "gentle": "Você sabia que pode usar seus tokens como garantia para pegar empréstimo em cripto? No Kamino, o Nudge monitora tudo pra você, em tempo real. Quando você se sentir pronta, estamos aqui.",
       "encouraging": "Você sabia que pode usar seus tokens como garantia para pegar empréstimo em cripto? O Kamino faz isso e o Nudge monitora tudo pra você. É mais simples do que parece!",
@@ -369,11 +452,65 @@
   },
   "alertas": {
     "title": "Seus alertas",
+    "titlePrefix": "Seus",
+    "titleAccent": "alertas",
     "subtitle": "Histórico de notificações do Nudge.",
     "markAllRead": "Marcar todos como lidos",
     "empty": "Nenhum alerta ainda.",
     "miniLink": "{{count}} alertas não lidos → ver todos",
-    "summary": { "urgent": "Urgentes", "warning": "Atenção", "info": "Info" }
+    "summary": { "urgent": "Urgentes", "warning": "Atenção", "info": "Info" },
+    "modalTitlePrefix": "Seus",
+    "modalTitleAccent": "alertas",
+    "modalSubtitle": "Você tem notificações que merecem atenção.",
+    "urgentCount": "{{count}} urgente(s)",
+    "warningCount": "{{count}} atenção",
+    "infoCount": "{{count}} info",
+    "viewAll": "Ver todos os alertas",
+    "dismiss": "Fechar"
   },
-  "lastUpdate": "Atualizado {{time}}"
+  "lastUpdate": "Atualizado {{time}}",
+  "itemModal": {
+    "close": "Fechar"
+  },
+  "xpToast": {
+    "gained": "+{{xp}} XP"
+  },
+  "levelUp": {
+    "title": "NOVO NÍVEL!",
+    "subtitle": "Você evoluiu. Continue assim.",
+    "dismiss": "Continuar"
+  },
+  "itemUnlock": {
+    "title": "ITEM DESBLOQUEADO!",
+    "dismiss": "Continuar"
+  },
+  "lyra": {
+    "name": "Lyra",
+    "subtitle": "Guia Nudge",
+    "intro": "Oi! Eu sou a Lyra, sua guia pessoal no universo DeFi. Estou aqui pra te ajudar a entender tudo — do seu score até como funciona o Kamino. Pode me perguntar qualquer coisa!",
+    "placeholder": "Pergunte algo...",
+    "fallback": "Ainda estou aprendendo sobre isso. Tente perguntar sobre XP, Kamino, ou health factor!",
+    "close": "Fechar",
+    "send": "Enviar",
+    "suggestions": {
+      "nudge": "Como usar o Nudge?",
+      "xp": "Como ganhar XP?",
+      "kamino": "O que é Kamino?",
+      "health": "O que é Health Factor?",
+      "class": "Qual minha classe?",
+      "blockchain": "O que é blockchain?",
+      "level": "Como subir de nível?",
+      "inventory": "O que é o inventário?"
+    },
+    "topics": {
+      "xp": "XP é a experiência que você ganha ao completar passos na jornada. Cada passo vale entre 75 e 150 XP. Acumule XP para subir de nível e evoluir seu personagem!",
+      "level": "Seu nível sobe conforme você acumula XP. Cada nível desbloqueia novos títulos e itens no inventário. Continue completando passos da jornada para evoluir!",
+      "health": "O Health Factor (HF) mede quão seguro está seu empréstimo no Kamino. Acima de 2.0 é seguro, entre 1.5 e 2.0 requer atenção, e abaixo de 1.5 é zona de perigo. Se chegar a 1.0, ocorre liquidação.",
+      "kamino": "Kamino é um protocolo de empréstimo na Solana. Você deposita tokens como garantia (colateral) e pega empréstimo. O Nudge monitora sua posição em tempo real e te avisa se algo precisar de atenção.",
+      "nudge": "O Nudge traduz o mundo DeFi pra você. Ele monitora seu portfolio e empréstimos, calcula seu score de saúde financeira, e te manda alertas personalizados baseados no seu perfil comportamental.",
+      "inventory": "Seu inventário contém itens que você desbloqueia ao longo da jornada — como a Chave da Wallet, o Mapa do Kamino, e o Escudo de Serenidade. Cada item dá XP e conta sua história.",
+      "class": "Sua classe é definida pelo quiz comportamental: Guardian (protetor), Explorer (curioso), Strategist (analítico), entre outras. Cada classe reflete seu estilo de lidar com finanças.",
+      "blockchain": "Blockchain é um registro público e imutável de transações. Solana é uma blockchain rápida e barata. Sua wallet é como uma conta bancária digital que só você controla."
+    }
+  }
 }

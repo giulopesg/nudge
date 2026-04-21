@@ -56,7 +56,7 @@ export default function DemoToggle() {
     return (
       <button
         onClick={toggle}
-        className="demo-badge chamfer-sm opacity-40 hover:opacity-70 transition-all"
+        className="n2-btn-ghost !py-1.5 !px-4 !text-[11px] !tracking-[0.08em] uppercase opacity-50 hover:opacity-100 transition-all"
       >
         DEMO
       </button>
@@ -67,20 +67,20 @@ export default function DemoToggle() {
     <div className="flex items-center gap-1">
       <button
         onClick={() => cycle(-1)}
-        className="demo-badge chamfer-sm px-1.5 hover:opacity-70 transition-all"
+        className="n2-btn-ghost !py-1 !px-2.5 !text-[11px] hover:opacity-80 transition-all"
         aria-label={t('demo.prev')}
       >
         &lt;
       </button>
       <button
         onClick={toggle}
-        className="demo-badge chamfer-sm transition-all min-w-[80px] text-center"
+        className="n2-btn-ghost !py-1.5 !px-4 !text-[11px] !tracking-[0.08em] uppercase transition-all min-w-[80px] text-center !text-xp !border-xp/30"
       >
         {activeId ? t(`demo.personas.${activeId}.name`) : 'DEMO'}
       </button>
       <button
         onClick={() => cycle(1)}
-        className="demo-badge chamfer-sm px-1.5 hover:opacity-70 transition-all"
+        className="n2-btn-ghost !py-1 !px-2.5 !text-[11px] hover:opacity-80 transition-all"
         aria-label={t('demo.next')}
       >
         &gt;

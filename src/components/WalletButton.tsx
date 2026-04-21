@@ -26,9 +26,9 @@ export default function WalletButton() {
     return (
       <button
         onClick={handleClick}
-        className="flex items-center gap-2 border border-surface-border bg-surface px-3 py-2 font-mono text-xs text-text-secondary transition-all chamfer-sm hover:border-plum hover:text-foreground"
+        className="flex items-center gap-1.5 sm:gap-2 border border-surface-border bg-surface px-2 sm:px-3 py-1.5 sm:py-2 font-mono text-xs sm:text-sm text-text-secondary transition-all rounded-full hover:border-primary hover:text-foreground"
       >
-        <span className="h-1.5 w-1.5 bg-safe animate-pulse-glow" />
+        <span className="h-1.5 w-1.5 rounded-full bg-safe animate-pulse-glow" />
         <span>{truncatedAddress}</span>
       </button>
     );
@@ -37,7 +37,7 @@ export default function WalletButton() {
   return (
     <button
       onClick={handleClick}
-      className="border border-primary bg-transparent px-4 py-2 font-mono text-xs font-semibold tracking-wider text-primary chamfer-sm transition-all glow-primary hover:bg-primary hover:text-background"
+      className="px-3 py-1.5 text-[11px] sm:px-5 sm:py-2.5 sm:text-[13px] rounded-full font-medium uppercase tracking-wider bg-primary text-background hover:bg-primary/90 transition-colors"
     >
       {t('wallet.connect')}
     </button>

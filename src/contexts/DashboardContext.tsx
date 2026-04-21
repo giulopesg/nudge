@@ -1,13 +1,14 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState, useCallback, useMemo } from 'react';
+import { createContext, useContext, useEffect, useState, useCallback, useMemo, useRef } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useSearchParams } from 'next/navigation';
 
-import { getProfile, getCompletedActivities, getEducationProgress, markTopicRead } from '@/lib/store';
+import { getProfile, getCompletedActivities, getEducationProgress, markTopicRead, completeActivity } from '@/lib/store';
 import { usePosition, type EnrichedPosition } from '@/hooks/usePosition';
 import { useNudges } from '@/hooks/useNudges';
-import { buildCharacter } from '@/lib/rpg';
+import { buildCharacter, ACTIVITIES } from '@/lib/rpg';
+import type { InventoryItemId } from '@/lib/rpg';
 import { resolveCommProfile, type CommProfile } from '@/lib/communication';
 import { generateInsights, type Insight } from '@/lib/insights';
 import { getDemoPersona, type DemoPersona } from '@/lib/demo';
@@ -60,6 +61,15 @@ export interface DashboardContextValue {
 
   // Actions
   handleTopicRead: (topicId: string) => void;
+  trackLyraTopic: (topic: string) => void;
+
+  // XP / Level-up / Item unlock
+  pendingXpGain: number | null;
+  pendingLevelUp: boolean;
+  pendingItemUnlock: InventoryItemId | null;
+  dismissXpToast: () => void;
+  dismissLevelUp: () => void;
+  dismissItemUnlock: () => void;
 
   // Wallet
   connected: boolean;
@@ -181,6 +191,102 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
     (persona?.id as DemoPersonaId) ?? null,
   );
 
+  // Lyra topic tracking (for read-status activity)
+  const lyraTopicsRef = useRef<Set<string>>(new Set());
+  const [lyraTopicCount, setLyraTopicCount] = useState(0);
+
+  const trackLyraTopic = useCallback((topic: string) => {
+    if (!lyraTopicsRef.current.has(topic)) {
+      lyraTopicsRef.current.add(topic);
+      setLyraTopicCount(lyraTopicsRef.current.size);
+    }
+  }, []);
+
+  // XP / Level-up / Item unlock tracking
+  const [pendingXpGain, setPendingXpGain] = useState<number | null>(null);
+  const [pendingLevelUp, setPendingLevelUp] = useState(false);
+  const [pendingItemUnlocks, setPendingItemUnlocks] = useState<InventoryItemId[]>([]);
+  const prevLevelRef = useRef<number | null>(null);
+  const prevActivityCountRef = useRef<number>(0);
+
+  const dismissXpToast = useCallback(() => setPendingXpGain(null), []);
+  const dismissLevelUp = useCallback(() => setPendingLevelUp(false), []);
+  const pendingItemUnlock = pendingItemUnlocks[0] ?? null;
+  const dismissItemUnlock = useCallback(() => {
+    setPendingItemUnlocks((prev) => prev.slice(1));
+  }, []);
+
+  // Detect level-up
+  useEffect(() => {
+    if (!character) return;
+    if (prevLevelRef.current !== null && character.level > prevLevelRef.current) {
+      setPendingLevelUp(true);
+    }
+    prevLevelRef.current = character.level;
+  }, [character]);
+
+  // Auto-detect and grant activities based on current state
+  useEffect(() => {
+    if (isDemo || !walletAddress || neurotags.length === 0) return;
+
+    const current = getCompletedActivities(walletAddress).completed;
+    const toGrant: ActivityId[] = [];
+
+    if (showData && !current.includes('first-dashboard')) {
+      toGrant.push('first-dashboard');
+    }
+    if (hasKamino && !current.includes('first-position')) {
+      toGrant.push('first-position');
+    }
+    if (topicsRead.includes('whatIsHF') && !current.includes('learn-hf')) {
+      toGrant.push('learn-hf');
+    }
+    if (lyraTopicCount >= 3 && !current.includes('read-status')) {
+      toGrant.push('read-status');
+    }
+
+    if (toGrant.length === 0) return;
+
+    for (const actId of toGrant) {
+      completeActivity(walletAddress, actId);
+    }
+
+    const actData = getCompletedActivities(walletAddress);
+    setActivities(actData.completed);
+    setActivityDates(actData.dates);
+
+    const newItems = toGrant.map((actId) => ACTIVITIES[actId].item);
+    setPendingItemUnlocks((prev) => [...prev, ...newItems]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showData, hasKamino, topicsRead, walletAddress, isDemo, neurotags.length, lyraTopicCount]);
+
+  // Demo mode: grant Lyra read-status when 3+ topics explored
+  useEffect(() => {
+    if (!isDemo || lyraTopicCount < 3) return;
+    if (activities.includes('read-status')) return;
+
+    const newActs = [...activities, 'read-status' as ActivityId];
+    const now = new Date().toISOString();
+    const newDates = { ...activityDates, 'read-status': now };
+    setActivities(newActs);
+    setActivityDates(newDates);
+
+    setPendingItemUnlocks((prev) => [...prev, ACTIVITIES['read-status'].item]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDemo, lyraTopicCount]);
+
+  // Detect XP gain from new activities
+  useEffect(() => {
+    if (activities.length > prevActivityCountRef.current && prevActivityCountRef.current > 0) {
+      const newActivities = activities.slice(prevActivityCountRef.current);
+      const xpGained = newActivities.reduce(
+        (sum, actId) => sum + (ACTIVITIES[actId]?.xp ?? 0), 0,
+      );
+      if (xpGained > 0) setPendingXpGain(xpGained);
+    }
+    prevActivityCountRef.current = activities.length;
+  }, [activities]);
+
   // Polling: refetch every 5 minutes when dashboard is open and not demo
   useEffect(() => {
     if (isDemo || !walletAddress) return;
@@ -195,7 +301,9 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
     commProfile, nudgeScore, portfolio, kaminoPosition, healthFactor, hasKamino,
     insights, goalProgressList, character,
     nudges, unreadCount, markAsRead, markAllAsRead,
-    handleTopicRead,
+    handleTopicRead, trackLyraTopic,
+    pendingXpGain, pendingLevelUp, pendingItemUnlock,
+    dismissXpToast, dismissLevelUp, dismissItemUnlock,
     connected, showData,
   }), [
     data, loading, error, refetch,
@@ -204,7 +312,9 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
     commProfile, nudgeScore, portfolio, kaminoPosition, healthFactor, hasKamino,
     insights, goalProgressList, character,
     nudges, unreadCount, markAsRead, markAllAsRead,
-    handleTopicRead,
+    handleTopicRead, trackLyraTopic,
+    pendingXpGain, pendingLevelUp, pendingItemUnlock,
+    dismissXpToast, dismissLevelUp, dismissItemUnlock,
     connected, showData,
   ]);
 

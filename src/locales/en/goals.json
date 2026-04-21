@@ -29,6 +29,8 @@
   },
   "continue": "Continue",
   "journeyTitle": "YOUR PATH",
+  "journeyTitlePrefix": "Your",
+  "journeyTitleAccent": "path",
   "journeyEmpty": "Complete onboarding to set your goals.",
   "journeyEncouragement": {
     "starting": "You're just getting started. Every step counts!",
@@ -57,5 +59,21 @@
   "journeyProgress": "{{percent}}% complete",
   "stepAction": "Go",
   "profileGoalsTitle": "YOUR GOALS",
-  "profileGoalSelected": "You want to:"
+  "profileGoalSelected": "You want to:",
+  "journeyStatus": {
+    "starting": "Starting",
+    "inProgress": "In progress",
+    "almostDone": "Almost done",
+    "complete": "Complete"
+  },
+  "journeyMotivation": {
+    "low": "Every step counts. You're building something real.",
+    "mid": "Good progress! Keep moving forward on your journey.",
+    "high": "Almost there! You're doing great.",
+    "done": "All goals completed. Congratulations!"
+  },
+  "stepXp": "+{{xp}} XP",
+  "goalTotalXp": "{{xp}} XP total",
+  "journeyXpSubtitle": "Complete steps to earn XP and evolve",
+  "goalCta": "View next steps"
 }

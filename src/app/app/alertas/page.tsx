@@ -24,17 +24,16 @@ export default function AlertasPage() {
 
   return (
     <>
-      <div className="flex items-baseline justify-between">
-        <div>
-          <h1 className="font-display text-lg font-bold uppercase tracking-wider">
-            {t('alertas.title')}
-          </h1>
-          <p className="mt-1 text-sm text-text-secondary">{t('alertas.subtitle')}</p>
-        </div>
+      <div className="flex items-center justify-between">
+        <h1>
+          <span className="font-display text-[22px] font-bold">{t('alertas.titlePrefix')}</span>
+          {' '}
+          <span className="font-accent text-[24px] italic text-text-muted">{t('alertas.titleAccent')}</span>
+        </h1>
         {unreadCount > 0 && (
           <button
             onClick={markAllAsRead}
-            className="rounded-lg border border-surface-border bg-surface px-3 py-1.5 font-mono text-[11px] text-text-secondary hover:bg-surface-hover transition-colors"
+            className="n2-btn-ghost !py-1.5 !px-4 !text-[11px]"
           >
             {t('alertas.markAllRead')}
           </button>
@@ -42,14 +41,14 @@ export default function AlertasPage() {
       </div>
 
       {/* Summary cards */}
-      <div className="mt-4 grid grid-cols-3 gap-2">
+      <div className="mt-4 grid grid-cols-3 gap-1.5 sm:gap-2">
         {SEVERITY_ORDER.map((sev) => (
           <div
             key={sev}
-            className={`rounded-xl border px-3 py-2 text-center ${SEVERITY_COLORS[sev]}`}
+            className={`card rounded-xl sm:rounded-2xl border px-2 py-2 sm:px-4 sm:py-3 text-center ${SEVERITY_COLORS[sev]}`}
           >
-            <p className="font-display text-xl font-bold">{counts[sev]}</p>
-            <p className="font-mono text-[10px] uppercase tracking-wider opacity-80">
+            <p className="font-display text-[20px] sm:text-[28px] font-bold">{counts[sev]}</p>
+            <p className="font-display text-[10px] sm:text-[13px] font-medium uppercase tracking-[0.04em] opacity-80">
               {t(`alertas.summary.${sev}`)}
             </p>
           </div>
@@ -67,7 +66,7 @@ export default function AlertasPage() {
             showAll
           />
         ) : (
-          <p className="mt-8 text-center text-sm text-text-muted">
+          <p className="mt-8 text-center text-[15px] text-text-muted">
             {t('alertas.empty')}
           </p>
         )}

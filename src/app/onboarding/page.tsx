@@ -16,6 +16,7 @@ import { saveProfile, saveRegistration, completeActivity } from '@/lib/store';
 import Link from 'next/link';
 
 type Step = 'permissions' | 'quiz' | 'goals' | 'profile' | 'registration';
+const ALL_STEPS: Step[] = ['permissions', 'quiz', 'goals', 'profile', 'registration'];
 
 export default function OnboardingPage() {
   const { t } = useTranslation();
@@ -71,24 +72,44 @@ export default function OnboardingPage() {
     [publicKey, router],
   );
 
+  const stepIndex = ALL_STEPS.indexOf(step);
+
   return (
     <div className="flex min-h-screen flex-col">
       {/* Header */}
-      <header className="flex items-center justify-between px-6 py-4 border-b border-surface-border">
+      <header className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-surface-border">
         <Link
           href="/"
-          className="font-display text-sm font-bold uppercase tracking-widest text-primary text-glow-primary"
+          className="n2-gradient-text font-display text-[20px] sm:text-[22px] font-bold uppercase tracking-[0.06em]"
         >
-          {t('app.name')}
+          {t('brand.name')}
         </Link>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           <LanguageToggle />
           <WalletButton />
         </div>
       </header>
 
       {/* Content */}
-      <main className="flex flex-1 flex-col items-center justify-center py-12">
+      <main className="flex flex-1 flex-col items-center justify-center px-4 sm:px-6 py-8 sm:py-12">
+        {/* Step indicator */}
+        {connected && (
+          <div className="flex items-center justify-center gap-2 mb-8">
+            {ALL_STEPS.map((s, i) => (
+              <div
+                key={s}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === stepIndex
+                    ? 'w-8 bg-primary'
+                    : i < stepIndex
+                      ? 'w-2 bg-primary/40'
+                      : 'w-2 bg-surface-border'
+                }`}
+              />
+            ))}
+          </div>
+        )}
+
         {!connected ? (
           <div className="text-center">
             <p className="text-text-secondary">

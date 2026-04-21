@@ -68,12 +68,12 @@ export default function QuizStep({ onComplete, onBack }: Props) {
   return (
     <div className="flex flex-col items-center px-4">
       {/* Progress */}
-      <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted">
+      <p className="font-mono text-[12px] uppercase tracking-[0.15em] text-text-muted">
         {t('quiz.progress', { current: current + 1, total: questions.length })}
       </p>
 
       {/* Progress bar */}
-      <div className="mt-3 stat-bar w-full max-w-md chamfer-sm">
+      <div className="mt-3 stat-bar w-full max-w-md rounded-lg">
         <div
           className="stat-bar-fill bg-primary glow-primary transition-all duration-300"
           style={{ width: `${((current + 1) / questions.length) * 100}%` }}
@@ -81,12 +81,12 @@ export default function QuizStep({ onComplete, onBack }: Props) {
       </div>
 
       {/* Question */}
-      <h2 className="mt-8 text-lg font-semibold text-center max-w-md">
+      <h2 className="mt-8 font-display text-[22px] font-bold text-center max-w-md">
         {t(`quiz.${q.key}.question`)}
       </h2>
 
       {q.key === 'q5' && (
-        <p className="mt-1 font-mono text-xs text-text-muted">
+        <p className="mt-1 font-mono text-[13px] text-text-muted">
           {t('quiz.q5.hint')}
         </p>
       )}
@@ -97,7 +97,7 @@ export default function QuizStep({ onComplete, onBack }: Props) {
           <button
             key={opt}
             onClick={() => selectOption(opt)}
-            className={`card w-full chamfer-sm text-left text-sm ${
+            className={`card w-full rounded-lg text-left text-[15px] ${
               isSelected(opt)
                 ? 'border-primary bg-primary-muted text-foreground glow-primary'
                 : 'hover:border-plum/30'
@@ -106,7 +106,7 @@ export default function QuizStep({ onComplete, onBack }: Props) {
             <span className="flex items-center gap-3">
               <span
                 className={`flex h-4 w-4 shrink-0 items-center justify-center border ${
-                  q.key === 'q5' ? 'chamfer-sm' : 'rounded-full'
+                  q.key === 'q5' ? 'rounded-lg' : 'rounded-full'
                 } ${
                   isSelected(opt)
                     ? 'border-primary bg-primary'
@@ -114,7 +114,7 @@ export default function QuizStep({ onComplete, onBack }: Props) {
                 }`}
               >
                 {isSelected(opt) && (
-                  <span className="text-[10px] text-background font-bold">&#10003;</span>
+                  <span className="text-[12px] text-background font-bold">&#10003;</span>
                 )}
               </span>
               {t(`quiz.${q.key}.options.${opt}`)}
@@ -127,17 +127,17 @@ export default function QuizStep({ onComplete, onBack }: Props) {
       <div className="mt-8 flex w-full max-w-md gap-3">
         <button
           onClick={handlePrev}
-          className="flex-1 chamfer-sm border border-surface-border bg-transparent px-4 py-2.5 font-mono text-xs uppercase tracking-wider text-text-secondary transition-all hover:bg-surface-hover hover:border-plum/30"
+          className="n2-btn-ghost flex-1"
         >
           {t('quiz.previous')}
         </button>
         <button
           onClick={handleNext}
           disabled={!canAdvance}
-          className={`flex-1 chamfer-sm px-4 py-2.5 font-mono text-xs uppercase tracking-wider transition-all ${
+          className={`flex-1 ${
             canAdvance
-              ? 'border border-primary text-primary glow-primary hover:bg-primary hover:text-background'
-              : 'border border-surface-border text-text-muted cursor-not-allowed'
+              ? 'n2-btn-primary'
+              : 'n2-btn-ghost opacity-50 cursor-not-allowed'
           }`}
         >
           {isLast ? t('quiz.finish') : t('quiz.next')}

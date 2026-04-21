@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useDashboard } from '@/contexts/DashboardContext';
 import JourneyCard from '@/components/dashboard/JourneyCard';
@@ -8,6 +9,7 @@ import ActionCards from '@/components/dashboard/ActionCards';
 import EducationModal, { type EducationTopicId } from '@/components/dashboard/EducationModal';
 
 export default function JornadaPage() {
+  const { t } = useTranslation('dashboard');
   const {
     goals, goalProgressList, commProfile,
     nudgeScore, hasKamino, handleTopicRead,
@@ -17,7 +19,12 @@ export default function JornadaPage() {
 
   return (
     <>
-      <div className="mt-6 space-y-4">
+      <h1>
+        <span className="font-display text-[22px] font-bold">{t('jornada.titlePrefix')}</span>
+        {' '}
+        <span className="font-accent text-[24px] italic text-text-muted">{t('jornada.titleAccent')}</span>
+      </h1>
+      <div className="mt-6 space-y-6">
         {/* 1. Journey Card — goal progress */}
         {goals.length > 0 && (
           <JourneyCard

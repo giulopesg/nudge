@@ -1,23 +1,38 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Image from 'next/image';
+import { useWallet } from '@solana/wallet-adapter-react';
 import type { PortfolioBalance } from '@/lib/portfolio';
+import type { DemoPersona } from '@/lib/demo';
+import WalletManageModal from '@/components/dashboard/WalletManageModal';
 
 interface Props {
   portfolio: PortfolioBalance;
+  persona?: DemoPersona | null;
 }
 
 const TOKEN_COLORS: Record<string, string> = {
-  SOL: 'bg-[#9945FF]',
-  USDC: 'bg-[#2775CA]',
-  USDT: 'bg-[#26A17B]',
-  JUP: 'bg-[#FFA726]',
-  BONK: 'bg-[#F9A825]',
+  SOL: '#9945FF',
+  USDC: '#2775CA',
+  USDT: '#26A17B',
+  JUP: '#FFA726',
+  BONK: '#F9A825',
 };
 
 function tokenColor(symbol: string): string {
-  return TOKEN_COLORS[symbol] ?? 'bg-plum';
+  return TOKEN_COLORS[symbol] ?? '#A366FF';
+}
+
+function tokenBgClass(symbol: string): string {
+  const map: Record<string, string> = {
+    SOL: 'bg-[#9945FF]',
+    USDC: 'bg-[#2775CA]',
+    USDT: 'bg-[#26A17B]',
+    JUP: 'bg-[#FFA726]',
+    BONK: 'bg-[#F9A825]',
+  };
+  return map[symbol] ?? 'bg-plum';
 }
 
 function formatUsd(value: number): string {
@@ -34,8 +49,11 @@ function formatAmount(amount: number, symbol: string): string {
   return amount.toLocaleString('pt-BR', { maximumFractionDigits: 4 });
 }
 
-export default function PortfolioCard({ portfolio }: Props) {
+export default function PortfolioCard({ portfolio, persona }: Props) {
   const { t } = useTranslation('dashboard');
+  const { publicKey } = useWallet();
+  const [walletModal, setWalletModal] = useState<'add' | 'remove' | null>(null);
+  const connectedWallets = persona?.wallets ?? (publicKey ? [publicKey.toBase58()] : []);
 
   const stablePercent = portfolio.tokens
     .filter((tok) => tok.isStablecoin)
@@ -45,95 +63,127 @@ export default function PortfolioCard({ portfolio }: Props) {
   const isDiversified = !topToken || topToken.percentOfTotal < 60;
 
   return (
-    <div className="card rounded-2xl relative overflow-hidden">
-      {/* Watermark */}
-      <Image
-        src="/portfolio-watermark.png"
-        alt=""
-        width={180}
-        height={90}
-        className="pointer-events-none absolute -bottom-2 -right-4 opacity-[0.08]"
-        aria-hidden="true"
-      />
+    <>
+      <div className="card rounded-2xl">
+        {/* Header — mixed-font inline */}
+        <div className="flex items-center justify-between flex-wrap gap-2">
+          <h3>
+            <span className="font-display text-[22px] font-bold">{t('portfolio.titlePrefix')}</span>
+            {' '}
+            <span className="font-accent text-[24px] italic text-text-muted">{t('portfolio.titleAccent')}</span>
+          </h3>
+          <span className="font-display text-[22px] sm:text-[28px] font-bold text-foreground">
+            {formatUsd(portfolio.totalValueUsd)}
+          </span>
+        </div>
 
-      {/* Header */}
-      <div className="flex items-baseline justify-between relative">
-        <h3 className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted">
-          {t('portfolio.title')}
-        </h3>
-        <span className="font-display text-lg font-bold text-foreground">
-          {formatUsd(portfolio.totalValueUsd)}
-        </span>
-      </div>
-
-      {/* Token list */}
-      <div className="mt-4 space-y-3">
-        {portfolio.tokens.map((tok) => (
-          <div key={tok.symbol} className="flex items-center gap-3">
-            {/* Token icon */}
-            <div className={`h-2 w-2 rounded-full flex-shrink-0 ${tokenColor(tok.symbol)}`} />
-
-            {/* Symbol + amount */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-baseline gap-2">
-                <span className="font-mono text-xs font-semibold text-foreground">
+        {/* Token grid */}
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {portfolio.tokens.map((tok) => (
+            <div
+              key={tok.symbol}
+              className="rounded-xl bg-surface-hover/50 p-3 border border-surface-border/50"
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <div className={`h-2.5 w-2.5 rounded-full flex-shrink-0 ${tokenBgClass(tok.symbol)}`} />
+                <span className="font-mono text-[13px] font-semibold text-foreground">
                   {tok.symbol}
                 </span>
-                <span className="font-mono text-[11px] text-text-secondary truncate">
-                  {formatAmount(tok.amount, tok.symbol)}
-                </span>
-              </div>
-
-              {/* Percentage bar */}
-              <div className="mt-1 flex items-center gap-2">
-                <div className="flex-1 h-1.5 bg-surface-border rounded-full overflow-hidden">
-                  <div
-                    className={`h-full rounded-full ${tokenColor(tok.symbol)} opacity-80`}
-                    style={{ width: `${Math.max(tok.percentOfTotal, 2)}%` }}
-                  />
-                </div>
-                <span className="font-mono text-[10px] text-text-muted w-10 text-right">
+                <span className="ml-auto font-mono text-[12px] text-text-muted">
                   {tok.percentOfTotal.toFixed(1)}%
                 </span>
               </div>
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <p className="font-mono text-[11px] uppercase tracking-wider text-text-muted">
+                    {t('portfolio.amountLabel')}
+                  </p>
+                  <p className="font-mono text-[14px] font-semibold text-text-secondary">
+                    {formatAmount(tok.amount, tok.symbol)}
+                  </p>
+                </div>
+                <div>
+                  <p className="font-mono text-[11px] uppercase tracking-wider text-text-muted">
+                    {t('portfolio.usdLabel')}
+                  </p>
+                  <p className="font-mono text-[14px] font-semibold text-text-secondary">
+                    {formatUsd(tok.valueUsd)}
+                  </p>
+                </div>
+              </div>
             </div>
+          ))}
+        </div>
 
-            {/* USD value */}
-            <span className="font-mono text-xs text-text-secondary flex-shrink-0">
-              {formatUsd(tok.valueUsd)}
-            </span>
+        {/* Composition bar */}
+        <div className="mt-4">
+          <p className="font-display text-[12px] font-medium uppercase tracking-[0.04em] text-text-muted mb-2">
+            {t('portfolio.compositionTitle')}
+          </p>
+          <div className="portfolio-bar">
+            {portfolio.tokens.map((tok) => (
+              <div
+                key={tok.symbol}
+                className="portfolio-bar-segment"
+                style={{
+                  width: `${Math.max(tok.percentOfTotal, 1)}%`,
+                  backgroundColor: tokenColor(tok.symbol),
+                  opacity: 0.8,
+                }}
+              />
+            ))}
           </div>
-        ))}
+        </div>
+
+        {/* Footer metrics */}
+        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-5">
+          <div>
+            <p className="font-display text-[12px] sm:text-[13px] font-medium uppercase tracking-[0.04em] text-text-muted">
+              {t('portfolio.diversification')}
+            </p>
+            <p className={`mt-1 font-display text-[18px] sm:text-[22px] font-bold ${isDiversified ? 'text-safe' : 'text-attention'}`}>
+              {isDiversified
+                ? t('portfolio.diversified')
+                : t('portfolio.concentrated')}
+            </p>
+          </div>
+          <div>
+            <p className="font-display text-[12px] sm:text-[13px] font-medium uppercase tracking-[0.04em] text-text-muted">
+              {t('portfolio.stableReserve')}
+            </p>
+            <p className={`mt-1 font-display text-[18px] sm:text-[22px] font-bold ${stablePercent >= 10 ? 'text-safe' : 'text-attention'}`}>
+              {stablePercent.toFixed(1)}%
+            </p>
+          </div>
+        </div>
+
+        {/* Concentrated hint */}
+        {!isDiversified && (
+          <p className="mt-2 text-[13px] text-text-muted leading-relaxed">
+            {t('portfolio.concentratedHint')}
+          </p>
+        )}
+
+        {/* Wallet buttons — differentiated */}
+        <div className="mt-4 flex gap-2">
+          <button
+            onClick={() => setWalletModal('add')}
+            className="n2-btn-primary flex-1 text-[12px]"
+          >
+            {t('portfolio.addWallet')}
+          </button>
+          <button
+            onClick={() => setWalletModal('remove')}
+            className="flex-1 rounded-full border border-surface-border px-4 py-2.5 text-[12px] font-medium uppercase tracking-wider text-text-muted hover:border-danger/40 hover:text-danger hover:bg-danger-bg transition-all cursor-pointer"
+          >
+            {t('portfolio.removeWallet')}
+          </button>
+        </div>
       </div>
 
-      {/* Footer metrics */}
-      <div className="mt-4 flex items-center justify-between border-t border-surface-border pt-3">
-        <div className="flex items-center gap-1.5">
-          <span className="font-mono text-[10px] text-text-muted">
-            {t('portfolio.diversification')}:
-          </span>
-          <span className={`font-mono text-[10px] font-semibold ${isDiversified ? 'text-safe' : 'text-attention'}`}>
-            {isDiversified
-              ? t('portfolio.diversified')
-              : t('portfolio.concentrated')}
-          </span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="font-mono text-[10px] text-text-muted">
-            {t('portfolio.stableReserve')}:
-          </span>
-          <span className={`font-mono text-[10px] font-semibold ${stablePercent >= 10 ? 'text-safe' : 'text-attention'}`}>
-            {stablePercent.toFixed(1)}%
-          </span>
-        </div>
-      </div>
-
-      {/* Concentrated hint */}
-      {!isDiversified && (
-        <p className="mt-2 text-[11px] text-text-muted leading-relaxed">
-          {t('portfolio.concentratedHint')}
-        </p>
+      {walletModal && (
+        <WalletManageModal mode={walletModal} onClose={() => setWalletModal(null)} wallets={connectedWallets} />
       )}
-    </div>
+    </>
   );
 }

@@ -72,7 +72,7 @@ export default function ScoreExplainer({
     <div className="mt-3">
       <button
         onClick={() => setExpanded(!expanded)}
-        className="mx-auto flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted hover:text-text-secondary transition-colors"
+        className="mx-auto flex items-center gap-1.5 font-mono text-[12px] uppercase tracking-[0.15em] text-text-muted hover:text-text-secondary transition-colors"
       >
         <span className={`transition-transform ${expanded ? 'rotate-180' : ''}`}>
           &#9660;
@@ -82,7 +82,7 @@ export default function ScoreExplainer({
 
       {expanded && (
         <div className="mt-4 rounded-xl border border-surface-border bg-surface/50 p-4 animate-sheet-enter">
-          <p className="text-sm text-text-secondary leading-relaxed">
+          <p className="text-[15px] text-text-secondary leading-[1.7]">
             {t(`explainerIntro.${introKey}`, { score: overall })}
           </p>
 
@@ -92,10 +92,10 @@ export default function ScoreExplainer({
               return (
                 <div key={row.key}>
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-text-muted">
+                    <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-text-muted">
                       {t(`metrics.${row.metricKey}.label`)}
                     </span>
-                    <span className={`font-mono text-xs font-bold ${LEVEL_TEXT_COLORS[level]}`}>
+                    <span className={`font-mono text-[13px] font-bold ${LEVEL_TEXT_COLORS[level]}`}>
                       {row.value}
                     </span>
                   </div>
@@ -106,7 +106,7 @@ export default function ScoreExplainer({
                       style={{ width: `${row.value}%` }}
                     />
                   </div>
-                  <p className="mt-0.5 text-[10px] text-text-muted">
+                  <p className="mt-0.5 text-[12px] text-text-muted">
                     {t(`metrics.${row.metricKey}.${level}`)}
                   </p>
                 </div>
@@ -116,7 +116,7 @@ export default function ScoreExplainer({
 
           <button
             onClick={onLearnMore}
-            className="mt-4 font-mono text-[10px] uppercase tracking-wider text-primary hover:text-primary/80 transition-colors"
+            className="mt-4 font-mono text-[12px] uppercase tracking-wider text-primary hover:text-primary/80 transition-colors"
           >
             {t('improveLink')} &rarr;
           </button>

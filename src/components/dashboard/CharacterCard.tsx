@@ -8,12 +8,6 @@ interface Props {
   character: Character;
 }
 
-const STAT_COLORS = {
-  clarity: { bar: 'bg-primary', glow: 'glow-primary' },
-  confidence: { bar: 'bg-plum-light', glow: 'glow-plum' },
-  reactivity: { bar: 'bg-safe', glow: 'glow-safe' },
-};
-
 const STAT_LABELS = {
   clarity: 'Clareza',
   confidence: 'Confiança',
@@ -26,59 +20,43 @@ export default function CharacterCard({ character }: Props) {
   const xpPercent = Math.min((character.xp / character.xpToNext) * 100, 100);
 
   return (
-    <div className="card chamfer-md space-y-5">
-      {/* Header: Class + Tier + Level */}
-      <div className="flex items-start justify-between">
-        <div className="flex items-center gap-3">
-          <span className="text-2xl">{character.class.icon}</span>
-          <div>
-            <h3 className="font-display text-sm font-bold uppercase tracking-wider text-primary text-glow-primary">
-              {character.class.title}
-            </h3>
-            <p className="mt-0.5 font-mono text-[10px] uppercase tracking-wider text-primary/70">
-              {tDash(`tiers.${character.tier.name}`)}
-            </p>
-            <p className="mt-0.5 text-xs text-text-secondary">
-              {character.class.description}
-            </p>
-          </div>
+    <div className="card rounded-xl">
+      {/* Horizontal layout */}
+      <div className="flex gap-4 sm:gap-7 flex-wrap">
+        {/* Avatar block */}
+        <div className="w-[80px] h-[80px] sm:w-[110px] sm:h-[110px] rounded-xl bg-gradient-to-br from-primary-muted to-plum-muted flex items-center justify-center flex-shrink-0">
+          <span className="text-[32px] sm:text-[44px]">{character.class.icon}</span>
         </div>
-        <div className="text-right">
-          <span className="font-mono text-xs text-xp">LV {character.level}</span>
-        </div>
-      </div>
 
-      {/* XP Bar */}
-      <div>
-        <div className="flex justify-between text-xs">
-          <span className="font-mono text-text-muted">XP</span>
-          <span className="font-mono text-xp">
-            {character.xp}/{character.xpToNext}
-          </span>
-        </div>
-        <div className="stat-bar mt-1 chamfer-sm">
-          <div
-            className="stat-bar-fill bg-xp animate-xp-fill"
-            style={{ width: `${xpPercent}%` }}
-          />
+        {/* Info block */}
+        <div className="flex-1 min-w-0">
+          <h3 className="font-display text-[22px] sm:text-[28px] font-bold">
+            {character.class.title}
+          </h3>
+          <p className="font-accent text-xl italic text-plum">
+            {tDash(`tiers.${character.tier.name}`)} &middot; LV {character.level}
+          </p>
+          <p className="mt-1 text-[13px] text-text-secondary">
+            {character.class.description}
+          </p>
         </div>
       </div>
 
       {/* Stats */}
-      <div className="space-y-3">
+      <div className="mt-5 space-y-3">
         {(Object.keys(STAT_LABELS) as Array<keyof typeof STAT_LABELS>).map((stat) => (
           <div key={stat}>
-            <div className="flex justify-between text-xs">
-              <span className="font-mono text-text-muted">
+            <div className="flex justify-between text-[13px]">
+              <span className="font-display text-[15px] font-medium text-text-secondary">
                 {STAT_LABELS[stat]}
               </span>
-              <span className="font-mono text-text-secondary">
+              <span className="font-mono text-[13px] text-text-secondary">
                 {character.stats[stat]}
               </span>
             </div>
-            <div className="stat-bar mt-1 chamfer-sm">
+            <div className="stat-bar mt-1 rounded-lg">
               <div
-                className={`stat-bar-fill ${STAT_COLORS[stat].bar}`}
+                className="stat-bar-fill stat-bar-fill-primary"
                 style={{ width: `${character.stats[stat]}%` }}
               />
             </div>
@@ -86,14 +64,27 @@ export default function CharacterCard({ character }: Props) {
         ))}
       </div>
 
+      {/* XP */}
+      <div className="mt-5">
+        <div className="flex justify-between items-baseline">
+          <span className="font-accent text-[19px] italic text-xp">XP</span>
+          <span className="font-display text-[14px] text-xp">
+            {character.xp}/{character.xpToNext}
+          </span>
+        </div>
+        <div className="stat-bar mt-1 rounded-lg">
+          <div
+            className="stat-bar-fill stat-bar-fill-xp animate-xp-fill"
+            style={{ width: `${xpPercent}%` }}
+          />
+        </div>
+      </div>
+
       {/* Traits */}
-      <div>
-        <p className="font-mono text-xs text-text-muted uppercase tracking-wider mb-2">
-          Traits
-        </p>
+      <div className="mt-5">
         <div className="flex flex-wrap gap-1.5">
           {getVisibleTraits(character.traits).map((tag) => (
-            <span key={tag} className="trait-tag chamfer-sm">
+            <span key={tag} className="trait-tag">
               {t(`neurotags.${tag}.label`)}
             </span>
           ))}

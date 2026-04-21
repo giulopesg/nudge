@@ -24,13 +24,13 @@ export default function HealthBar({ healthFactor, status }: Props) {
 
   return (
     <div className="w-full">
-      <div className="stat-bar chamfer-sm">
+      <div className="stat-bar rounded-lg">
         <div
           className={`stat-bar-fill ${BAR_COLOR[status]} ${GLOW_CLASS[status]}`}
           style={{ width: `${percent}%` }}
         />
       </div>
-      <div className="mt-1.5 flex justify-between font-mono text-[10px] text-text-muted">
+      <div className="mt-1.5 flex justify-between font-mono text-[12px] text-text-muted">
         <span>1.0</span>
         <span className={`text-${status === 'safe' ? 'safe' : status === 'attention' ? 'attention' : 'danger'}`}>
           HF {healthFactor.toFixed(2)}

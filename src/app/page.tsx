@@ -13,11 +13,16 @@ function LandingContent() {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Header */}
-      <header className="flex items-center justify-between px-6 py-4 border-b border-surface-border">
-        <span className="font-display text-sm font-bold uppercase tracking-widest text-primary text-glow-primary">
-          {t('app.name')}
-        </span>
-        <div className="flex items-center gap-3">
+      <header className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-surface-border">
+        <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
+          <span className="n2-gradient-text font-display text-[20px] sm:text-[28px] font-bold uppercase tracking-[0.06em]">
+            {t('brand.name')}
+          </span>
+          <span className="font-accent text-[13px] sm:text-xl italic text-plum">
+            {t('brand.byline')}
+          </span>
+        </div>
+        <div className="flex items-center gap-1.5 sm:gap-3">
           <LanguageToggle />
           <Suspense><DemoToggle /></Suspense>
           <WalletButton />
@@ -25,46 +30,53 @@ function LandingContent() {
       </header>
 
       {/* Hero */}
-      <main className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-        {/* Decorative line */}
-        <div className="mb-8 h-px w-16 bg-gradient-to-r from-transparent via-plum to-transparent" />
+      <main className="flex flex-1 flex-col items-center justify-center px-4 sm:px-6 text-center">
+        <div className="card py-10 px-5 sm:py-[72px] sm:px-10 text-center max-w-2xl w-full">
+          {/* Top divider */}
+          <div className="n2-divider mx-auto" style={{ width: 48 }} />
 
-        <h1 className="font-display text-4xl font-bold uppercase tracking-wider text-glow-primary sm:text-5xl">
-          {t('landing.hero')}
-        </h1>
+          {/* Mixed-font heading */}
+          <h1 className="mt-6 sm:mt-8">
+            <span className="font-display text-3xl sm:text-5xl font-bold">
+              {t('landing.heroPrefix')}
+            </span>
+            {' '}
+            <span className="n2-gradient-text font-accent text-[36px] sm:text-[54px] italic font-bold">
+              {t('landing.heroAccent')}
+            </span>
+          </h1>
 
-        <p className="mt-6 max-w-lg text-base leading-relaxed text-text-secondary">
-          {t('landing.subtitle')}
-        </p>
+          {/* Accent subtitle */}
+          <p className="mt-3 sm:mt-4 font-accent text-[20px] sm:text-[26px] italic text-plum">
+            {t('landing.accentSubtitle')}
+          </p>
 
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-          <Link
-            href="/onboarding"
-            className="chamfer-md border border-primary bg-transparent px-8 py-3 font-mono text-sm font-semibold uppercase tracking-wider text-primary transition-all glow-primary hover:bg-primary hover:text-background"
-          >
-            {t('landing.cta')}
-          </Link>
-          <Link
-            href="/app?demo=true"
-            className="chamfer-md border border-plum bg-transparent px-8 py-3 font-mono text-sm uppercase tracking-wider text-plum-light transition-all hover:bg-plum-muted hover:glow-plum"
-          >
-            Ver demo
-          </Link>
-        </div>
+          {/* Body */}
+          <p className="mt-4 sm:mt-6 mx-auto max-w-[460px] font-display text-[15px] sm:text-[17px] leading-[1.8] text-text-secondary">
+            {t('landing.subtitle')}
+          </p>
 
-        {/* Decorative element */}
-        <div className="mt-16 flex items-center gap-2 text-text-muted">
-          <div className="h-px w-8 bg-surface-border" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em]">
-            Solana Frontier 2026
-          </span>
-          <div className="h-px w-8 bg-surface-border" />
+          {/* Buttons */}
+          <div className="mt-8 sm:mt-10 flex items-center justify-center gap-3 sm:gap-3.5 flex-wrap">
+            <Link href="/onboarding" className="n2-btn-primary">
+              {t('landing.cta')}
+            </Link>
+            <Link href="/app?demo=true" className="n2-btn-secondary">
+              {t('landing.ctaDemo')}
+            </Link>
+          </div>
+
+          {/* Bottom divider + footer */}
+          <div className="n2-divider mx-auto mt-8 sm:mt-12" style={{ width: 48 }} />
+          <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted">
+            {t('landing.solanaFrontier')}
+          </p>
         </div>
       </main>
 
       {/* Footer */}
       <footer className="py-6 text-center">
-        <p className="font-mono text-xs text-text-muted tracking-wider">
+        <p className="font-mono text-[13px] text-text-muted tracking-wider">
           {t('app.tagline')}
         </p>
       </footer>

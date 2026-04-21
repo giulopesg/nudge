@@ -11,6 +11,7 @@ export type DemoPersonaId = 'marina' | 'rafael' | 'luna' | 'semposicao';
 export interface DemoPersona {
   id: DemoPersonaId;
   wallet: string;
+  wallets: string[]; // all wallets for multi-select removal
   avatar: string; // path in /public
   neurotags: NeurotageId[];
   goals: GoalId[];
@@ -33,6 +34,7 @@ const BONK_PRICE = 0.000024;
 const MARINA: DemoPersona = {
   id: 'marina',
   wallet: 'MaRiNa...dEm0',
+  wallets: ['MaRiNa...dEm0', '7xKp9M...Phnt'],
   avatar: '/giuliana-avatar.png',
   neurotags: [
     'iniciante', 'delegadora', 'indecisa-sob-pressao',
@@ -84,6 +86,7 @@ const MARINA: DemoPersona = {
 const RAFAEL: DemoPersona = {
   id: 'rafael',
   wallet: 'RaFaEL...dEm0',
+  wallets: ['RaFaEL...dEm0', '3mVpXy...SlfR', 'Bq8kNd...7Ywp'],
   avatar: '/rafael-avatar.png',
   neurotags: ['intermediaria', 'semi-autonoma', 'atenta', 'quer-seguranca', 'curiosa'],
   goals: ['rendimento', 'aprender'],
@@ -136,6 +139,7 @@ const RAFAEL: DemoPersona = {
 const LUNA: DemoPersona = {
   id: 'luna',
   wallet: 'LuNaAA...dEm0',
+  wallets: ['LuNaAA...dEm0', '9hFvRt...KmJ4', 'Dp3wUe...QzN8', 'Xt7aBc...Hn2L', 'Wk5pRs...Vm9D'],
   avatar: '/luna-avatar.png',
   neurotags: [
     'autonoma-inicial', 'calma-sob-pressao', 'exploradora',
@@ -197,6 +201,7 @@ const LUNA: DemoPersona = {
 const SEM_POSICAO: DemoPersona = {
   id: 'semposicao',
   wallet: 'N0PoSi...dEm0',
+  wallets: ['N0PoSi...dEm0'],
   avatar: '/nyx-avatar.png',
   neurotags: ['iniciante', 'curiosa'],
   goals: ['aprender'],

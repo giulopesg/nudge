@@ -26,7 +26,6 @@ interface ActionCard {
 const KAMINO_BASE = 'https://app.kamino.finance/lending';
 
 const ACTION_DEFS: ActionCard[] = [
-  // Portfolio — education-first for gentle/encouraging
   {
     id: 'diversify',
     type: 'guided',
@@ -51,7 +50,6 @@ const ACTION_DEFS: ActionCard[] = [
     urgency: 'normal',
     showWhen: (_z, hasKamino) => !hasKamino,
   },
-  // Knowledge
   {
     id: 'learnHF',
     type: 'modal',
@@ -59,7 +57,6 @@ const ACTION_DEFS: ActionCard[] = [
     urgency: 'normal',
     showWhen: () => true,
   },
-  // Kamino-specific
   {
     id: 'viewKamino',
     type: 'link',
@@ -81,7 +78,6 @@ const ACTION_DEFS: ActionCard[] = [
     urgency: 'danger',
     showWhen: (z, hasKamino) => hasKamino && (z === 'attention' || z === 'danger'),
   },
-  // Future
   {
     id: 'simulate',
     type: 'disabled',
@@ -91,10 +87,10 @@ const ACTION_DEFS: ActionCard[] = [
 ];
 
 const URGENCY_STYLES: Record<string, string> = {
-  normal: 'action-card',
-  attention: 'action-card action-card-attention',
-  danger: 'action-card action-card-urgent',
-  disabled: 'action-card action-card-disabled',
+  normal: 'action-card-enhanced',
+  attention: 'action-card-enhanced action-card-enhanced-attention',
+  danger: 'action-card-enhanced action-card-enhanced-urgent',
+  disabled: 'action-card-enhanced opacity-40 cursor-default pointer-events-none',
 };
 
 const CARD_ICONS: Record<string, string> = {
@@ -108,7 +104,6 @@ const CARD_ICONS: Record<string, string> = {
   reduceDebt: '\u26A1',
 };
 
-/** Profiles that get education-first experience */
 const EDUCATION_FIRST_PROFILES: CommProfile[] = ['gentle', 'encouraging'];
 
 export default function ActionCards({ zone, hasKaminoPosition, commProfile, onOpenEducation }: Props) {
@@ -125,13 +120,11 @@ export default function ActionCards({ zone, hasKaminoPosition, commProfile, onOp
   const handleClick = (card: ActionCard) => {
     if (card.type === 'disabled') return;
 
-    // modal type always opens education
     if (card.type === 'modal' && card.topicId) {
       onOpenEducation(card.topicId);
       return;
     }
 
-    // guided type: education-first profiles get modal, others get link
     if (card.type === 'guided') {
       if (isEducationFirst && card.topicId) {
         onOpenEducation(card.topicId);
@@ -143,7 +136,6 @@ export default function ActionCards({ zone, hasKaminoPosition, commProfile, onOp
       }
     }
 
-    // link type: direct external link
     if (card.type === 'link' && card.href) {
       window.open(card.href, '_blank', 'noopener');
     }
@@ -151,10 +143,10 @@ export default function ActionCards({ zone, hasKaminoPosition, commProfile, onOp
 
   return (
     <div className="space-y-2">
-      <h3 className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted">
+      <h3 className="font-display text-[15px] font-semibold uppercase tracking-[0.12em] text-text-muted">
         {t(`actions.title.${commProfile}`)}
       </h3>
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3.5">
         {visibleCards.map((card) => {
           const isUrgent = zone === 'danger' && (card.id === 'addCollateral' || card.id === 'reduceDebt');
           const effectiveUrgency = isUrgent ? 'danger' : card.urgency;
@@ -164,32 +156,33 @@ export default function ActionCards({ zone, hasKaminoPosition, commProfile, onOp
               key={card.id}
               onClick={() => handleClick(card)}
               disabled={card.type === 'disabled'}
-              className={`${URGENCY_STYLES[effectiveUrgency]} rounded-xl relative text-left ${
+              className={`${URGENCY_STYLES[effectiveUrgency]} rounded-xl relative ${
                 isUrgent ? 'animate-pulse-glow' : ''
               }`}
             >
-              <span className="text-lg">{CARD_ICONS[card.id]}</span>
-              <span className="mt-1 block font-mono text-[11px] font-medium leading-tight">
-                {t(`actions.cards.${card.id}.label.${commProfile}`)}
-              </span>
-              <span className="mt-0.5 block text-[10px] leading-snug text-text-muted">
-                {t(`actions.cards.${card.id}.desc.${commProfile}`)}
-              </span>
-              {card.type === 'disabled' && (
-                <span className="absolute top-1.5 right-1.5 font-mono text-[8px] uppercase tracking-wider text-text-muted opacity-60">
-                  {t('actions.comingSoon')}
-                </span>
+              {/* Urgency accent line */}
+              {effectiveUrgency !== 'normal' && effectiveUrgency !== 'disabled' && (
+                <div
+                  className={`absolute bottom-0 left-4 right-4 h-[2px] rounded-full ${
+                    effectiveUrgency === 'danger' ? 'bg-danger/40' : 'bg-attention/40'
+                  }`}
+                />
               )}
-              {card.type === 'link' && (
-                <span className="absolute top-1.5 right-1.5 text-[10px] text-text-muted">
-                  &#8599;
+
+              <div className="flex flex-col items-center text-center gap-2 py-1">
+                <span className="text-[32px] leading-none">{CARD_ICONS[card.id]}</span>
+                <span className="block text-[15px] font-extrabold leading-tight">
+                  {t(`actions.cards.${card.id}.label.${commProfile}`)}
                 </span>
-              )}
-              {card.type === 'guided' && !isEducationFirst && (
-                <span className="absolute top-1.5 right-1.5 text-[10px] text-text-muted">
-                  &#8599;
+                <span className="block text-[13px] leading-[1.5] text-text-muted">
+                  {t(`actions.cards.${card.id}.desc.${commProfile}`)}
                 </span>
-              )}
+                {card.type === 'disabled' && (
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-text-muted opacity-60">
+                    {t('actions.comingSoon')}
+                  </span>
+                )}
+              </div>
             </button>
           );
         })}

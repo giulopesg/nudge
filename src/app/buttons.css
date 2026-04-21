@@ -1,0 +1,76 @@
+/* ===== v2 — Pill buttons ===== */
+
+.n2-btn-primary {
+  padding: 10px 20px;
+  border-radius: 9999px;
+  border: 1px solid var(--primary);
+  background: linear-gradient(135deg, rgba(163, 102, 255, 0.12), rgba(163, 102, 255, 0.04));
+  color: var(--primary);
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .n2-btn-primary {
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+}
+
+.n2-btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary), rgba(163, 102, 255, 0.6));
+  color: var(--background);
+  box-shadow: 0 0 24px var(--primary-glow), 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.n2-btn-secondary {
+  padding: 10px 20px;
+  border-radius: 9999px;
+  border: 1px solid var(--plum);
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.12), rgba(255, 107, 157, 0.04));
+  color: var(--plum);
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .n2-btn-secondary {
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+}
+
+.n2-btn-secondary:hover {
+  background: linear-gradient(135deg, var(--plum), rgba(255, 107, 157, 0.6));
+  color: var(--background);
+  box-shadow: 0 0 24px var(--plum-glow), 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.n2-btn-ghost {
+  padding: 10px 20px;
+  border-radius: 9999px;
+  border: 1px solid var(--surface-border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.n2-btn-ghost:hover {
+  border-color: rgba(163, 102, 255, 0.25);
+  color: var(--foreground);
+  background: var(--surface);
+}

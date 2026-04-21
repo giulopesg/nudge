@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Nudge",
-    "tagline": "Blockchain is freedom. Nudge teaches you how to use yours."
+    "tagline": "Made by a woman, for all women."
   },
   "wallet": {
     "connect": "Connect Wallet",
@@ -16,10 +16,19 @@
     "onboarding": "Setup",
     "profile": "Profile"
   },
+  "brand": {
+    "name": "NUDGE",
+    "byline": "by Giuliana"
+  },
   "landing": {
-    "hero": "From zero to free.",
-    "subtitle": "Nudge translates, educates, protects, and includes. For anyone who wants financial freedom with blockchain — without becoming an expert.",
-    "cta": "Get started"
+    "hero": "Blockchain is freedom.",
+    "heroPrefix": "Blockchain",
+    "heroAccent": "is freedom.",
+    "accentSubtitle": "Nudge teaches you to exercise yours",
+    "subtitle": "Translate, learn, and protect your DeFi positions. No jargon. No complexity. Just you and your money.",
+    "cta": "Get started",
+    "ctaDemo": "See demo",
+    "solanaFrontier": "SOLANA FRONTIER 2026"
   },
   "onboarding": {
     "title": "Let's get to know you",

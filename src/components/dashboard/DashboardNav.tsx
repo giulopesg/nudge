@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
+import type { Character } from '@/lib/rpg';
+import CharacterBadge from '@/components/dashboard/CharacterBadge';
 
 interface NavTab {
   key: string;
@@ -28,10 +30,13 @@ function isActive(pathname: string, href: string): boolean {
 interface Props {
   hasProfile: boolean;
   unreadCount?: number;
+  character?: Character | null;
+  onShowCharacterSheet?: () => void;
 }
 
-export default function DashboardNav({ hasProfile, unreadCount = 0 }: Props) {
+export default function DashboardNav({ hasProfile, unreadCount = 0, character, onShowCharacterSheet }: Props) {
   const { t } = useTranslation('dashboard');
+  const { t: tCommon } = useTranslation();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -46,8 +51,25 @@ export default function DashboardNav({ hasProfile, unreadCount = 0 }: Props) {
     <>
       {/* Desktop sidebar */}
       <nav className="nav-sidebar hidden md:flex" aria-label="Dashboard navigation">
-        <Link href="/" className="nav-sidebar-brand">NUDGE</Link>
-        <div className="nav-sidebar-divider" />
+        {/* Brand + Character Badge */}
+        <div className="nav-sidebar-brand">
+          <Link href="/" className="flex flex-col leading-none">
+            <span className="n2-gradient-text font-display text-[24px] font-bold uppercase tracking-[0.06em]">
+              {tCommon('brand.name')}
+            </span>
+            <span className="font-accent italic text-plum text-[13px] mt-1">
+              {tCommon('brand.byline')}
+            </span>
+          </Link>
+          {character && onShowCharacterSheet && (
+            <CharacterBadge
+              character={character}
+              onClick={onShowCharacterSheet}
+            />
+          )}
+        </div>
+
+        {/* Nav items */}
         {visibleTabs.map((tab) => {
           const active = isActive(pathname, tab.href);
           return (

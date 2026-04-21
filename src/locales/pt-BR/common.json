@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Nudge",
-    "tagline": "Blockchain é liberdade. O Nudge te ensina a exercer a sua."
+    "tagline": "Feito por uma mulher, para todas."
   },
   "wallet": {
     "connect": "Conectar Wallet",
@@ -16,10 +16,19 @@
     "onboarding": "Configurar",
     "profile": "Perfil"
   },
+  "brand": {
+    "name": "NUDGE",
+    "byline": "by Giuliana"
+  },
   "landing": {
-    "hero": "De zero a livre.",
-    "subtitle": "O Nudge traduz, educa, protege e inclui. Para quem quer liberdade financeira com blockchain — sem precisar virar especialista.",
-    "cta": "Começar agora"
+    "hero": "Blockchain é liberdade.",
+    "heroPrefix": "Blockchain",
+    "heroAccent": "é liberdade.",
+    "accentSubtitle": "O Nudge te ensina a exercer a sua",
+    "subtitle": "Traduza, aprenda e proteja suas posições DeFi. Sem jargão. Sem complexidade. Só você e seu dinheiro.",
+    "cta": "Começar agora",
+    "ctaDemo": "Ver demo",
+    "solanaFrontier": "SOLANA FRONTIER 2026"
   },
   "onboarding": {
     "title": "Vamos te conhecer",

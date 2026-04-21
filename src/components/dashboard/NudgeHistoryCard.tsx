@@ -71,11 +71,11 @@ export default function NudgeHistoryCard({ nudges, unreadCount, commProfile, onM
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <h3 className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted">
+        <h3 className="font-mono text-[12px] uppercase tracking-[0.15em] text-text-muted">
           {t('sectionTitle')}
         </h3>
         {unreadCount > 0 && (
-          <span className="rounded-md bg-primary/15 px-2 py-0.5 font-mono text-[10px] font-semibold text-primary">
+          <span className="rounded-md bg-primary/15 px-2 py-0.5 font-mono text-[12px] font-semibold text-primary">
             {t('badge', { count: unreadCount })}
           </span>
         )}
@@ -96,19 +96,19 @@ export default function NudgeHistoryCard({ nudges, unreadCount, commProfile, onM
               } ${nudge.read ? 'opacity-60' : ''}`}
             >
               <div className="flex items-start gap-3">
-                <span className="text-base flex-shrink-0 mt-0.5">
+                <span className="text-[17px] flex-shrink-0 mt-0.5">
                   {SEVERITY_ICONS[nudge.severity]}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline justify-between gap-2">
-                    <h4 className="font-mono text-xs font-semibold text-foreground">
+                    <h4 className="font-mono text-[13px] font-semibold text-foreground">
                       {t(`${titleKey}.${commProfile}`, nudge.data as Record<string, string>)}
                     </h4>
-                    <span className="flex-shrink-0 font-mono text-[10px] text-text-muted">
+                    <span className="flex-shrink-0 font-mono text-[12px] text-text-muted">
                       {formatTimeAgo(nudge.timestamp, t)}
                     </span>
                   </div>
-                  <p className="mt-1 text-[12px] leading-relaxed text-text-secondary">
+                  <p className="mt-1 text-[13px] leading-relaxed text-text-secondary">
                     {t(`${bodyKey}.${commProfile}`, nudge.data as Record<string, string>)}
                   </p>
                 </div>
@@ -122,7 +122,7 @@ export default function NudgeHistoryCard({ nudges, unreadCount, commProfile, onM
         <button
           type="button"
           onClick={() => setExpanded(!expanded)}
-          className="w-full rounded-xl border border-surface-border bg-surface px-3 py-2 font-mono text-[11px] text-text-secondary hover:bg-surface-hover transition-colors"
+          className="w-full rounded-xl border border-surface-border bg-surface px-3 py-2 font-mono text-[13px] text-text-secondary hover:bg-surface-hover transition-colors"
         >
           {expanded
             ? t('showLess')

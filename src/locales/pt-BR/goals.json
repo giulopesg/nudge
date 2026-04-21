@@ -29,6 +29,8 @@
   },
   "continue": "Continuar",
   "journeyTitle": "SEU CAMINHO",
+  "journeyTitlePrefix": "Seu",
+  "journeyTitleAccent": "caminho",
   "journeyEmpty": "Complete o onboarding pra definir seus objetivos.",
   "journeyEncouragement": {
     "starting": "Voce esta comecando. Cada passo conta!",
@@ -57,5 +59,21 @@
   "journeyProgress": "{{percent}}% completo",
   "stepAction": "Ir",
   "profileGoalsTitle": "SEUS OBJETIVOS",
-  "profileGoalSelected": "Voce quer:"
+  "profileGoalSelected": "Voce quer:",
+  "journeyStatus": {
+    "starting": "Começando",
+    "inProgress": "Em progresso",
+    "almostDone": "Quase lá",
+    "complete": "Completo"
+  },
+  "journeyMotivation": {
+    "low": "Cada passo conta. Você está construindo algo real.",
+    "mid": "Bom progresso! Continue avançando na sua jornada.",
+    "high": "Quase lá! Você está arrasando.",
+    "done": "Todos os objetivos concluídos. Parabéns!"
+  },
+  "stepXp": "+{{xp}} XP",
+  "goalTotalXp": "{{xp}} XP total",
+  "journeyXpSubtitle": "Complete passos para ganhar XP e evoluir",
+  "goalCta": "Ver próximos passos"
 }

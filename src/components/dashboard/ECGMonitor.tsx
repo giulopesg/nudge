@@ -34,7 +34,7 @@ export default function ECGMonitor({ healthFactor, status }: Props) {
         {/* ECG trace area — fills available width */}
         <div
           ref={containerRef}
-          className="ecg-monitor relative flex-1 overflow-hidden chamfer-sm"
+          className="ecg-monitor relative flex-1 overflow-hidden rounded-lg"
         >
           {/* Background grid */}
           <div className="ecg-grid absolute inset-0" />
@@ -56,17 +56,17 @@ export default function ECGMonitor({ healthFactor, status }: Props) {
 
         {/* HF value display */}
         <div className="flex flex-shrink-0 flex-col items-center gap-1">
-          <span className="font-mono text-[9px] uppercase tracking-widest text-text-muted">
+          <span className="font-mono text-[11px] uppercase tracking-widest text-text-muted">
             {t('ecg.label')}
           </span>
           <span
-            className="font-display text-2xl font-bold tabular-nums"
+            className="font-display text-[28px] font-bold tabular-nums"
             style={{ color, textShadow: `0 0 16px ${glowColor}` }}
           >
             {healthFactor.toFixed(2)}
           </span>
           <span
-            className="font-mono text-[10px] font-semibold uppercase tracking-wider"
+            className="font-mono text-[12px] font-semibold uppercase tracking-wider"
             style={{ color }}
           >
             {t(`ecg.status.${status}`)}
@@ -75,7 +75,7 @@ export default function ECGMonitor({ healthFactor, status }: Props) {
       </div>
 
       {/* Scale markers */}
-      <div className="mt-1.5 flex justify-between font-mono text-[9px] text-text-muted px-1">
+      <div className="mt-1.5 flex justify-between font-mono text-[11px] text-text-muted px-1">
         <span>1.0</span>
         <span>{t('ecg.bpmLabel')}</span>
         <span>2.0+</span>

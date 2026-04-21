@@ -7,35 +7,31 @@ import { useTranslation } from 'react-i18next';
 import { useDashboard } from '@/contexts/DashboardContext';
 import { ACTIVITIES, ITEM_ICONS } from '@/lib/rpg';
 import { getVisibleTraits } from '@/lib/neurotags';
-import type { InventoryItemId, InventoryItem } from '@/lib/rpg';
+import ItemDetailModal, { type SlotData } from '@/components/dashboard/ItemDetailModal';
+import type { InventoryItemId } from '@/lib/rpg';
 
 const STAT_KEYS = ['clarity', 'confidence', 'reactivity'] as const;
 
 function StatBar({ label, value }: { label: string; value: number }) {
   return (
-    <div className="flex items-center gap-3">
-      <span className="w-24 font-mono text-[11px] uppercase tracking-wider text-plum-light">
-        {label}
-      </span>
-      <div className="stat-bar chamfer-sm flex-1">
-        <div className="stat-bar-fill bg-plum" style={{ width: `${value}%` }} />
+    <div>
+      <div className="flex justify-between mb-1.5">
+        <span className="font-display text-[15px] font-medium text-text-secondary">
+          {label}
+        </span>
+        <span className="font-display text-[15px] font-bold text-text-muted">
+          {value}
+        </span>
       </div>
-      <span className="w-8 text-right font-mono text-[11px] text-text-secondary">
-        {value}
-      </span>
+      <div className="stat-bar rounded-lg">
+        <div className="stat-bar-fill stat-bar-fill-primary" style={{ width: `${value}%` }} />
+      </div>
     </div>
   );
 }
 
-interface SlotData {
-  itemId: InventoryItemId;
-  xp: number;
-  obtained: InventoryItem | null;
-}
-
-function ItemSlot({ slot, isSelected, onSelect }: {
+function ItemSlot({ slot, onSelect }: {
   slot: SlotData;
-  isSelected: boolean;
   onSelect: () => void;
 }) {
   const { t } = useTranslation('dashboard');
@@ -46,67 +42,15 @@ function ItemSlot({ slot, isSelected, onSelect }: {
     <button
       type="button"
       onClick={onSelect}
-      className={`inventory-slot chamfer-sm flex-col gap-1 cursor-pointer transition-all ${
+      className={`inventory-slot rounded-lg flex-col gap-1 cursor-pointer transition-all ${
         isObtained ? '' : 'inventory-slot-empty opacity-50'
-      } ${isSelected ? 'ring-1 ring-plum shadow-[0_0_12px_var(--plum-glow)]' : ''}`}
+      }`}
     >
-      <span className={`text-lg ${isObtained ? '' : 'grayscale'}`}>{icon}</span>
-      <span className="text-[9px] leading-tight text-center">
+      <span className={`text-xl ${isObtained ? '' : 'grayscale'}`}>{icon}</span>
+      <span className="text-[11px] leading-tight text-center">
         {t(`items.${slot.itemId}.name`)}
       </span>
     </button>
-  );
-}
-
-function ItemDetail({ slot }: { slot: SlotData }) {
-  const { t } = useTranslation('dashboard');
-  const icon = slot.obtained?.icon ?? ITEM_ICONS[slot.itemId];
-  const isObtained = slot.obtained !== null;
-
-  return (
-    <div className="mt-2 border border-plum/30 bg-plum-muted/30 p-4 chamfer-sm animate-sheet-enter">
-      <p className="font-mono text-[11px] font-semibold text-plum-light">
-        {icon} {t(`items.${slot.itemId}.name`)}
-      </p>
-      <p className="mt-1.5 text-[11px] leading-relaxed text-text-secondary italic">
-        {t(`items.${slot.itemId}.description`)}
-      </p>
-      <div className="my-3 border-t border-surface-border" />
-      {isObtained ? (
-        <>
-          <p className="font-mono text-[9px] uppercase tracking-wider text-safe">
-            {t('characterSheet.itemObtained')}
-          </p>
-          <p className="mt-1 text-[11px] leading-relaxed text-text-secondary">
-            {t(`items.${slot.itemId}.howToGet`)}
-          </p>
-          <div className="mt-2 flex items-center justify-between">
-            <span className="font-mono text-[11px] font-semibold text-xp">
-              {t('characterSheet.itemXp', { xp: slot.xp })}
-            </span>
-            {slot.obtained?.obtainedAt && (
-              <span className="font-mono text-[10px] text-text-muted">
-                {t('characterSheet.itemDate', {
-                  date: new Date(slot.obtained.obtainedAt).toLocaleDateString('pt-BR'),
-                })}
-              </span>
-            )}
-          </div>
-        </>
-      ) : (
-        <>
-          <p className="font-mono text-[9px] uppercase tracking-wider text-attention">
-            {t('characterSheet.itemLocked')}
-          </p>
-          <p className="mt-1 text-[11px] leading-relaxed text-text-secondary">
-            {t(`items.${slot.itemId}.howToGet`)}
-          </p>
-          <span className="mt-2 inline-block font-mono text-[11px] font-semibold text-xp">
-            {t('characterSheet.itemXp', { xp: slot.xp })}
-          </span>
-        </>
-      )}
-    </div>
   );
 }
 
@@ -118,7 +62,7 @@ export default function PerfilPage() {
   if (!character) {
     return (
       <div className="mt-16 flex flex-col items-center text-center">
-        <p className="text-text-secondary font-mono text-xs">
+        <p className="text-text-secondary font-mono text-[13px]">
           {t('characterSheet.title')}
         </p>
       </div>
@@ -140,114 +84,116 @@ export default function PerfilPage() {
     return 0;
   });
 
-  return (
-    <div className="mt-6 max-w-md mx-auto">
-      {/* Header: class + tier + level */}
-      <div className="flex items-start justify-between">
-        <div>
-          <h2 className="font-display text-sm font-bold uppercase tracking-wider text-foreground">
-            {t('characterSheet.title')}
-          </h2>
-          <div className="mt-1 flex items-center gap-2">
-            <span className="text-2xl">{character.class.icon}</span>
-            <span className="font-display text-xs font-bold uppercase tracking-wider text-plum-light">
-              {character.class.title}
-            </span>
-            <span className="text-[10px] uppercase tracking-widest text-text-muted">
-              &mdash;
-            </span>
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-primary text-glow-primary">
-              {t(`tiers.${character.tier.name}`)}
-            </span>
-          </div>
-          <p className="mt-1 text-xs text-text-secondary italic">
-            {character.class.description}
-          </p>
-        </div>
-        <div className="text-right">
-          <p className="font-mono text-[10px] uppercase tracking-wider text-text-muted">LV</p>
-          <p className="font-display text-lg font-bold text-plum-light">{character.level}</p>
-          <div className="mt-1 h-[3px] w-12 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full bg-xp animate-xp-fill" style={{ width: `${xpPercent}%` }} />
-          </div>
-        </div>
-      </div>
+  const selectedSlot = selectedItemId
+    ? allSlots.find((s) => s.itemId === selectedItemId) ?? null
+    : null;
 
-      {/* Avatar */}
+  return (
+    <>
+      {/* Page title — inline mixed-font */}
+      <h1>
+        <span className="font-display text-[22px] font-bold">{t('perfil.titlePrefix')}</span>
+        {' '}
+        <span className="font-accent text-[24px] italic text-text-muted">{t('perfil.titleAccent')}</span>
+      </h1>
+
+      {/* Avatar portrait — first visual element */}
       <div className="mt-6 flex justify-center">
         <div className="tactical-frame">
-          <div className="re-scan overflow-hidden" style={{ width: 280 }}>
+          <div className="re-scan overflow-hidden w-[220px] sm:w-[280px]">
             <Image
               src={avatarSrc}
               alt={character.class.title}
               width={280}
               height={420}
-              className="block"
+              className="block w-full h-auto"
               priority
             />
           </div>
         </div>
       </div>
 
-      {/* PERFIL — Traits */}
-      <div className="section-divider mt-6" />
-      <h3 className="mt-4 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">
-        {t('characterSheet.profileTitle')}
-      </h3>
-      <div className="mt-3 flex flex-wrap gap-1.5">
-        {visibleTraits.map((tag) => (
-          <span key={tag} className="trait-tag chamfer-sm">#{tag}</span>
-        ))}
-      </div>
-
-      {/* ATRIBUTOS — Stats */}
-      <div className="section-divider mt-6" />
-      <h3 className="mt-4 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">
-        {t('characterSheet.statsTitle')}
-      </h3>
-      <div className="mt-3 space-y-2">
-        {STAT_KEYS.map((key) => (
-          <StatBar key={key} label={t(`characterSheet.stats.${key}`)} value={character.stats[key]} />
-        ))}
-      </div>
-
-      {/* INVENTARIO */}
-      <div className="section-divider mt-6" />
-      <h3 className="mt-4 font-display text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted">
-        {t('characterSheet.inventoryTitle')}
-      </h3>
-      <div className="mt-3 grid grid-cols-3 gap-2">
-        {allSlots.map((slot) => (
-          <ItemSlot
-            key={slot.itemId}
-            slot={slot}
-            isSelected={selectedItemId === slot.itemId}
-            onSelect={() => setSelectedItemId((prev) => prev === slot.itemId ? null : slot.itemId)}
-          />
-        ))}
-      </div>
-
-      {/* Item detail panel */}
-      {selectedItemId && (() => {
-        const selected = allSlots.find((s) => s.itemId === selectedItemId);
-        return selected ? <ItemDetail slot={selected} /> : null;
-      })()}
-
-      {/* XP bar */}
-      <div className="section-divider mt-6" />
-      <div className="mt-4">
-        <div className="flex items-center justify-between">
-          <p className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
-            {t('characterSheet.xpLabel')}
-          </p>
-          <p className="font-mono text-[10px] text-xp">
-            {t('characterSheet.xpProgress', { current: character.xp, needed: character.xpToNext })}
-          </p>
+      {/* Character Dossier card */}
+      <div className="mt-6 card rounded-2xl">
+        {/* Horizontal layout: icon + info */}
+        <div className="flex gap-5 sm:gap-7 flex-wrap">
+          <div className="w-[90px] h-[90px] sm:w-[110px] sm:h-[110px] rounded-2xl bg-gradient-to-br from-primary-muted to-plum-muted flex items-center justify-center flex-shrink-0 border border-surface-border">
+            <span className="text-[36px] sm:text-[44px]">{character.class.icon}</span>
+          </div>
+          <div className="flex-1 min-w-0">
+            <h2 className="font-display text-[24px] sm:text-[28px] font-bold">
+              {character.class.title}
+            </h2>
+            <p className="font-accent text-[18px] sm:text-[20px] italic text-plum mt-0.5">
+              {t('perfil.classLevel', {
+                className: t(`tiers.${character.tier.name}`),
+                level: character.level,
+              })}
+            </p>
+            <p className="mt-2 text-[13px] sm:text-[15px] leading-[1.7] text-text-secondary">
+              {character.class.description}
+            </p>
+          </div>
         </div>
-        <div className="stat-bar chamfer-sm mt-2">
-          <div className="stat-bar-fill animate-xp-fill bg-xp" style={{ width: `${xpPercent}%` }} />
+
+        {/* Stats */}
+        <div className="mt-6 space-y-3">
+          {STAT_KEYS.map((key) => (
+            <StatBar key={key} label={t(`characterSheet.stats.${key}`)} value={character.stats[key]} />
+          ))}
+        </div>
+
+        {/* XP to next level — right after stats */}
+        <div className="mt-4">
+          <div className="flex justify-between mb-1.5">
+            <span className="font-accent text-[18px] sm:text-[19px] italic text-xp">
+              {t('perfil.xpToNext')}
+            </span>
+            <span className="font-display text-[14px] font-semibold text-text-muted">
+              {t('characterSheet.xpProgress', { current: character.xp, needed: character.xpToNext })}
+            </span>
+          </div>
+          <div className="stat-bar rounded-lg">
+            <div className="stat-bar-fill stat-bar-fill-xp animate-xp-fill" style={{ width: `${xpPercent}%` }} />
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Traits */}
+      <div className="mt-6">
+        <h3 className="font-display text-[14px] font-bold uppercase tracking-[0.08em] text-text-muted mb-3">
+          {t('characterSheet.profileTitle')}
+        </h3>
+        <div className="flex flex-wrap gap-1.5">
+          {visibleTraits.map((tag) => (
+            <span key={tag} className="trait-tag">#{tag}</span>
+          ))}
+        </div>
+      </div>
+
+      {/* Inventory */}
+      <div className="mt-6">
+        <h3 className="font-display text-[14px] font-bold uppercase tracking-[0.08em] text-text-muted mb-3">
+          {t('characterSheet.inventoryTitle')}
+        </h3>
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+          {allSlots.map((slot) => (
+            <ItemSlot
+              key={slot.itemId}
+              slot={slot}
+              onSelect={() => setSelectedItemId(slot.itemId)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Item detail modal */}
+      {selectedSlot && (
+        <ItemDetailModal
+          slot={selectedSlot}
+          onClose={() => setSelectedItemId(null)}
+        />
+      )}
+    </>
   );
 }

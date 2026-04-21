@@ -1,7 +1,6 @@
 'use client';
 
 import { useTranslation } from 'react-i18next';
-import Image from 'next/image';
 import type { KaminoPosition } from '@/lib/kamino';
 import type { CommProfile } from '@/lib/communication';
 
@@ -15,6 +14,24 @@ function marginQualifier(percent: number): string {
   if (percent >= 40) return 'marginOk';
   return 'marginTight';
 }
+
+const STATUS_BADGE: Record<string, string> = {
+  safe: 'status-badge status-safe',
+  attention: 'status-badge status-attention',
+  danger: 'status-badge status-danger',
+};
+
+const STATUS_BG: Record<string, string> = {
+  safe: 'bg-safe/5 border border-safe/15',
+  attention: 'bg-attention/5 border border-attention/15',
+  danger: 'bg-danger/5 border border-danger/15',
+};
+
+const ACCENT_COLOR: Record<string, string> = {
+  safe: 'text-safe',
+  attention: 'text-attention',
+  danger: 'text-danger',
+};
 
 export default function KaminoCard({ position, commProfile }: Props) {
   const { t } = useTranslation('dashboard');
@@ -31,76 +48,67 @@ export default function KaminoCard({ position, commProfile }: Props) {
     v.toLocaleString('pt-BR', { style: 'currency', currency: 'USD' });
 
   return (
-    <div className="card rounded-2xl relative overflow-hidden">
-      {/* Watermark */}
-      <Image
-        src="/kamino-watermark.png"
-        alt=""
-        width={140}
-        height={160}
-        className="pointer-events-none absolute -bottom-4 -right-2 opacity-[0.08]"
-        aria-hidden="true"
-      />
-
-      {/* Header */}
-      <div className="relative">
-        <h3 className="font-mono text-[10px] uppercase tracking-[0.15em] text-text-muted">
-          {t('kamino.title')}
+    <div className="card rounded-2xl">
+      {/* Header — mixed-font inline + badge */}
+      <div className="flex items-center justify-between">
+        <h3>
+          <span className="font-display text-[22px] font-bold">{t('kamino.titlePrefix')}</span>
+          {' '}
+          <span className="font-accent text-[24px] italic text-text-muted">{t('kamino.titleAccent')}</span>
         </h3>
-        <p className="mt-1 text-xs text-text-secondary">
-          {t('kamino.subtitleDetail')}
+        <span className={STATUS_BADGE[position.status]}>
+          {t(`status.${position.status}`)}
+        </span>
+      </div>
+
+      {/* Explanation box */}
+      <div className={`mt-4 rounded-xl p-4 ${STATUS_BG[position.status]}`}>
+        <p className="font-display text-[16px] leading-[1.7] text-text-secondary">
+          {translatedMessage}
+        </p>
+        <p className={`mt-2 font-accent text-[22px] italic ${ACCENT_COLOR[position.status]}`}>
+          {t(`kamino.explanationAccent.${position.status}`)}
         </p>
       </div>
 
-      {/* Translated message — profile adapted */}
-      <p className="mt-4 text-sm leading-relaxed text-text-secondary">
-        {translatedMessage}
-      </p>
-
-      {/* Details grid with human explanations */}
-      <div className="mt-5 grid grid-cols-2 gap-4">
+      {/* Details grid */}
+      <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
+          <p className="font-display text-[13px] font-medium uppercase tracking-[0.04em] text-text-muted">
             {t('kamino.collateral')}
           </p>
-          <p className="mt-1 text-lg font-semibold">
+          <p className="mt-1 font-display text-[22px] sm:text-[28px] font-bold">
             {fmt(position.totalCollateral)}
           </p>
           {position.collateralDetails.map((d) => (
-            <p key={d.symbol} className="font-mono text-xs text-text-secondary">
+            <p key={d.symbol} className="font-mono text-[12px] text-text-muted">
               {d.amount.toFixed(4)} {d.symbol}
             </p>
           ))}
-          <p className="mt-1 text-[11px] italic text-text-muted">
-            {t('kamino.explain.collateral')}
-          </p>
         </div>
 
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
+          <p className="font-display text-[13px] font-medium uppercase tracking-[0.04em] text-text-muted">
             {t('kamino.debt')}
           </p>
-          <p className="mt-1 text-lg font-semibold">
+          <p className="mt-1 font-display text-[22px] sm:text-[28px] font-bold">
             {fmt(position.totalDebt)}
           </p>
           {position.debtDetails.map((d) => (
-            <p key={d.symbol} className="font-mono text-xs text-text-secondary">
+            <p key={d.symbol} className="font-mono text-[12px] text-text-muted">
               {d.amount.toFixed(2)} {d.symbol}
             </p>
           ))}
-          <p className="mt-1 text-[11px] italic text-text-muted">
-            {t('kamino.explain.debt')}
-          </p>
         </div>
 
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
+          <p className="font-display text-[13px] font-medium uppercase tracking-[0.04em] text-text-muted">
             {t('kamino.margin')}
           </p>
-          <p className="mt-1 text-lg font-semibold">
+          <p className="mt-1 font-display text-[22px] sm:text-[28px] font-bold">
             {Math.round(position.marginPercent)}%
           </p>
-          <p className="mt-1 text-[11px] italic text-text-muted">
+          <p className="mt-1 font-mono text-[12px] text-text-muted">
             {t('kamino.explain.margin')}
             {' — '}
             <span className={
@@ -114,25 +122,25 @@ export default function KaminoCard({ position, commProfile }: Props) {
         </div>
 
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
+          <p className="font-display text-[13px] font-medium uppercase tracking-[0.04em] text-text-muted">
             {t('kamino.netValue')}
           </p>
-          <p className="mt-1 text-lg font-semibold">
+          <p className="mt-1 font-display text-[22px] sm:text-[28px] font-bold">
             {fmt(position.netValue)}
           </p>
-          <p className="mt-1 text-[11px] italic text-text-muted">
+          <p className="mt-1 font-mono text-[12px] text-text-muted">
             {t('kamino.explain.netValue')}
           </p>
         </div>
       </div>
 
       {/* CTA */}
-      <div className="mt-4 flex gap-2">
+      <div className="mt-5">
         <a
           href="https://app.kamino.finance/lending"
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-lg border border-primary/30 bg-primary/10 px-4 py-2 font-mono text-[11px] font-semibold text-primary hover:bg-primary/20 transition-colors"
+          className="n2-btn-primary inline-block"
         >
           {t('kamino.ctaView')}
         </a>
