@@ -1,4 +1,4 @@
-import { Outfit, Fira_Code, Cormorant_Garamond, Lora } from 'next/font/google';
+import { Outfit, Fira_Code, Agbalumo, Lora } from 'next/font/google';
 
 const outfit = Outfit({
   variable: '--font-outfit',
@@ -12,11 +12,10 @@ const firaCode = Fira_Code({
   weight: ['400', '500', '600'],
 });
 
-const cormorant = Cormorant_Garamond({
+const agbalumo = Agbalumo({
   variable: '--font-cormorant',
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+  weight: ['400'],
 });
 
 const lora = Lora({
@@ -36,7 +35,7 @@ export default function DesignDemoLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={`${outfit.variable} ${firaCode.variable} ${cormorant.variable} ${lora.variable}`}>
+    <div className={`${outfit.variable} ${firaCode.variable} ${agbalumo.variable} ${lora.variable}`}>
       {children}
     </div>
   );

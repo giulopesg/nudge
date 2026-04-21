@@ -57,7 +57,7 @@ export default function DashboardNav({ hasProfile, unreadCount = 0, character, o
             <span className="n2-gradient-text font-display text-[24px] font-bold uppercase tracking-[0.06em]">
               {tCommon('brand.name')}
             </span>
-            <span className="font-accent italic text-plum text-[13px] mt-1">
+            <span className="font-accent text-plum text-[13px] mt-1">
               {tCommon('brand.byline')}
             </span>
           </Link>

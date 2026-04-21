@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import ECGMonitor from '@/components/dashboard/ECGMonitor';
 import ScoreExplainer from '@/components/dashboard/ScoreExplainer';
 import ScoreRing from '@/components/dashboard/ScoreRing';
+import LyraAvatar from '@/components/dashboard/LyraAvatar';
 import type { HealthZone, NudgeScore } from '@/lib/portfolio';
 import type { CommProfile } from '@/lib/communication';
 
@@ -12,6 +13,7 @@ interface Props {
   commProfile: CommProfile;
   healthFactor: number | undefined;
   onLearnScore: () => void;
+  onRequestRecommendation?: () => void;
 }
 
 const ZONE_STYLES: Record<HealthZone, string> = {
@@ -20,13 +22,27 @@ const ZONE_STYLES: Record<HealthZone, string> = {
   danger: 'status-hero-danger',
 };
 
-export default function StatusHero({ nudgeScore, commProfile, healthFactor, onLearnScore }: Props) {
+export default function StatusHero({ nudgeScore, commProfile, healthFactor, onLearnScore, onRequestRecommendation }: Props) {
   const { t } = useTranslation('dashboard');
 
   const { zone, overall, metrics } = nudgeScore;
 
   return (
-    <div className={`p-6 sm:p-10 ${ZONE_STYLES[zone]}`}>
+    <div className={`relative p-6 sm:p-10 ${ZONE_STYLES[zone]}`}>
+      {/* Lyra "ask for a tip" button — top right */}
+      {onRequestRecommendation && (
+        <button
+          onClick={onRequestRecommendation}
+          className="absolute top-3 right-3 flex items-center gap-1.5 rounded-full border border-plum/30 bg-plum-muted/60 px-2.5 py-1 hover:bg-plum/20 transition-colors group"
+          aria-label={t('lyra.recommend.buttonLabel')}
+        >
+          <LyraAvatar size={20} glow="plum" />
+          <span className="font-mono text-[10px] text-plum-light group-hover:text-foreground transition-colors">
+            {t('lyra.recommend.buttonLabel')}
+          </span>
+        </button>
+      )}
+
       <div className="text-center">
         {/* Score Ring */}
         <ScoreRing score={overall} status={zone} />
@@ -37,7 +53,7 @@ export default function StatusHero({ nudgeScore, commProfile, healthFactor, onLe
             {t(`hero.score.${zone}.titlePrefix.${commProfile}`)}
           </span>
           {' '}
-          <span className="font-accent text-[26px] sm:text-[34px] italic font-bold text-foreground">
+          <span className="font-display text-[22px] sm:text-[28px] font-normal italic text-foreground">
             {t(`hero.score.${zone}.titleAccent.${commProfile}`)}
           </span>
         </h2>

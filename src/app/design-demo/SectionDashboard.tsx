@@ -1,156 +1,169 @@
 'use client';
 
-import { SectionTitle, Label, ScoreRing, MiniECG, strong, accent, mono } from './helpers';
+import { SectionTitle, ScoreRing, MiniECG, strong, accent, mono } from './helpers';
 
 export default function SectionDashboard() {
   return (
-    <>
-      {/* ===== Dashboard Preview ===== */}
-      <section style={{ marginBottom: 72 }}>
-        <SectionTitle>Dashboard Preview</SectionTitle>
+    <section style={{ marginBottom: 72 }}>
+      <SectionTitle>Dashboard Preview</SectionTitle>
 
-        {/* Hero status */}
-        <div className="n2-hero-safe" style={{ padding: 40, marginBottom: 16, textAlign: 'center' as const }}>
-          <ScoreRing score={78} status="safe" />
-          <h3 style={{ marginTop: 20 }}>
-            <span style={{ fontFamily: strong, fontSize: 28, fontWeight: 700, color: 'var(--n2-safe)' }}>All </span>
-            <span style={{ fontFamily: accent, fontSize: 34, fontWeight: 700, fontStyle: 'italic', color: 'var(--n2-safe)' }}>Good</span>
-          </h3>
-          <p style={{ fontFamily: strong, fontSize: 17, fontWeight: 400, color: 'var(--n2-text-secondary)', marginTop: 12, maxWidth: 460, margin: '12px auto 0', lineHeight: 1.7 }}>
-            Your collateral is healthy and your portfolio is balanced. You can breathe easy.
-          </p>
+      {/* Title bar — matches real dashboard header */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+        <h3>
+          <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 700, color: 'var(--n2-text)' }}>Your </span>
+          <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 400, fontStyle: 'italic', color: 'var(--n2-text-muted)' }}>dashboard</span>
+        </h3>
+        <span className="n2-btn-ghost" style={{ padding: '6px 16px', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'var(--n2-xp)', borderColor: 'rgba(255,215,0,0.3)' }}>
+          Giuliana
+        </span>
+      </div>
+
+      {/* Greeting + date — matches Wave 1 */}
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 20 }}>
+        <p style={{ fontFamily: strong, fontSize: 17, fontWeight: 400, color: 'var(--n2-text-secondary)' }}>
+          Hi, Giuliana
+        </p>
+        <p style={{ fontFamily: mono, fontSize: 11, color: 'var(--n2-text-muted)', letterSpacing: '0.06em' }}>
+          April 21, 2026
+        </p>
+      </div>
+
+      {/* StatusHero — with Lyra button indicator */}
+      <div className="n2-hero-safe" style={{ position: 'relative', padding: 40, marginBottom: 16, textAlign: 'center' as const }}>
+        {/* Lyra button indicator — top right */}
+        <div style={{
+          position: 'absolute', top: 12, right: 12,
+          display: 'flex', alignItems: 'center', gap: 6,
+          padding: '4px 10px', borderRadius: 9999,
+          border: '1px solid rgba(163,102,255,0.3)',
+          background: 'rgba(163,102,255,0.08)',
+        }}>
+          <div style={{
+            width: 20, height: 20, borderRadius: '50%',
+            background: 'linear-gradient(135deg, #1a0a2e, #2a0e3e)',
+            border: '1px solid rgba(163,102,255,0.4)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 10, color: '#A366FF',
+          }}>&#10024;</div>
+          <span style={{ fontFamily: mono, fontSize: 10, color: 'rgba(196,161,255,0.9)' }}>Ask for a tip</span>
         </div>
 
-        {/* ECG */}
-        <MiniECG />
+        <ScoreRing score={78} status="safe" />
+        <h3 style={{ marginTop: 20 }}>
+          <span style={{ fontFamily: strong, fontSize: 28, fontWeight: 700, color: 'var(--n2-safe)' }}>All </span>
+          <span style={{ fontFamily: strong, fontSize: 28, fontWeight: 400, fontStyle: 'italic', color: 'var(--n2-safe)' }}>Good</span>
+        </h3>
+        <p style={{ fontFamily: strong, fontSize: 17, fontWeight: 400, color: 'var(--n2-text-secondary)', marginTop: 12, maxWidth: 460, margin: '12px auto 0', lineHeight: 1.7 }}>
+          Your collateral is healthy and your portfolio is balanced. You can breathe easy.
+        </p>
+      </div>
 
-        {/* Kamino Card */}
-        <div className="n2-card" style={{ marginTop: 16, padding: 28 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-            <div>
-              <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 700, color: 'var(--n2-text)' }}>Kamino </span>
-              <span style={{ fontFamily: accent, fontSize: 24, fontStyle: 'italic', color: 'var(--n2-text-muted)' }}>your loan</span>
-            </div>
-            <span className="n2-badge n2-badge-safe">SAFE</span>
-          </div>
+      {/* ECG */}
+      <MiniECG />
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 24 }}>
-            {[
-              { label: 'Collateral', value: '$1,890', sub: '12.5 SOL' },
-              { label: 'Debt', value: '$850', sub: '850 USDC' },
-              { label: 'Safety margin', value: '+54.8%', color: 'var(--n2-safe)' },
-              { label: 'Health Factor', value: '1.82', color: 'var(--n2-safe)' },
-            ].map((item) => (
-              <div key={item.label}>
-                <p style={{ fontFamily: strong, fontSize: 13, fontWeight: 500, color: 'var(--n2-text-muted)', letterSpacing: '0.04em', textTransform: 'uppercase' as const }}>
-                  {item.label}
-                </p>
-                <p style={{ fontFamily: strong, fontSize: 28, fontWeight: 700, color: item.color ?? 'var(--n2-text)', marginTop: 6 }}>
-                  {item.value}
-                </p>
-                {item.sub && (
-                  <p style={{ fontFamily: mono, fontSize: 12, color: 'var(--n2-text-muted)', marginTop: 3 }}>{item.sub}</p>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Translated explanation */}
-          <div style={{ padding: '16px 20px', background: 'var(--n2-safe-bg)', borderRadius: 'var(--n2-radius-sm)', border: '1px solid rgba(46,216,138,0.1)' }}>
-            <p style={{ fontFamily: strong, fontSize: 16, fontWeight: 400, color: 'var(--n2-text-secondary)', lineHeight: 1.7 }}>
-              Your Kamino loan is safe. Your collateral is worth 54.8% more than your debt.
-            </p>
-            <p style={{ fontFamily: accent, fontSize: 22, fontStyle: 'italic', color: 'var(--n2-safe)', marginTop: 8 }}>
-              relax, you&apos;re doing great
-            </p>
-          </div>
-
-          <div style={{ marginTop: 20 }}>
-            <button className="n2-btn-primary">View on Kamino</button>
+      {/* Portfolio Card — NEW, matching real PortfolioCard */}
+      <div className="n2-card" style={{ marginTop: 16, padding: 28 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 700, color: 'var(--n2-text)' }}>Your </span>
+            <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 400, fontStyle: 'italic', color: 'var(--n2-text-muted)' }}>portfolio</span>
           </div>
         </div>
 
-        {/* Action cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14, marginTop: 16 }}>
+        {/* Token grid */}
+        <div style={{ marginTop: 20, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
           {[
-            { title: 'Better', titleAccent: 'protection', desc: 'Spread your money across more coins to stay protected' },
-            { title: 'Understand', titleAccent: 'HF', desc: 'Learn what the Health Factor means for your loan' },
-            { title: 'View on', titleAccent: 'Kamino', desc: 'Open your loan details on the Kamino website' },
-          ].map((a) => (
-            <div key={a.title} className="n2-action-card" style={{ padding: 20 }}>
-              <p style={{ marginBottom: 8 }}>
-                <span style={{ fontFamily: strong, fontSize: 16, fontWeight: 700, color: 'var(--n2-text)' }}>{a.title} </span>
-                <span style={{ fontFamily: accent, fontSize: 19, fontStyle: 'italic', color: 'var(--n2-primary)' }}>{a.titleAccent}</span>
-              </p>
-              <p style={{ fontFamily: strong, fontSize: 15, fontWeight: 400, color: 'var(--n2-text-muted)', lineHeight: 1.6 }}>
-                {a.desc}
-              </p>
+            { symbol: 'SOL', pct: 69, value: '$1,310', amount: '8.67' },
+            { symbol: 'USDC', pct: 31, value: '$590', amount: '590' },
+          ].map((tk) => (
+            <div key={tk.symbol} style={{ padding: '12px 16px', borderRadius: 'var(--n2-radius-sm)', border: '1px solid var(--n2-surface-border)', background: 'rgba(255,248,245,0.02)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontFamily: strong, fontSize: 16, fontWeight: 700, color: 'var(--n2-text)' }}>{tk.symbol}</span>
+                <span style={{ fontFamily: mono, fontSize: 11, color: 'var(--n2-text-muted)' }}>{tk.pct}%</span>
+              </div>
+              <p style={{ fontFamily: strong, fontSize: 22, fontWeight: 700, color: 'var(--n2-text)', marginTop: 6 }}>{tk.value}</p>
+              <p style={{ fontFamily: mono, fontSize: 11, color: 'var(--n2-text-muted)', marginTop: 2 }}>{tk.amount} {tk.symbol}</p>
             </div>
           ))}
         </div>
-      </section>
 
-      {/* ===== Character Dossier ===== */}
-      <section style={{ marginBottom: 72 }}>
-        <SectionTitle>Character Dossier</SectionTitle>
-        <div className="n2-card" style={{ padding: 36 }}>
-          <div style={{ display: 'flex', gap: 28, alignItems: 'flex-start', flexWrap: 'wrap' as const }}>
-            <div style={{
-              width: 110, height: 110, borderRadius: 'var(--n2-radius-md)',
-              background: 'linear-gradient(135deg, var(--n2-primary-muted), var(--n2-accent-muted))',
-              border: '1px solid var(--n2-surface-border)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 44, flexShrink: 0,
-            }}>
-              🛡️
-            </div>
-            <div style={{ flex: 1, minWidth: 220 }}>
-              <h4 style={{ fontFamily: strong, fontSize: 28, fontWeight: 700, color: 'var(--n2-text)' }}>Giuliana</h4>
-              <p style={{ fontFamily: accent, fontSize: 20, fontStyle: 'italic', color: 'var(--n2-accent)', marginTop: 4 }}>
-                Guardian class, level 3
-              </p>
-
-              <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column' as const, gap: 12 }}>
-                {[
-                  { label: 'Clarity', value: 72 },
-                  { label: 'Confidence', value: 58 },
-                  { label: 'Serenity', value: 85 },
-                ].map((s) => (
-                  <div key={s.label}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                      <span style={{ fontFamily: strong, fontSize: 15, fontWeight: 500, color: 'var(--n2-text-secondary)' }}>{s.label}</span>
-                      <span style={{ fontFamily: strong, fontSize: 15, fontWeight: 700, color: 'var(--n2-text-muted)' }}>{s.value}</span>
-                    </div>
-                    <div className="n2-bar"><div className="n2-bar-fill n2-bar-fill-primary" style={{ width: `${s.value}%` }} /></div>
-                  </div>
-                ))}
-              </div>
-
-              <div style={{ marginTop: 16 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                  <span style={{ fontFamily: accent, fontSize: 19, fontStyle: 'italic', color: 'var(--n2-xp)' }}>XP to next level</span>
-                  <span style={{ fontFamily: strong, fontSize: 14, fontWeight: 600, color: 'var(--n2-text-muted)' }}>320/500</span>
-                </div>
-                <div className="n2-bar"><div className="n2-bar-fill n2-bar-fill-xp" style={{ width: '64%' }} /></div>
-              </div>
-            </div>
-          </div>
-
-          <div style={{ marginTop: 28 }}>
-            <p style={{ fontFamily: strong, fontSize: 14, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'var(--n2-text-muted)', marginBottom: 12 }}>
-              Inventory
-            </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(64px, 1fr))', gap: 8 }}>
-              {['🔑', '🗺️', '📜', '🔍', '🛡️', '⛓️'].map((icon, i) => (
-                <div key={i} className="n2-slot"><span style={{ fontSize: 22 }}>{icon}</span></div>
-              ))}
-              {Array.from({ length: 5 }).map((_, i) => (
-                <div key={`e-${i}`} className="n2-slot n2-slot-empty"><span style={{ fontSize: 11 }}>???</span></div>
-              ))}
-            </div>
+        {/* Composition bar */}
+        <div style={{ marginTop: 16 }}>
+          <p style={{ fontFamily: mono, fontSize: 11, color: 'var(--n2-text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase' as const, marginBottom: 8 }}>Composition</p>
+          <div style={{ display: 'flex', borderRadius: 6, overflow: 'hidden', height: 8 }}>
+            <div style={{ width: '69%', background: 'var(--n2-primary)' }} />
+            <div style={{ width: '31%', background: 'var(--n2-safe)' }} />
           </div>
         </div>
-      </section>
-    </>
+
+        {/* Metrics */}
+        <div style={{ marginTop: 16, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+          <div>
+            <p style={{ fontFamily: strong, fontSize: 13, fontWeight: 500, color: 'var(--n2-text-muted)', letterSpacing: '0.04em', textTransform: 'uppercase' as const }}>Diversification</p>
+            <p style={{ fontFamily: strong, fontSize: 18, fontWeight: 700, color: 'var(--n2-safe)', marginTop: 4 }}>Diversified</p>
+          </div>
+          <div>
+            <p style={{ fontFamily: strong, fontSize: 13, fontWeight: 500, color: 'var(--n2-text-muted)', letterSpacing: '0.04em', textTransform: 'uppercase' as const }}>Stable reserve</p>
+            <p style={{ fontFamily: strong, fontSize: 18, fontWeight: 700, color: 'var(--n2-safe)', marginTop: 4 }}>31%</p>
+          </div>
+        </div>
+
+        {/* Wallet buttons */}
+        <div style={{ marginTop: 16, display: 'flex', gap: 8 }}>
+          <button className="n2-btn-ghost" style={{ fontSize: 12 }}>+ Add wallet</button>
+          <button className="n2-btn-ghost" style={{ fontSize: 12 }}>- Remove wallet</button>
+        </div>
+      </div>
+
+      {/* Kamino Card — matches real KaminoCard layout */}
+      <div className="n2-card" style={{ marginTop: 16, padding: 28 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 700, color: 'var(--n2-text)' }}>Kamino </span>
+            <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 400, fontStyle: 'italic', color: 'var(--n2-text-muted)' }}>your loan</span>
+          </div>
+          <span className="n2-badge n2-badge-safe">SAFE</span>
+        </div>
+
+        <div style={{ marginTop: 16, padding: '16px 20px', background: 'var(--n2-safe-bg)', borderRadius: 'var(--n2-radius-sm)', border: '1px solid rgba(46,216,138,0.1)' }}>
+          <p style={{ fontFamily: strong, fontSize: 16, fontWeight: 400, color: 'var(--n2-text-secondary)', lineHeight: 1.7 }}>
+            Your Kamino loan is safe. Your collateral is worth 54.8% more than your debt.
+          </p>
+          <p style={{ fontFamily: accent, fontSize: 19, color: 'var(--n2-safe)', marginTop: 8 }}>
+            relax, you&apos;re doing great
+          </p>
+        </div>
+
+        <div style={{ marginTop: 20, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+          {[
+            { label: 'Collateral', value: '$1,890', sub: '12.5 SOL' },
+            { label: 'Debt', value: '$850', sub: '850 USDC' },
+            { label: 'Margin', value: '55%', color: 'var(--n2-safe)', sub: 'more than enough' },
+            { label: 'Net Value', value: '$1,040' },
+          ].map((item) => (
+            <div key={item.label}>
+              <p style={{ fontFamily: strong, fontSize: 13, fontWeight: 500, color: 'var(--n2-text-muted)', letterSpacing: '0.04em', textTransform: 'uppercase' as const }}>
+                {item.label}
+              </p>
+              <p style={{ fontFamily: strong, fontSize: 28, fontWeight: 700, color: item.color ?? 'var(--n2-text)', marginTop: 6 }}>
+                {item.value}
+              </p>
+              {item.sub && (
+                <p style={{ fontFamily: mono, fontSize: 12, color: 'var(--n2-text-muted)', marginTop: 3 }}>{item.sub}</p>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div style={{ marginTop: 20 }}>
+          <button className="n2-btn-primary">View on Kamino</button>
+        </div>
+      </div>
+
+      {/* Timestamp */}
+      <p style={{ textAlign: 'center' as const, fontFamily: mono, fontSize: 12, color: 'var(--n2-text-muted)', letterSpacing: '0.06em', marginTop: 16 }}>
+        Updated 14:32:15
+      </p>
+    </section>
   );
 }

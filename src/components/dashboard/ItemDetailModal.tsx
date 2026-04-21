@@ -46,7 +46,7 @@ export default function ItemDetailModal({ slot, onClose }: Props) {
           {icon} {t(`items.${slot.itemId}.name`)}
         </p>
 
-        <p className="mt-2 text-[13px] leading-relaxed text-text-secondary font-accent italic">
+        <p className="mt-2 text-[13px] leading-relaxed text-text-secondary font-accent">
           {t(`items.${slot.itemId}.description`)}
         </p>
 

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Lora, Cormorant_Garamond, Outfit, Fira_Code } from 'next/font/google';
+import { Lora, Agbalumo, Outfit, Fira_Code } from 'next/font/google';
 import Providers from '@/components/Providers';
 import MeshGradient from '@/components/MeshGradient';
 import './globals.css';
@@ -8,12 +8,13 @@ const lora = Lora({
   variable: '--font-lora',
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
 });
 
-const cormorant = Cormorant_Garamond({
+const agbalumo = Agbalumo({
   variable: '--font-cormorant',
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400'],
 });
 
 const outfit = Outfit({
@@ -49,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${lora.variable} ${cormorant.variable} ${outfit.variable} ${firaCode.variable} h-full antialiased`}
+      className={`${lora.variable} ${agbalumo.variable} ${outfit.variable} ${firaCode.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground overflow-x-hidden">
         <MeshGradient />

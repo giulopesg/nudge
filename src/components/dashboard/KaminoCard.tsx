@@ -54,7 +54,7 @@ export default function KaminoCard({ position, commProfile }: Props) {
         <h3>
           <span className="font-display text-[22px] font-bold">{t('kamino.titlePrefix')}</span>
           {' '}
-          <span className="font-accent text-[24px] italic text-text-muted">{t('kamino.titleAccent')}</span>
+          <span className="font-display text-[22px] font-normal italic text-text-muted">{t('kamino.titleAccent')}</span>
         </h3>
         <span className={STATUS_BADGE[position.status]}>
           {t(`status.${position.status}`)}
@@ -66,8 +66,18 @@ export default function KaminoCard({ position, commProfile }: Props) {
         <p className="font-display text-[16px] leading-[1.7] text-text-secondary">
           {translatedMessage}
         </p>
-        <p className={`mt-2 font-accent text-[22px] italic ${ACCENT_COLOR[position.status]}`}>
+        <p className={`mt-2 font-accent text-[19px] ${ACCENT_COLOR[position.status]}`}>
           {t(`kamino.explanationAccent.${position.status}`)}
+        </p>
+      </div>
+
+      {/* Health Factor highlight */}
+      <div className="mt-4 flex items-center justify-between rounded-xl border border-surface-border/60 px-4 py-3">
+        <p className="font-display text-[13px] font-medium uppercase tracking-[0.04em] text-text-muted">
+          {t('kamino.healthFactor')}
+        </p>
+        <p className={`font-display text-[28px] sm:text-[32px] font-bold ${ACCENT_COLOR[position.status]}`}>
+          {position.healthFactor.toFixed(2)}
         </p>
       </div>
 
@@ -77,7 +87,7 @@ export default function KaminoCard({ position, commProfile }: Props) {
           <p className="font-display text-[13px] font-medium uppercase tracking-[0.04em] text-text-muted">
             {t('kamino.collateral')}
           </p>
-          <p className="mt-1 font-display text-[22px] sm:text-[28px] font-bold">
+          <p className="mt-1 font-display text-[22px] sm:text-[28px] font-bold text-safe">
             {fmt(position.totalCollateral)}
           </p>
           {position.collateralDetails.map((d) => (
@@ -105,7 +115,11 @@ export default function KaminoCard({ position, commProfile }: Props) {
           <p className="font-display text-[13px] font-medium uppercase tracking-[0.04em] text-text-muted">
             {t('kamino.margin')}
           </p>
-          <p className="mt-1 font-display text-[22px] sm:text-[28px] font-bold">
+          <p className={`mt-1 font-display text-[22px] sm:text-[28px] font-bold ${
+            position.marginPercent >= 80 ? 'text-safe' :
+            position.marginPercent >= 40 ? 'text-attention' :
+            'text-danger'
+          }`}>
             {Math.round(position.marginPercent)}%
           </p>
           <p className="mt-1 font-mono text-[12px] text-text-muted">

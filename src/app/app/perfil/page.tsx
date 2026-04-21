@@ -94,7 +94,7 @@ export default function PerfilPage() {
       <h1>
         <span className="font-display text-[22px] font-bold">{t('perfil.titlePrefix')}</span>
         {' '}
-        <span className="font-accent text-[24px] italic text-text-muted">{t('perfil.titleAccent')}</span>
+        <span className="font-display text-[22px] font-normal italic text-text-muted">{t('perfil.titleAccent')}</span>
       </h1>
 
       {/* Avatar portrait — first visual element */}
@@ -124,7 +124,7 @@ export default function PerfilPage() {
             <h2 className="font-display text-[24px] sm:text-[28px] font-bold">
               {character.class.title}
             </h2>
-            <p className="font-accent text-[18px] sm:text-[20px] italic text-plum mt-0.5">
+            <p className="font-display text-[15px] sm:text-[17px] font-normal italic text-plum mt-0.5">
               {t('perfil.classLevel', {
                 className: t(`tiers.${character.tier.name}`),
                 level: character.level,
@@ -146,7 +146,7 @@ export default function PerfilPage() {
         {/* XP to next level — right after stats */}
         <div className="mt-4">
           <div className="flex justify-between mb-1.5">
-            <span className="font-accent text-[18px] sm:text-[19px] italic text-xp">
+            <span className="font-accent text-[15px] sm:text-[16px] text-xp">
               {t('perfil.xpToNext')}
             </span>
             <span className="font-display text-[14px] font-semibold text-text-muted">

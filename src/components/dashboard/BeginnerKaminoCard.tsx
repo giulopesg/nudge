@@ -23,7 +23,7 @@ export default function BeginnerKaminoCard({ commProfile, onLearnKamino }: Props
       <h3>
         <span className="font-display text-[22px] font-bold">{t('beginnerKamino.titlePrefix')}</span>
         {' '}
-        <span className="font-accent text-[24px] italic text-text-muted">{t('beginnerKamino.titleAccent')}</span>
+        <span className="font-display text-[22px] font-normal italic text-text-muted">{t('beginnerKamino.titleAccent')}</span>
       </h3>
       <p className="mt-2 text-[15px] text-text-secondary leading-[1.7]">
         {t(`beginnerKamino.body.${INTRO_KEYS[commProfile]}`)}

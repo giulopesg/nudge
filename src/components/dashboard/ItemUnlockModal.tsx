@@ -51,7 +51,7 @@ export default function ItemUnlockModal({ itemId, onClose }: Props) {
         </p>
 
         {/* Description */}
-        <p className="mt-2 font-accent text-[15px] italic text-plum leading-relaxed">
+        <p className="mt-2 font-accent text-[13px] text-plum leading-relaxed">
           {t(`items.${itemId}.description`)}
         </p>
 

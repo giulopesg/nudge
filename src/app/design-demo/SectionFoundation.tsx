@@ -19,18 +19,27 @@ export default function SectionFoundation() {
             <div className="n2-divider" />
 
             <div>
-              <Label>Accent — Cormorant Garamond italic (feminine touch)</Label>
-              <p className="n2-gradient-text" style={{ fontFamily: accent, fontSize: 44, fontWeight: 700, fontStyle: 'italic', marginTop: 8, lineHeight: 1.15 }}>
+              <Label>Accent — Agbalumo (warm, playful)</Label>
+              <p className="n2-gradient-text" style={{ fontFamily: accent, fontSize: 38, marginTop: 8, lineHeight: 1.15 }}>
                 Nudge teaches you to exercise yours
               </p>
             </div>
             <div className="n2-divider" />
 
             <div>
-              <Label>Mixed — contrast in one sentence</Label>
+              <Label>Mixed — Hero accent (Lora + Agbalumo)</Label>
               <p style={{ marginTop: 8, lineHeight: 1.2 }}>
                 <span style={{ fontFamily: strong, fontSize: 36, fontWeight: 700, color: 'var(--n2-text)' }}>Blockchain </span>
-                <span style={{ fontFamily: accent, fontSize: 40, fontWeight: 700, fontStyle: 'italic', color: 'var(--n2-accent)' }}>is freedom</span>
+                <span style={{ fontFamily: accent, fontSize: 34, color: 'var(--n2-accent)' }}>is freedom</span>
+              </p>
+            </div>
+            <div className="n2-divider" />
+
+            <div>
+              <Label>Card Title — Lora Bold + Lora Italic</Label>
+              <p style={{ marginTop: 8, lineHeight: 1.2 }}>
+                <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 700, color: 'var(--n2-text)' }}>Kamino </span>
+                <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 400, fontStyle: 'italic', color: 'var(--n2-text-muted)' }}>your loan</span>
               </p>
             </div>
             <div className="n2-divider" />
@@ -73,11 +82,13 @@ export default function SectionFoundation() {
           {/* Hierarchy guide */}
           <div style={{ marginTop: 36, padding: '20px 24px', background: 'var(--n2-primary-muted)', borderRadius: 'var(--n2-radius-sm)', border: '1px solid rgba(196,161,255,0.1)' }}>
             <Label>Hierarchy</Label>
-            <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: '10px 20px', fontSize: 15, color: 'var(--n2-text-secondary)', marginTop: 12 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: '10px 20px', fontSize: 15, color: 'var(--n2-text-secondary)', marginTop: 12 }}>
               <span style={{ fontFamily: strong, fontSize: 17, fontWeight: 700, color: 'var(--n2-text)' }}>Lora Bold</span>
               <span style={{ fontFamily: strong, fontWeight: 400 }}>Titles, numbers, the serious part — authority</span>
-              <span style={{ fontFamily: accent, fontSize: 22, fontStyle: 'italic', color: 'var(--n2-accent)' }}>Cormorant</span>
-              <span style={{ fontFamily: strong, fontWeight: 400 }}>Accent phrases, the feminine part — elegance</span>
+              <span style={{ fontFamily: strong, fontSize: 17, fontWeight: 400, fontStyle: 'italic', color: 'var(--n2-text-muted)' }}>Lora Italic</span>
+              <span style={{ fontFamily: strong, fontWeight: 400 }}>Card title accent — softer counterpart to Bold</span>
+              <span style={{ fontFamily: accent, fontSize: 19, color: 'var(--n2-accent)' }}>Agbalumo</span>
+              <span style={{ fontFamily: strong, fontWeight: 400 }}>Hero accents, warm personality — large displays</span>
               <span style={{ fontFamily: strong, fontSize: 15, fontWeight: 400 }}>Lora Regular</span>
               <span style={{ fontFamily: strong, fontWeight: 400 }}>Body text, descriptions — warm readability</span>
               <span style={{ fontFamily: mono, fontSize: 14 }}>Fira Code</span>

@@ -1,4 +1,8 @@
 {
+  "greeting": {
+    "withName": "Hi, {{name}}",
+    "withoutName": "Hi, traveler"
+  },
   "title": "Your dashboard",
   "titlePrefix": "Your",
   "titleAccent": "dashboard",
@@ -468,6 +472,19 @@
     "viewAll": "View all alerts",
     "dismiss": "Close"
   },
+  "emptyState": {
+    "titlePrefix": "Welcome to",
+    "titleAccent": "Nudge",
+    "subtitle": "Your wallet is connected, but has no balance yet. Add tokens and Nudge will calculate everything for you.",
+    "nextSteps": "Next steps",
+    "step1": "→ Add SOL or tokens to your wallet",
+    "step2": "→ Explore the Solana ecosystem",
+    "step3": "→ Come back and Nudge calculates your score"
+  },
+  "integration": {
+    "title": "More integrations coming soon",
+    "subtitle": "Jupiter, Marinade, Raydium and other Solana protocols"
+  },
   "lastUpdate": "Updated {{time}}",
   "itemModal": {
     "close": "Close"
@@ -493,6 +510,8 @@
     "close": "Close",
     "send": "Send",
     "suggestions": {
+      "recommendation": "Give me a tip!",
+      "nudgeScore": "What is Nudge Score?",
       "nudge": "How to use Nudge?",
       "xp": "How to earn XP?",
       "kamino": "What is Kamino?",
@@ -500,17 +519,53 @@
       "class": "What's my class?",
       "blockchain": "What is blockchain?",
       "level": "How to level up?",
-      "inventory": "What is the inventory?"
+      "inventory": "What is the inventory?",
+      "howDiversify": "How to diversify?",
+      "howStables": "How to get stablecoins?",
+      "howCollateral": "How to add collateral?",
+      "howReduceDebt": "How to repay debt?",
+      "howYield": "How to earn yield?",
+      "howMonitor": "How to monitor better?"
     },
     "topics": {
       "xp": "XP is the experience you earn by completing journey steps. Each step is worth between 75 and 150 XP. Accumulate XP to level up and evolve your character!",
       "level": "Your level goes up as you accumulate XP. Each level unlocks new titles and inventory items. Keep completing journey steps to evolve!",
+      "nudgeScore": "The Nudge Score is your financial health rating, from 0 to 100. It combines 4 factors: portfolio diversification, stablecoin reserve, single-token concentration, and your Kamino Health Factor (if you have a loan). The higher the score, the more balanced your position is.",
       "health": "The Health Factor (HF) measures how safe your Kamino loan is. Above 2.0 is safe, between 1.5 and 2.0 needs attention, and below 1.5 is the danger zone. If it reaches 1.0, liquidation happens.",
       "kamino": "Kamino is a lending protocol on Solana. You deposit tokens as collateral and take a loan. Nudge monitors your position in real time and alerts you if anything needs attention.",
       "nudge": "Nudge translates the DeFi world for you. It monitors your portfolio and loans, calculates your financial health score, and sends personalized alerts based on your behavioral profile.",
       "inventory": "Your inventory contains items you unlock along the journey — like the Wallet Key, the Kamino Map, and the Serenity Shield. Each item gives XP and tells your story.",
       "class": "Your class is defined by the behavioral quiz: Guardian (protector), Explorer (curious), Strategist (analytical), among others. Each class reflects your financial style.",
-      "blockchain": "Blockchain is a public, immutable record of transactions. Solana is a fast and cheap blockchain. Your wallet is like a digital bank account that only you control."
+      "blockchain": "Blockchain is a public, immutable record of transactions. Solana is a fast and cheap blockchain. Your wallet is like a digital bank account that only you control.",
+      "howDiversify": "Head to Jupiter (jup.ag) and swap some of your SOL for other tokens like USDC or mSOL. Simple rule: no single token should be more than 50% of your portfolio. Nudge recalculates your score automatically.",
+      "howStables": "Stablecoins like USDC are always worth ~$1. On Jupiter (jup.ag), select USDC as destination and swap some SOL. Having 10-20% in stablecoins protects you from volatility and gives you buying power.",
+      "howCollateral": "On Kamino (app.kamino.finance), go to Lending, select your position and click Supply. Deposit more SOL or accepted tokens as collateral. This increases your Health Factor and moves you away from liquidation.",
+      "howReduceDebt": "On Kamino (app.kamino.finance), select your position and click Repay. Pay part of your debt in USDC. Each payment reduces your LTV and increases your safety margin.",
+      "howYield": "Kamino offers collateral-backed loans: deposit SOL and borrow USDC. Another option is liquid staking on Marinade (marinade.finance) — turn SOL into mSOL and earn yield automatically.",
+      "howMonitor": "Track everything through the Nudge dashboard. Soon, our Telegram bot will automatically alert you about Health Factor changes and opportunities. Stay tuned for updates!"
+    },
+    "xpProgress": "{{count}}/3 topics explored",
+    "xpReward": "+50 XP",
+    "xpComplete": "Clarity Lens unlocked!",
+    "recommend": {
+      "buttonLabel": "Ask for a tip",
+      "dangerHF": "Warning! Your Health Factor is at {{hf}} — very close to liquidation. I recommend adding collateral or paying down debt now. Every minute counts.",
+      "dangerMargin": "Your safety margin is only {{margin}}%. This is risky. Consider depositing more collateral on Kamino to increase your protection.",
+      "attentionKamino": "Your Kamino loan needs attention. HF: {{hf}}, margin: {{margin}}%. Keep an eye on it and consider adding collateral if the market gets volatile.",
+      "attentionSafe": "Your loan needs attention — HF: {{hf}}, margin: {{margin}}%. Since you value safety, I recommend adding collateral now. Each HF point gives you more peace of mind.",
+      "concentrate": "Your portfolio is very concentrated: {{pct}}% in {{symbol}}. If that coin drops, everything drops. Diversifying is a way to protect yourself.",
+      "concentrateExplorer": "{{pct}}% in {{symbol}} is risky, but also an opportunity! How about swapping some for USDC on Jupiter and exploring yield on Kamino? Diversify and earn at the same time.",
+      "noStables": "You don't have a stablecoin reserve. Having at least 10-20% in USDC or USDT protects you from volatility and gives you buying power.",
+      "noStablesReserve": "You want to build a reserve, but have no stablecoins. Start by swapping 15-20% of your portfolio for USDC on Jupiter. It's the foundation of any protection strategy.",
+      "beginnerExplore": "You're just getting started — and that's great! Explore the dashboard, read about Health Factor, and chat with me. Every step earns XP and makes you stronger.",
+      "beginnerLearn": "Want to learn by doing? Start by swapping some SOL for USDC on Jupiter. Then explore Kamino to understand how decentralized lending works. Every step earns XP!",
+      "beginnerYield": "With SOL in your wallet, you can already earn yield! Explore Marinade for liquid staking (~7% annually) or Kamino for more advanced strategies. Start small and grow.",
+      "safeExplorer": "Score {{score}}/100 — healthy position! With this margin, you can experiment: explore yield on Kamino or liquid staking on Marinade. Your foundation is solid for growth.",
+      "safeSecurity": "Score {{score}}/100 — well protected. For even more peace of mind, keep 20-30% in stablecoins and set up Nudge alerts. Security is about layers of protection.",
+      "safeMonitor": "Score {{score}}/100 — stable. Monitoring tip: rebalancing every 2 weeks keeps things balanced as the market shifts. You can optimize without increasing risk.",
+      "safeLearner": "Score {{score}}/100 — solid foundation! Good time to expand: did you know you can use SOL as collateral on Kamino and earn income? Or explore liquid staking on Marinade?",
+      "allGood": "Score {{score}}/100 — well balanced. How about the next step? Explore yield on Kamino or diversify on Jupiter. Keeping a high score is great, but growing is even better.",
+      "generic": "I'm analyzing your data... Everything seems stable for now. Keep checking your dashboard and ask me if you have any questions!"
     }
   }
 }

@@ -46,7 +46,7 @@ export default function LevelUpModal({ character, onClose }: Props) {
         </p>
 
         {/* Tier + class */}
-        <p className="mt-2 font-accent text-[18px] italic text-plum">
+        <p className="mt-2 font-accent text-[15px] text-plum">
           {t(`tiers.${character.tier.name}`)}
         </p>
         <p className="mt-1 text-[14px] text-text-secondary">

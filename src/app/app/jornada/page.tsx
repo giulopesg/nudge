@@ -22,7 +22,7 @@ export default function JornadaPage() {
       <h1>
         <span className="font-display text-[22px] font-bold">{t('jornada.titlePrefix')}</span>
         {' '}
-        <span className="font-accent text-[24px] italic text-text-muted">{t('jornada.titleAccent')}</span>
+        <span className="font-display text-[22px] font-normal italic text-text-muted">{t('jornada.titleAccent')}</span>
       </h1>
       <div className="mt-6 space-y-6">
         {/* 1. Journey Card — goal progress */}

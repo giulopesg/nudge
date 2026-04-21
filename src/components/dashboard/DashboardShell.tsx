@@ -24,6 +24,7 @@ function ShellInner({ children }: { children: React.ReactNode }) {
     pendingXpGain, pendingLevelUp, pendingItemUnlock,
     dismissXpToast, dismissLevelUp, dismissItemUnlock,
     trackLyraTopic,
+    lyraAutoAction, clearLyraAutoAction,
   } = useDashboard();
 
   const [showCharacterSheet, setShowCharacterSheet] = useState(false);
@@ -37,15 +38,25 @@ function ShellInner({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
+  // Auto-open chat when lyraAutoAction is requested
+  useEffect(() => {
+    if (lyraAutoAction && !chatOpen) {
+      setChatOpen(true);
+    }
+  }, [lyraAutoAction, chatOpen]);
+
   return (
     <div className="dashboard-layout">
       {/* Fixed header — full viewport width, transparent until scroll */}
       <header className={`dashboard-header ${scrolled ? 'dashboard-header-scrolled' : ''}`}>
         <div className="flex items-center w-full px-4 sm:px-8">
           {/* Mobile logo — visible only on mobile where sidebar is hidden */}
-          <Link href="/" className="flex flex-col leading-none md:hidden">
-            <span className="n2-gradient-text font-display text-[22px] font-bold uppercase tracking-[0.06em]">
+          <Link href="/" className="flex flex-col leading-none md:hidden min-w-0 flex-shrink-0">
+            <span className="n2-gradient-text font-display text-[18px] font-bold uppercase tracking-[0.06em]">
               {t('brand.name')}
+            </span>
+            <span className="font-accent text-[10px] text-plum">
+              {t('brand.byline')}
             </span>
           </Link>
           {/* Spacer pushes toggles right */}
@@ -68,7 +79,7 @@ function ShellInner({ children }: { children: React.ReactNode }) {
 
       {/* Content area */}
       <div className="dashboard-main">
-        <main className="flex flex-1 flex-col px-4 py-8 sm:px-8 sm:py-10 md:px-10 max-w-3xl mx-auto w-full">
+        <main className="flex flex-1 flex-col px-4 py-8 sm:px-8 sm:py-10 md:px-10 max-w-3xl mx-auto w-full min-h-0">
           {!showData ? (
             <div className="mt-16 flex flex-col items-center text-center">
               <p className="text-text-secondary">
@@ -105,6 +116,22 @@ function ShellInner({ children }: { children: React.ReactNode }) {
             children
           )}
         </main>
+
+        {/* Footer */}
+        <footer className="mt-auto px-4 py-6 text-center border-t border-surface-border/30">
+          <div className="flex items-center justify-center gap-2">
+            <span className="font-mono text-[11px] text-text-muted">{t('footer.copyright')}</span>
+            <span className="text-text-muted opacity-40">&middot;</span>
+            <a
+              href="https://giulopesgalvao.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-accent text-[13px] text-plum hover:text-plum-light transition-colors"
+            >
+              {t('footer.workWithMe')}
+            </a>
+          </div>
+        </footer>
       </div>
 
       {/* CharacterSheet modal */}
@@ -133,7 +160,14 @@ function ShellInner({ children }: { children: React.ReactNode }) {
 
       {/* Lyra Chatbot */}
       <NudgeChatButton isActive={chatOpen} onClick={() => setChatOpen((v) => !v)} />
-      {chatOpen && <NudgeChatPanel onClose={() => setChatOpen(false)} onTopicExplored={trackLyraTopic} />}
+      {chatOpen && (
+        <NudgeChatPanel
+          onClose={() => { setChatOpen(false); clearLyraAutoAction(); }}
+          onTopicExplored={trackLyraTopic}
+          autoAction={lyraAutoAction}
+          onAutoActionConsumed={clearLyraAutoAction}
+        />
+      )}
     </div>
   );
 }

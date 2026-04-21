@@ -71,6 +71,11 @@ export interface DashboardContextValue {
   dismissLevelUp: () => void;
   dismissItemUnlock: () => void;
 
+  // Lyra auto-action
+  lyraAutoAction: 'recommendation' | null;
+  requestLyraRecommendation: () => void;
+  clearLyraAutoAction: () => void;
+
   // Wallet
   connected: boolean;
   showData: boolean;
@@ -147,8 +152,9 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
 
   // Derived state
   const commProfile = resolveCommProfile(neurotags);
-  const nudgeScore = data?.nudgeScore ?? null;
   const portfolio = data?.portfolio ?? null;
+  const rawNudgeScore = data?.nudgeScore ?? null;
+  const nudgeScore = (portfolio && portfolio.totalValueUsd < 1) ? null : rawNudgeScore;
   const kaminoPosition = data?.position.position ?? null;
   const healthFactor = kaminoPosition?.healthFactor;
   const hasKamino = kaminoPosition !== null;
@@ -287,6 +293,11 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
     prevActivityCountRef.current = activities.length;
   }, [activities]);
 
+  // Lyra auto-action state
+  const [lyraAutoAction, setLyraAutoAction] = useState<'recommendation' | null>(null);
+  const requestLyraRecommendation = useCallback(() => setLyraAutoAction('recommendation'), []);
+  const clearLyraAutoAction = useCallback(() => setLyraAutoAction(null), []);
+
   // Polling: refetch every 5 minutes when dashboard is open and not demo
   useEffect(() => {
     if (isDemo || !walletAddress) return;
@@ -304,6 +315,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
     handleTopicRead, trackLyraTopic,
     pendingXpGain, pendingLevelUp, pendingItemUnlock,
     dismissXpToast, dismissLevelUp, dismissItemUnlock,
+    lyraAutoAction, requestLyraRecommendation, clearLyraAutoAction,
     connected, showData,
   }), [
     data, loading, error, refetch,
@@ -315,6 +327,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
     handleTopicRead, trackLyraTopic,
     pendingXpGain, pendingLevelUp, pendingItemUnlock,
     dismissXpToast, dismissLevelUp, dismissItemUnlock,
+    lyraAutoAction, requestLyraRecommendation, clearLyraAutoAction,
     connected, showData,
   ]);
 

@@ -45,6 +45,10 @@
     "attention": "Attention",
     "danger": "Danger"
   },
+  "footer": {
+    "copyright": "2026 Giuliana Lopes Galvão",
+    "workWithMe": "Work with me"
+  },
   "errors": {
     "generic": "Something went wrong. Please try again.",
     "walletNotConnected": "Connect your wallet to continue.",

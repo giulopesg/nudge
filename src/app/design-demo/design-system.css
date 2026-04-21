@@ -68,7 +68,7 @@
 /* ===== Base ===== */
 
 .ds-demo {
-  background: var(--n2-bg);
+  background: transparent;
   color: var(--n2-text);
   font-family: var(--font-outfit), 'Outfit', system-ui, sans-serif;
   min-height: 100vh;
@@ -343,6 +343,16 @@
 .n2-animate-breathe { animation: n2-breathe 4s ease-in-out infinite; }
 .n2-animate-float { animation: n2-float 4s ease-in-out infinite; }
 .n2-animate-bloom { animation: n2-bloom 3s ease-in-out infinite; }
+
+/* ECG trace animation */
+@keyframes n2-ecg-draw {
+  0% { stroke-dashoffset: 600; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.n2-ecg-trace {
+  animation: n2-ecg-draw 3s ease-in-out forwards infinite;
+}
 
 /* ===== Gradient text ===== */
 

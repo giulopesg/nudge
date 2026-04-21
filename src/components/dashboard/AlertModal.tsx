@@ -45,7 +45,7 @@ export default function AlertModal({ nudges, alertsHref, onClose }: Props) {
             <h2>
               <span className="font-display text-[18px] font-bold">{t('alertas.modalTitlePrefix')}</span>
               {' '}
-              <span className="font-accent text-[20px] italic text-text-muted">{t('alertas.modalTitleAccent')}</span>
+              <span className="font-display text-[18px] font-normal italic text-text-muted">{t('alertas.modalTitleAccent')}</span>
             </h2>
             <p className="mt-1 text-[13px] text-text-secondary">
               {t('alertas.modalSubtitle')}

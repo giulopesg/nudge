@@ -70,7 +70,7 @@ export default function PortfolioCard({ portfolio, persona }: Props) {
           <h3>
             <span className="font-display text-[22px] font-bold">{t('portfolio.titlePrefix')}</span>
             {' '}
-            <span className="font-accent text-[24px] italic text-text-muted">{t('portfolio.titleAccent')}</span>
+            <span className="font-display text-[22px] font-normal italic text-text-muted">{t('portfolio.titleAccent')}</span>
           </h3>
           <span className="font-display text-[22px] sm:text-[28px] font-bold text-foreground">
             {formatUsd(portfolio.totalValueUsd)}

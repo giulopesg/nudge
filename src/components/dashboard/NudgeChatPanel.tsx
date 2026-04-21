@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import LyraAvatar from '@/components/dashboard/LyraAvatar';
+import { useDashboard } from '@/contexts/DashboardContext';
+import { getRecommendation } from '@/lib/lyraRecommendation';
 
 interface Message {
   id: string;
@@ -14,6 +16,8 @@ interface Message {
 interface Props {
   onClose: () => void;
   onTopicExplored?: (topic: string) => void;
+  autoAction?: 'recommendation' | null;
+  onAutoActionConsumed?: () => void;
 }
 
 const TOPIC_KEYWORDS: Record<string, string[]> = {
@@ -21,10 +25,18 @@ const TOPIC_KEYWORDS: Record<string, string[]> = {
   level: ['level', 'nivel', 'nível', 'evoluir', 'evolve', 'subir'],
   health: ['health', 'hf', 'health factor', 'saude', 'saúde', 'liquidacao', 'liquidação'],
   kamino: ['kamino', 'emprestimo', 'empréstimo', 'lending', 'colateral', 'collateral'],
+  nudgeScore: ['nudge score', 'score', 'pontuacao', 'pontuação', 'nota'],
   nudge: ['nudge', 'app', 'como funciona', 'how it works', 'o que é', 'what is'],
   inventory: ['inventario', 'inventário', 'inventory', 'item', 'itens', 'items', 'conquista'],
   class: ['classe', 'class', 'guardian', 'explorer', 'strategist', 'rpg', 'personagem'],
   blockchain: ['blockchain', 'solana', 'crypto', 'cripto', 'wallet', 'carteira', 'on-chain'],
+  recommendation: ['recomendação', 'recomendacao', 'recommendation', 'dica', 'tip', 'conselho', 'sugestão', 'sugestao', 'o que fazer', 'what should i do'],
+  howDiversify: ['diversificar', 'diversify', 'como diversif', 'rebalancear', 'rebalance'],
+  howStables: ['stablecoin', 'como comprar usdc', 'como ter stable', 'como trocar por usdc'],
+  howCollateral: ['adicionar colateral', 'add collateral', 'como adicionar garantia', 'depositar colateral'],
+  howReduceDebt: ['pagar dívida', 'pagar divida', 'repay', 'como pagar', 'reduzir dívida'],
+  howYield: ['rendimento', 'yield', 'renda passiva', 'como render', 'como ganhar', 'staking'],
+  howMonitor: ['monitorar', 'acompanhar', 'como monitorar', 'alertas telegram'],
 };
 
 const RELATED_TOPICS: Record<string, string[]> = {
@@ -32,10 +44,18 @@ const RELATED_TOPICS: Record<string, string[]> = {
   level: ['xp', 'class', 'inventory'],
   health: ['kamino', 'nudge', 'blockchain'],
   kamino: ['health', 'blockchain', 'nudge'],
+  nudgeScore: ['health', 'kamino', 'recommendation'],
   nudge: ['xp', 'kamino', 'health'],
   inventory: ['xp', 'level', 'class'],
   class: ['xp', 'level', 'inventory'],
   blockchain: ['kamino', 'health', 'nudge'],
+  recommendation: ['kamino', 'health', 'nudge'],
+  howDiversify: ['howStables', 'howYield', 'kamino'],
+  howStables: ['howDiversify', 'howYield', 'health'],
+  howCollateral: ['howReduceDebt', 'health', 'howMonitor'],
+  howReduceDebt: ['howCollateral', 'health', 'howMonitor'],
+  howYield: ['howDiversify', 'kamino', 'howMonitor'],
+  howMonitor: ['health', 'kamino', 'howYield'],
 };
 
 function detectTopic(input: string): string | null {
@@ -46,17 +66,20 @@ function detectTopic(input: string): string | null {
   return null;
 }
 
-const SUGGESTION_TOPICS = ['nudge', 'xp', 'kamino', 'health', 'class', 'blockchain'] as const;
+const SUGGESTION_TOPICS = ['recommendation', 'nudgeScore', 'nudge', 'xp', 'kamino', 'health', 'class', 'blockchain'] as const;
 
 let msgCounter = 0;
 
-export default function NudgeChatPanel({ onClose, onTopicExplored }: Props) {
+export default function NudgeChatPanel({ onClose, onTopicExplored, autoAction, onAutoActionConsumed }: Props) {
   const { t } = useTranslation('dashboard');
+  const { nudgeScore, portfolio, kaminoPosition, character, neurotags, goals } = useDashboard();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(true);
+  const [exploredCount, setExploredCount] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const exploredRef = useRef<Set<string>>(new Set());
+  const autoActionFired = useRef(false);
 
   // Initial greeting
   useEffect(() => {
@@ -72,16 +95,49 @@ export default function NudgeChatPanel({ onClose, onTopicExplored }: Props) {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
   }, [messages]);
 
+  // Auto-action: fire recommendation when triggered externally
+  useEffect(() => {
+    if (autoAction === 'recommendation' && !autoActionFired.current && messages.length > 0) {
+      autoActionFired.current = true;
+      const label = t('lyra.suggestions.recommendation');
+      // Small delay so panel renders first
+      const timer = setTimeout(() => {
+        sendMessage(label);
+        onAutoActionConsumed?.();
+      }, 400);
+      return () => clearTimeout(timer);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoAction, messages.length]);
+
   function getFollowUps(topic: string): string[] {
     const related = RELATED_TOPICS[topic] ?? [];
     return related.filter((t) => !exploredRef.current.has(t)).slice(0, 3);
   }
 
+  const buildRecommendationReply = useCallback((): { text: string; followUpKeys: string[] } => {
+    const rec = getRecommendation({ nudgeScore, portfolio, kaminoPosition, character, neurotags, goals });
+    return { text: t(rec.key, rec.params), followUpKeys: rec.followUpKeys };
+  }, [nudgeScore, portfolio, kaminoPosition, character, neurotags, goals, t]);
+
   function sendMessage(text: string) {
     const userMsg: Message = { id: `user-${++msgCounter}`, role: 'user', text };
     const topic = detectTopic(text);
-    const reply = topic ? t(`lyra.topics.${topic}`) : t('lyra.fallback');
-    const followUps = topic ? getFollowUps(topic) : [];
+
+    let reply: string;
+    let followUps: string[];
+
+    if (topic === 'recommendation') {
+      const rec = buildRecommendationReply();
+      reply = rec.text;
+      followUps = rec.followUpKeys;
+    } else if (topic) {
+      reply = t(`lyra.topics.${topic}`);
+      followUps = getFollowUps(topic);
+    } else {
+      reply = t('lyra.fallback');
+      followUps = [];
+    }
 
     const lyraMsg: Message = {
       id: `lyra-${++msgCounter}`,
@@ -93,8 +149,11 @@ export default function NudgeChatPanel({ onClose, onTopicExplored }: Props) {
     setMessages((prev) => [...prev, userMsg, lyraMsg]);
     setShowSuggestions(false);
 
-    if (topic) {
+    if (topic && !exploredRef.current.has(topic)) {
       exploredRef.current.add(topic);
+      setExploredCount(exploredRef.current.size);
+      onTopicExplored?.(topic);
+    } else if (topic) {
       onTopicExplored?.(topic);
     }
   }
@@ -126,7 +185,7 @@ export default function NudgeChatPanel({ onClose, onTopicExplored }: Props) {
   const lastLyraIdx = messages.reduce((acc, m, i) => m.role === 'lyra' ? i : acc, -1);
 
   return (
-    <div className="animate-sheet-enter fixed bottom-36 right-4 sm:bottom-20 sm:right-8 z-40 w-[340px] max-h-[480px] flex flex-col rounded-2xl border border-surface-border bg-[#110e1a] shadow-2xl overflow-hidden">
+    <div className="animate-sheet-enter fixed bottom-[88px] left-3 right-3 sm:bottom-20 sm:left-auto sm:right-8 z-40 w-auto sm:w-[340px] max-h-[calc(100dvh-160px)] sm:max-h-[480px] flex flex-col rounded-2xl border border-surface-border bg-[#110e1a] shadow-2xl overflow-hidden">
       {/* Header with avatar */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-surface-border bg-[#13101e]">
         <div className="flex-shrink-0 rounded-full border border-plum/30 shadow-[0_0_12px_var(--plum-glow)]">
@@ -144,6 +203,18 @@ export default function NudgeChatPanel({ onClose, onTopicExplored }: Props) {
           &times;
         </button>
       </div>
+
+      {/* XP Progress indicator */}
+      {exploredCount > 0 && (
+        <div className={`flex items-center justify-between px-4 py-2 border-b text-[11px] font-mono ${
+          exploredCount >= 3
+            ? 'border-safe/20 bg-safe/8 text-safe'
+            : 'border-xp/20 bg-xp-muted text-xp'
+        }`}>
+          <span>{exploredCount >= 3 ? t('lyra.xpComplete') : t('lyra.xpProgress', { count: exploredCount })}</span>
+          <span className="font-bold">{t('lyra.xpReward')}</span>
+        </div>
+      )}
 
       {/* Messages */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3 min-h-[200px] max-h-[340px]">

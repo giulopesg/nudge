@@ -33,7 +33,7 @@ export default function CharacterCard({ character }: Props) {
           <h3 className="font-display text-[22px] sm:text-[28px] font-bold">
             {character.class.title}
           </h3>
-          <p className="font-accent text-xl italic text-plum">
+          <p className="font-display text-[17px] font-normal italic text-plum">
             {tDash(`tiers.${character.tier.name}`)} &middot; LV {character.level}
           </p>
           <p className="mt-1 text-[13px] text-text-secondary">
@@ -67,7 +67,7 @@ export default function CharacterCard({ character }: Props) {
       {/* XP */}
       <div className="mt-5">
         <div className="flex justify-between items-baseline">
-          <span className="font-accent text-[19px] italic text-xp">XP</span>
+          <span className="font-accent text-[16px] text-xp">XP</span>
           <span className="font-display text-[14px] text-xp">
             {character.xp}/{character.xpToNext}
           </span>

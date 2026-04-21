@@ -28,7 +28,7 @@ export default function AlertasPage() {
         <h1>
           <span className="font-display text-[22px] font-bold">{t('alertas.titlePrefix')}</span>
           {' '}
-          <span className="font-accent text-[24px] italic text-text-muted">{t('alertas.titleAccent')}</span>
+          <span className="font-display text-[22px] font-normal italic text-text-muted">{t('alertas.titleAccent')}</span>
         </h1>
         {unreadCount > 0 && (
           <button

@@ -2,7 +2,7 @@
 
 /* ===== Font shortcuts ===== */
 export const strong = "var(--font-lora), 'Lora', Georgia, serif";
-export const accent = "var(--font-cormorant), 'Cormorant Garamond', serif";
+export const accent = "var(--font-cormorant), 'Agbalumo', cursive";
 export const ui = "var(--font-outfit), 'Outfit', system-ui, sans-serif";
 export const mono = "var(--font-fira-code), 'Fira Code', monospace";
 
@@ -35,7 +35,7 @@ export function ScoreRing({ score, status }: { score: number; status: 'safe' | '
         <circle cx="80" cy="80" r={r} fill="none" stroke="rgba(255,248,245,0.04)" strokeWidth="8" />
         <circle cx="80" cy="80" r={r} fill="none" stroke={c} strokeWidth="8" strokeLinecap="round" strokeDasharray={circ} strokeDashoffset={offset} filter="url(#glow)" style={{ transition: 'stroke-dashoffset 1s ease' }} />
       </svg>
-      <div style={{ position: 'absolute', textAlign: 'center' }}>
+      <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ fontFamily: strong, fontSize: 44, fontWeight: 700, color: c, textShadow: `0 0 20px ${glows[status]}` }}>{score}</div>
         <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: '0.1em', color: 'var(--n2-text-muted)', textTransform: 'uppercase' as const }}>nudge score</div>
       </div>
@@ -48,11 +48,18 @@ export function MiniECG() {
   return (
     <div className="n2-ecg" style={{ display: 'flex', alignItems: 'center', padding: '0 20px', height: 90 }}>
       <svg width="100%" height="50" viewBox="0 0 300 50" preserveAspectRatio="none" style={{ opacity: 0.7 }}>
-        <path d="M0,25 L40,25 L50,25 L55,8 L60,42 L65,15 L70,30 L75,25 L120,25 L130,25 L135,8 L140,42 L145,15 L150,30 L155,25 L200,25 L210,25 L215,8 L220,42 L225,15 L230,30 L235,25 L300,25" fill="none" stroke="#2ED88A" strokeWidth="2" />
+        <path
+          className="n2-ecg-trace"
+          d="M0,25 L40,25 L50,25 L55,8 L60,42 L65,15 L70,30 L75,25 L120,25 L130,25 L135,8 L140,42 L145,15 L150,30 L155,25 L200,25 L210,25 L215,8 L220,42 L225,15 L230,30 L235,25 L300,25"
+          fill="none" stroke="#2ED88A" strokeWidth="2"
+          strokeDasharray="600" strokeDashoffset="600"
+          style={{ filter: 'drop-shadow(0 0 4px rgba(46,216,138,0.4))' }}
+        />
       </svg>
       <div style={{ position: 'absolute', right: 20, display: 'flex', flexDirection: 'column' as const, alignItems: 'flex-end', gap: 2 }}>
         <span style={{ fontFamily: mono, fontSize: 11, color: 'var(--n2-text-muted)', letterSpacing: '0.1em' }}>HEALTH FACTOR</span>
-        <span style={{ fontFamily: strong, fontSize: 28, fontWeight: 700, color: '#2ED88A' }}>1.82</span>
+        <span style={{ fontFamily: strong, fontSize: 28, fontWeight: 700, color: '#2ED88A', textShadow: '0 0 12px rgba(46,216,138,0.4)' }}>1.82</span>
+        <span style={{ fontFamily: mono, fontSize: 12, fontWeight: 600, letterSpacing: '0.06em', color: '#2ED88A' }}>SAFE</span>
       </div>
     </div>
   );

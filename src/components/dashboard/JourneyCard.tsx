@@ -166,7 +166,7 @@ export default function JourneyCard({ goals, progressList, onOpenEducation }: Pr
         <h3>
           <span className="font-display text-[22px] font-bold">{t('journeyTitlePrefix')}</span>
           {' '}
-          <span className="font-accent text-[24px] italic text-text-muted">{t('journeyTitleAccent')}</span>
+          <span className="font-display text-[22px] font-normal italic text-text-muted">{t('journeyTitleAccent')}</span>
         </h3>
         <span className={`status-badge ${styles.badge}`}>
           {percent}% &middot; {t(`journeyStatus.${statusKey}`)}

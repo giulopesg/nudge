@@ -17,7 +17,7 @@ export default function WalletCard({ balance }: Props) {
           <h3 className="font-display text-[22px] font-bold leading-tight">
             {t('wallet.titlePrefix')}
           </h3>
-          <p className="font-accent text-[24px] italic text-text-muted leading-tight -mt-0.5">
+          <p className="font-display text-[20px] font-normal italic text-text-muted leading-tight -mt-0.5">
             {t('wallet.titleAccent')}
           </p>
         </div>

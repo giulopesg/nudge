@@ -1,4 +1,8 @@
 {
+  "greeting": {
+    "withName": "Olá, {{name}}",
+    "withoutName": "Olá, viajante"
+  },
   "title": "Seu painel",
   "titlePrefix": "Seu",
   "titleAccent": "painel",
@@ -468,6 +472,19 @@
     "viewAll": "Ver todos os alertas",
     "dismiss": "Fechar"
   },
+  "emptyState": {
+    "titlePrefix": "Bem-vinda ao",
+    "titleAccent": "Nudge",
+    "subtitle": "Sua wallet está conectada, mas ainda não tem saldo. Adicione tokens e o Nudge calcula tudo pra você.",
+    "nextSteps": "Próximos passos",
+    "step1": "→ Adicione SOL ou tokens à sua wallet",
+    "step2": "→ Explore o ecossistema Solana",
+    "step3": "→ Volte aqui e o Nudge calcula seu score"
+  },
+  "integration": {
+    "title": "Mais integrações em breve",
+    "subtitle": "Jupiter, Marinade, Raydium e outros protocolos Solana"
+  },
   "lastUpdate": "Atualizado {{time}}",
   "itemModal": {
     "close": "Fechar"
@@ -493,6 +510,8 @@
     "close": "Fechar",
     "send": "Enviar",
     "suggestions": {
+      "recommendation": "Me dá uma dica!",
+      "nudgeScore": "O que é Nudge Score?",
       "nudge": "Como usar o Nudge?",
       "xp": "Como ganhar XP?",
       "kamino": "O que é Kamino?",
@@ -500,17 +519,53 @@
       "class": "Qual minha classe?",
       "blockchain": "O que é blockchain?",
       "level": "Como subir de nível?",
-      "inventory": "O que é o inventário?"
+      "inventory": "O que é o inventário?",
+      "howDiversify": "Como diversificar?",
+      "howStables": "Como ter stablecoins?",
+      "howCollateral": "Como adicionar colateral?",
+      "howReduceDebt": "Como pagar dívida?",
+      "howYield": "Como gerar rendimento?",
+      "howMonitor": "Como monitorar melhor?"
     },
     "topics": {
       "xp": "XP é a experiência que você ganha ao completar passos na jornada. Cada passo vale entre 75 e 150 XP. Acumule XP para subir de nível e evoluir seu personagem!",
       "level": "Seu nível sobe conforme você acumula XP. Cada nível desbloqueia novos títulos e itens no inventário. Continue completando passos da jornada para evoluir!",
+      "nudgeScore": "O Nudge Score é sua nota de saúde financeira, de 0 a 100. Ele combina 4 fatores: diversificação do portfolio, reserva em stablecoins, concentração em um único token, e seu Health Factor no Kamino (se tiver empréstimo). Quanto maior o score, mais equilibrada está sua posição.",
       "health": "O Health Factor (HF) mede quão seguro está seu empréstimo no Kamino. Acima de 2.0 é seguro, entre 1.5 e 2.0 requer atenção, e abaixo de 1.5 é zona de perigo. Se chegar a 1.0, ocorre liquidação.",
       "kamino": "Kamino é um protocolo de empréstimo na Solana. Você deposita tokens como garantia (colateral) e pega empréstimo. O Nudge monitora sua posição em tempo real e te avisa se algo precisar de atenção.",
       "nudge": "O Nudge traduz o mundo DeFi pra você. Ele monitora seu portfolio e empréstimos, calcula seu score de saúde financeira, e te manda alertas personalizados baseados no seu perfil comportamental.",
       "inventory": "Seu inventário contém itens que você desbloqueia ao longo da jornada — como a Chave da Wallet, o Mapa do Kamino, e o Escudo de Serenidade. Cada item dá XP e conta sua história.",
       "class": "Sua classe é definida pelo quiz comportamental: Guardian (protetor), Explorer (curioso), Strategist (analítico), entre outras. Cada classe reflete seu estilo de lidar com finanças.",
-      "blockchain": "Blockchain é um registro público e imutável de transações. Solana é uma blockchain rápida e barata. Sua wallet é como uma conta bancária digital que só você controla."
+      "blockchain": "Blockchain é um registro público e imutável de transações. Solana é uma blockchain rápida e barata. Sua wallet é como uma conta bancária digital que só você controla.",
+      "howDiversify": "Acesse o Jupiter (jup.ag) e troque parte do seu SOL por outros tokens como USDC ou mSOL. Regra simples: nenhum token deve passar de 50% do portfolio. O Nudge recalcula seu score automaticamente.",
+      "howStables": "Stablecoins como USDC valem sempre ~$1. No Jupiter (jup.ag), selecione USDC como destino e troque parte do seu SOL. Ter 10-20% em stablecoins te protege da volatilidade e te dá poder de compra.",
+      "howCollateral": "No Kamino (app.kamino.finance), vá em Lending, selecione sua posição e clique em Supply. Deposite mais SOL ou tokens aceitos como garantia. Isso aumenta seu Health Factor e afasta o risco de liquidação.",
+      "howReduceDebt": "No Kamino (app.kamino.finance), selecione sua posição e clique em Repay. Pague parte da dívida em USDC. Cada pagamento reduz seu LTV e aumenta sua margem de segurança.",
+      "howYield": "Kamino oferece empréstimos com colateral: deposite SOL e pegue USDC emprestado. Outra opção é liquid staking no Marinade (marinade.finance) — transforme SOL em mSOL e ganhe rendimento automaticamente.",
+      "howMonitor": "Acompanhe pelo dashboard do Nudge. Em breve, nosso bot do Telegram vai te avisar automaticamente sobre mudanças no Health Factor e oportunidades. Fique de olho nas atualizações!"
+    },
+    "xpProgress": "{{count}}/3 tópicos explorados",
+    "xpReward": "+50 XP",
+    "xpComplete": "Lente de Clareza desbloqueada!",
+    "recommend": {
+      "buttonLabel": "Pedir uma dica",
+      "dangerHF": "Atenção! Seu Health Factor está em {{hf}} — muito perto da liquidação. Recomendo adicionar colateral ou pagar parte da dívida agora. Cada minuto conta.",
+      "dangerMargin": "Sua margem de segurança está em apenas {{margin}}%. Isso é arriscado. Considere depositar mais colateral no Kamino pra aumentar sua proteção.",
+      "attentionKamino": "Seu empréstimo no Kamino merece atenção. HF: {{hf}}, margem: {{margin}}%. Fique de olho e considere reforçar seu colateral se o mercado balançar.",
+      "attentionSafe": "Seu empréstimo precisa de cuidado — HF: {{hf}}, margem: {{margin}}%. Como você preza pela segurança, recomendo adicionar colateral agora. Cada ponto no HF te dá mais tranquilidade.",
+      "concentrate": "Seu portfolio está muito concentrado: {{pct}}% em {{symbol}}. Se essa moeda cair, tudo cai junto. Diversificar é uma forma de se proteger.",
+      "concentrateExplorer": "{{pct}}% em {{symbol}} é arriscado, mas também uma oportunidade! Que tal trocar parte por USDC no Jupiter e explorar yield no Kamino? Diversificar e ganhar ao mesmo tempo.",
+      "noStables": "Você não tem reserva em stablecoins. Ter pelo menos 10-20% em USDC ou USDT te protege da volatilidade e te dá poder de ação.",
+      "noStablesReserve": "Você quer construir uma reserva, mas não tem stablecoins. Comece trocando 15-20% do seu portfolio por USDC no Jupiter. É a base de qualquer estratégia de proteção.",
+      "beginnerExplore": "Você está começando — e isso é ótimo! Explore o dashboard, leia sobre Health Factor, e converse comigo. Cada passo vale XP e te torna mais forte.",
+      "beginnerLearn": "Quer aprender fazendo? Comece trocando um pouco de SOL por USDC no Jupiter. Depois, explore o Kamino para entender como empréstimos descentralizados funcionam. Cada passo vale XP!",
+      "beginnerYield": "Com SOL na wallet, você já pode gerar rendimento! Explore o Marinade para liquid staking (~7% ao ano) ou o Kamino para estratégias mais avançadas. Comece pequeno e vá crescendo.",
+      "safeExplorer": "Score {{score}}/100 — posição saudável! Com essa margem, você pode experimentar: explore yield no Kamino ou liquid staking no Marinade. Sua base está sólida para crescer.",
+      "safeSecurity": "Score {{score}}/100 — tudo protegido. Para ainda mais tranquilidade, mantenha 20-30% em stablecoins e configure os alertas do Nudge. Segurança é sobre camadas de proteção.",
+      "safeMonitor": "Score {{score}}/100 — estável. Dica de quem monitora: rebalancear a cada 2 semanas mantém o equilíbrio conforme o mercado muda. Você pode otimizar sem aumentar risco.",
+      "safeLearner": "Score {{score}}/100 — base sólida! Bom momento para expandir: sabia que pode usar SOL como colateral no Kamino e gerar renda? Ou explorar liquid staking no Marinade?",
+      "allGood": "Score {{score}}/100 — tudo equilibrado. Que tal o próximo passo? Explore yield no Kamino ou diversifique no Jupiter. Manter o score alto é ótimo, mas crescer é ainda melhor.",
+      "generic": "Estou analisando seus dados... No momento, tudo parece estável. Continue acompanhando seu dashboard e me pergunte se tiver qualquer dúvida!"
     }
   }
 }

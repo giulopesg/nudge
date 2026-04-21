@@ -12,9 +12,9 @@ export default function SectionLanding() {
           <div className="n2-divider" style={{ width: 48, margin: '0 auto 28px' }} />
           <h2 style={{ lineHeight: 1.1 }}>
             <span style={{ fontFamily: strong, fontSize: 48, fontWeight: 700, color: 'var(--n2-text)' }}>Blockchain </span>
-            <span className="n2-gradient-text" style={{ fontFamily: accent, fontSize: 54, fontWeight: 700, fontStyle: 'italic' }}>is freedom</span>
+            <span className="n2-gradient-text" style={{ fontFamily: accent, fontSize: 46, fontWeight: 400 }}>is freedom</span>
           </h2>
-          <p style={{ fontFamily: accent, fontSize: 26, fontStyle: 'italic', color: 'var(--n2-accent)', marginTop: 12 }}>
+          <p style={{ fontFamily: accent, fontSize: 22, color: 'var(--n2-accent)', marginTop: 12 }}>
             Nudge teaches you to exercise yours
           </p>
           <p style={{ fontFamily: strong, fontSize: 17, fontWeight: 400, color: 'var(--n2-text-secondary)', marginTop: 20, maxWidth: 460, margin: '20px auto 0', lineHeight: 1.8 }}>
@@ -54,7 +54,7 @@ export default function SectionLanding() {
                 <li>Rounded corners (16-24px)</li>
                 <li>Orchid #A366FF + Rose #FF6B9D</li>
                 <li>Organic gradient mesh</li>
-                <li><span style={{ fontFamily: strong, fontWeight: 700 }}>Lora</span> + <span style={{ fontFamily: accent, fontStyle: 'italic', fontSize: 18, color: 'var(--n2-accent)' }}>Cormorant</span></li>
+                <li><span style={{ fontFamily: strong, fontWeight: 700 }}>Lora</span> + <span style={{ fontFamily: accent, fontSize: 15, color: 'var(--n2-accent)' }}>Agbalumo</span></li>
                 <li><strong>Big fonts, high contrast</strong></li>
                 <li>Warm white, readable</li>
               </ul>

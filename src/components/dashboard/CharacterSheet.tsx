@@ -135,7 +135,7 @@ export default function CharacterSheet({ character, avatarSrc, onClose }: Props)
               <h2 className="font-display text-[22px] sm:text-[26px] font-bold">
                 {character.class.title}
               </h2>
-              <p className="font-accent text-[17px] sm:text-[19px] italic text-plum mt-0.5">
+              <p className="font-display text-[15px] sm:text-[16px] font-normal italic text-plum mt-0.5">
                 {t('perfil.classLevel', {
                   className: t(`tiers.${character.tier.name}`),
                   level: character.level,
@@ -161,7 +161,7 @@ export default function CharacterSheet({ character, avatarSrc, onClose }: Props)
           {/* XP to next level */}
           <div className="mt-4">
             <div className="flex justify-between mb-1.5">
-              <span className="font-accent text-[17px] italic text-xp">
+              <span className="font-accent text-[15px] text-xp">
                 {t('perfil.xpToNext')}
               </span>
               <span className="font-display text-[13px] font-semibold text-text-muted">
@@ -205,6 +205,14 @@ export default function CharacterSheet({ character, avatarSrc, onClose }: Props)
                 onSelect={() => setSelectedItemId(slot.itemId)}
               />
             ))}
+            {/* Pad to fill last row on both 3-col and 4-col grids */}
+            {(() => {
+              const len = allSlots.length;
+              const target = Math.ceil(len / 12) * 12;
+              return Array.from({ length: target - len }).map((_, i) => (
+                <div key={`pad-${i}`} className="inventory-slot inventory-slot-empty opacity-20 rounded-lg" />
+              ));
+            })()}
           </div>
         </div>
       </div>
