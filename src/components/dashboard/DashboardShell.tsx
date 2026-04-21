@@ -33,6 +33,7 @@ function ShellInner({ children }: { children: React.ReactNode }) {
 
   const walletAddr = persona?.wallet ?? publicKey?.toBase58() ?? '';
   const avatarSrc = persona ? persona.avatar : getUserAvatar(walletAddr, gender);
+  const isConnected = isDemo || !!publicKey;
 
   const [showCharacterSheet, setShowCharacterSheet] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
@@ -58,7 +59,7 @@ function ShellInner({ children }: { children: React.ReactNode }) {
       <header className={`dashboard-header ${scrolled ? 'dashboard-header-scrolled' : ''}`}>
         <div className="flex items-center w-full px-4 sm:px-8">
           {/* Mobile logo — visible only on mobile where sidebar is hidden */}
-          <Link href="/app" className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2 md:hidden min-w-0 flex-shrink-0">
+          <Link href={isConnected ? '/app' : '/'} className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2 md:hidden min-w-0 flex-shrink-0">
             <span className="n2-gradient-text font-display text-[20px] sm:text-[28px] font-bold uppercase tracking-[0.06em]">
               {t('brand.name')}
             </span>
@@ -82,6 +83,7 @@ function ShellInner({ children }: { children: React.ReactNode }) {
         unreadCount={unreadCount}
         character={character}
         onShowCharacterSheet={() => setShowCharacterSheet(true)}
+        isConnected={isConnected}
       />
 
       {/* Content area */}

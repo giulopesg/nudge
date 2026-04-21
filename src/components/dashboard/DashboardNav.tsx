@@ -32,9 +32,10 @@ interface Props {
   unreadCount?: number;
   character?: Character | null;
   onShowCharacterSheet?: () => void;
+  isConnected?: boolean;
 }
 
-export default function DashboardNav({ hasProfile, unreadCount = 0, character, onShowCharacterSheet }: Props) {
+export default function DashboardNav({ hasProfile, unreadCount = 0, character, onShowCharacterSheet, isConnected }: Props) {
   const { t } = useTranslation('dashboard');
   const { t: tCommon } = useTranslation();
   const pathname = usePathname();
@@ -53,7 +54,7 @@ export default function DashboardNav({ hasProfile, unreadCount = 0, character, o
       <nav className="nav-sidebar hidden md:flex" aria-label="Dashboard navigation">
         {/* Brand + Character Badge */}
         <div className="nav-sidebar-brand">
-          <Link href="/app" className="flex items-baseline gap-1.5 whitespace-nowrap">
+          <Link href={isConnected ? '/app' : '/'} className="flex items-baseline gap-1.5 whitespace-nowrap">
             <span className="n2-gradient-text font-display text-[24px] font-bold uppercase tracking-[0.06em]">
               {tCommon('brand.name')}
             </span>
