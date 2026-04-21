@@ -37,7 +37,7 @@
     "q1": {
       "question": "Quem configurou sua wallet?",
       "options": {
-        "self": "Eu mesma",
+        "self": "Eu mesm{{suffix}}",
         "other": "Outra pessoa configurou pra mim",
         "together": "Fiz junto com alguém"
       }
@@ -102,59 +102,87 @@
   },
   "neurotags": {
     "iniciante": {
-      "label": "#iniciante",
+      "label_f": "#iniciante",
+      "label_m": "#iniciante",
+      "label_nb": "#iniciante",
       "description": "Você está começando — e tudo bem. O Nudge vai traduzir cada conceito pra você."
     },
     "delegadora": {
-      "label": "#delegadora",
+      "label_f": "#delegadora",
+      "label_m": "#delegador",
+      "label_nb": "#delegadore",
       "description": "Você costuma depender de alguém pra decisões financeiras. O Nudge vai te ajudar a ganhar autonomia, passo a passo."
     },
     "indecisa-sob-pressao": {
-      "label": "#indecisa-sob-pressão",
+      "label_f": "#indecisa-sob-pressão",
+      "label_m": "#indeciso-sob-pressão",
+      "label_nb": "#indecise-sob-pressão",
       "description": "Em momentos de tensão, você trava. O Nudge vai te mostrar dados reais pra tomar decisões com calma."
     },
     "negligente": {
-      "label": "#negligente",
+      "label_f": "#negligente",
+      "label_m": "#negligente",
+      "label_nb": "#negligente",
       "description": "Você esquece de checar suas posições. O Nudge vai cuidar disso pra você e avisar quando for importante."
     },
     "avessa-a-jargao": {
-      "label": "#avessa-a-jargão",
+      "label_f": "#avessa-a-jargão",
+      "label_m": "#averso-a-jargão",
+      "label_nb": "#averse-a-jargão",
       "description": "Termos técnicos te paralisam. O Nudge nunca vai usar jargão sem traduzir antes."
     },
     "quer-seguranca": {
-      "label": "#quer-segurança",
+      "label_f": "#quer-segurança",
+      "label_m": "#quer-segurança",
+      "label_nb": "#quer-segurança",
       "description": "Você quer paz de espírito com seu dinheiro. O Nudge monitora tudo e te avisa quando precisa."
     },
     "curiosa": {
-      "label": "#curiosa",
+      "label_f": "#curiosa",
+      "label_m": "#curioso",
+      "label_nb": "#curiose",
       "description": "Você quer aprender! O Nudge vai trazer conteúdo educacional no seu ritmo."
     },
     "calma-sob-pressao": {
-      "label": "#calma-sob-pressão",
+      "label_f": "#calma-sob-pressão",
+      "label_m": "#calmo-sob-pressão",
+      "label_nb": "#calme-sob-pressão",
       "description": "Você não age por pânico. O Nudge vai reforçar sua confiança com dados reais."
     },
     "autonoma-inicial": {
-      "label": "#autônoma-inicial",
-      "description": "Você já deu os primeiros passos sozinha. O Nudge vai te ajudar a ir além."
+      "label_f": "#autônoma-inicial",
+      "label_m": "#autônomo-inicial",
+      "label_nb": "#autônome-inicial",
+      "description": "Você já deu os primeiros passos por conta própria. O Nudge vai te ajudar a ir além."
     },
     "semi-autonoma": {
-      "label": "#semi-autônoma",
-      "description": "Você fez junto com alguém — ótimo começo. O Nudge te ajuda a dar os próximos passos sozinha."
+      "label_f": "#semi-autônoma",
+      "label_m": "#semi-autônomo",
+      "label_nb": "#semi-autônome",
+      "description": "Você fez junto com alguém — ótimo começo. O Nudge te ajuda a dar os próximos passos com independência."
     },
     "intermediaria": {
-      "label": "#intermediária",
+      "label_f": "#intermediária",
+      "label_m": "#intermediário",
+      "label_nb": "#intermediárie",
       "description": "Você já tem uma base sólida. O Nudge vai te mostrar dados mais detalhados."
     },
     "reativa": {
-      "label": "#reativa",
+      "label_f": "#reativa",
+      "label_m": "#reativo",
+      "label_nb": "#reative",
       "description": "Você tende a agir por impulso. O Nudge vai te mostrar dados reais antes de qualquer decisão."
     },
     "atenta": {
-      "label": "#atenta",
+      "label_f": "#atenta",
+      "label_m": "#atento",
+      "label_nb": "#atente",
       "description": "Você acompanha o mercado. O Nudge vai complementar sua atenção com alertas inteligentes."
     },
     "exploradora": {
-      "label": "#exploradora",
+      "label_f": "#exploradora",
+      "label_m": "#explorador",
+      "label_nb": "#exploradore",
       "description": "Você busca novas oportunidades. O Nudge vai te ajudar a explorar com segurança."
     }
   },
@@ -171,10 +199,10 @@
     "signing": "Assinando...",
     "confirming": "Confirmando na rede...",
     "success": "Registrado com sucesso!",
-    "viewTx": "Ver transa\u00e7\u00e3o no Solscan",
+    "viewTx": "Ver transação no Solscan",
     "xpEarned": "+150 XP",
     "goToDashboard": "Ir pro dashboard",
-    "error": "Erro ao registrar. Sua wallet pode ter rejeitado a transa\u00e7\u00e3o.",
+    "error": "Erro ao registrar. Sua wallet pode ter rejeitado a transação.",
     "retry": "Tentar novamente",
     "demoSuccess": "Registro simulado no modo demo!"
   }

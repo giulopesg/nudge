@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useDashboard } from '@/contexts/DashboardContext';
 import { ACTIVITIES, ITEM_ICONS } from '@/lib/rpg';
 import { getVisibleTraits, genderSuffix } from '@/lib/neurotags';
+const useOnboardingT = () => useTranslation('onboarding').t;
 import ItemDetailModal, { type SlotData } from '@/components/dashboard/ItemDetailModal';
 import type { InventoryItemId } from '@/lib/rpg';
 
@@ -58,6 +59,7 @@ function ItemSlot({ slot, onSelect }: {
 export default function PerfilPage() {
   const { t } = useTranslation('dashboard');
   const { character, persona, gender } = useDashboard();
+  const tOnb = useOnboardingT();
   const [selectedItemId, setSelectedItemId] = useState<InventoryItemId | null>(null);
 
   if (!character) {
@@ -169,7 +171,7 @@ export default function PerfilPage() {
         </h3>
         <div className="flex flex-wrap gap-1.5">
           {visibleTraits.map((tag) => (
-            <span key={tag} className="trait-tag">#{tag}</span>
+            <span key={tag} className="trait-tag">{tOnb(`neurotags.${tag}.label_${gender}`)}</span>
           ))}
         </div>
       </div>

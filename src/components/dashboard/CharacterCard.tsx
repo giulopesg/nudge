@@ -89,7 +89,7 @@ export default function CharacterCard({ character, gender = 'f' }: Props) {
         <div className="flex flex-wrap gap-1.5">
           {getVisibleTraits(character.traits).map((tag) => (
             <span key={tag} className="trait-tag">
-              {t(`neurotags.${tag}.label`)}
+              {t(`neurotags.${tag}.label_${gender}`)}
             </span>
           ))}
         </div>

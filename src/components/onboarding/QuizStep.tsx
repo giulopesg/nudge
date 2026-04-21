@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { QuizAnswers } from '@/lib/neurotags';
 import type { Gender } from '@/lib/neurotags';
+import { genderSuffix } from '@/lib/neurotags';
 
 interface Props {
   onComplete: (answers: QuizAnswers, gender: Gender) => void;
@@ -135,7 +136,7 @@ export default function QuizStep({ onComplete, onBack }: Props) {
                   <span className="text-[12px] text-background font-bold">&#10003;</span>
                 )}
               </span>
-              {t(`quiz.${q.key}.options.${opt}`)}
+              {t(`quiz.${q.key}.options.${opt}`, { suffix: gender ? genderSuffix(gender) : 'a' })}
             </span>
           </button>
         ))}

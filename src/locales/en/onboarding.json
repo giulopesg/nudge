@@ -102,59 +102,87 @@
   },
   "neurotags": {
     "iniciante": {
-      "label": "#beginner",
+      "label_f": "#beginner",
+      "label_m": "#beginner",
+      "label_nb": "#beginner",
       "description": "You're just starting — and that's OK. Nudge will translate every concept for you."
     },
     "delegadora": {
-      "label": "#delegator",
+      "label_f": "#delegator",
+      "label_m": "#delegator",
+      "label_nb": "#delegator",
       "description": "You tend to rely on someone else for financial decisions. Nudge will help you gain autonomy, step by step."
     },
     "indecisa-sob-pressao": {
-      "label": "#indecisive-under-pressure",
+      "label_f": "#indecisive-under-pressure",
+      "label_m": "#indecisive-under-pressure",
+      "label_nb": "#indecisive-under-pressure",
       "description": "In tense moments, you freeze. Nudge will show you real data to help you decide calmly."
     },
     "negligente": {
-      "label": "#neglectful",
+      "label_f": "#neglectful",
+      "label_m": "#neglectful",
+      "label_nb": "#neglectful",
       "description": "You forget to check your positions. Nudge will take care of that and alert you when it matters."
     },
     "avessa-a-jargao": {
-      "label": "#jargon-averse",
+      "label_f": "#jargon-averse",
+      "label_m": "#jargon-averse",
+      "label_nb": "#jargon-averse",
       "description": "Technical terms paralyze you. Nudge will never use jargon without translating first."
     },
     "quer-seguranca": {
-      "label": "#wants-safety",
+      "label_f": "#wants-safety",
+      "label_m": "#wants-safety",
+      "label_nb": "#wants-safety",
       "description": "You want peace of mind with your money. Nudge monitors everything and alerts you when needed."
     },
     "curiosa": {
-      "label": "#curious",
+      "label_f": "#curious",
+      "label_m": "#curious",
+      "label_nb": "#curious",
       "description": "You want to learn! Nudge will bring educational content at your pace."
     },
     "calma-sob-pressao": {
-      "label": "#calm-under-pressure",
+      "label_f": "#calm-under-pressure",
+      "label_m": "#calm-under-pressure",
+      "label_nb": "#calm-under-pressure",
       "description": "You don't panic. Nudge will reinforce your confidence with real data."
     },
     "autonoma-inicial": {
-      "label": "#early-autonomous",
+      "label_f": "#early-autonomous",
+      "label_m": "#early-autonomous",
+      "label_nb": "#early-autonomous",
       "description": "You've already taken the first steps on your own. Nudge will help you go further."
     },
     "semi-autonoma": {
-      "label": "#semi-autonomous",
+      "label_f": "#semi-autonomous",
+      "label_m": "#semi-autonomous",
+      "label_nb": "#semi-autonomous",
       "description": "You started with someone's help — great beginning. Nudge helps you take the next steps alone."
     },
     "intermediaria": {
-      "label": "#intermediate",
+      "label_f": "#intermediate",
+      "label_m": "#intermediate",
+      "label_nb": "#intermediate",
       "description": "You already have a solid foundation. Nudge will show you more detailed data."
     },
     "reativa": {
-      "label": "#reactive",
+      "label_f": "#reactive",
+      "label_m": "#reactive",
+      "label_nb": "#reactive",
       "description": "You tend to act on impulse. Nudge will show you real data before any decision."
     },
     "atenta": {
-      "label": "#attentive",
+      "label_f": "#attentive",
+      "label_m": "#attentive",
+      "label_nb": "#attentive",
       "description": "You follow the market. Nudge will complement your attention with smart alerts."
     },
     "exploradora": {
-      "label": "#explorer",
+      "label_f": "#explorer",
+      "label_m": "#explorer",
+      "label_nb": "#explorer",
       "description": "You seek new opportunities. Nudge will help you explore safely."
     }
   },

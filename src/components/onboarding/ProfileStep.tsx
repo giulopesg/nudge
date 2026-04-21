@@ -61,7 +61,7 @@ export default function ProfileStep({ neurotags, goals = [], gender = 'f', onNex
         {visibleTraits.map((tag) => (
           <div key={tag} className="card rounded-lg p-4">
             <span className="font-mono text-[12px] font-semibold text-plum-light tracking-wider">
-              {t(`neurotags.${tag}.label`)}
+              {t(`neurotags.${tag}.label_${gender}`)}
             </span>
             <p className="mt-1 text-[13px] text-text-secondary leading-relaxed">
               {t(`neurotags.${tag}.description`)}

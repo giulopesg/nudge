@@ -61,6 +61,7 @@ function ItemSlot({ slot, onSelect }: {
 
 export default function CharacterSheet({ character, avatarSrc, onClose }: Props) {
   const { t } = useTranslation('dashboard');
+  const tOnb = useTranslation('onboarding').t;
   const { gender } = useDashboard();
   const suffix = genderSuffix(gender);
   const classTitle = t(`classes.${character.class.name}_${gender}`);
@@ -192,7 +193,7 @@ export default function CharacterSheet({ character, avatarSrc, onClose }: Props)
           </h3>
           <div className="flex flex-wrap gap-1.5">
             {visibleTraits.map((tag) => (
-              <span key={tag} className="trait-tag">#{tag}</span>
+              <span key={tag} className="trait-tag">{tOnb(`neurotags.${tag}.label_${gender}`)}</span>
             ))}
           </div>
         </div>
