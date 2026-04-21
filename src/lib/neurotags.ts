@@ -1,3 +1,14 @@
+export type Gender = 'f' | 'm' | 'nb';
+
+/** Returns the grammatical suffix for pt-BR gendered text. */
+export function genderSuffix(gender: Gender): string {
+  switch (gender) {
+    case 'f': return 'a';
+    case 'm': return 'o';
+    case 'nb': return 'e';
+  }
+}
+
 export type NeurotageId =
   | 'iniciante'
   | 'delegadora'
@@ -34,6 +45,7 @@ export type GoalId = 'reserva' | 'independencia' | 'aprender' | 'rendimento' | '
 
 export interface UserProfile {
   wallet: string;
+  gender: Gender;
   neurotags: NeurotageId[];
   answers: QuizAnswers;
   goals?: GoalId[];

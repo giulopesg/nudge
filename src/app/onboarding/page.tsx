@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import WalletButton from '@/components/WalletButton';
 import LanguageToggle from '@/components/LanguageToggle';
 import PermissionsStep from '@/components/onboarding/PermissionsStep';
@@ -11,8 +11,8 @@ import QuizStep from '@/components/onboarding/QuizStep';
 import GoalsStep from '@/components/onboarding/GoalsStep';
 import ProfileStep from '@/components/onboarding/ProfileStep';
 import RegistrationStep from '@/components/onboarding/RegistrationStep';
-import { generateNeurotags, type QuizAnswers, type NeurotageId, type GoalId } from '@/lib/neurotags';
-import { saveProfile, saveRegistration, completeActivity } from '@/lib/store';
+import { generateNeurotags, type QuizAnswers, type NeurotageId, type GoalId, type Gender } from '@/lib/neurotags';
+import { saveProfile, saveRegistration, completeActivity, getProfile } from '@/lib/store';
 import Link from 'next/link';
 
 type Step = 'permissions' | 'quiz' | 'goals' | 'profile' | 'registration';
@@ -22,16 +22,33 @@ export default function OnboardingPage() {
   const { t } = useTranslation();
   const { connected, publicKey } = useWallet();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [step, setStep] = useState<Step>('permissions');
   const [neurotags, setNeurotags] = useState<NeurotageId[]>([]);
   const [answers, setAnswers] = useState<QuizAnswers | null>(null);
+  const [gender, setGender] = useState<Gender>('f');
   const [goals, setGoals] = useState<GoalId[]>([]);
 
+  // Deep-link: ?step=registration or ?step=goals for users who already have a profile
+  useEffect(() => {
+    const stepParam = searchParams.get('step');
+    if (stepParam !== 'registration' && stepParam !== 'goals') return;
+    if (!publicKey) return;
+    const profile = getProfile(publicKey.toBase58());
+    if (!profile) return;
+    setNeurotags(profile.neurotags);
+    setAnswers(profile.answers ?? null);
+    setGender(profile.gender ?? 'f');
+    setGoals(profile.goals ?? []);
+    setStep(stepParam);
+  }, [searchParams, publicKey]);
+
   const handleQuizComplete = useCallback(
-    (quizAnswers: QuizAnswers) => {
+    (quizAnswers: QuizAnswers, quizGender: Gender) => {
       const tags = generateNeurotags(quizAnswers);
       setNeurotags(tags);
       setAnswers(quizAnswers);
+      setGender(quizGender);
       setStep('goals');
     },
     [],
@@ -44,6 +61,7 @@ export default function OnboardingPage() {
       if (publicKey && answers) {
         saveProfile({
           wallet: publicKey.toBase58(),
+          gender,
           neurotags,
           answers,
           goals: selectedGoals,
@@ -53,7 +71,7 @@ export default function OnboardingPage() {
 
       setStep('profile');
     },
-    [publicKey, answers, neurotags],
+    [publicKey, answers, gender, neurotags],
   );
 
   const handleRegistrationComplete = useCallback(
@@ -78,11 +96,13 @@ export default function OnboardingPage() {
     <div className="flex min-h-screen flex-col">
       {/* Header */}
       <header className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-surface-border">
-        <Link
-          href="/"
-          className="n2-gradient-text font-display text-[20px] sm:text-[22px] font-bold uppercase tracking-[0.06em]"
-        >
-          {t('brand.name')}
+        <Link href="/" className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
+          <span className="n2-gradient-text font-display text-[20px] sm:text-[28px] font-bold uppercase tracking-[0.06em]">
+            {t('brand.name')}
+          </span>
+          <span className="font-accent text-[11px] sm:text-[17px] text-plum">
+            {t('brand.byline')}
+          </span>
         </Link>
         <div className="flex items-center gap-1.5 sm:gap-3">
           <LanguageToggle />

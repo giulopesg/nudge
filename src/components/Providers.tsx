@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import {
   ConnectionProvider,
   WalletProvider,
@@ -13,12 +13,17 @@ import {
 
 import '@solana/wallet-adapter-react-ui/styles.css';
 import '@/lib/i18n';
+import { applyClientLanguage } from '@/lib/i18n';
 
 const RPC_ENDPOINT =
   process.env.NEXT_PUBLIC_HELIUS_RPC_URL ||
   'https://api.mainnet-beta.solana.com';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    applyClientLanguage();
+  }, []);
+
   const wallets = useMemo(
     () => [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
     [],

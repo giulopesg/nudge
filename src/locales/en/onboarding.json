@@ -5,10 +5,10 @@
     "canDo": {
       "title": "Nudge can:",
       "items": [
-        "Read your on-chain positions (public data)",
+        "Read your Kamino position on-chain (public data)",
         "Translate technical terms into plain language",
-        "Monitor your safety and alert you",
-        "Teach you about crypto at your pace"
+        "Adapt alerts and tips to your behavioral profile",
+        "Deploy Lyra with personalized recommendations"
       ]
     },
     "cantDo": {
@@ -25,7 +25,15 @@
   },
   "quiz": {
     "title": "Let's get to know you",
-    "subtitle": "5 quick questions. There are no right or wrong answers.",
+    "subtitle": "6 questions that reveal your behavioral profile. There are no right or wrong answers.",
+    "q0": {
+      "question": "How do you identify?",
+      "options": {
+        "f": "Female",
+        "m": "Male",
+        "nb": "Non-binary / Neutral"
+      }
+    },
     "q1": {
       "question": "Who set up your wallet?",
       "options": {

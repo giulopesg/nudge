@@ -25,18 +25,18 @@
     "heroPrefix": "Blockchain",
     "heroAccent": "is freedom.",
     "accentSubtitle": "Nudge teaches you to exercise yours",
-    "subtitle": "Translate, learn, and protect your DeFi positions. No jargon. No complexity. Just you and your money.",
+    "subtitle": "Your Kamino position translated, smart alerts from Lyra, and gamification that evolves with you. No jargon. No panic. Just you and your money.",
     "cta": "Get started",
     "ctaDemo": "See demo",
     "solanaFrontier": "SOLANA FRONTIER 2026"
   },
   "onboarding": {
     "title": "Let's get to know you",
-    "subtitle": "A few quick questions to personalize your experience."
+    "subtitle": "6 questions that reveal your profile, define your class, and personalize how Lyra talks to you."
   },
   "dashboard": {
     "title": "Your dashboard",
-    "subtitle": "Everything about your position, translated for you.",
+    "subtitle": "Your DeFi position, translated through behavioral intelligence.",
     "noPosition": "You don't have an active position on Kamino yet.",
     "noPositionHint": "When you do, Nudge will translate everything for you."
   },

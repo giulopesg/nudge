@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import LyraAvatar from '@/components/dashboard/LyraAvatar';
 import { useDashboard } from '@/contexts/DashboardContext';
+import { genderSuffix } from '@/lib/neurotags';
 import { getRecommendation } from '@/lib/lyraRecommendation';
 
 interface Message {
@@ -72,7 +73,8 @@ let msgCounter = 0;
 
 export default function NudgeChatPanel({ onClose, onTopicExplored, autoAction, onAutoActionConsumed }: Props) {
   const { t } = useTranslation('dashboard');
-  const { nudgeScore, portfolio, kaminoPosition, character, neurotags, goals } = useDashboard();
+  const { nudgeScore, portfolio, kaminoPosition, character, neurotags, goals, commProfile, gender } = useDashboard();
+  const suffix = genderSuffix(gender);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(true);
@@ -115,10 +117,25 @@ export default function NudgeChatPanel({ onClose, onTopicExplored, autoAction, o
     return related.filter((t) => !exploredRef.current.has(t)).slice(0, 3);
   }
 
+  // Build behavioral context snippet from character data
+  const buildBehavioralContext = useCallback((): string[] => {
+    const rec = getRecommendation({ nudgeScore, portfolio, kaminoPosition, character, neurotags, goals, commProfile });
+    return rec.contextKeys
+      .map((k) => t(`lyra.recommend.${k}`, { ...rec.params, defaultValue: '' }))
+      .filter(Boolean);
+  }, [nudgeScore, portfolio, kaminoPosition, character, neurotags, goals, commProfile, t]);
+
   const buildRecommendationReply = useCallback((): { text: string; followUpKeys: string[] } => {
-    const rec = getRecommendation({ nudgeScore, portfolio, kaminoPosition, character, neurotags, goals });
-    return { text: t(rec.key, rec.params), followUpKeys: rec.followUpKeys };
-  }, [nudgeScore, portfolio, kaminoPosition, character, neurotags, goals, t]);
+    const rec = getRecommendation({ nudgeScore, portfolio, kaminoPosition, character, neurotags, goals, commProfile });
+    const params = { ...rec.params, suffix };
+    const mainText = t(rec.key, params);
+    // Append only 1 context layer — pick most specific (skip classFrame, prefer behavioral)
+    const specificKeys = rec.contextKeys.filter((k) => !k.startsWith('classFrame'));
+    const bestKey = specificKeys[0] ?? rec.contextKeys[0];
+    const extra = bestKey ? t(`lyra.recommend.${bestKey}`, { ...params, defaultValue: '' }) : '';
+    const fullText = extra ? `${mainText}\n\n${extra}` : mainText;
+    return { text: fullText, followUpKeys: rec.followUpKeys };
+  }, [nudgeScore, portfolio, kaminoPosition, character, neurotags, goals, commProfile, suffix, t]);
 
   function sendMessage(text: string) {
     const userMsg: Message = { id: `user-${++msgCounter}`, role: 'user', text };
@@ -132,7 +149,11 @@ export default function NudgeChatPanel({ onClose, onTopicExplored, autoAction, o
       reply = rec.text;
       followUps = rec.followUpKeys;
     } else if (topic) {
-      reply = t(`lyra.topics.${topic}`);
+      const topicText = t(`lyra.topics.${topic}`);
+      // Enrich with 1 behavioral context layer when character exists
+      const ctxParts = buildBehavioralContext();
+      const ctxSnippet = ctxParts[1] || ctxParts[0]; // prefer non-class insight
+      reply = ctxSnippet ? `${topicText}\n\n${ctxSnippet}` : topicText;
       followUps = getFollowUps(topic);
     } else {
       reply = t('lyra.fallback');
@@ -188,8 +209,8 @@ export default function NudgeChatPanel({ onClose, onTopicExplored, autoAction, o
     <div className="animate-sheet-enter fixed bottom-[88px] left-3 right-3 sm:bottom-20 sm:left-auto sm:right-8 z-40 w-auto sm:w-[340px] max-h-[calc(100dvh-160px)] sm:max-h-[480px] flex flex-col rounded-2xl border border-surface-border bg-[#110e1a] shadow-2xl overflow-hidden">
       {/* Header with avatar */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-surface-border bg-[#13101e]">
-        <div className="flex-shrink-0 rounded-full border border-plum/30 shadow-[0_0_12px_var(--plum-glow)]">
-          <LyraAvatar size={36} glow="plum" />
+        <div className="flex-shrink-0 rounded-full border border-primary/30 shadow-[0_0_12px_var(--primary-glow)]">
+          <LyraAvatar size={36} />
         </div>
         <div className="flex-1 min-w-0">
           <p className="font-display text-[15px] font-bold text-foreground">{t('lyra.name')}</p>
@@ -223,13 +244,13 @@ export default function NudgeChatPanel({ onClose, onTopicExplored, autoAction, o
             <div className={`flex gap-2 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               {msg.role === 'lyra' && (
                 <div className="flex-shrink-0 mt-1">
-                  <LyraAvatar size={24} glow="plum" />
+                  <LyraAvatar size={24} />
                 </div>
               )}
               <div
                 className={`max-w-[80%] rounded-xl px-3 py-2 text-[13px] leading-relaxed ${
                   msg.role === 'lyra'
-                    ? 'bg-plum-muted text-foreground border border-plum/20'
+                    ? 'bg-primary-muted text-foreground border border-primary/20'
                     : 'bg-primary-muted text-foreground border border-primary/20'
                 }`}
               >
@@ -261,7 +282,7 @@ export default function NudgeChatPanel({ onClose, onTopicExplored, autoAction, o
             <button
               key={topic}
               onClick={() => handleSuggestion(topic)}
-              className="rounded-full border border-plum/25 bg-plum-muted/60 px-2.5 py-1 font-mono text-[11px] text-plum-light hover:bg-plum/20 transition-colors"
+              className="rounded-full border border-primary/25 bg-primary-muted/60 px-2.5 py-1 font-mono text-[11px] text-primary hover:bg-primary/20 transition-colors"
             >
               {t(`lyra.suggestions.${topic}`)}
             </button>

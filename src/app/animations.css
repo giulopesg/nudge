@@ -66,7 +66,7 @@
 
 @keyframes lyra-glow {
   0%, 100% { filter: drop-shadow(0 0 6px var(--primary-glow)); }
-  50% { filter: drop-shadow(0 0 10px var(--plum-glow)); }
+  50% { filter: drop-shadow(0 0 10px var(--primary-glow)); }
 }
 
 .animate-lyra-float { animation: lyra-float 3s ease-in-out infinite; }

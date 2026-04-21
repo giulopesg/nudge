@@ -3,6 +3,8 @@
 import { useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Character } from '@/lib/rpg';
+import { useDashboard } from '@/contexts/DashboardContext';
+import { genderSuffix } from '@/lib/neurotags';
 
 interface Props {
   character: Character;
@@ -11,6 +13,8 @@ interface Props {
 
 export default function LevelUpModal({ character, onClose }: Props) {
   const { t } = useTranslation('dashboard');
+  const { gender } = useDashboard();
+  const suffix = genderSuffix(gender);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); },
@@ -47,7 +51,7 @@ export default function LevelUpModal({ character, onClose }: Props) {
 
         {/* Tier + class */}
         <p className="mt-2 font-accent text-[15px] text-plum">
-          {t(`tiers.${character.tier.name}`)}
+          {t(`tiers.${character.tier.name}`, { suffix })}
         </p>
         <p className="mt-1 text-[14px] text-text-secondary">
           {character.class.title}

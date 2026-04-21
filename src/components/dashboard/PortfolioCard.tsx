@@ -67,10 +67,9 @@ export default function PortfolioCard({ portfolio, persona }: Props) {
       <div className="card rounded-2xl">
         {/* Header — mixed-font inline */}
         <div className="flex items-center justify-between flex-wrap gap-2">
-          <h3>
-            <span className="font-display text-[22px] font-bold">{t('portfolio.titlePrefix')}</span>
-            {' '}
-            <span className="font-display text-[22px] font-normal italic text-text-muted">{t('portfolio.titleAccent')}</span>
+          <h3 className="flex items-baseline gap-3">
+            <span className="font-display text-[22px] tracking-[0.02em] font-bold">{t('portfolio.titlePrefix')}</span>
+            <span className="font-display text-[22px] tracking-[0.02em] font-normal italic text-text-muted">{t('portfolio.titleAccent')}</span>
           </h3>
           <span className="font-display text-[22px] sm:text-[28px] font-bold text-foreground">
             {formatUsd(portfolio.totalValueUsd)}

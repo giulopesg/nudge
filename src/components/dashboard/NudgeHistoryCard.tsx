@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Nudge, NudgeSeverity } from '@/lib/nudges';
 import type { CommProfile } from '@/lib/communication';
+import { useDashboard } from '@/contexts/DashboardContext';
+import { genderSuffix } from '@/lib/neurotags';
 
 interface Props {
   nudges: Nudge[];
@@ -61,6 +63,8 @@ function getNudgeBodyKey(nudge: Nudge): string {
 
 export default function NudgeHistoryCard({ nudges, unreadCount, commProfile, onMarkRead, showAll = false }: Props) {
   const { t } = useTranslation('nudges');
+  const { gender } = useDashboard();
+  const suffix = genderSuffix(gender);
   const [expanded, setExpanded] = useState(false);
 
   if (nudges.length === 0) return null;
@@ -102,14 +106,14 @@ export default function NudgeHistoryCard({ nudges, unreadCount, commProfile, onM
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline justify-between gap-2">
                     <h4 className="font-mono text-[13px] font-semibold text-foreground">
-                      {t(`${titleKey}.${commProfile}`, nudge.data as Record<string, string>)}
+                      {t(`${titleKey}.${commProfile}`, { ...(nudge.data as Record<string, string>), suffix })}
                     </h4>
                     <span className="flex-shrink-0 font-mono text-[12px] text-text-muted">
                       {formatTimeAgo(nudge.timestamp, t)}
                     </span>
                   </div>
                   <p className="mt-1 text-[13px] leading-relaxed text-text-secondary">
-                    {t(`${bodyKey}.${commProfile}`, nudge.data as Record<string, string>)}
+                    {t(`${bodyKey}.${commProfile}`, { ...(nudge.data as Record<string, string>), suffix })}
                   </p>
                 </div>
               </div>

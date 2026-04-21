@@ -10,8 +10,8 @@ export default function SectionLanding() {
         <SectionTitle>Landing Hero</SectionTitle>
         <div className="n2-card" style={{ padding: '72px 40px', textAlign: 'center' as const }}>
           <div className="n2-divider" style={{ width: 48, margin: '0 auto 28px' }} />
-          <h2 style={{ lineHeight: 1.1 }}>
-            <span style={{ fontFamily: strong, fontSize: 48, fontWeight: 700, color: 'var(--n2-text)' }}>Blockchain </span>
+          <h2 style={{ lineHeight: 1.1, display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 14 }}>
+            <span style={{ fontFamily: strong, fontSize: 48, fontWeight: 700, color: 'var(--n2-text)' }}>Blockchain</span>
             <span className="n2-gradient-text" style={{ fontFamily: accent, fontSize: 46, fontWeight: 400 }}>is freedom</span>
           </h2>
           <p style={{ fontFamily: accent, fontSize: 22, color: 'var(--n2-accent)', marginTop: 12 }}>

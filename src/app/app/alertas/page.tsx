@@ -25,10 +25,9 @@ export default function AlertasPage() {
   return (
     <>
       <div className="flex items-center justify-between">
-        <h1>
-          <span className="font-display text-[22px] font-bold">{t('alertas.titlePrefix')}</span>
-          {' '}
-          <span className="font-display text-[22px] font-normal italic text-text-muted">{t('alertas.titleAccent')}</span>
+        <h1 className="flex items-baseline gap-3">
+          <span className="font-display text-[22px] tracking-[0.02em] font-bold">{t('alertas.titlePrefix')}</span>
+          <span className="font-display text-[22px] tracking-[0.02em] font-normal italic text-text-muted">{t('alertas.titleAccent')}</span>
         </h1>
         {unreadCount > 0 && (
           <button
@@ -66,9 +65,14 @@ export default function AlertasPage() {
             showAll
           />
         ) : (
-          <p className="mt-8 text-center text-[15px] text-text-muted">
-            {t('alertas.empty')}
-          </p>
+          <div className="card rounded-2xl border-primary/20 bg-primary/5 text-center">
+            <p className="font-display text-[17px] font-bold text-text-secondary">
+              {t('alertas.emptyTitle')}
+            </p>
+            <p className="mt-2 text-[14px] text-text-muted">
+              {t('alertas.emptyDesc')}
+            </p>
+          </div>
         )}
       </div>
     </>

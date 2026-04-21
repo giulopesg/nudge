@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { SectionTitle, Label, strong, accent, mono } from './helpers';
 
 export default function SectionFeatures() {
@@ -16,45 +17,31 @@ export default function SectionFeatures() {
             <div>
               <Label>Floating Button</Label>
               <div style={{ display: 'flex', alignItems: 'center', gap: 28, marginTop: 16 }}>
-                {/* Inactive state — primary glow */}
-                <div className="n2-animate-float" style={{ display: 'flex', flexDirection: 'column' as const, alignItems: 'center', gap: 6 }}>
-                  <div style={{ width: 56, height: 56, borderRadius: '50%', border: '2px solid rgba(163,102,255,0.4)', background: 'linear-gradient(135deg, #1a1028, #0d0b15)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 24px var(--n2-primary-glow)', overflow: 'hidden' }}>
-                    <svg viewBox="0 0 56 56" width="56" height="56" style={{ borderRadius: '50%' }}>
-                      <defs><radialGradient id="lyra-bg-p"><stop offset="0%" stopColor="#1a1028" /><stop offset="100%" stopColor="#0d0b15" /></radialGradient></defs>
-                      <circle cx="28" cy="28" r="28" fill="url(#lyra-bg-p)" />
-                      <circle cx="28" cy="20" r="9" fill="#2a1f3e" />
-                      <path d="M18 19c2-8 18-8 20 0" fill="#00D4AA" opacity="0.7" />
-                      <circle cx="25" cy="21" r="1.5" fill="#e8dff5" /><circle cx="31" cy="21" r="1.5" fill="#e8dff5" />
-                      <circle cx="25.8" cy="20.6" r="0.5" fill="white" /><circle cx="31.8" cy="20.6" r="0.5" fill="white" />
-                      <path d="M26 24.5 Q28 26 30 24.5" fill="none" stroke="#e8dff5" strokeWidth="0.8" opacity="0.6" />
-                      <ellipse cx="28" cy="40" rx="12" ry="14" fill="#2a1f3e" />
-                    </svg>
+                {/* Inactive state — dim, no pulse */}
+                <div style={{ display: 'flex', flexDirection: 'column' as const, alignItems: 'center', gap: 6 }}>
+                  <div style={{ position: 'relative', width: 56, height: 56, borderRadius: '50%', border: '2px solid rgba(163,102,255,0.2)', background: 'linear-gradient(135deg, #1a1028, #0d0b15)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 8px rgba(163,102,255,0.08)', overflow: 'hidden', opacity: 0.6 }}>
+                    <Image src="/lyra-avatar.png" alt="Lyra" width={56} height={56} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 15%', transform: 'scale(1.15)', filter: 'grayscale(0.4) brightness(0.7)' }} />
                   </div>
-                  <span style={{ fontFamily: mono, fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: 'var(--n2-text-muted)', textTransform: 'uppercase' as const }}>LYRA</span>
-                  <span style={{ fontFamily: mono, fontSize: 9, color: 'var(--n2-text-muted)', opacity: 0.6 }}>INACTIVE</span>
+                  <span style={{ fontFamily: mono, fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: 'var(--n2-text-muted)', textTransform: 'uppercase' as const, opacity: 0.5 }}>LYRA</span>
+                  <span style={{ fontFamily: mono, fontSize: 9, color: 'var(--n2-text-muted)', opacity: 0.4 }}>IDLE</span>
                 </div>
-                {/* Active state — plum glow */}
+                {/* Active state — vivid glow + float + notification dot */}
                 <div className="n2-animate-float" style={{ display: 'flex', flexDirection: 'column' as const, alignItems: 'center', gap: 6 }}>
-                  <div style={{ width: 56, height: 56, borderRadius: '50%', border: '2px solid rgba(181,122,255,0.6)', background: 'linear-gradient(135deg, #1a1028, #0d0b15)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 24px rgba(181,122,255,0.3)', overflow: 'hidden' }}>
-                    <svg viewBox="0 0 56 56" width="56" height="56" style={{ borderRadius: '50%' }}>
-                      <defs><radialGradient id="lyra-bg-a"><stop offset="0%" stopColor="#1a1028" /><stop offset="100%" stopColor="#0d0b15" /></radialGradient></defs>
-                      <circle cx="28" cy="28" r="28" fill="url(#lyra-bg-a)" />
-                      <circle cx="28" cy="20" r="9" fill="#2a1f3e" />
-                      <path d="M18 19c2-8 18-8 20 0" fill="#A366FF" opacity="0.7" />
-                      <circle cx="25" cy="21" r="1.5" fill="#e8dff5" /><circle cx="31" cy="21" r="1.5" fill="#e8dff5" />
-                      <circle cx="25.8" cy="20.6" r="0.5" fill="white" /><circle cx="31.8" cy="20.6" r="0.5" fill="white" />
-                      <path d="M26 24.5 Q28 26 30 24.5" fill="none" stroke="#e8dff5" strokeWidth="0.8" opacity="0.6" />
-                      <ellipse cx="28" cy="40" rx="12" ry="14" fill="#2a1f3e" />
-                    </svg>
+                  <div style={{ position: 'relative', width: 56, height: 56 }}>
+                    <div className="n2-animate-bloom" style={{ width: 56, height: 56, borderRadius: '50%', border: '2px solid rgba(181,122,255,0.7)', background: 'linear-gradient(135deg, #1a1028, #0d0b15)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 24px rgba(181,122,255,0.35), 0 0 48px rgba(163,102,255,0.15)', overflow: 'hidden' }}>
+                      <Image src="/lyra-avatar.png" alt="Lyra" width={56} height={56} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 15%', transform: 'scale(1.15)' }} />
+                    </div>
+                    {/* Notification dot */}
+                    <div className="n2-animate-breathe" style={{ position: 'absolute', top: 0, right: 0, width: 14, height: 14, borderRadius: '50%', background: 'var(--n2-accent)', border: '2px solid var(--n2-bg)', boxShadow: '0 0 8px var(--n2-accent-glow)' }} />
                   </div>
-                  <span style={{ fontFamily: mono, fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: 'var(--n2-text-muted)', textTransform: 'uppercase' as const }}>LYRA</span>
-                  <span style={{ fontFamily: mono, fontSize: 9, color: 'var(--n2-xp)', opacity: 0.8 }}>ACTIVE</span>
+                  <span style={{ fontFamily: mono, fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: 'var(--n2-primary)', textTransform: 'uppercase' as const }}>LYRA</span>
+                  <span style={{ fontFamily: mono, fontSize: 9, color: 'var(--n2-accent)', fontWeight: 600 }}>ALERT</span>
                 </div>
               </div>
               <div style={{ marginTop: 20 }}>
-                <p style={{ fontFamily: strong, fontSize: 15, fontWeight: 600, color: 'var(--n2-text)' }}>SVG avatar + animated float</p>
+                <p style={{ fontFamily: strong, fontSize: 15, fontWeight: 600, color: 'var(--n2-text)' }}>Avatar image + animated float</p>
                 <p style={{ fontFamily: strong, fontSize: 14, fontWeight: 400, color: 'var(--n2-text-muted)', marginTop: 4, lineHeight: 1.6 }}>
-                  Teal hair (inactive) &rarr; Orchid hair (active). Glow matches state. Fixed position, bottom-right corner.
+                  LYRA.png illustration. Glow matches state. Fixed position, bottom-right corner.
                 </p>
               </div>
             </div>
@@ -66,13 +53,7 @@ export default function SectionFeatures() {
                 {/* Header with avatar */}
                 <div className="n2-chat-header">
                   <div style={{ width: 36, height: 36, borderRadius: '50%', border: '1px solid rgba(181,122,255,0.3)', boxShadow: '0 0 12px rgba(181,122,255,0.2)', overflow: 'hidden', flexShrink: 0 }}>
-                    <svg viewBox="0 0 36 36" width="36" height="36">
-                      <circle cx="18" cy="18" r="18" fill="#1a1028" />
-                      <circle cx="18" cy="13" r="6" fill="#2a1f3e" />
-                      <path d="M12 12c1-5 11-5 12 0" fill="#A366FF" opacity="0.7" />
-                      <circle cx="16" cy="13.5" r="1" fill="#e8dff5" /><circle cx="20" cy="13.5" r="1" fill="#e8dff5" />
-                      <ellipse cx="18" cy="26" rx="8" ry="9" fill="#2a1f3e" />
-                    </svg>
+                    <Image src="/lyra-avatar.png" alt="Lyra" width={36} height={36} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 15%', transform: 'scale(1.15)' }} />
                   </div>
                   <div style={{ flex: 1 }}>
                     <p style={{ fontFamily: strong, fontSize: 15, fontWeight: 700, color: 'var(--n2-text)' }}>Lyra</p>
@@ -91,7 +72,7 @@ export default function SectionFeatures() {
                 <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
                   <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
                     <div style={{ width: 24, height: 24, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, marginTop: 2 }}>
-                      <svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="12" fill="#1a1028" /><circle cx="12" cy="9" r="4" fill="#2a1f3e" /><path d="M8 8c1-3 7-3 8 0" fill="#A366FF" opacity="0.7" /><ellipse cx="12" cy="17" rx="5" ry="6" fill="#2a1f3e" /></svg>
+                      <Image src="/lyra-avatar.png" alt="Lyra" width={24} height={24} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 15%', transform: 'scale(1.15)' }} />
                     </div>
                     <div className="n2-msg-lyra">Hi! I&apos;m Lyra, your personal guide in the DeFi universe.</div>
                   </div>
@@ -100,7 +81,7 @@ export default function SectionFeatures() {
                   </div>
                   <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
                     <div style={{ width: 24, height: 24, borderRadius: '50%', overflow: 'hidden', flexShrink: 0, marginTop: 2 }}>
-                      <svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="12" fill="#1a1028" /><circle cx="12" cy="9" r="4" fill="#2a1f3e" /><path d="M8 8c1-3 7-3 8 0" fill="#A366FF" opacity="0.7" /><ellipse cx="12" cy="17" rx="5" ry="6" fill="#2a1f3e" /></svg>
+                      <Image src="/lyra-avatar.png" alt="Lyra" width={24} height={24} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 15%', transform: 'scale(1.15)' }} />
                     </div>
                     <div>
                       <div className="n2-msg-lyra">Health Factor measures how safe your loan is. Above 2.0 is safe!</div>
@@ -188,8 +169,8 @@ export default function SectionFeatures() {
         <SectionTitle>XP Journey</SectionTitle>
         <div className="n2-card" style={{ padding: 28 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-            <div>
-              <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 700, color: 'var(--n2-text)' }}>First </span>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+              <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 700, color: 'var(--n2-text)' }}>First</span>
               <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 400, fontStyle: 'italic', color: 'var(--n2-text-muted)' }}>steps</span>
             </div>
             <span style={{ fontFamily: mono, fontSize: 13, color: 'var(--n2-primary)' }}>2/4</span>

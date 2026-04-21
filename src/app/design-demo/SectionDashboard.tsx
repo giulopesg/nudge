@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { SectionTitle, ScoreRing, MiniECG, strong, accent, mono } from './helpers';
 
 export default function SectionDashboard() {
@@ -9,8 +10,8 @@ export default function SectionDashboard() {
 
       {/* Title bar — matches real dashboard header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-        <h3>
-          <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 700, color: 'var(--n2-text)' }}>Your </span>
+        <h3 style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+          <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 700, color: 'var(--n2-text)' }}>Your</span>
           <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 400, fontStyle: 'italic', color: 'var(--n2-text-muted)' }}>dashboard</span>
         </h3>
         <span className="n2-btn-ghost" style={{ padding: '6px 16px', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'var(--n2-xp)', borderColor: 'rgba(255,215,0,0.3)' }}>
@@ -28,8 +29,8 @@ export default function SectionDashboard() {
         </p>
       </div>
 
-      {/* StatusHero — with Lyra button indicator */}
-      <div className="n2-hero-safe" style={{ position: 'relative', padding: 40, marginBottom: 16, textAlign: 'center' as const }}>
+      {/* StatusHero — matches real StatusHero.tsx */}
+      <div className="n2-hero-safe" style={{ position: 'relative', padding: '24px 24px 20px', marginBottom: 16 }}>
         {/* Lyra button indicator — top right */}
         <div style={{
           position: 'absolute', top: 12, right: 12,
@@ -40,32 +41,44 @@ export default function SectionDashboard() {
         }}>
           <div style={{
             width: 20, height: 20, borderRadius: '50%',
-            background: 'linear-gradient(135deg, #1a0a2e, #2a0e3e)',
+            overflow: 'hidden',
             border: '1px solid rgba(163,102,255,0.4)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 10, color: '#A366FF',
-          }}>&#10024;</div>
+            boxShadow: '0 0 12px rgba(163,102,255,0.2)',
+          }}>
+            <Image src="/lyra-avatar.png" alt="Lyra" width={20} height={20} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 15%', transform: 'scale(1.15)' }} />
+          </div>
           <span style={{ fontFamily: mono, fontSize: 10, color: 'rgba(196,161,255,0.9)' }}>Ask for a tip</span>
         </div>
 
-        <ScoreRing score={78} status="safe" />
-        <h3 style={{ marginTop: 20 }}>
-          <span style={{ fontFamily: strong, fontSize: 28, fontWeight: 700, color: 'var(--n2-safe)' }}>All </span>
-          <span style={{ fontFamily: strong, fontSize: 28, fontWeight: 400, fontStyle: 'italic', color: 'var(--n2-safe)' }}>Good</span>
-        </h3>
-        <p style={{ fontFamily: strong, fontSize: 17, fontWeight: 400, color: 'var(--n2-text-secondary)', marginTop: 12, maxWidth: 460, margin: '12px auto 0', lineHeight: 1.7 }}>
-          Your collateral is healthy and your portfolio is balanced. You can breathe easy.
-        </p>
-      </div>
+        <div style={{ textAlign: 'center' as const }}>
+          <ScoreRing score={78} status="safe" />
+          <h2 style={{ marginTop: 12, display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 12 }}>
+            <span style={{ fontFamily: strong, fontSize: 28, fontWeight: 700, letterSpacing: '0.02em', color: 'var(--n2-safe)' }}>All</span>
+            <span style={{ fontFamily: strong, fontSize: 28, fontWeight: 400, fontStyle: 'italic', letterSpacing: '0.02em', color: 'var(--n2-safe)' }}>Good</span>
+          </h2>
+          <p style={{ fontFamily: strong, fontSize: 15, fontWeight: 400, color: 'var(--n2-text-secondary)', marginTop: 8, maxWidth: 460, margin: '8px auto 0', lineHeight: 1.7 }}>
+            Your collateral is healthy and your portfolio is balanced. You can breathe easy.
+          </p>
+        </div>
 
-      {/* ECG */}
-      <MiniECG />
+        {/* ECG heartbeat — Nudge Score pulse */}
+        <div style={{ marginTop: 16 }}>
+          <MiniECG />
+        </div>
+
+        {/* Score explainer hint — matches real ScoreExplainer */}
+        <div style={{ marginTop: 12, textAlign: 'center' as const }}>
+          <span style={{ fontFamily: mono, fontSize: 11, color: 'var(--n2-primary)', letterSpacing: '0.06em', cursor: 'pointer', opacity: 0.7 }}>
+            ▾ How is this calculated?
+          </span>
+        </div>
+      </div>
 
       {/* Portfolio Card — NEW, matching real PortfolioCard */}
       <div className="n2-card" style={{ marginTop: 16, padding: 28 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
-            <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 700, color: 'var(--n2-text)' }}>Your </span>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+            <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 700, color: 'var(--n2-text)' }}>Your</span>
             <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 400, fontStyle: 'italic', color: 'var(--n2-text-muted)' }}>portfolio</span>
           </div>
         </div>
@@ -118,8 +131,8 @@ export default function SectionDashboard() {
       {/* Kamino Card — matches real KaminoCard layout */}
       <div className="n2-card" style={{ marginTop: 16, padding: 28 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
-            <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 700, color: 'var(--n2-text)' }}>Kamino </span>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+            <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 700, color: 'var(--n2-text)' }}>Kamino</span>
             <span style={{ fontFamily: strong, fontSize: 22, fontWeight: 400, fontStyle: 'italic', color: 'var(--n2-text-muted)' }}>your loan</span>
           </div>
           <span className="n2-badge n2-badge-safe">SAFE</span>

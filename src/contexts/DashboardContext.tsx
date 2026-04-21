@@ -13,7 +13,7 @@ import { resolveCommProfile, type CommProfile } from '@/lib/communication';
 import { generateInsights, type Insight } from '@/lib/insights';
 import { getDemoPersona, type DemoPersona } from '@/lib/demo';
 import { calcGoalProgress, buildProgressContext, type GoalProgress } from '@/lib/goals';
-import type { GoalId, NeurotageId } from '@/lib/neurotags';
+import type { GoalId, NeurotageId, Gender } from '@/lib/neurotags';
 import type { ActivityId } from '@/lib/rpg';
 import type { Character } from '@/lib/rpg';
 import type { DemoPersonaId } from '@/lib/demo';
@@ -31,6 +31,7 @@ export interface DashboardContextValue {
   refetch: () => void;
 
   // Profile
+  gender: Gender;
   neurotags: NeurotageId[];
   activities: ActivityId[];
   activityDates: Record<string, string>;
@@ -98,6 +99,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
   const persona = getDemoPersona(demoParam);
   const isDemo = persona !== null;
 
+  const [gender, setGender] = useState<Gender>('f');
   const [neurotags, setNeurotags] = useState<NeurotageId[]>([]);
   const [activities, setActivities] = useState<ActivityId[]>([]);
   const [activityDates, setActivityDates] = useState<Record<string, string>>({});
@@ -110,6 +112,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
   // Load profile data
   useEffect(() => {
     if (persona) {
+      setGender(persona.gender);
       setNeurotags(persona.neurotags);
       setActivities(persona.activities);
       setActivityDates(persona.activityDates);
@@ -121,6 +124,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
       const wallet = publicKey.toBase58();
       const profile = getProfile(wallet);
       if (profile) {
+        setGender(profile.gender ?? 'f');
         setNeurotags(profile.neurotags);
         setGoals(profile.goals ?? []);
       }
@@ -307,7 +311,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
 
   const value = useMemo<DashboardContextValue>(() => ({
     data, loading, error, refetch,
-    neurotags, activities, activityDates, goals, topicsRead, hasProfile,
+    gender, neurotags, activities, activityDates, goals, topicsRead, hasProfile,
     isDemo, persona,
     commProfile, nudgeScore, portfolio, kaminoPosition, healthFactor, hasKamino,
     insights, goalProgressList, character,
@@ -319,7 +323,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
     connected, showData,
   }), [
     data, loading, error, refetch,
-    neurotags, activities, activityDates, goals, topicsRead, hasProfile,
+    gender, neurotags, activities, activityDates, goals, topicsRead, hasProfile,
     isDemo, persona,
     commProfile, nudgeScore, portfolio, kaminoPosition, healthFactor, hasKamino,
     insights, goalProgressList, character,

@@ -8,6 +8,20 @@
     "hours": "{{count}}h",
     "days": "{{count}}d"
   },
+  "welcome": {
+    "title": {
+      "gentle": "Bem-vind{{suffix}} ao Nudge!",
+      "encouraging": "Bem-vind{{suffix}} ao Nudge!",
+      "direct": "Nudge ativado",
+      "technical": "Nudge: sistema ativo"
+    },
+    "body": {
+      "gentle": "Comece criando seu perfil para receber dicas personalizadas.",
+      "encouraging": "Comece criando seu perfil para receber dicas personalizadas.",
+      "direct": "Crie seu perfil para ativar alertas personalizados.",
+      "technical": "Perfil necessário para calibrar alertas."
+    }
+  },
   "hf-alert": {
     "title": {
       "urgent": {

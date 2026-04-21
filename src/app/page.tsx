@@ -36,11 +36,10 @@ function LandingContent() {
           <div className="n2-divider mx-auto" style={{ width: 48 }} />
 
           {/* Mixed-font heading */}
-          <h1 className="mt-7 leading-[1.1]">
+          <h1 className="mt-7 leading-[1.1] flex items-baseline gap-3 justify-center">
             <span className="font-display text-3xl sm:text-5xl font-bold">
               {t('landing.heroPrefix')}
             </span>
-            {' '}
             <span className="n2-gradient-text font-accent text-[30px] sm:text-[46px]">
               {t('landing.heroAccent')}
             </span>

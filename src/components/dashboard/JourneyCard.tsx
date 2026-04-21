@@ -74,17 +74,17 @@ function GoalCard({ progress, onOpenEducation, t }: {
 
   return (
     <div className={`goal-card ${isDone ? 'goal-card-done' : ''}`}>
-      <div className="flex items-center justify-between mb-2">
-        <p className={`text-[14px] font-semibold leading-snug ${isDone ? 'text-text-muted line-through' : 'text-foreground'}`}>
+      <div className="flex items-start justify-between mb-2">
+        <p className={`text-[15px] font-semibold leading-snug ${isDone ? 'text-text-muted line-through' : 'text-foreground'}`}>
           {isDone && <span className="mr-1.5 text-safe">&#10003;</span>}
           {t(`options.${progress.goalId}.label`)}
         </p>
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <span className="font-mono text-[11px] text-xp">
-            {t('goalTotalXp', { xp: calcGoalTotalXp(progress.goalId) })}
-          </span>
-          <span className="font-mono text-[12px] text-text-muted">
+        <div className="flex flex-col items-end gap-0.5 flex-shrink-0">
+          <span className="font-mono text-[13px] text-text-muted">
             {t('stepsCount', { completed: progress.completed, total: progress.total })}
+          </span>
+          <span className="font-mono text-[12px] text-xp">
+            {t('goalTotalXp', { xp: calcGoalTotalXp(progress.goalId) })}
           </span>
         </div>
       </div>
@@ -109,7 +109,7 @@ function GoalCard({ progress, onOpenEducation, t }: {
                 <button
                   key={step.id}
                   onClick={() => onOpenEducation(step.topicId!)}
-                  className="rounded-md bg-plum-muted px-2 py-0.5 font-mono text-[11px] text-plum-light hover:bg-plum/20 transition-colors"
+                  className="rounded-md bg-plum-muted px-2 py-0.5 font-mono text-[12px] text-plum-light hover:bg-plum/20 transition-colors"
                 >
                   {t(`steps.${step.id}`)} <span className="text-xp">{t('stepXp', { xp: step.xp })}</span> &rarr;
                 </button>
@@ -123,7 +123,7 @@ function GoalCard({ progress, onOpenEducation, t }: {
                   key={step.id}
                   href={href}
                   {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  className="rounded-md bg-plum-muted px-2 py-0.5 font-mono text-[11px] text-plum-light hover:bg-plum/20 transition-colors"
+                  className="rounded-md bg-plum-muted px-2 py-0.5 font-mono text-[12px] text-plum-light hover:bg-plum/20 transition-colors"
                 >
                   {t(`steps.${step.id}`)} <span className="text-xp">{t('stepXp', { xp: step.xp })}</span> &rarr;
                 </a>
@@ -133,7 +133,7 @@ function GoalCard({ progress, onOpenEducation, t }: {
             return (
               <span
                 key={step.id}
-                className="rounded-md bg-surface-hover px-2 py-0.5 font-mono text-[11px] text-text-muted"
+                className="rounded-md bg-surface-hover px-2 py-0.5 font-mono text-[12px] text-text-muted"
               >
                 {t(`steps.${step.id}`)} <span className="text-xp">{t('stepXp', { xp: step.xp })}</span>
               </span>
@@ -163,10 +163,9 @@ export default function JourneyCard({ goals, progressList, onOpenEducation }: Pr
     <div className="card rounded-2xl">
       {/* Header — mixed-font title + status badge */}
       <div className="flex items-center justify-between flex-wrap gap-2">
-        <h3>
-          <span className="font-display text-[22px] font-bold">{t('journeyTitlePrefix')}</span>
-          {' '}
-          <span className="font-display text-[22px] font-normal italic text-text-muted">{t('journeyTitleAccent')}</span>
+        <h3 className="flex items-baseline gap-3">
+          <span className="font-display text-[22px] tracking-[0.02em] font-bold">{t('journeyTitlePrefix')}</span>
+          <span className="font-display text-[22px] tracking-[0.02em] font-normal italic text-text-muted">{t('journeyTitleAccent')}</span>
         </h3>
         <span className={`status-badge ${styles.badge}`}>
           {percent}% &middot; {t(`journeyStatus.${statusKey}`)}
@@ -194,15 +193,6 @@ export default function JourneyCard({ goals, progressList, onOpenEducation }: Pr
         ))}
       </div>
 
-      {/* CTA */}
-      {percent < 100 && (
-        <a
-          href="/app/jornada"
-          className="n2-btn-primary mt-4 block w-full text-center"
-        >
-          {t('goalCta')}
-        </a>
-      )}
     </div>
   );
 }

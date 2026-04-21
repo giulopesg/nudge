@@ -42,23 +42,32 @@ const resources = {
   },
 };
 
-function detectLanguage(): string {
-  if (typeof window === 'undefined') return 'en';
-  const stored = localStorage.getItem('nudge:lang');
-  if (stored && stored in resources) return stored;
-  const browserLang = navigator.language;
-  if (browserLang.startsWith('pt')) return 'pt-BR';
-  return 'en';
-}
-
+// Always init with pt-BR so SSR and client first-render match.
+// Client-side language preference is applied after hydration via useClientLanguage.
 i18n.use(initReactI18next).init({
   resources,
-  lng: detectLanguage(),
+  lng: 'pt-BR',
   fallbackLng: 'en',
   defaultNS: 'common',
   interpolation: {
     escapeValue: false,
   },
 });
+
+/**
+ * Call once after mount to switch to the user's stored/browser language.
+ * This avoids hydration mismatches since SSR always renders pt-BR.
+ */
+export function applyClientLanguage() {
+  if (typeof window === 'undefined') return;
+  const stored = localStorage.getItem('nudge:lang');
+  if (stored && stored in resources) {
+    if (i18n.language !== stored) i18n.changeLanguage(stored);
+    return;
+  }
+  const browserLang = navigator.language;
+  const detected = browserLang.startsWith('pt') ? 'pt-BR' : 'en';
+  if (i18n.language !== detected) i18n.changeLanguage(detected);
+}
 
 export default i18n;

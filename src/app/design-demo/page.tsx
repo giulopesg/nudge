@@ -18,7 +18,7 @@ const COPY = {
     tagline: 'made by a woman, for all women',
     philosophy: 'Bioluminescence, not neon. Bloom, not glow. Breath, not glitch. Feminine power encoded in every pixel.',
     caseTitle: 'The Case',
-    caseDescription: 'Nudge is a behavioral finance companion for women navigating DeFi on Solana. It translates lending positions into human language, builds financial confidence through gamification, and sends proactive alerts via Telegram — so no one gets liquidated in silence.',
+    caseDescription: 'Nudge is a behavioral finance companion for DeFi on Solana. It reads your Kamino position, profiles your financial personality through neuroscience quizzes, assigns an RPG class with stats and inventory, and deploys Lyra \u2014 an AI guide that adapts to your behavior and position.',
     closing1: 'She entered the room where they said she didn\u2019t belong.',
     closing2: 'She didn\u2019t ask for permission \u2014',
     closing3: 'she just understood the code.',
@@ -34,7 +34,7 @@ const COPY = {
     tagline: 'feito por uma mulher, para todas',
     philosophy: 'Bioluminesc\u00EAncia, n\u00E3o neon. Florescer, n\u00E3o brilhar. Respiro, n\u00E3o glitch. Poder feminino codificado em cada pixel.',
     caseTitle: 'O Case',
-    caseDescription: 'O Nudge \u00E9 um companheiro de finan\u00E7as comportamentais para mulheres navegando DeFi na Solana. Ele traduz posi\u00E7\u00F5es de empr\u00E9stimo em linguagem humana, constr\u00F3i confian\u00E7a financeira com gamifica\u00E7\u00E3o e envia alertas proativos via Telegram \u2014 para que ningu\u00E9m seja liquidada em sil\u00EAncio.',
+    caseDescription: 'O Nudge \u00E9 um companheiro de finan\u00E7as comportamentais para DeFi na Solana. Ele l\u00EA sua posi\u00E7\u00E3o Kamino, tra\u00E7a seu perfil financeiro com quizzes de neuroci\u00EAncia, atribui uma classe RPG com stats e invent\u00E1rio, e envia a Lyra \u2014 uma guia IA que adapta cada recomenda\u00E7\u00E3o ao seu comportamento e posi\u00E7\u00E3o.',
     closing1: 'Ela entrou na sala onde diziam que n\u00E3o era seu lugar.',
     closing2: 'N\u00E3o pediu permiss\u00E3o \u2014',
     closing3: 'apenas entendeu o c\u00F3digo.',
@@ -49,8 +49,13 @@ export default function DesignDemo() {
   const c = COPY[lang];
 
   return (
-    <div className="ds-demo">
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '48px 24px' }}>
+    <div className="ds-demo relative">
+      {/* Cosmic background — slow breathing drift */}
+      <div
+        className="fixed inset-0 bg-cover bg-center pointer-events-none z-0 n2-cosmic-bg"
+        style={{ backgroundImage: "url('/bg-cosmic.png')" }}
+      />
+      <div style={{ maxWidth: 900, margin: '0 auto', padding: '48px 24px', position: 'relative', zIndex: 10 }}>
 
         {/* ===== Header ===== */}
         <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 72 }}>

@@ -1,5 +1,5 @@
 import type { PositionResponse } from './kamino';
-import type { UserProfile, NeurotageId, GoalId } from './neurotags';
+import type { UserProfile, NeurotageId, GoalId, Gender } from './neurotags';
 import type { ActivityId } from './rpg';
 import type { PortfolioBalance } from './portfolio';
 import { buildPortfolio } from './portfolio';
@@ -13,6 +13,7 @@ export interface DemoPersona {
   wallet: string;
   wallets: string[]; // all wallets for multi-select removal
   avatar: string; // path in /public
+  gender: Gender;
   neurotags: NeurotageId[];
   goals: GoalId[];
   activities: ActivityId[];
@@ -36,6 +37,7 @@ const MARINA: DemoPersona = {
   wallet: 'MaRiNa...dEm0',
   wallets: ['MaRiNa...dEm0', '7xKp9M...Phnt'],
   avatar: '/giuliana-avatar.png',
+  gender: 'f',
   neurotags: [
     'iniciante', 'delegadora', 'indecisa-sob-pressao',
     'negligente', 'avessa-a-jargao', 'quer-seguranca', 'curiosa',
@@ -50,6 +52,7 @@ const MARINA: DemoPersona = {
   },
   profile: {
     wallet: 'MaRiNa...dEm0',
+    gender: 'f',
     neurotags: [
       'iniciante', 'delegadora', 'indecisa-sob-pressao',
       'negligente', 'avessa-a-jargao', 'quer-seguranca', 'curiosa',
@@ -88,6 +91,7 @@ const RAFAEL: DemoPersona = {
   wallet: 'RaFaEL...dEm0',
   wallets: ['RaFaEL...dEm0', '3mVpXy...SlfR', 'Bq8kNd...7Ywp'],
   avatar: '/rafael-avatar.png',
+  gender: 'm',
   neurotags: ['intermediaria', 'semi-autonoma', 'atenta', 'quer-seguranca', 'curiosa'],
   goals: ['rendimento', 'aprender'],
   educationTopicsRead: ['whatIsHF'],
@@ -105,6 +109,7 @@ const RAFAEL: DemoPersona = {
   },
   profile: {
     wallet: 'RaFaEL...dEm0',
+    gender: 'm',
     neurotags: ['intermediaria', 'semi-autonoma', 'atenta', 'quer-seguranca', 'curiosa'],
     answers: { q1: 'together', q2: 'hold', q3: 'weekly', q4: 'knows', q5: ['safety', 'monitor'] },
     goals: ['rendimento', 'aprender'],
@@ -141,6 +146,7 @@ const LUNA: DemoPersona = {
   wallet: 'LuNaAA...dEm0',
   wallets: ['LuNaAA...dEm0', '9hFvRt...KmJ4', 'Dp3wUe...QzN8', 'Xt7aBc...Hn2L', 'Wk5pRs...Vm9D'],
   avatar: '/luna-avatar.png',
+  gender: 'f',
   neurotags: [
     'autonoma-inicial', 'calma-sob-pressao', 'exploradora',
     'atenta', 'quer-seguranca', 'curiosa',
@@ -164,6 +170,7 @@ const LUNA: DemoPersona = {
   },
   profile: {
     wallet: 'LuNaAA...dEm0',
+    gender: 'f',
     neurotags: [
       'autonoma-inicial', 'calma-sob-pressao', 'exploradora',
       'atenta', 'quer-seguranca', 'curiosa',
@@ -203,6 +210,7 @@ const SEM_POSICAO: DemoPersona = {
   wallet: 'N0PoSi...dEm0',
   wallets: ['N0PoSi...dEm0'],
   avatar: '/nyx-avatar.png',
+  gender: 'nb',
   neurotags: ['iniciante', 'curiosa'],
   goals: ['aprender'],
   educationTopicsRead: [],
@@ -213,6 +221,7 @@ const SEM_POSICAO: DemoPersona = {
   },
   profile: {
     wallet: 'N0PoSi...dEm0',
+    gender: 'nb',
     neurotags: ['iniciante', 'curiosa'],
     answers: { q1: 'other', q2: 'unsure', q3: 'rarely', q4: 'noIdea', q5: ['learn'] },
     goals: ['aprender'],

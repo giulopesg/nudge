@@ -6,14 +6,19 @@ export default function AddIntegrationCard() {
   const { t } = useTranslation('dashboard');
 
   return (
-    <div className="rounded-2xl border border-dashed border-surface-border/60 px-6 py-5 text-center">
-      <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full border border-dashed border-text-muted/40">
-        <span className="text-[18px] text-text-muted">+</span>
+    <div className="card rounded-2xl text-center">
+      <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full border border-primary/30 bg-primary-muted/30">
+        <span className="text-[22px] text-primary">+</span>
       </div>
-      <p className="font-display text-[13px] font-bold text-text-secondary">
-        {t('integration.title')}
-      </p>
-      <p className="mt-1 font-mono text-[11px] text-text-muted">
+      <h3 className="flex items-baseline gap-3 justify-center">
+        <span className="font-display text-[22px] tracking-[0.02em] font-bold">
+          {t('integration.titlePrefix')}
+        </span>
+        <span className="font-display text-[22px] tracking-[0.02em] font-normal italic text-text-muted">
+          {t('integration.titleAccent')}
+        </span>
+      </h3>
+      <p className="mt-1 font-mono text-[14px] text-text-muted">
         {t('integration.subtitle')}
       </p>
     </div>

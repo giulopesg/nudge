@@ -2,7 +2,8 @@
 
 import { useTranslation } from 'react-i18next';
 import type { Character } from '@/lib/rpg';
-import { getVisibleTraits } from '@/lib/neurotags';
+import { getVisibleTraits, genderSuffix } from '@/lib/neurotags';
+import { useDashboard } from '@/contexts/DashboardContext';
 
 interface Props {
   character: Character;
@@ -17,6 +18,8 @@ const STAT_LABELS = {
 export default function CharacterCard({ character }: Props) {
   const { t } = useTranslation('onboarding');
   const tDash = useTranslation('dashboard').t;
+  const { gender } = useDashboard();
+  const suffix = genderSuffix(gender);
   const xpPercent = Math.min((character.xp / character.xpToNext) * 100, 100);
 
   return (
@@ -34,7 +37,7 @@ export default function CharacterCard({ character }: Props) {
             {character.class.title}
           </h3>
           <p className="font-display text-[17px] font-normal italic text-plum">
-            {tDash(`tiers.${character.tier.name}`)} &middot; LV {character.level}
+            {tDash(`tiers.${character.tier.name}`, { suffix })} &middot; LV {character.level}
           </p>
           <p className="mt-1 text-[13px] text-text-secondary">
             {character.class.description}

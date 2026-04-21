@@ -5,10 +5,10 @@
     "canDo": {
       "title": "O Nudge pode:",
       "items": [
-        "Ler suas posições na blockchain (dados públicos)",
+        "Ler sua posição Kamino na blockchain (dados públicos)",
         "Traduzir termos técnicos pra linguagem humana",
-        "Monitorar sua segurança e te avisar",
-        "Te ensinar sobre cripto no seu ritmo"
+        "Adaptar alertas e dicas ao seu perfil comportamental",
+        "Enviar a Lyra com recomendações personalizadas"
       ]
     },
     "cantDo": {
@@ -25,7 +25,15 @@
   },
   "quiz": {
     "title": "Vamos te conhecer",
-    "subtitle": "5 perguntas rápidas. Não existe resposta certa ou errada.",
+    "subtitle": "6 perguntas que revelam seu perfil comportamental. Não existe resposta certa ou errada.",
+    "q0": {
+      "question": "Como você se identifica?",
+      "options": {
+        "f": "Feminino",
+        "m": "Masculino",
+        "nb": "Neutro / Não-binário"
+      }
+    },
     "q1": {
       "question": "Quem configurou sua wallet?",
       "options": {

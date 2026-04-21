@@ -3,9 +3,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { QuizAnswers } from '@/lib/neurotags';
+import type { Gender } from '@/lib/neurotags';
 
 interface Props {
-  onComplete: (answers: QuizAnswers) => void;
+  onComplete: (answers: QuizAnswers, gender: Gender) => void;
   onBack: () => void;
 }
 
@@ -14,10 +15,13 @@ type SingleAnswer = string | null;
 export default function QuizStep({ onComplete, onBack }: Props) {
   const { t } = useTranslation('onboarding');
   const [current, setCurrent] = useState(0);
+  const [gender, setGender] = useState<Gender | null>(null);
   const [answers, setAnswers] = useState<SingleAnswer[]>([null, null, null, null, null]);
   const [q5Selected, setQ5Selected] = useState<string[]>([]);
 
+  // q0 is gender (index 0), q1-q5 are the behavioral questions (index 1-5)
   const questions = [
+    { key: 'q0', options: ['f', 'm', 'nb'] as const },
     { key: 'q1', options: ['self', 'other', 'together'] as const },
     { key: 'q2', options: ['sell', 'ask', 'unsure', 'hold'] as const },
     { key: 'q3', options: ['daily', 'weekly', 'sometimes', 'rarely'] as const },
@@ -28,16 +32,23 @@ export default function QuizStep({ onComplete, onBack }: Props) {
   const q = questions[current];
   const isLast = current === questions.length - 1;
   const isFirst = current === 0;
-  const canAdvance = q.key === 'q5' ? q5Selected.length > 0 : answers[current] !== null;
+
+  const canAdvance = q.key === 'q0'
+    ? gender !== null
+    : q.key === 'q5'
+      ? q5Selected.length > 0
+      : answers[current - 1] !== null;
 
   function selectOption(value: string) {
-    if (q.key === 'q5') {
+    if (q.key === 'q0') {
+      setGender(value as Gender);
+    } else if (q.key === 'q5') {
       setQ5Selected((prev) =>
         prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value],
       );
     } else {
       const next = [...answers];
-      next[current] = value;
+      next[current - 1] = value;
       setAnswers(next);
     }
   }
@@ -45,13 +56,16 @@ export default function QuizStep({ onComplete, onBack }: Props) {
   function handleNext() {
     if (!canAdvance) return;
     if (isLast) {
-      onComplete({
-        q1: answers[0] as QuizAnswers['q1'],
-        q2: answers[1] as QuizAnswers['q2'],
-        q3: answers[2] as QuizAnswers['q3'],
-        q4: answers[3] as QuizAnswers['q4'],
-        q5: q5Selected,
-      });
+      onComplete(
+        {
+          q1: answers[0] as QuizAnswers['q1'],
+          q2: answers[1] as QuizAnswers['q2'],
+          q3: answers[2] as QuizAnswers['q3'],
+          q4: answers[3] as QuizAnswers['q4'],
+          q5: q5Selected,
+        },
+        gender!,
+      );
     } else {
       setCurrent(current + 1);
     }
@@ -63,7 +77,11 @@ export default function QuizStep({ onComplete, onBack }: Props) {
   }
 
   const isSelected = (value: string) =>
-    q.key === 'q5' ? q5Selected.includes(value) : answers[current] === value;
+    q.key === 'q0'
+      ? gender === value
+      : q.key === 'q5'
+        ? q5Selected.includes(value)
+        : answers[current - 1] === value;
 
   return (
     <div className="flex flex-col items-center px-4">

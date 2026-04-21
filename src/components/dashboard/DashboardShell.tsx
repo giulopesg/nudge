@@ -51,11 +51,11 @@ function ShellInner({ children }: { children: React.ReactNode }) {
       <header className={`dashboard-header ${scrolled ? 'dashboard-header-scrolled' : ''}`}>
         <div className="flex items-center w-full px-4 sm:px-8">
           {/* Mobile logo — visible only on mobile where sidebar is hidden */}
-          <Link href="/" className="flex flex-col leading-none md:hidden min-w-0 flex-shrink-0">
-            <span className="n2-gradient-text font-display text-[18px] font-bold uppercase tracking-[0.06em]">
+          <Link href="/" className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2 md:hidden min-w-0 flex-shrink-0">
+            <span className="n2-gradient-text font-display text-[20px] sm:text-[28px] font-bold uppercase tracking-[0.06em]">
               {t('brand.name')}
             </span>
-            <span className="font-accent text-[10px] text-plum">
+            <span className="font-accent text-[11px] sm:text-[17px] text-plum">
               {t('brand.byline')}
             </span>
           </Link>

@@ -51,10 +51,9 @@ export default function KaminoCard({ position, commProfile }: Props) {
     <div className="card rounded-2xl">
       {/* Header — mixed-font inline + badge */}
       <div className="flex items-center justify-between">
-        <h3>
-          <span className="font-display text-[22px] font-bold">{t('kamino.titlePrefix')}</span>
-          {' '}
-          <span className="font-display text-[22px] font-normal italic text-text-muted">{t('kamino.titleAccent')}</span>
+        <h3 className="flex items-baseline gap-3">
+          <span className="font-display text-[22px] tracking-[0.02em] font-bold">{t('kamino.titlePrefix')}</span>
+          <span className="font-display text-[22px] tracking-[0.02em] font-normal italic text-text-muted">{t('kamino.titleAccent')}</span>
         </h3>
         <span className={STATUS_BADGE[position.status]}>
           {t(`status.${position.status}`)}

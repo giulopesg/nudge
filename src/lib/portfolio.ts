@@ -70,12 +70,19 @@ function calcStablecoinScore(tokens: TokenBalance[]): number {
     .reduce((s, t) => s + t.valueUsd, 0);
   const ratio = stableValue / totalValue;
 
-  // Sweet spot: 10-30%
-  if (ratio >= 0.1 && ratio <= 0.3) return 100;
-  // Below 10%: linear drop to 30 at 0%
-  if (ratio < 0.1) return Math.round(30 + (ratio / 0.1) * 70);
-  // Above 30%: gentle drop to 60 at 100%
-  return Math.round(100 - ((ratio - 0.3) / 0.7) * 40);
+  // Ratio-based score
+  let ratioScore: number;
+  if (ratio >= 0.1 && ratio <= 0.3) ratioScore = 100;
+  else if (ratio < 0.1) ratioScore = Math.round(30 + (ratio / 0.1) * 70);
+  else ratioScore = Math.round(100 - ((ratio - 0.3) / 0.7) * 40);
+
+  // Absolute minimum: $25 USDC at 25% ratio scores 100 ratio-wise,
+  // but is NOT a meaningful reserve. Scale down if < $100 absolute.
+  if (stableValue < 100) {
+    const factor = stableValue / 100; // 0 → 1
+    return Math.round(30 + (ratioScore - 30) * factor);
+  }
+  return ratioScore;
 }
 
 /**
@@ -168,8 +175,21 @@ export function calculateNudgeScore(
 
   overall = Math.round(overall);
 
-  const zone: HealthZone =
+  // Zone from score thresholds
+  const scoreZone: HealthZone =
     overall >= 65 ? 'safe' : overall >= 35 ? 'attention' : 'danger';
+
+  // If Kamino exists, the zone must not be BETTER than the Kamino zone.
+  // This prevents "safe score + attention loan" confusion.
+  let zone = scoreZone;
+  if (hasKamino) {
+    const kaminoZone: HealthZone =
+      healthFactor! >= 1.5 ? 'safe' : healthFactor! >= 1.2 ? 'attention' : 'danger';
+    const ZONE_RANK: Record<HealthZone, number> = { safe: 0, attention: 1, danger: 2 };
+    if (ZONE_RANK[kaminoZone] > ZONE_RANK[scoreZone]) {
+      zone = kaminoZone;
+    }
+  }
 
   return {
     overall,

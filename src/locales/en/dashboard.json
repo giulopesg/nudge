@@ -116,8 +116,8 @@
     }
   },
   "ecg": {
-    "label": "HF",
-    "bpmLabel": "HEALTH FACTOR",
+    "label": "NS",
+    "bpmLabel": "NUDGE SCORE",
     "status": { "safe": "SAFE", "attention": "ATTENTION", "danger": "CAUTION" }
   },
   "portfolio": {
@@ -343,7 +343,10 @@
     "titlePrefix": "Your",
     "titleAccent": "profile",
     "classLevel": "{{className}} · Level {{level}}",
-    "xpToNext": "XP to next level"
+    "xpToNext": "XP to next level",
+    "emptyTitle": "Create your profile",
+    "emptyDesc": "Complete the quiz to unlock your dossier and receive personalized tips.",
+    "emptyCta": "Create profile"
   },
   "characterSheet": {
     "title": "DOSSIER",
@@ -461,6 +464,8 @@
     "subtitle": "Nudge notification history.",
     "markAllRead": "Mark all as read",
     "empty": "No alerts yet.",
+    "emptyTitle": "All quiet here",
+    "emptyDesc": "When Nudge detects something, your alerts will show up here.",
     "miniLink": "{{count}} unread alerts \u2192 view all",
     "summary": { "urgent": "Urgent", "warning": "Warning", "info": "Info" },
     "modalTitlePrefix": "Your",
@@ -483,6 +488,8 @@
   },
   "integration": {
     "title": "More integrations coming soon",
+    "titlePrefix": "More integrations",
+    "titleAccent": "coming soon",
     "subtitle": "Jupiter, Marinade, Raydium and other Solana protocols"
   },
   "lastUpdate": "Updated {{time}}",
@@ -549,23 +556,63 @@
     "xpComplete": "Clarity Lens unlocked!",
     "recommend": {
       "buttonLabel": "Ask for a tip",
-      "dangerHF": "Warning! Your Health Factor is at {{hf}} — very close to liquidation. I recommend adding collateral or paying down debt now. Every minute counts.",
-      "dangerMargin": "Your safety margin is only {{margin}}%. This is risky. Consider depositing more collateral on Kamino to increase your protection.",
-      "attentionKamino": "Your Kamino loan needs attention. HF: {{hf}}, margin: {{margin}}%. Keep an eye on it and consider adding collateral if the market gets volatile.",
-      "attentionSafe": "Your loan needs attention — HF: {{hf}}, margin: {{margin}}%. Since you value safety, I recommend adding collateral now. Each HF point gives you more peace of mind.",
-      "concentrate": "Your portfolio is very concentrated: {{pct}}% in {{symbol}}. If that coin drops, everything drops. Diversifying is a way to protect yourself.",
-      "concentrateExplorer": "{{pct}}% in {{symbol}} is risky, but also an opportunity! How about swapping some for USDC on Jupiter and exploring yield on Kamino? Diversify and earn at the same time.",
-      "noStables": "You don't have a stablecoin reserve. Having at least 10-20% in USDC or USDT protects you from volatility and gives you buying power.",
-      "noStablesReserve": "You want to build a reserve, but have no stablecoins. Start by swapping 15-20% of your portfolio for USDC on Jupiter. It's the foundation of any protection strategy.",
-      "beginnerExplore": "You're just getting started — and that's great! Explore the dashboard, read about Health Factor, and chat with me. Every step earns XP and makes you stronger.",
-      "beginnerLearn": "Want to learn by doing? Start by swapping some SOL for USDC on Jupiter. Then explore Kamino to understand how decentralized lending works. Every step earns XP!",
-      "beginnerYield": "With SOL in your wallet, you can already earn yield! Explore Marinade for liquid staking (~7% annually) or Kamino for more advanced strategies. Start small and grow.",
-      "safeExplorer": "Score {{score}}/100 — healthy position! With this margin, you can experiment: explore yield on Kamino or liquid staking on Marinade. Your foundation is solid for growth.",
-      "safeSecurity": "Score {{score}}/100 — well protected. For even more peace of mind, keep 20-30% in stablecoins and set up Nudge alerts. Security is about layers of protection.",
-      "safeMonitor": "Score {{score}}/100 — stable. Monitoring tip: rebalancing every 2 weeks keeps things balanced as the market shifts. You can optimize without increasing risk.",
-      "safeLearner": "Score {{score}}/100 — solid foundation! Good time to expand: did you know you can use SOL as collateral on Kamino and earn income? Or explore liquid staking on Marinade?",
-      "allGood": "Score {{score}}/100 — well balanced. How about the next step? Explore yield on Kamino or diversify on Jupiter. Keeping a high score is great, but growing is even better.",
-      "generic": "I'm analyzing your data... Everything seems stable for now. Keep checking your dashboard and ask me if you have any questions!"
+      "dangerHF": "HF {{hf}} — critical zone. Add collateral or repay debt on Kamino now.",
+      "dangerMargin": "Margin {{margin}}% — high risk. Deposit more collateral on Kamino.",
+      "attentionKamino": "HF {{hf}}, margin {{margin}}%. Stay alert and add collateral if market moves.",
+      "attentionSafe": "HF {{hf}}, margin {{margin}}%. Adding collateral now gives you more room.",
+      "concentrate": "{{pct}}% in {{symbol}} — too concentrated. Diversify on Jupiter to reduce risk.",
+      "concentrateExplorer": "{{pct}}% in {{symbol}}. Swap some for USDC on Jupiter and explore yield on Kamino.",
+      "noStables": "Zero stablecoins detected. 10-20% in USDC protects against volatility.",
+      "noStablesReserve": "No stables yet. Swap 15-20% for USDC on Jupiter — protection foundation.",
+      "beginnerExplore": "New user detected. Explore the dashboard cards — each teaches you something. +XP guaranteed.",
+      "beginnerLearn": "Swap some SOL for USDC on Jupiter. Then explore Kamino. +XP per step.",
+      "beginnerYield": "SOL in wallet = yield potential. Marinade (~7% APY) or Kamino. Start small.",
+      "safeExplorer": "Score {{score}}. Solid base. Explore yield on Kamino or staking on Marinade.",
+      "safeSecurity": "Score {{score}}. Position secure. Keep 20-30% in stables and set up alerts.",
+      "safeMonitor": "Score {{score}}. Stable. Rebalance every 2 weeks to maintain equilibrium.",
+      "safeLearner": "Score {{score}}. Ready for next step — collateral on Kamino or staking on Marinade.",
+      "allGood": "Score {{score}}. Balanced. Next step: yield on Kamino or diversify on Jupiter.",
+      "generic": "Analyzing your data... All stable. Ask me if you have questions.",
+      "classFrame": {
+        "guardian": "// Guardian profile — priority: protect collateral.",
+        "explorer": "// Explorer profile — priority: opportunities with a map.",
+        "strategist": "// Strategist profile — priority: optimize with data.",
+        "default": "// each step makes you stronger."
+      },
+      "statInsight": {
+        "lowClarity": "// low clarity detected — explore dashboard cards.",
+        "highConfidence": "// high confidence — good time for bolder positions.",
+        "lowReactivity": "// impulsive pattern — breathe and check data before acting."
+      },
+      "inventoryInsight": {
+        "shield": "// Serenity Shield active — calm under pressure confirmed.",
+        "clarity": "// Clarity Lens active — use it to monitor HF.",
+        "grimoire": "// Grimoire unlocked — apply HF knowledge in practice.",
+        "courage": "// Courage Blade — you faced the worst and survived."
+      },
+      "neuroInsight": {
+        "impulsive": "// reactive pattern — wait 5min and re-read data before acting.",
+        "negligent": "// negligent pattern — check dashboard regularly.",
+        "indecisive": "// indecisive pattern — HF > 2.0 = safe, < 1.5 = act.",
+        "curious": "// curious pattern — explore educational content and earn XP.",
+        "calm": "// calm pattern — decisions by data, not emotion. Keep going."
+      }
     }
+  },
+  "firstSteps": {
+    "titlePrefix": "First",
+    "titleAccent": "steps",
+    "progress": "{{completed}}/{{total}} completed",
+    "allDone": "All set! Your Nudge is configured.",
+    "step1": { "label": "Connect wallet", "done": "Wallet connected" },
+    "step2": { "label": "Create your profile", "desc": "Take the quiz so Nudge can know you", "cta": "Take quiz" },
+    "step3": { "label": "Deposit tokens", "desc": "Add SOL or tokens to your wallet" },
+    "step4": { "label": "Meet Lyra", "desc": "Lyra is your DeFi guide — ask her for a tip", "cta": "Talk to Lyra" },
+    "step5": { "label": "Register on blockchain", "desc": "Save your profile on Solana", "cta": "Register" },
+    "noGoalsYet": "Complete the first steps and then define your goals.",
+    "defineGoals": "Define your goals to start your journey.",
+    "defineGoalsCta": "Define goals",
+    "allGoalsDone": "Congratulations! All goals completed.",
+    "newGoalsCta": "Set new goals"
   }
 }

@@ -8,6 +8,7 @@ import type { GoalProgress } from '@/lib/goals';
 export type NudgeSeverity = 'info' | 'warning' | 'urgent';
 
 export type NudgeType =
+  | 'welcome'
   | 'hf-alert'
   | 'score-drop'
   | 'concentration'
@@ -239,6 +240,18 @@ function checkInactivity(last: PositionSnapshot | null): Nudge | null {
   };
 }
 
+function checkWelcome(lastSnapshot: PositionSnapshot | null): Nudge | null {
+  if (lastSnapshot !== null) return null;
+  return {
+    id: makeId('welcome'),
+    type: 'welcome',
+    severity: 'info',
+    timestamp: new Date().toISOString(),
+    read: false,
+    data: {},
+  };
+}
+
 // ── Main generator ────────────────────────────────────────────────────
 
 export function generateNudges(
@@ -247,6 +260,9 @@ export function generateNudges(
   goalProgress: GoalProgress[],
 ): Nudge[] {
   const nudges: Nudge[] = [];
+
+  const welcome = checkWelcome(lastSnapshot);
+  if (welcome) nudges.push(welcome);
 
   const hfNudge = checkHFAlert(current, lastSnapshot);
   if (hfNudge) nudges.push(hfNudge);

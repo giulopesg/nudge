@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useCallback, useState } from 'react';
-import type { PositionStatus } from '@/lib/kamino';
+import type { HealthZone } from '@/lib/portfolio';
 
 interface ECGConfig {
   bpm: number;
@@ -9,7 +9,7 @@ interface ECGConfig {
   amplitude: number;  // multiplier for peak height
 }
 
-const ECG_CONFIGS: Record<PositionStatus, ECGConfig> = {
+const ECG_CONFIGS: Record<HealthZone, ECGConfig> = {
   safe: {
     bpm: 60,
     amplitude: 0.6,
@@ -54,7 +54,7 @@ interface UseECGResult {
 }
 
 export function useECGAnimation(
-  status: PositionStatus,
+  status: HealthZone,
 ): UseECGResult {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -144,7 +144,7 @@ export function useECGAnimation(
     const y = margin + value * drawHeight * config.amplitude
       + (1 - config.amplitude) * drawHeight * 0.5;
 
-    const colors: Record<PositionStatus, string> = {
+    const colors: Record<HealthZone, string> = {
       safe: '#2ED88A',
       attention: '#F5A623',
       danger: '#FF4D6A',

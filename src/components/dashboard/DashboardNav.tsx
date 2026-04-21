@@ -53,11 +53,11 @@ export default function DashboardNav({ hasProfile, unreadCount = 0, character, o
       <nav className="nav-sidebar hidden md:flex" aria-label="Dashboard navigation">
         {/* Brand + Character Badge */}
         <div className="nav-sidebar-brand">
-          <Link href="/" className="flex flex-col leading-none">
+          <Link href="/" className="flex items-baseline gap-1.5 whitespace-nowrap">
             <span className="n2-gradient-text font-display text-[24px] font-bold uppercase tracking-[0.06em]">
               {tCommon('brand.name')}
             </span>
-            <span className="font-accent text-plum text-[13px] mt-1">
+            <span className="font-accent text-plum text-[13px]">
               {tCommon('brand.byline')}
             </span>
           </Link>

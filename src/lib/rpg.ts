@@ -190,15 +190,43 @@ const STAT_MODIFIERS: Partial<Record<NeurotageId, Partial<CharacterStats>>> = {
   'exploradora':          { confidence: 10, clarity: 5 },
 };
 
-export function calculateStats(tags: NeurotageId[]): CharacterStats {
+const ACTIVITY_STAT_BONUSES: Partial<Record<ActivityId, Partial<CharacterStats>>> = {
+  'quiz-complete':     { clarity: 2, confidence: 1, reactivity: 1 },
+  'first-dashboard':   { clarity: 1, confidence: 1, reactivity: 1 },
+  'first-position':    { confidence: 2, reactivity: 1 },
+  'read-status':       { clarity: 4 },
+  'survive-attention': { confidence: 2, reactivity: 4 },
+  'survive-danger':    { confidence: 5, reactivity: 2 },
+  'weekly-check':      { clarity: 3, reactivity: 4 },
+  'learn-hf':          { clarity: 3, reactivity: 1 },
+  'first-action':      { confidence: 5 },
+  'refer-friend':      { clarity: 2, confidence: 3 },
+  'onchain-register':  { confidence: 3 },
+};
+
+export function calculateStats(
+  tags: NeurotageId[],
+  completedActivities: ActivityId[] = [],
+): CharacterStats {
   const base: CharacterStats = { clarity: 50, confidence: 50, reactivity: 50 };
 
+  // Layer 1: base personality from neurotags
   for (const tag of tags) {
     const mod = STAT_MODIFIERS[tag];
     if (mod) {
       base.clarity += mod.clarity ?? 0;
       base.confidence += mod.confidence ?? 0;
       base.reactivity += mod.reactivity ?? 0;
+    }
+  }
+
+  // Layer 2: activity completion bonuses
+  for (const actId of completedActivities) {
+    const bonus = ACTIVITY_STAT_BONUSES[actId];
+    if (bonus) {
+      base.clarity += bonus.clarity ?? 0;
+      base.confidence += bonus.confidence ?? 0;
+      base.reactivity += bonus.reactivity ?? 0;
     }
   }
 
@@ -260,7 +288,7 @@ export function buildCharacter(
     level,
     xp,
     xpToNext,
-    stats: calculateStats(tags),
+    stats: calculateStats(tags, completedActivities),
     traits: tags,
     tier,
     inventory,

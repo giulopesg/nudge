@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Lora, Agbalumo, Outfit, Fira_Code } from 'next/font/google';
 import Providers from '@/components/Providers';
 import MeshGradient from '@/components/MeshGradient';
+import StarfieldOverlay from '@/components/StarfieldOverlay';
 import './globals.css';
 
 const lora = Lora({
@@ -54,6 +55,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground overflow-x-hidden">
         <MeshGradient />
+        <StarfieldOverlay />
         <Providers>
           <div className="relative z-10">{children}</div>
         </Providers>

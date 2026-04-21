@@ -31,7 +31,7 @@
   "hero": {
     "scoreLabel": "NUDGE SCORE",
     "noPosition": {
-      "title": "CONECTADA",
+      "title": "CONECTADO",
       "subtitle": "Conecte sua wallet pra ver seu painel personalizado."
     },
     "score": {
@@ -55,7 +55,7 @@
           "technical": "Saudável"
         },
         "subtitle": {
-          "gentle": "Seu dinheiro está protegido. Pode respirar tranquila.",
+          "gentle": "Seu dinheiro está protegido. Pode respirar tranquil{{suffix}}.",
           "encouraging": "Ótimo trabalho! Seu portfolio está bem equilibrado. Continue assim!",
           "direct": "Posição saudável. Score {{score}}/100. Margem confortável.",
           "technical": "Score {{score}}/100. Métricas dentro dos parâmetros. Sem intervenção necessária."
@@ -116,8 +116,8 @@
     }
   },
   "ecg": {
-    "label": "HF",
-    "bpmLabel": "HEALTH FACTOR",
+    "label": "NS",
+    "bpmLabel": "NUDGE SCORE",
     "status": { "safe": "SEGURO", "attention": "ATENÇÃO", "danger": "CUIDADO" }
   },
   "portfolio": {
@@ -343,7 +343,10 @@
     "titlePrefix": "Seu",
     "titleAccent": "perfil",
     "classLevel": "{{className}} · Nível {{level}}",
-    "xpToNext": "XP próximo nível"
+    "xpToNext": "XP próximo nível",
+    "emptyTitle": "Crie seu perfil",
+    "emptyDesc": "Complete o quiz para desbloquear seu dossiê e receber dicas personalizadas.",
+    "emptyCta": "Criar perfil"
   },
   "characterSheet": {
     "title": "DOSSIÊ",
@@ -367,7 +370,7 @@
     "aprendiz": "APRENDIZ",
     "praticante": "PRATICANTE",
     "estrategista": "ESTRATEGISTA",
-    "soberana": "SOBERANA"
+    "soberana": "SOBERAN{{suffix}}"
   },
   "items": {
     "chave-wallet": {
@@ -393,7 +396,7 @@
     "escudo-serenidade": {
       "name": "Escudo de Serenidade",
       "description": "O mercado balançou, você não. Resiliência desbloqueada.",
-      "howToGet": "Sobreviva a um período de atenção sem ser liquidada."
+      "howToGet": "Sobreviva a um período de atenção sem ser liquidat{{suffix}}."
     },
     "lamina-coragem": {
       "name": "Lâmina da Coragem",
@@ -441,7 +444,7 @@
     "titlePrefix": "Kamino",
     "titleAccent": "empréstimo em cripto",
     "body": {
-      "gentle": "Você sabia que pode usar seus tokens como garantia para pegar empréstimo em cripto? No Kamino, o Nudge monitora tudo pra você, em tempo real. Quando você se sentir pronta, estamos aqui.",
+      "gentle": "Você sabia que pode usar seus tokens como garantia para pegar empréstimo em cripto? No Kamino, o Nudge monitora tudo pra você, em tempo real. Quando você se sentir pront{{suffix}}, estamos aqui.",
       "encouraging": "Você sabia que pode usar seus tokens como garantia para pegar empréstimo em cripto? O Kamino faz isso e o Nudge monitora tudo pra você. É mais simples do que parece!",
       "direct": "Empréstimo com garantia em tokens no Kamino. O Nudge monitora sua posição em tempo real.",
       "technical": "Kamino Lending: protocolo de empréstimo on-chain. Deposite colateral, tome empréstimo. Nudge monitora HF automaticamente."
@@ -461,6 +464,8 @@
     "subtitle": "Histórico de notificações do Nudge.",
     "markAllRead": "Marcar todos como lidos",
     "empty": "Nenhum alerta ainda.",
+    "emptyTitle": "Tudo tranquilo por aqui",
+    "emptyDesc": "Quando o Nudge detectar algo, seus alertas aparecem aqui.",
     "miniLink": "{{count}} alertas não lidos → ver todos",
     "summary": { "urgent": "Urgentes", "warning": "Atenção", "info": "Info" },
     "modalTitlePrefix": "Seus",
@@ -473,7 +478,7 @@
     "dismiss": "Fechar"
   },
   "emptyState": {
-    "titlePrefix": "Bem-vinda ao",
+    "titlePrefix": "Bem-vind{{suffix}} ao",
     "titleAccent": "Nudge",
     "subtitle": "Sua wallet está conectada, mas ainda não tem saldo. Adicione tokens e o Nudge calcula tudo pra você.",
     "nextSteps": "Próximos passos",
@@ -483,6 +488,8 @@
   },
   "integration": {
     "title": "Mais integrações em breve",
+    "titlePrefix": "Mais integrações",
+    "titleAccent": "em breve",
     "subtitle": "Jupiter, Marinade, Raydium e outros protocolos Solana"
   },
   "lastUpdate": "Atualizado {{time}}",
@@ -549,23 +556,63 @@
     "xpComplete": "Lente de Clareza desbloqueada!",
     "recommend": {
       "buttonLabel": "Pedir uma dica",
-      "dangerHF": "Atenção! Seu Health Factor está em {{hf}} — muito perto da liquidação. Recomendo adicionar colateral ou pagar parte da dívida agora. Cada minuto conta.",
-      "dangerMargin": "Sua margem de segurança está em apenas {{margin}}%. Isso é arriscado. Considere depositar mais colateral no Kamino pra aumentar sua proteção.",
-      "attentionKamino": "Seu empréstimo no Kamino merece atenção. HF: {{hf}}, margem: {{margin}}%. Fique de olho e considere reforçar seu colateral se o mercado balançar.",
-      "attentionSafe": "Seu empréstimo precisa de cuidado — HF: {{hf}}, margem: {{margin}}%. Como você preza pela segurança, recomendo adicionar colateral agora. Cada ponto no HF te dá mais tranquilidade.",
-      "concentrate": "Seu portfolio está muito concentrado: {{pct}}% em {{symbol}}. Se essa moeda cair, tudo cai junto. Diversificar é uma forma de se proteger.",
-      "concentrateExplorer": "{{pct}}% em {{symbol}} é arriscado, mas também uma oportunidade! Que tal trocar parte por USDC no Jupiter e explorar yield no Kamino? Diversificar e ganhar ao mesmo tempo.",
-      "noStables": "Você não tem reserva em stablecoins. Ter pelo menos 10-20% em USDC ou USDT te protege da volatilidade e te dá poder de ação.",
-      "noStablesReserve": "Você quer construir uma reserva, mas não tem stablecoins. Comece trocando 15-20% do seu portfolio por USDC no Jupiter. É a base de qualquer estratégia de proteção.",
-      "beginnerExplore": "Você está começando — e isso é ótimo! Explore o dashboard, leia sobre Health Factor, e converse comigo. Cada passo vale XP e te torna mais forte.",
-      "beginnerLearn": "Quer aprender fazendo? Comece trocando um pouco de SOL por USDC no Jupiter. Depois, explore o Kamino para entender como empréstimos descentralizados funcionam. Cada passo vale XP!",
-      "beginnerYield": "Com SOL na wallet, você já pode gerar rendimento! Explore o Marinade para liquid staking (~7% ao ano) ou o Kamino para estratégias mais avançadas. Comece pequeno e vá crescendo.",
-      "safeExplorer": "Score {{score}}/100 — posição saudável! Com essa margem, você pode experimentar: explore yield no Kamino ou liquid staking no Marinade. Sua base está sólida para crescer.",
-      "safeSecurity": "Score {{score}}/100 — tudo protegido. Para ainda mais tranquilidade, mantenha 20-30% em stablecoins e configure os alertas do Nudge. Segurança é sobre camadas de proteção.",
-      "safeMonitor": "Score {{score}}/100 — estável. Dica de quem monitora: rebalancear a cada 2 semanas mantém o equilíbrio conforme o mercado muda. Você pode otimizar sem aumentar risco.",
-      "safeLearner": "Score {{score}}/100 — base sólida! Bom momento para expandir: sabia que pode usar SOL como colateral no Kamino e gerar renda? Ou explorar liquid staking no Marinade?",
-      "allGood": "Score {{score}}/100 — tudo equilibrado. Que tal o próximo passo? Explore yield no Kamino ou diversifique no Jupiter. Manter o score alto é ótimo, mas crescer é ainda melhor.",
-      "generic": "Estou analisando seus dados... No momento, tudo parece estável. Continue acompanhando seu dashboard e me pergunte se tiver qualquer dúvida!"
+      "dangerHF": "HF {{hf}} — zona crítica. Adicione colateral ou pague dívida no Kamino agora.",
+      "dangerMargin": "Margem {{margin}}% — risco alto. Deposite mais colateral no Kamino.",
+      "attentionKamino": "HF {{hf}}, margem {{margin}}%. Fique atent{{suffix}} e reforce colateral se o mercado oscilar.",
+      "attentionSafe": "HF {{hf}}, margem {{margin}}%. Adicionar colateral agora te dá mais folga.",
+      "concentrate": "{{pct}}% em {{symbol}} — concentrado demais. Diversifique no Jupiter pra reduzir risco.",
+      "concentrateExplorer": "{{pct}}% em {{symbol}}. Troque parte por USDC no Jupiter e explore yield no Kamino.",
+      "noStables": "Zero stablecoins. Ter 10-20% em USDC te protege da volatilidade.",
+      "noStablesReserve": "Sem stables ainda. Troque 15-20% por USDC no Jupiter — base de proteção.",
+      "beginnerExplore": "Começo detectado. Explore os cards do dashboard — cada um te ensina algo. +XP garantido.",
+      "beginnerLearn": "Troque um pouco de SOL por USDC no Jupiter. Depois explore o Kamino. +XP por passo.",
+      "beginnerYield": "SOL na wallet = potencial de rendimento. Marinade (~7% a.a.) ou Kamino. Comece pequeno.",
+      "safeExplorer": "Score {{score}}. Base sólida. Explore yield no Kamino ou staking no Marinade.",
+      "safeSecurity": "Score {{score}}. Posição segura. Mantenha 20-30% em stables e configure alertas.",
+      "safeMonitor": "Score {{score}}. Estável. Rebalancear a cada 2 semanas mantém o equilíbrio.",
+      "safeLearner": "Score {{score}}. Pront{{suffix}} pro próximo passo — colateral no Kamino ou staking no Marinade.",
+      "allGood": "Score {{score}}. Equilibrado. Próximo passo: yield no Kamino ou diversificação no Jupiter.",
+      "generic": "Analisando seus dados... Tudo estável. Me pergunte se tiver dúvidas.",
+      "classFrame": {
+        "guardian": "// perfil Guardian — prioridade: proteger colateral.",
+        "explorer": "// perfil Explorer — prioridade: oportunidades com mapa.",
+        "strategist": "// perfil Strategist — prioridade: otimizar com dados.",
+        "default": "// cada passo te fortalece."
+      },
+      "statInsight": {
+        "lowClarity": "// clareza baixa detectada — explore os cards do dashboard.",
+        "highConfidence": "// confiança alta — bom momento pra posições mais ousadas.",
+        "lowReactivity": "// padrão impulsivo — respire e olhe os dados antes de agir."
+      },
+      "inventoryInsight": {
+        "shield": "// Escudo de Serenidade ativo — calma sob pressão confirmada.",
+        "clarity": "// Lente de Clareza ativa — use pra monitorar HF.",
+        "grimoire": "// Grimório desbloqueado — aplique o conhecimento de HF na prática.",
+        "courage": "// Lâmina da Coragem — você enfrentou o pior e está aqui."
+      },
+      "neuroInsight": {
+        "impulsive": "// padrão reativo — espere 5min e releia os dados antes de agir.",
+        "negligent": "// padrão negligente — cheque o dashboard regularmente.",
+        "indecisive": "// padrão indeciso — HF > 2.0 = seguro, < 1.5 = agir.",
+        "curious": "// padrão curioso — explore educacionais e ganhe XP.",
+        "calm": "// padrão calmo — decisões por dados, não emoção. Continue assim."
+      }
     }
+  },
+  "firstSteps": {
+    "titlePrefix": "Primeiros",
+    "titleAccent": "passos",
+    "progress": "{{completed}}/{{total}} completos",
+    "allDone": "Tudo pronto! Seu Nudge está configurado.",
+    "step1": { "label": "Conectar wallet", "done": "Wallet conectada" },
+    "step2": { "label": "Criar seu perfil", "desc": "Responda o quiz para o Nudge te conhecer", "cta": "Fazer quiz" },
+    "step3": { "label": "Depositar tokens", "desc": "Adicione SOL ou tokens à sua wallet" },
+    "step4": { "label": "Conhecer a Lyra", "desc": "A Lyra é sua guia de DeFi — peça uma dica pra ela", "cta": "Falar com a Lyra" },
+    "step5": { "label": "Registrar na blockchain", "desc": "Grave seu perfil na Solana", "cta": "Registrar" },
+    "noGoalsYet": "Complete os primeiros passos e depois defina seus objetivos.",
+    "defineGoals": "Defina seus objetivos para começar sua jornada.",
+    "defineGoalsCta": "Definir objetivos",
+    "allGoalsDone": "Parabéns! Todos os objetivos completos.",
+    "newGoalsCta": "Definir novos objetivos"
   }
 }

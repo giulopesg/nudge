@@ -5,7 +5,8 @@ import { useTranslation } from 'react-i18next';
 import Image from 'next/image';
 import type { Character, InventoryItemId } from '@/lib/rpg';
 import { ACTIVITIES, ITEM_ICONS } from '@/lib/rpg';
-import { getVisibleTraits } from '@/lib/neurotags';
+import { getVisibleTraits, genderSuffix } from '@/lib/neurotags';
+import { useDashboard } from '@/contexts/DashboardContext';
 import ItemDetailModal, { type SlotData } from '@/components/dashboard/ItemDetailModal';
 
 interface Props {
@@ -60,6 +61,8 @@ function ItemSlot({ slot, onSelect }: {
 
 export default function CharacterSheet({ character, avatarSrc, onClose }: Props) {
   const { t } = useTranslation('dashboard');
+  const { gender } = useDashboard();
+  const suffix = genderSuffix(gender);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); },
@@ -137,7 +140,7 @@ export default function CharacterSheet({ character, avatarSrc, onClose }: Props)
               </h2>
               <p className="font-display text-[15px] sm:text-[16px] font-normal italic text-plum mt-0.5">
                 {t('perfil.classLevel', {
-                  className: t(`tiers.${character.tier.name}`),
+                  className: t(`tiers.${character.tier.name}`, { suffix }),
                   level: character.level,
                 })}
               </p>

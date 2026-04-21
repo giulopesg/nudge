@@ -4,9 +4,10 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 
+import Link from 'next/link';
 import { useDashboard } from '@/contexts/DashboardContext';
 import { ACTIVITIES, ITEM_ICONS } from '@/lib/rpg';
-import { getVisibleTraits } from '@/lib/neurotags';
+import { getVisibleTraits, genderSuffix } from '@/lib/neurotags';
 import ItemDetailModal, { type SlotData } from '@/components/dashboard/ItemDetailModal';
 import type { InventoryItemId } from '@/lib/rpg';
 
@@ -56,15 +57,15 @@ function ItemSlot({ slot, onSelect }: {
 
 export default function PerfilPage() {
   const { t } = useTranslation('dashboard');
-  const { character, persona } = useDashboard();
+  const { character, persona, gender } = useDashboard();
   const [selectedItemId, setSelectedItemId] = useState<InventoryItemId | null>(null);
 
   if (!character) {
     return (
-      <div className="mt-16 flex flex-col items-center text-center">
-        <p className="text-text-secondary font-mono text-[13px]">
-          {t('characterSheet.title')}
-        </p>
+      <div className="card rounded-2xl border-primary/20 bg-primary/5 text-center">
+        <p className="font-display text-[17px] font-bold">{t('perfil.emptyTitle')}</p>
+        <p className="mt-2 text-[14px] text-text-muted">{t('perfil.emptyDesc')}</p>
+        <Link href="/onboarding" className="n2-btn-primary mt-4 inline-block">{t('perfil.emptyCta')}</Link>
       </div>
     );
   }
@@ -91,10 +92,9 @@ export default function PerfilPage() {
   return (
     <>
       {/* Page title — inline mixed-font */}
-      <h1>
-        <span className="font-display text-[22px] font-bold">{t('perfil.titlePrefix')}</span>
-        {' '}
-        <span className="font-display text-[22px] font-normal italic text-text-muted">{t('perfil.titleAccent')}</span>
+      <h1 className="flex items-baseline gap-3">
+        <span className="font-display text-[22px] tracking-[0.02em] font-bold">{t('perfil.titlePrefix')}</span>
+        <span className="font-display text-[22px] tracking-[0.02em] font-normal italic text-text-muted">{t('perfil.titleAccent')}</span>
       </h1>
 
       {/* Avatar portrait — first visual element */}
@@ -126,7 +126,7 @@ export default function PerfilPage() {
             </h2>
             <p className="font-display text-[15px] sm:text-[17px] font-normal italic text-plum mt-0.5">
               {t('perfil.classLevel', {
-                className: t(`tiers.${character.tier.name}`),
+                className: t(`tiers.${character.tier.name}`, { suffix: genderSuffix(gender) }),
                 level: character.level,
               })}
             </p>

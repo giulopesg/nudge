@@ -42,9 +42,8 @@ export default function AlertModal({ nudges, alertsHref, onClose }: Props) {
         {/* Header */}
         <div className="flex items-start justify-between">
           <div>
-            <h2>
+            <h2 className="flex items-baseline gap-3">
               <span className="font-display text-[18px] font-bold">{t('alertas.modalTitlePrefix')}</span>
-              {' '}
               <span className="font-display text-[18px] font-normal italic text-text-muted">{t('alertas.modalTitleAccent')}</span>
             </h2>
             <p className="mt-1 text-[13px] text-text-secondary">
