@@ -3,12 +3,14 @@
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/navigation';
 import { useCallback, useState, useRef, useEffect } from 'react';
 
 export default function WalletButton() {
   const { publicKey, disconnect, connected } = useWallet();
   const { setVisible } = useWalletModal();
   const { t } = useTranslation();
+  const router = useRouter();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -39,7 +41,8 @@ export default function WalletButton() {
   const handleDisconnect = useCallback(() => {
     disconnect();
     setMenuOpen(false);
-  }, [disconnect]);
+    router.push('/');
+  }, [disconnect, router]);
 
   const truncatedAddress = publicKey
     ? `${publicKey.toBase58().slice(0, 4)}...${publicKey.toBase58().slice(-4)}`
