@@ -144,3 +144,29 @@ export function hasRegistration(wallet: string): boolean {
   if (typeof window === 'undefined') return false;
   return localStorage.getItem(REGISTRATION_KEY + wallet) !== null;
 }
+
+// ── Lyra chat history ────────────────────────────────────────────────
+
+const LYRA_CHAT_KEY = 'nudge:lyra-chat:';
+
+export interface LyraChatMessage {
+  id: string;
+  role: 'lyra' | 'user';
+  text: string;
+  followUps?: string[];
+}
+
+export function getLyraChat(wallet: string): LyraChatMessage[] {
+  if (typeof window === 'undefined') return [];
+  const raw = localStorage.getItem(LYRA_CHAT_KEY + wallet);
+  if (!raw) return [];
+  return JSON.parse(raw) as LyraChatMessage[];
+}
+
+const MAX_LYRA_MESSAGES = 4;
+
+export function saveLyraChat(wallet: string, messages: LyraChatMessage[]): void {
+  if (typeof window === 'undefined') return;
+  const tail = messages.slice(-MAX_LYRA_MESSAGES);
+  localStorage.setItem(LYRA_CHAT_KEY + wallet, JSON.stringify(tail));
+}

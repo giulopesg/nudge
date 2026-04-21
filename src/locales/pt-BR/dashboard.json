@@ -372,6 +372,32 @@
     "estrategista": "ESTRATEGISTA",
     "soberana": "SOBERAN{{suffix}}"
   },
+  "classes": {
+    "guardian_f": "Guardiã",
+    "guardian_m": "Guardião",
+    "guardian_nb": "Guardiã",
+    "guardian_desc": "Protege seus recursos com cautela.",
+    "explorer_f": "Exploradora",
+    "explorer_m": "Explorador",
+    "explorer_nb": "Exploradore",
+    "explorer_desc": "Busca novos horizontes, mas com pés no chão.",
+    "strategist_f": "Estrategista",
+    "strategist_m": "Estrategista",
+    "strategist_nb": "Estrategista",
+    "strategist_desc": "Analisa antes de agir. Dados são sua arma.",
+    "scholar_f": "Aprendiz",
+    "scholar_m": "Aprendiz",
+    "scholar_nb": "Aprendiz",
+    "scholar_desc": "Cada conceito novo é uma conquista.",
+    "sentinel_f": "Sentinela",
+    "sentinel_m": "Sentinela",
+    "sentinel_nb": "Sentinela",
+    "sentinel_desc": "Vigia o mercado com disciplina e paciência.",
+    "sovereign_f": "Soberana",
+    "sovereign_m": "Soberano",
+    "sovereign_nb": "Soberane",
+    "sovereign_desc": "Toma decisões com confiança. Liberdade conquistada."
+  },
   "items": {
     "chave-wallet": {
       "name": "Chave da Wallet",

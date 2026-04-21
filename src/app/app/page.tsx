@@ -37,9 +37,10 @@ export default function PainelPage() {
   const hasOnChainRegistration = activities.includes('onchain-register' as never);
   const allFirstStepsDone = hasProfile && hasBalance && hasExploredLyra && hasOnChainRegistration;
 
+  const { gender } = useDashboard();
   const greetingName = persona
     ? tDash(`demo.personas.${persona.id}.name`)
-    : character?.class.title ?? null;
+    : character ? tDash(`classes.${character.class.name}_${gender}`) : null;
   const todayDate = useMemo(() => {
     const locale = i18n.language === 'pt-BR' ? 'pt-BR' : 'en-US';
     return new Date().toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });

@@ -70,6 +70,9 @@ export default function PerfilPage() {
     );
   }
 
+  const suffix = genderSuffix(gender);
+  const classTitle = t(`classes.${character.class.name}_${gender}`);
+  const classDesc = t(`classes.${character.class.name}_desc`);
   const xpPercent = Math.min(100, (character.xp / character.xpToNext) * 100);
   const visibleTraits = getVisibleTraits(character.traits);
   const avatarSrc = persona?.avatar ?? '/giuliana-avatar.png';
@@ -103,7 +106,7 @@ export default function PerfilPage() {
           <div className="re-scan overflow-hidden w-[220px] sm:w-[280px]">
             <Image
               src={avatarSrc}
-              alt={character.class.title}
+              alt={classTitle}
               width={280}
               height={420}
               className="block w-full h-auto"
@@ -122,16 +125,16 @@ export default function PerfilPage() {
           </div>
           <div className="flex-1 min-w-0">
             <h2 className="font-display text-[24px] sm:text-[28px] font-bold">
-              {character.class.title}
+              {classTitle}
             </h2>
             <p className="font-display text-[15px] sm:text-[17px] font-normal italic text-plum mt-0.5">
               {t('perfil.classLevel', {
-                className: t(`tiers.${character.tier.name}`, { suffix: genderSuffix(gender) }),
+                className: t(`tiers.${character.tier.name}`, { suffix }),
                 level: character.level,
               })}
             </p>
             <p className="mt-2 text-[13px] sm:text-[15px] leading-[1.7] text-text-secondary">
-              {character.class.description}
+              {classDesc}
             </p>
           </div>
         </div>

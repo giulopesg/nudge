@@ -63,6 +63,8 @@ export default function CharacterSheet({ character, avatarSrc, onClose }: Props)
   const { t } = useTranslation('dashboard');
   const { gender } = useDashboard();
   const suffix = genderSuffix(gender);
+  const classTitle = t(`classes.${character.class.name}_${gender}`);
+  const classDesc = t(`classes.${character.class.name}_desc`);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); },
@@ -111,7 +113,7 @@ export default function CharacterSheet({ character, avatarSrc, onClose }: Props)
               <div className="re-scan overflow-hidden w-[220px] sm:w-[280px]">
                 <Image
                   src={avatarSrc}
-                  alt={character.class.title}
+                  alt={classTitle}
                   width={280}
                   height={420}
                   className="block w-full h-auto"
@@ -136,7 +138,7 @@ export default function CharacterSheet({ character, avatarSrc, onClose }: Props)
             </div>
             <div className="flex-1 min-w-0">
               <h2 className="font-display text-[22px] sm:text-[26px] font-bold">
-                {character.class.title}
+                {classTitle}
               </h2>
               <p className="font-display text-[15px] sm:text-[16px] font-normal italic text-plum mt-0.5">
                 {t('perfil.classLevel', {
@@ -145,7 +147,7 @@ export default function CharacterSheet({ character, avatarSrc, onClose }: Props)
                 })}
               </p>
               <p className="mt-2 text-[13px] leading-[1.7] text-text-secondary">
-                {character.class.description}
+                {classDesc}
               </p>
             </div>
           </div>

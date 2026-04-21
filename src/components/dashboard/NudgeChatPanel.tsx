@@ -2,10 +2,12 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useWallet } from '@solana/wallet-adapter-react';
 import LyraAvatar from '@/components/dashboard/LyraAvatar';
 import { useDashboard } from '@/contexts/DashboardContext';
 import { genderSuffix } from '@/lib/neurotags';
 import { getRecommendation } from '@/lib/lyraRecommendation';
+import { getLyraChat, saveLyraChat } from '@/lib/store';
 
 interface Message {
   id: string;
@@ -73,8 +75,10 @@ let msgCounter = 0;
 
 export default function NudgeChatPanel({ onClose, onTopicExplored, autoAction, onAutoActionConsumed }: Props) {
   const { t } = useTranslation('dashboard');
-  const { nudgeScore, portfolio, kaminoPosition, character, neurotags, goals, commProfile, gender } = useDashboard();
+  const { publicKey } = useWallet();
+  const { nudgeScore, portfolio, kaminoPosition, character, neurotags, goals, commProfile, gender, persona } = useDashboard();
   const suffix = genderSuffix(gender);
+  const chatWallet = persona?.wallet ?? publicKey?.toBase58() ?? null;
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(true);
@@ -83,14 +87,24 @@ export default function NudgeChatPanel({ onClose, onTopicExplored, autoAction, o
   const exploredRef = useRef<Set<string>>(new Set());
   const autoActionFired = useRef(false);
 
-  // Initial greeting
+  // Load history or show intro greeting
   useEffect(() => {
-    setMessages([{
-      id: `lyra-${++msgCounter}`,
-      role: 'lyra',
-      text: t('lyra.intro'),
-    }]);
-  }, [t]);
+    if (!chatWallet) {
+      setMessages([{ id: `lyra-${++msgCounter}`, role: 'lyra', text: t('lyra.intro') }]);
+      setShowSuggestions(true);
+      return;
+    }
+
+    const saved = getLyraChat(chatWallet);
+    if (saved.length > 0) {
+      setMessages(saved);
+      setShowSuggestions(false);
+    } else {
+      setMessages([{ id: `lyra-${++msgCounter}`, role: 'lyra', text: t('lyra.intro') }]);
+      setShowSuggestions(true);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chatWallet]);
 
   // Auto-scroll
   useEffect(() => {
@@ -167,7 +181,11 @@ export default function NudgeChatPanel({ onClose, onTopicExplored, autoAction, o
       followUps: followUps.length > 0 ? followUps : undefined,
     };
 
-    setMessages((prev) => [...prev, userMsg, lyraMsg]);
+    setMessages((prev) => {
+      const updated = [...prev, userMsg, lyraMsg];
+      if (chatWallet) saveLyraChat(chatWallet, updated);
+      return updated;
+    });
     setShowSuggestions(false);
 
     if (topic && !exploredRef.current.has(topic)) {

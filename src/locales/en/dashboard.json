@@ -372,6 +372,32 @@
     "estrategista": "STRATEGIST",
     "soberana": "SOVEREIGN"
   },
+  "classes": {
+    "guardian_f": "Guardian",
+    "guardian_m": "Guardian",
+    "guardian_nb": "Guardian",
+    "guardian_desc": "Protects your assets with caution.",
+    "explorer_f": "Explorer",
+    "explorer_m": "Explorer",
+    "explorer_nb": "Explorer",
+    "explorer_desc": "Seeks new horizons, but with feet on the ground.",
+    "strategist_f": "Strategist",
+    "strategist_m": "Strategist",
+    "strategist_nb": "Strategist",
+    "strategist_desc": "Analyzes before acting. Data is your weapon.",
+    "scholar_f": "Scholar",
+    "scholar_m": "Scholar",
+    "scholar_nb": "Scholar",
+    "scholar_desc": "Every new concept is an achievement.",
+    "sentinel_f": "Sentinel",
+    "sentinel_m": "Sentinel",
+    "sentinel_nb": "Sentinel",
+    "sentinel_desc": "Watches the market with discipline and patience.",
+    "sovereign_f": "Sovereign",
+    "sovereign_m": "Sovereign",
+    "sovereign_nb": "Sovereign",
+    "sovereign_desc": "Makes decisions with confidence. Freedom earned."
+  },
   "items": {
     "chave-wallet": {
       "name": "Wallet Key",

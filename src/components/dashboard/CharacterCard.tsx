@@ -18,6 +18,8 @@ const STAT_LABELS = {
 export default function CharacterCard({ character, gender = 'f' }: Props) {
   const { t } = useTranslation('onboarding');
   const tDash = useTranslation('dashboard').t;
+  const classTitle = tDash(`classes.${character.class.name}_${gender}`);
+  const classDesc = tDash(`classes.${character.class.name}_desc`);
   const suffix = genderSuffix(gender);
   const xpPercent = Math.min((character.xp / character.xpToNext) * 100, 100);
 
@@ -33,13 +35,13 @@ export default function CharacterCard({ character, gender = 'f' }: Props) {
         {/* Info block */}
         <div className="flex-1 min-w-0">
           <h3 className="font-display text-[22px] sm:text-[28px] font-bold">
-            {character.class.title}
+            {classTitle}
           </h3>
           <p className="font-display text-[17px] font-normal italic text-plum">
             {tDash(`tiers.${character.tier.name}`, { suffix })} &middot; LV {character.level}
           </p>
           <p className="mt-1 text-[13px] text-text-secondary">
-            {character.class.description}
+            {classDesc}
           </p>
         </div>
       </div>

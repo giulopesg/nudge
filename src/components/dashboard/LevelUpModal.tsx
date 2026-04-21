@@ -15,6 +15,7 @@ export default function LevelUpModal({ character, onClose }: Props) {
   const { t } = useTranslation('dashboard');
   const { gender } = useDashboard();
   const suffix = genderSuffix(gender);
+  const classTitle = t(`classes.${character.class.name}_${gender}`);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); },
@@ -54,7 +55,7 @@ export default function LevelUpModal({ character, onClose }: Props) {
           {t(`tiers.${character.tier.name}`, { suffix })}
         </p>
         <p className="mt-1 text-[14px] text-text-secondary">
-          {character.class.title}
+          {classTitle}
         </p>
 
         {/* Subtitle */}
