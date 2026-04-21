@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useWallet } from '@solana/wallet-adapter-react';
 import Link from 'next/link';
 
 import { DashboardProvider, useDashboard } from '@/contexts/DashboardContext';
+import { getUserAvatar } from '@/lib/store';
 import DashboardNav from '@/components/dashboard/DashboardNav';
 import WalletButton from '@/components/WalletButton';
 import DemoToggle from '@/components/DemoToggle';
@@ -19,13 +21,18 @@ import NudgeChatPanel from '@/components/dashboard/NudgeChatPanel';
 function ShellInner({ children }: { children: React.ReactNode }) {
   const { t } = useTranslation();
   const tDash = useTranslation('dashboard').t;
+  const { publicKey } = useWallet();
   const {
     character, persona, isDemo, showData, loading, error, refetch, hasProfile, unreadCount,
     pendingXpGain, pendingLevelUp, pendingItemUnlock,
     dismissXpToast, dismissLevelUp, dismissItemUnlock,
     trackLyraTopic,
     lyraAutoAction, clearLyraAutoAction,
+    gender,
   } = useDashboard();
+
+  const walletAddr = persona?.wallet ?? publicKey?.toBase58() ?? '';
+  const avatarSrc = persona ? persona.avatar : getUserAvatar(walletAddr, gender);
 
   const [showCharacterSheet, setShowCharacterSheet] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
@@ -138,7 +145,7 @@ function ShellInner({ children }: { children: React.ReactNode }) {
       {showCharacterSheet && character && (
         <CharacterSheet
           character={character}
-          avatarSrc={persona?.avatar ?? '/giuliana-avatar.png'}
+          avatarSrc={avatarSrc}
           onClose={() => setShowCharacterSheet(false)}
         />
       )}

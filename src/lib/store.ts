@@ -170,3 +170,33 @@ export function saveLyraChat(wallet: string, messages: LyraChatMessage[]): void 
   const tail = messages.slice(-MAX_LYRA_MESSAGES);
   localStorage.setItem(LYRA_CHAT_KEY + wallet, JSON.stringify(tail));
 }
+
+// ── User avatar ──────────────────────────────────────────────────────
+
+const AVATAR_KEY = 'nudge:avatar:';
+
+import type { Gender } from './neurotags';
+
+const DEFAULT_AVATARS: Record<Gender, string> = {
+  f: '/giuliana-avatar.png',
+  m: '/rafael-avatar.png',
+  nb: '/nyx-avatar.png',
+};
+
+export function getDefaultAvatar(gender: Gender): string {
+  return DEFAULT_AVATARS[gender] ?? DEFAULT_AVATARS.f;
+}
+
+export function getCustomAvatar(wallet: string): string | null {
+  if (typeof window === 'undefined') return null;
+  return localStorage.getItem(AVATAR_KEY + wallet);
+}
+
+export function saveCustomAvatar(wallet: string, dataUrl: string): void {
+  if (typeof window === 'undefined') return;
+  localStorage.setItem(AVATAR_KEY + wallet, dataUrl);
+}
+
+export function getUserAvatar(wallet: string, gender: Gender): string {
+  return getCustomAvatar(wallet) ?? getDefaultAvatar(gender);
+}

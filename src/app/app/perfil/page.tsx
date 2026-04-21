@@ -1,13 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
+import { useWallet } from '@solana/wallet-adapter-react';
 
 import Link from 'next/link';
 import { useDashboard } from '@/contexts/DashboardContext';
 import { ACTIVITIES, ITEM_ICONS } from '@/lib/rpg';
 import { getVisibleTraits, genderSuffix } from '@/lib/neurotags';
+import { getUserAvatar, saveCustomAvatar } from '@/lib/store';
 const useOnboardingT = () => useTranslation('onboarding').t;
 import ItemDetailModal, { type SlotData } from '@/components/dashboard/ItemDetailModal';
 import type { InventoryItemId } from '@/lib/rpg';
@@ -58,9 +60,37 @@ function ItemSlot({ slot, onSelect }: {
 
 export default function PerfilPage() {
   const { t } = useTranslation('dashboard');
-  const { character, persona, gender } = useDashboard();
+  const { publicKey } = useWallet();
+  const { character, persona, gender, isDemo } = useDashboard();
   const tOnb = useOnboardingT();
   const [selectedItemId, setSelectedItemId] = useState<InventoryItemId | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const walletAddr = persona?.wallet ?? publicKey?.toBase58() ?? '';
+  const [avatarSrc, setAvatarSrc] = useState(() =>
+    persona ? persona.avatar : getUserAvatar(walletAddr, gender),
+  );
+
+  const handleAvatarUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !walletAddr) return;
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new window.Image();
+    img.onload = () => {
+      const size = 400;
+      canvas.width = size;
+      canvas.height = size;
+      const scale = Math.max(size / img.width, size / img.height);
+      const x = (size - img.width * scale) / 2;
+      const y = (size - img.height * scale) / 2;
+      ctx?.drawImage(img, x, y, img.width * scale, img.height * scale);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+      saveCustomAvatar(walletAddr, dataUrl);
+      setAvatarSrc(dataUrl);
+    };
+    img.src = URL.createObjectURL(file);
+  }, [walletAddr]);
 
   if (!character) {
     return (
@@ -77,7 +107,6 @@ export default function PerfilPage() {
   const classDesc = t(`classes.${character.class.name}_desc`);
   const xpPercent = Math.min(100, (character.xp / character.xpToNext) * 100);
   const visibleTraits = getVisibleTraits(character.traits);
-  const avatarSrc = persona?.avatar ?? '/giuliana-avatar.png';
 
   const allSlots: SlotData[] = Object.values(ACTIVITIES).map((activity) => ({
     itemId: activity.item,
@@ -104,17 +133,47 @@ export default function PerfilPage() {
 
       {/* Avatar portrait — first visual element */}
       <div className="mt-6 flex justify-center">
-        <div className="tactical-frame">
+        <div className="tactical-frame relative group">
           <div className="re-scan overflow-hidden w-[220px] sm:w-[280px]">
-            <Image
-              src={avatarSrc}
-              alt={classTitle}
-              width={280}
-              height={420}
-              className="block w-full h-auto"
-              priority
-            />
+            {avatarSrc.startsWith('data:') ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={avatarSrc}
+                alt={classTitle}
+                className="block w-full h-auto aspect-[2/3] object-cover"
+              />
+            ) : (
+              <Image
+                src={avatarSrc}
+                alt={classTitle}
+                width={280}
+                height={420}
+                className="block w-full h-auto"
+                priority
+              />
+            )}
           </div>
+          {/* Upload overlay */}
+          {!isDemo && (
+            <>
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="absolute inset-0 flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-black/60 to-transparent rounded-b-xl cursor-pointer"
+              >
+                <span className="font-mono text-[11px] text-white/90 uppercase tracking-wider">
+                  {t('perfil.changePhoto', { defaultValue: 'Trocar foto' })}
+                </span>
+              </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                capture="environment"
+                onChange={handleAvatarUpload}
+                className="hidden"
+              />
+            </>
+          )}
         </div>
       </div>
 
