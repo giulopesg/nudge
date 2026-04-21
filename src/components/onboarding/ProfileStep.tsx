@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslation } from 'react-i18next';
-import type { NeurotageId, GoalId } from '@/lib/neurotags';
+import type { NeurotageId, GoalId, Gender } from '@/lib/neurotags';
 import { getProfileActions, getVisibleTraits } from '@/lib/neurotags';
 import { buildCharacter } from '@/lib/rpg';
 import CharacterCard from '@/components/dashboard/CharacterCard';
@@ -10,10 +10,11 @@ import Link from 'next/link';
 interface Props {
   neurotags: NeurotageId[];
   goals?: GoalId[];
+  gender?: Gender;
   onNext?: () => void;
 }
 
-export default function ProfileStep({ neurotags, goals = [], onNext }: Props) {
+export default function ProfileStep({ neurotags, goals = [], gender = 'f', onNext }: Props) {
   const { t } = useTranslation('onboarding');
   const tGoals = useTranslation('goals').t;
   const actions = getProfileActions(neurotags);
@@ -31,7 +32,7 @@ export default function ProfileStep({ neurotags, goals = [], onNext }: Props) {
 
       {/* Character Card (RPG) */}
       <div className="mt-6 w-full max-w-md">
-        <CharacterCard character={character} />
+        <CharacterCard character={character} gender={gender} />
       </div>
 
       {/* Goals chosen */}

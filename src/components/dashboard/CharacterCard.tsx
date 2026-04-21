@@ -2,11 +2,11 @@
 
 import { useTranslation } from 'react-i18next';
 import type { Character } from '@/lib/rpg';
-import { getVisibleTraits, genderSuffix } from '@/lib/neurotags';
-import { useDashboard } from '@/contexts/DashboardContext';
+import { getVisibleTraits, genderSuffix, type Gender } from '@/lib/neurotags';
 
 interface Props {
   character: Character;
+  gender?: Gender;
 }
 
 const STAT_LABELS = {
@@ -15,10 +15,9 @@ const STAT_LABELS = {
   reactivity: 'Serenidade',
 };
 
-export default function CharacterCard({ character }: Props) {
+export default function CharacterCard({ character, gender = 'f' }: Props) {
   const { t } = useTranslation('onboarding');
   const tDash = useTranslation('dashboard').t;
-  const { gender } = useDashboard();
   const suffix = genderSuffix(gender);
   const xpPercent = Math.min((character.xp / character.xpToNext) * 100, 100);
 

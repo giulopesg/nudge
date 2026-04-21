@@ -152,7 +152,7 @@ export default function OnboardingPage() {
             onBack={() => setStep('quiz')}
           />
         ) : step === 'profile' ? (
-          <ProfileStep neurotags={neurotags} goals={goals} onNext={() => setStep('registration')} />
+          <ProfileStep neurotags={neurotags} goals={goals} gender={gender} onNext={() => setStep('registration')} />
         ) : (
           <RegistrationStep
             neurotags={neurotags}
