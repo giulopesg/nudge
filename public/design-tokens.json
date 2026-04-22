@@ -1,0 +1,234 @@
+{
+  "n2ds": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$type": "color",
+          "$value": "#A366FF",
+          "$description": "Brand, buttons, primary actions, links"
+        },
+        "primary-hover": {
+          "$type": "color",
+          "$value": "#B87AFF",
+          "$description": "Hover states for primary elements"
+        },
+        "primary-muted": {
+          "$type": "color",
+          "$value": "rgba(163,102,255,0.12)",
+          "$description": "Subtle backgrounds, tags, pills"
+        },
+        "primary-glow": {
+          "$type": "color",
+          "$value": "rgba(163,102,255,0.3)",
+          "$description": "Box-shadow glow effects"
+        }
+      },
+      "secondary": {
+        "rose-plum": {
+          "$type": "color",
+          "$value": "#FF6B9D",
+          "$description": "Secondary actions, accents, feminine touch"
+        },
+        "rose-light": {
+          "$type": "color",
+          "$value": "#FF8DB5",
+          "$description": "Light variant for hover states"
+        },
+        "rose-muted": {
+          "$type": "color",
+          "$value": "rgba(255,107,157,0.15)",
+          "$description": "Subtle backgrounds for rose elements"
+        },
+        "mint": {
+          "$type": "color",
+          "$value": "#3DDBA4",
+          "$description": "Accent, health indicators, fresh vibes"
+        }
+      },
+      "status": {
+        "safe": {
+          "$type": "color",
+          "$value": "#2ED88A",
+          "$description": "Health Factor OK, positive status"
+        },
+        "attention": {
+          "$type": "color",
+          "$value": "#F5A623",
+          "$description": "Warning, approaching threshold"
+        },
+        "danger": {
+          "$type": "color",
+          "$value": "#FF4D6A",
+          "$description": "Critical, liquidation risk"
+        },
+        "xp": {
+          "$type": "color",
+          "$value": "#B57AFF",
+          "$description": "Experience points, RPG progression"
+        }
+      },
+      "surface": {
+        "background": {
+          "$type": "color",
+          "$value": "#07050E",
+          "$description": "Page background, deep void"
+        },
+        "surface": {
+          "$type": "color",
+          "$value": "rgba(255,248,245,0.03)",
+          "$description": "Card/component backgrounds"
+        },
+        "surface-hover": {
+          "$type": "color",
+          "$value": "rgba(255,248,245,0.06)",
+          "$description": "Hovered card backgrounds"
+        },
+        "surface-border": {
+          "$type": "color",
+          "$value": "rgba(163,102,255,0.10)",
+          "$description": "Subtle borders on cards and containers"
+        }
+      },
+      "text": {
+        "foreground": {
+          "$type": "color",
+          "$value": "rgba(255,248,240,0.92)",
+          "$description": "Primary text, high emphasis"
+        },
+        "secondary": {
+          "$type": "color",
+          "$value": "rgba(255,248,240,0.72)",
+          "$description": "Body text, descriptions"
+        },
+        "muted": {
+          "$type": "color",
+          "$value": "rgba(255,248,240,0.48)",
+          "$description": "Labels, captions, low emphasis"
+        }
+      }
+    },
+    "font": {
+      "lora": {
+        "$type": "fontFamily",
+        "$value": "Lora",
+        "$description": "Display / Titles — Headings, section titles, card headers, navigation labels. Warm serif that gives personality."
+      },
+      "agbalumo": {
+        "$type": "fontFamily",
+        "$value": "Agbalumo",
+        "$description": "Accent / Playful — Bylines, taglines, hero accents, emotional moments. Playful and warm."
+      },
+      "outfit": {
+        "$type": "fontFamily",
+        "$value": "Outfit",
+        "$description": "UI / Sans-serif — Body text, button labels, form inputs, general UI. Clean and readable."
+      },
+      "fira-code": {
+        "$type": "fontFamily",
+        "$value": "Fira Code",
+        "$description": "Mono / Technical — Wallet addresses, stats, badges, status labels, technical data. Monospace precision."
+      }
+    },
+    "spacing": {
+      "4": {
+        "$type": "dimension",
+        "$value": "4px",
+        "$description": "1rem"
+      },
+      "8": {
+        "$type": "dimension",
+        "$value": "8px",
+        "$description": "2rem"
+      },
+      "12": {
+        "$type": "dimension",
+        "$value": "12px",
+        "$description": "3rem"
+      },
+      "16": {
+        "$type": "dimension",
+        "$value": "16px",
+        "$description": "4rem"
+      },
+      "20": {
+        "$type": "dimension",
+        "$value": "20px",
+        "$description": "5rem"
+      },
+      "24": {
+        "$type": "dimension",
+        "$value": "24px",
+        "$description": "6rem"
+      },
+      "32": {
+        "$type": "dimension",
+        "$value": "32px",
+        "$description": "8rem"
+      },
+      "48": {
+        "$type": "dimension",
+        "$value": "48px",
+        "$description": "12rem"
+      },
+      "64": {
+        "$type": "dimension",
+        "$value": "64px",
+        "$description": "16rem"
+      }
+    },
+    "radius": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "8px",
+        "$description": "Small elements, tags, inputs"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "12px",
+        "$description": "Cards, buttons, medium containers"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "16px",
+        "$description": "Large cards, modals, hero sections"
+      },
+      "full": {
+        "$type": "dimension",
+        "$value": "9999px",
+        "$description": "Pills, badges, circular elements"
+      }
+    },
+    "shadow": {
+      "primary": {
+        "$type": "shadow",
+        "$value": "0 0 20px var(--primary-glow), inset 0 0 20px rgba(163,102,255,0.05)",
+        "$description": "Primary Glow"
+      },
+      "plum": {
+        "$type": "shadow",
+        "$value": "0 0 20px var(--plum-glow), inset 0 0 20px rgba(255,107,157,0.05)",
+        "$description": "Rose Glow"
+      },
+      "safe": {
+        "$type": "shadow",
+        "$value": "0 0 16px var(--safe-glow)",
+        "$description": "Safe Glow"
+      },
+      "attention": {
+        "$type": "shadow",
+        "$value": "0 0 16px var(--attention-glow)",
+        "$description": "Attention Glow"
+      },
+      "danger": {
+        "$type": "shadow",
+        "$value": "0 0 16px var(--danger-glow)",
+        "$description": "Danger Glow"
+      },
+      "xp": {
+        "$type": "shadow",
+        "$value": "0 0 20px var(--xp-glow), inset 0 0 20px rgba(181,122,255,0.05)",
+        "$description": "XP Glow"
+      }
+    }
+  }
+}

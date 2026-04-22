@@ -71,3 +71,25 @@
 
 .animate-lyra-float { animation: lyra-float 3s ease-in-out infinite; }
 .animate-lyra-glow { animation: lyra-glow 2s ease-in-out infinite; }
+
+/* ===== N2 Design System Animations ===== */
+
+@keyframes n2-breathe {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes n2-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes n2-bloom {
+  0% { box-shadow: 0 0 0 rgba(163, 102, 255, 0); }
+  50% { box-shadow: 0 0 20px rgba(163, 102, 255, 0.15); }
+  100% { box-shadow: 0 0 0 rgba(163, 102, 255, 0); }
+}
+
+.n2-animate-breathe { animation: n2-breathe 4s ease-in-out infinite; }
+.n2-animate-float { animation: n2-float 4s ease-in-out infinite; }
+.n2-animate-bloom { animation: n2-bloom 3s ease-in-out infinite; }
