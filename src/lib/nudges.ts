@@ -1,6 +1,6 @@
 // ── Nudge engine — compares snapshots and generates behavioral alerts ──
 
-import type { EnrichedPosition } from '@/hooks/usePosition';
+import type { EnrichedPosition } from '@/lib/enrich';
 import type { GoalProgress } from '@/lib/goals';
 
 // ── Types ──────────────────────────────────────────────────────────────

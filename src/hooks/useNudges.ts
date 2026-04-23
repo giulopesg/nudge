@@ -20,6 +20,15 @@ interface UseNudgesResult {
   markAllAsRead: () => void;
 }
 
+/** Merge server nudges with local, deduplicating by id */
+function mergeNudgeLists(local: Nudge[], server: Nudge[]): Nudge[] {
+  const ids = new Set(local.map((n) => n.id));
+  const unique = server.filter((n) => !ids.has(n.id));
+  return [...local, ...unique].sort(
+    (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
+  );
+}
+
 export function useNudges(
   wallet: string | null,
   position: EnrichedPosition | null,
@@ -29,6 +38,30 @@ export function useNudges(
 ): UseNudgesResult {
   const [nudges, setNudges] = useState<Nudge[]>([]);
   const lastPositionRef = useRef<string | null>(null);
+  const registeredRef = useRef<string | null>(null);
+
+  // Auto-register wallet for cron monitoring + fetch server nudges
+  useEffect(() => {
+    if (isDemo || !wallet) return;
+    if (registeredRef.current === wallet) return;
+    registeredRef.current = wallet;
+
+    // Register (fire-and-forget)
+    fetch('/api/monitor/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ wallet, action: 'add' }),
+    }).catch(() => {});
+
+    // Fetch server nudge history and merge
+    fetch(`/api/monitor/nudges/${wallet}`)
+      .then((r) => (r.ok ? r.json() : []))
+      .then((serverNudges: Nudge[]) => {
+        if (serverNudges.length === 0) return;
+        setNudges((prev) => mergeNudgeLists(prev, serverNudges));
+      })
+      .catch(() => {});
+  }, [isDemo, wallet]);
 
   // Demo mode: load static demo nudges
   useEffect(() => {

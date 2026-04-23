@@ -2,15 +2,12 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import type { PositionResponse } from '@/lib/kamino';
-import type { PortfolioBalance, NudgeScore } from '@/lib/portfolio';
 import { calculateNudgeScore } from '@/lib/portfolio';
+import { enrichPosition, type EnrichedPosition } from '@/lib/enrich';
 import { getDemoPersona } from '@/lib/demo';
 
-export interface EnrichedPosition {
-  position: PositionResponse;
-  portfolio: PortfolioBalance;
-  nudgeScore: NudgeScore;
-}
+// Re-export so existing imports keep working
+export type { EnrichedPosition } from '@/lib/enrich';
 
 interface UsePositionResult {
   data: EnrichedPosition | null;
@@ -58,23 +55,7 @@ export function usePosition(
       const res = await fetch(`/api/position/${walletAddress}`);
       if (!res.ok) throw new Error('Failed to fetch');
       const json: PositionResponse = await res.json();
-
-      // For real wallets, build a basic portfolio from SOL balance
-      // Full multi-token support will come with token account parsing
-      const { buildPortfolio } = await import('@/lib/portfolio');
-      const portfolio = buildPortfolio([
-        {
-          symbol: 'SOL',
-          mint: 'native',
-          amount: json.balance.solBalance,
-          valueUsd: json.balance.solValueUsd,
-        },
-      ]);
-      const nudgeScore = calculateNudgeScore(
-        portfolio,
-        json.position?.healthFactor ?? null,
-      );
-      setData({ position: json, portfolio, nudgeScore });
+      setData(enrichPosition(json));
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
