@@ -313,39 +313,6 @@ export default function Patterns({ copyCode, copied }: PatternsProps) {
         </div>
       </div>
 
-      {/* ── Roadmap ────────────────────── */}
-      <div>
-        <h3 className="font-display text-[20px] font-bold text-foreground mb-4 tracking-wide flex items-center gap-3">
-          <span className="w-8 h-[1px] bg-primary inline-block" />
-          Roadmap
-        </h3>
-
-        <div className="space-y-3">
-          {[
-            { version: 'v1', status: 'done', label: 'Foundation', desc: 'Tokens + 10 core components + patterns' },
-            { version: 'v2', status: 'done', label: 'Full Catalog', desc: 'All 41 components across 11 categories, search/filter' },
-            { version: 'v3', status: 'done', label: 'Playground', desc: 'Interactive props editor for 15 core components' },
-            { version: 'v4', status: 'current', label: 'Figma Integration', desc: 'Design tokens JSON, Figma kit, sync pipeline' },
-            { version: 'v5', status: 'planned', label: 'Visual Tests', desc: 'Snapshot testing, CI regression alerts' },
-          ].map(item => (
-            <div key={item.version} className="flex items-start gap-4 rounded-lg border border-surface-border p-4" style={{ background: item.status === 'current' ? 'var(--primary-muted)' : item.status === 'done' ? 'rgba(0,212,170,0.04)' : 'var(--surface)' }}>
-              <code className={`font-mono text-[13px] font-bold flex-shrink-0 ${item.status === 'current' ? 'text-primary' : item.status === 'done' ? 'text-safe' : 'text-text-muted'}`}>
-                {item.version}
-              </code>
-              <div>
-                <span className="font-sans text-[14px] text-foreground font-medium">{item.label}</span>
-                {item.status === 'current' && (
-                  <span className="ml-2 font-mono text-[9px] text-primary bg-primary-muted px-1.5 py-0.5 rounded-full border border-primary">CURRENT</span>
-                )}
-                {item.status === 'done' && (
-                  <span className="ml-2 font-mono text-[9px] text-safe bg-safe-muted px-1.5 py-0.5 rounded-full border border-safe/30">DONE</span>
-                )}
-                <p className="font-sans text-[12px] text-text-muted mt-0.5">{item.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }

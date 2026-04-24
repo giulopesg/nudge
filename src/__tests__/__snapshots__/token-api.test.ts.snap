@@ -1,0 +1,238 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`public/design-tokens.json — snapshot > matches the approved output 1`] = `
+{
+  "n2ds": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$description": "Brand, buttons, primary actions, links",
+          "$type": "color",
+          "$value": "#A366FF",
+        },
+        "primary-glow": {
+          "$description": "Box-shadow glow effects",
+          "$type": "color",
+          "$value": "rgba(163,102,255,0.3)",
+        },
+        "primary-hover": {
+          "$description": "Hover states for primary elements",
+          "$type": "color",
+          "$value": "#B87AFF",
+        },
+        "primary-muted": {
+          "$description": "Subtle backgrounds, tags, pills",
+          "$type": "color",
+          "$value": "rgba(163,102,255,0.12)",
+        },
+      },
+      "secondary": {
+        "mint": {
+          "$description": "Accent, health indicators, fresh vibes",
+          "$type": "color",
+          "$value": "#3DDBA4",
+        },
+        "rose-light": {
+          "$description": "Light variant for hover states",
+          "$type": "color",
+          "$value": "#FF8DB5",
+        },
+        "rose-muted": {
+          "$description": "Subtle backgrounds for rose elements",
+          "$type": "color",
+          "$value": "rgba(255,107,157,0.15)",
+        },
+        "rose-plum": {
+          "$description": "Secondary actions, accents, feminine touch",
+          "$type": "color",
+          "$value": "#FF6B9D",
+        },
+      },
+      "status": {
+        "attention": {
+          "$description": "Warning, approaching threshold",
+          "$type": "color",
+          "$value": "#F5A623",
+        },
+        "danger": {
+          "$description": "Critical, liquidation risk",
+          "$type": "color",
+          "$value": "#FF4D6A",
+        },
+        "safe": {
+          "$description": "Health Factor OK, positive status",
+          "$type": "color",
+          "$value": "#2ED88A",
+        },
+        "xp": {
+          "$description": "Experience points, RPG progression",
+          "$type": "color",
+          "$value": "#B57AFF",
+        },
+      },
+      "surface": {
+        "background": {
+          "$description": "Page background, deep void",
+          "$type": "color",
+          "$value": "#07050E",
+        },
+        "surface": {
+          "$description": "Card/component backgrounds",
+          "$type": "color",
+          "$value": "rgba(255,248,245,0.03)",
+        },
+        "surface-border": {
+          "$description": "Subtle borders on cards and containers",
+          "$type": "color",
+          "$value": "rgba(163,102,255,0.10)",
+        },
+        "surface-hover": {
+          "$description": "Hovered card backgrounds",
+          "$type": "color",
+          "$value": "rgba(255,248,245,0.06)",
+        },
+      },
+      "text": {
+        "foreground": {
+          "$description": "Primary text, high emphasis",
+          "$type": "color",
+          "$value": "rgba(255,248,240,0.92)",
+        },
+        "muted": {
+          "$description": "Labels, captions, low emphasis",
+          "$type": "color",
+          "$value": "rgba(255,248,240,0.48)",
+        },
+        "secondary": {
+          "$description": "Body text, descriptions",
+          "$type": "color",
+          "$value": "rgba(255,248,240,0.72)",
+        },
+      },
+    },
+    "font": {
+      "agbalumo": {
+        "$description": "Accent / Playful — Bylines, taglines, hero accents, emotional moments. Playful and warm.",
+        "$type": "fontFamily",
+        "$value": "Agbalumo",
+      },
+      "fira-code": {
+        "$description": "Mono / Technical — Wallet addresses, stats, badges, status labels, technical data. Monospace precision.",
+        "$type": "fontFamily",
+        "$value": "Fira Code",
+      },
+      "lora": {
+        "$description": "Display / Titles — Headings, section titles, card headers, navigation labels. Warm serif that gives personality.",
+        "$type": "fontFamily",
+        "$value": "Lora",
+      },
+      "outfit": {
+        "$description": "UI / Sans-serif — Body text, button labels, form inputs, general UI. Clean and readable.",
+        "$type": "fontFamily",
+        "$value": "Outfit",
+      },
+    },
+    "radius": {
+      "full": {
+        "$description": "Pills, badges, circular elements",
+        "$type": "dimension",
+        "$value": "9999px",
+      },
+      "lg": {
+        "$description": "Large cards, modals, hero sections",
+        "$type": "dimension",
+        "$value": "16px",
+      },
+      "md": {
+        "$description": "Cards, buttons, medium containers",
+        "$type": "dimension",
+        "$value": "12px",
+      },
+      "sm": {
+        "$description": "Small elements, tags, inputs",
+        "$type": "dimension",
+        "$value": "8px",
+      },
+    },
+    "shadow": {
+      "attention": {
+        "$description": "Attention Glow",
+        "$type": "shadow",
+        "$value": "0 0 16px var(--attention-glow)",
+      },
+      "danger": {
+        "$description": "Danger Glow",
+        "$type": "shadow",
+        "$value": "0 0 16px var(--danger-glow)",
+      },
+      "plum": {
+        "$description": "Rose Glow",
+        "$type": "shadow",
+        "$value": "0 0 20px var(--plum-glow), inset 0 0 20px rgba(255,107,157,0.05)",
+      },
+      "primary": {
+        "$description": "Primary Glow",
+        "$type": "shadow",
+        "$value": "0 0 20px var(--primary-glow), inset 0 0 20px rgba(163,102,255,0.05)",
+      },
+      "safe": {
+        "$description": "Safe Glow",
+        "$type": "shadow",
+        "$value": "0 0 16px var(--safe-glow)",
+      },
+      "xp": {
+        "$description": "XP Glow",
+        "$type": "shadow",
+        "$value": "0 0 20px var(--xp-glow), inset 0 0 20px rgba(181,122,255,0.05)",
+      },
+    },
+    "spacing": {
+      "12": {
+        "$description": "3rem",
+        "$type": "dimension",
+        "$value": "12px",
+      },
+      "16": {
+        "$description": "4rem",
+        "$type": "dimension",
+        "$value": "16px",
+      },
+      "20": {
+        "$description": "5rem",
+        "$type": "dimension",
+        "$value": "20px",
+      },
+      "24": {
+        "$description": "6rem",
+        "$type": "dimension",
+        "$value": "24px",
+      },
+      "32": {
+        "$description": "8rem",
+        "$type": "dimension",
+        "$value": "32px",
+      },
+      "4": {
+        "$description": "1rem",
+        "$type": "dimension",
+        "$value": "4px",
+      },
+      "48": {
+        "$description": "12rem",
+        "$type": "dimension",
+        "$value": "48px",
+      },
+      "64": {
+        "$description": "16rem",
+        "$type": "dimension",
+        "$value": "64px",
+      },
+      "8": {
+        "$description": "2rem",
+        "$type": "dimension",
+        "$value": "8px",
+      },
+    },
+  },
+}
+`;
