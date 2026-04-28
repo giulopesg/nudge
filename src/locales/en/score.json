@@ -25,7 +25,7 @@
       "bad": "Portfolio too dependent on 1 token"
     },
     "kaminoHealth": {
-      "label": "HEALTH FACTOR (KAMINO)",
+      "label": "LENDING HEALTH",
       "good": "Loan is safe",
       "ok": "Loan needs attention",
       "bad": "Loan at risk"

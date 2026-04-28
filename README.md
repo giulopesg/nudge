@@ -2,7 +2,7 @@
 
 **Blockchain is freedom. Nudge teaches you to exercise yours.**
 
-Nudge is a behavioral DeFi coach for Solana. It translates complex lending positions into plain language, monitors your portfolio health in real-time, and sends personalized nudges based on your behavioral profile.
+Nudge is a behavioral DeFi coach for Solana. It profiles your financial personality, translates complex protocol data into plain language, monitors your portfolio health in real-time, and sends personalized nudges based on your behavioral profile. Kamino is the first protocol integration.
 
 Built for the **Solana Frontier Hackathon 2026** (Colosseum).
 
@@ -10,16 +10,27 @@ Built for the **Solana Frontier Hackathon 2026** (Colosseum).
 
 ## What it does
 
-- **Portfolio translation** — Shows your Solana wallet balance and Kamino lending positions in human-readable language, adapted to your communication style
-- **Behavioral profiling** — A quiz-based neurotag system identifies your risk personality (Guardian, Explorer, Strategist, etc.) and adjusts all messaging accordingly
-- **Health Factor monitoring** — Real-time tracking of Kamino lending positions with color-coded status (safe/attention/danger) + daily cron monitoring via Upstash Redis
-- **Nudge Score** — A composite score (0-100) reflecting your overall DeFi health
+Nudge is a **behavioral DeFi coach** — it profiles your financial personality, translates complex protocol data into plain language, and sends personalized nudges to help you make better decisions. Kamino is the first protocol integration, with more coming.
+
+- **Behavioral coaching** — Quiz-based neurotag system identifies your risk personality (Guardian, Explorer, Strategist, etc.) and adapts all messaging to your communication style
+- **Protocol integrations** — Reads on-chain positions from integrated protocols (starting with Kamino lending), translates Health Factor and margin data into human-readable insights
+- **Nudge Score** — A composite score (0-100) reflecting your overall DeFi health across portfolio diversification, stablecoin reserves, concentration risk, and lending health
 - **RPG progression** — Earn XP for learning, unlock inventory items, level up your character
 - **Lyra AI assistant** — FAQ chatbot with contextual follow-up suggestions
 - **Alert system** — Severity-based notifications for position changes
 - **On-chain registration** — Profile hash committed to Solana via Memo Program
 - **Design system** — N2DS (Nudge Design System) with live docs, W3C DTCG token export, and Figma integration
-- **Demo mode** — 4 pre-built personas (Marina, Rafael, Luna, Nyx) showcasing different risk scenarios
+- **Demo mode** — 4 pre-built personas (Giuliana, Rafael, Luna, Nyx) showcasing different risk scenarios
+
+## Protocol integrations
+
+| Protocol | Status | What it does |
+|----------|--------|--------------|
+| **Kamino** | Active | Reads lending positions, Health Factor, collateral/debt data |
+| **Jupiter** | Active | Price API for portfolio token valuation |
+| Marinade | Coming soon | Liquid staking (mSOL) |
+| Raydium | Coming soon | DEX liquidity positions |
+| Jito | Coming soon | MEV-powered staking |
 
 ## Tech stack
 

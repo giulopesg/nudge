@@ -182,14 +182,14 @@ export default function ContentCardsGroup({ copyCode, copied }: Props) {
       <ComponentDoc
         id="comp-beginner-kamino-card"
         name="BeginnerKaminoCard"
-        description="Educational card for users without a Kamino position. Explains lending with dual CTA buttons."
-        forDesigner="Card with rounded-2xl. Informative title + body text. Two CTAs at bottom: secondary (learn more) + primary (go to Kamino). Friendly, non-technical tone."
-        forDev="Shown when position is null. Card base. Two buttons: n2-btn-secondary (opens education modal) + n2-btn-primary (external link to Kamino). Responsive button layout."
+        description="Educational card for users without a lending position. Explains lending (via Kamino) with dual CTA buttons."
+        forDesigner="Card with rounded-2xl. Informative title + body text + 'via Kamino' badge. Two CTAs at bottom: secondary (learn more) + primary (go to Kamino). Friendly, non-technical tone."
+        forDev="Shown when position is null. Card base. Protocol badge. Two buttons: n2-btn-secondary (opens education modal) + n2-btn-primary (external link to Kamino). Responsive button layout."
         preview={
           <div className="card rounded-2xl max-w-[360px] w-full">
-            <p className="font-display text-[16px] font-semibold text-foreground mb-2">New to Kamino?</p>
+            <p className="font-display text-[16px] font-semibold text-foreground mb-2">New to Lending?</p>
             <p className="font-sans text-[13px] text-text-secondary leading-relaxed mb-4">
-              Kamino lets you lend and borrow on Solana. Connect your position to get personalized nudges and track your Health Factor.
+              Lend and borrow on Solana via Kamino. Connect your position to get personalized nudges and track your Health Factor.
             </p>
             <div className="flex flex-wrap gap-3">
               <button className="n2-btn-secondary">Learn More</button>
@@ -198,9 +198,9 @@ export default function ContentCardsGroup({ copyCode, copied }: Props) {
           </div>
         }
         code={`<div className="card rounded-2xl">
-  <p className="font-display font-semibold">New to Kamino?</p>
+  <p className="font-display font-semibold">New to Lending?</p>
   <p className="text-[13px] text-text-secondary">
-    Explanatory text about Kamino lending...
+    Explanatory text about lending via Kamino...
   </p>
   <div className="flex gap-3">
     <button className="n2-btn-secondary">Learn More</button>

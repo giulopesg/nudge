@@ -2,7 +2,7 @@
 
 # Nudge — Behavioral DeFi Coach for Solana
 
-Reads Kamino lending positions, profiles financial personality via quizzes, assigns RPG classes, sends nudges via Lyra AI. Hackathon: Colosseum Frontier 2026.
+Behavioral DeFi coach that profiles financial personality via quizzes, assigns RPG classes, and sends nudges via Lyra AI. Kamino is the first protocol integration. Hackathon: Colosseum Frontier 2026.
 
 ## Stack
 - Next.js 16.2.3 + React 19 + TypeScript + Tailwind v4 — port 3002
@@ -34,7 +34,7 @@ CSS outside `@layer` beats utilities. Use inline styles when conflicting.
 |-------|---------|
 | `/` | Landing |
 | `/onboarding` | 5-step: permissions → quiz → goals → profile → registration |
-| `/app` | Dashboard (wallet, portfolio, Kamino, score) |
+| `/app` | Dashboard (wallet, portfolio, lending, score, integrations) |
 | `/app/alertas` | Nudge history |
 | `/app/jornada` | Goals + journey |
 | `/app/perfil` | Profile + character sheet |

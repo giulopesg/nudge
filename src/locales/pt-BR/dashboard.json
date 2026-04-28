@@ -149,16 +149,17 @@
     "removeCount": "{{count}} wallet(s) selecionada(s)"
   },
   "kamino": {
-    "title": "Kamino — Seu empréstimo",
-    "titlePrefix": "Kamino",
+    "title": "Lending — Seu empréstimo",
+    "titlePrefix": "Lending",
     "titleAccent": "seu empréstimo",
+    "protocolBadge": "Protocolo: Kamino",
     "subtitleDetail": "Detalhes do que você pegou emprestado",
     "explanationAccent": {
       "safe": "relaxa, está tudo ótimo",
       "attention": "vale ficar de olho",
       "danger": "ação necessária agora"
     },
-    "noPosition": "Você ainda não tem empréstimo ativo no Kamino.",
+    "noPosition": "Você ainda não tem posição de lending ativa. O Nudge monitora Kamino e mais protocolos em breve.",
     "noPositionHint": "Quando tiver, o Nudge traduz tudo pra você.",
     "collateral": "Colateral (garantia)",
     "debt": "Dívida",
@@ -237,15 +238,15 @@
       "exploreKamino": {
         "label": {
           "gentle": "O que é emprestar?",
-          "encouraging": "Explorar Kamino",
-          "direct": "Kamino — Empréstimos",
-          "technical": "Kamino Lending"
+          "encouraging": "Explorar empréstimos",
+          "direct": "Lending — via Kamino",
+          "technical": "Lending via Kamino"
         },
         "desc": {
           "gentle": "Entenda como funciona emprestar em cripto",
-          "encouraging": "Descubra como usar seu cripto pra gerar renda",
-          "direct": "Emprestar usando seus tokens como garantia",
-          "technical": "Abrir posição de empréstimo no Kamino"
+          "encouraging": "Descubra como usar seu cripto pra gerar renda via Kamino",
+          "direct": "Emprestar usando seus tokens como garantia via Kamino",
+          "technical": "Abrir posição de empréstimo via protocolo Kamino"
         }
       },
       "learnHF": {
@@ -265,15 +266,15 @@
       "viewKamino": {
         "label": {
           "gentle": "Ver meu empréstimo",
-          "encouraging": "Ver no Kamino",
-          "direct": "Ver no Kamino",
+          "encouraging": "Ver posição",
+          "direct": "Ver posição",
           "technical": "Dashboard Kamino"
         },
         "desc": {
-          "gentle": "Abrir seu empréstimo no site do Kamino",
-          "encouraging": "Veja os detalhes no site do Kamino",
-          "direct": "Abrir posição no protocolo",
-          "technical": "Interface nativa do protocolo"
+          "gentle": "Abrir seu empréstimo via Kamino",
+          "encouraging": "Veja os detalhes da sua posição via Kamino",
+          "direct": "Abrir posição no protocolo Kamino",
+          "technical": "Interface nativa do protocolo Kamino"
         }
       },
       "addCollateral": {
@@ -466,9 +467,10 @@
     "solValue": "~US$ {{value}}"
   },
   "beginnerKamino": {
-    "title": "KAMINO — EMPRÉSTIMO EM CRIPTO",
-    "titlePrefix": "Kamino",
-    "titleAccent": "empréstimo em cripto",
+    "title": "LENDING — COMECE A EMPRESTAR",
+    "titlePrefix": "Lending",
+    "titleAccent": "comece a emprestar",
+    "protocolBadge": "via Kamino",
     "body": {
       "gentle": "Você sabia que pode usar seus tokens como garantia para pegar empréstimo em cripto? No Kamino, o Nudge monitora tudo pra você, em tempo real. Quando você se sentir pront{{suffix}}, estamos aqui.",
       "encouraging": "Você sabia que pode usar seus tokens como garantia para pegar empréstimo em cripto? O Kamino faz isso e o Nudge monitora tudo pra você. É mais simples do que parece!",
@@ -513,10 +515,25 @@
     "step3": "→ Volte aqui e o Nudge calcula seu score"
   },
   "integration": {
-    "title": "Mais integrações em breve",
-    "titlePrefix": "Mais integrações",
-    "titleAccent": "em breve",
-    "subtitle": "Jupiter, Marinade, Raydium e outros protocolos Solana"
+    "title": "Integrações DeFi",
+    "titlePrefix": "Integrações",
+    "titleAccent": "DeFi",
+    "subtitle": "Protocolos Solana conectados ao Nudge"
+  },
+  "integrations": {
+    "title": "Integrações DeFi",
+    "titlePrefix": "Integrações",
+    "titleAccent": "DeFi",
+    "active": "Ativo",
+    "comingSoon": "Em breve",
+    "protocols": {
+      "kamino": { "name": "Kamino", "category": "Lending" },
+      "jupiter": { "name": "Jupiter", "category": "Pricing" },
+      "marinade": { "name": "Marinade", "category": "Staking" },
+      "raydium": { "name": "Raydium", "category": "DEX" },
+      "jito": { "name": "Jito", "category": "MEV" }
+    },
+    "more": "+ Mais"
   },
   "lastUpdate": "Atualizado {{time}}",
   "itemModal": {
@@ -565,7 +582,7 @@
       "level": "Seu nível sobe conforme você acumula XP. Cada nível desbloqueia novos títulos e itens no inventário. Continue completando passos da jornada para evoluir!",
       "nudgeScore": "O Nudge Score é sua nota de saúde financeira, de 0 a 100. Ele combina 4 fatores: diversificação do portfolio, reserva em stablecoins, concentração em um único token, e seu Health Factor no Kamino (se tiver empréstimo). Quanto maior o score, mais equilibrada está sua posição.",
       "health": "O Health Factor (HF) mede quão seguro está seu empréstimo no Kamino. Acima de 2.0 é seguro, entre 1.5 e 2.0 requer atenção, e abaixo de 1.5 é zona de perigo. Se chegar a 1.0, ocorre liquidação.",
-      "kamino": "Kamino é um protocolo de empréstimo na Solana. Você deposita tokens como garantia (colateral) e pega empréstimo. O Nudge monitora sua posição em tempo real e te avisa se algo precisar de atenção.",
+      "kamino": "Kamino é um protocolo de empréstimo na Solana e uma das integrações do Nudge. Você deposita tokens como garantia (colateral) e pega empréstimo. O Nudge monitora sua posição em tempo real e te avisa se algo precisar de atenção.",
       "nudge": "O Nudge traduz o mundo DeFi pra você. Ele monitora seu portfolio e empréstimos, calcula seu score de saúde financeira, e te manda alertas personalizados baseados no seu perfil comportamental.",
       "inventory": "Seu inventário contém itens que você desbloqueia ao longo da jornada — como a Chave da Wallet, o Mapa do Kamino, e o Escudo de Serenidade. Cada item dá XP e conta sua história.",
       "class": "Sua classe é definida pelo quiz comportamental: Guardian (protetor), Explorer (curioso), Strategist (analítico), entre outras. Cada classe reflete seu estilo de lidar com finanças.",

@@ -149,16 +149,17 @@
     "removeCount": "{{count}} wallet(s) selected"
   },
   "kamino": {
-    "title": "Kamino — Your loan",
-    "titlePrefix": "Kamino",
+    "title": "Lending — Your loan",
+    "titlePrefix": "Lending",
     "titleAccent": "your loan",
+    "protocolBadge": "Protocol: Kamino",
     "subtitleDetail": "Details of what you borrowed",
     "explanationAccent": {
       "safe": "relax, everything's great",
       "attention": "worth keeping an eye on",
       "danger": "action needed now"
     },
-    "noPosition": "You don't have an active loan on Kamino yet.",
+    "noPosition": "You don't have an active lending position yet. Nudge monitors Kamino and more protocols coming soon.",
     "noPositionHint": "When you do, Nudge translates everything for you.",
     "collateral": "Collateral",
     "debt": "Debt",
@@ -237,15 +238,15 @@
       "exploreKamino": {
         "label": {
           "gentle": "What is lending?",
-          "encouraging": "Explore Kamino",
-          "direct": "Kamino — Lending",
-          "technical": "Kamino Lending"
+          "encouraging": "Explore lending",
+          "direct": "Lending — via Kamino",
+          "technical": "Lending via Kamino"
         },
         "desc": {
           "gentle": "Understand how crypto lending works",
-          "encouraging": "Discover how to use your crypto to earn yield",
-          "direct": "Borrow using your tokens as collateral",
-          "technical": "Open a lending position on Kamino"
+          "encouraging": "Discover how to earn yield via Kamino",
+          "direct": "Borrow using your tokens as collateral via Kamino",
+          "technical": "Open a lending position via Kamino protocol"
         }
       },
       "learnHF": {
@@ -265,15 +266,15 @@
       "viewKamino": {
         "label": {
           "gentle": "View my loan",
-          "encouraging": "View on Kamino",
-          "direct": "View on Kamino",
+          "encouraging": "View position",
+          "direct": "View position",
           "technical": "Kamino Dashboard"
         },
         "desc": {
-          "gentle": "Open your loan on the Kamino website",
-          "encouraging": "See the details on the Kamino site",
-          "direct": "Open position on the protocol",
-          "technical": "Protocol native interface"
+          "gentle": "Open your loan via Kamino",
+          "encouraging": "See the details of your position via Kamino",
+          "direct": "Open position on Kamino protocol",
+          "technical": "Kamino protocol native interface"
         }
       },
       "addCollateral": {
@@ -466,9 +467,10 @@
     "solValue": "~US$ {{value}}"
   },
   "beginnerKamino": {
-    "title": "KAMINO — CRYPTO LENDING",
-    "titlePrefix": "Kamino",
-    "titleAccent": "crypto lending",
+    "title": "LENDING — START BORROWING",
+    "titlePrefix": "Lending",
+    "titleAccent": "start borrowing",
+    "protocolBadge": "via Kamino",
     "body": {
       "gentle": "Did you know you can use your tokens as collateral to borrow crypto? On Kamino, Nudge monitors everything for you in real time. When you feel ready, we're here.",
       "encouraging": "Did you know you can use your tokens as collateral to borrow crypto? Kamino does this and Nudge monitors everything for you. It's simpler than it looks!",
@@ -513,10 +515,25 @@
     "step3": "→ Come back and Nudge calculates your score"
   },
   "integration": {
-    "title": "More integrations coming soon",
-    "titlePrefix": "More integrations",
-    "titleAccent": "coming soon",
-    "subtitle": "Jupiter, Marinade, Raydium and other Solana protocols"
+    "title": "DeFi Integrations",
+    "titlePrefix": "DeFi",
+    "titleAccent": "Integrations",
+    "subtitle": "Solana protocols connected to Nudge"
+  },
+  "integrations": {
+    "title": "DeFi Integrations",
+    "titlePrefix": "DeFi",
+    "titleAccent": "Integrations",
+    "active": "Active",
+    "comingSoon": "Coming soon",
+    "protocols": {
+      "kamino": { "name": "Kamino", "category": "Lending" },
+      "jupiter": { "name": "Jupiter", "category": "Pricing" },
+      "marinade": { "name": "Marinade", "category": "Staking" },
+      "raydium": { "name": "Raydium", "category": "DEX" },
+      "jito": { "name": "Jito", "category": "MEV" }
+    },
+    "more": "+ More"
   },
   "lastUpdate": "Updated {{time}}",
   "itemModal": {
@@ -565,7 +582,7 @@
       "level": "Your level goes up as you accumulate XP. Each level unlocks new titles and inventory items. Keep completing journey steps to evolve!",
       "nudgeScore": "The Nudge Score is your financial health rating, from 0 to 100. It combines 4 factors: portfolio diversification, stablecoin reserve, single-token concentration, and your Kamino Health Factor (if you have a loan). The higher the score, the more balanced your position is.",
       "health": "The Health Factor (HF) measures how safe your Kamino loan is. Above 2.0 is safe, between 1.5 and 2.0 needs attention, and below 1.5 is the danger zone. If it reaches 1.0, liquidation happens.",
-      "kamino": "Kamino is a lending protocol on Solana. You deposit tokens as collateral and take a loan. Nudge monitors your position in real time and alerts you if anything needs attention.",
+      "kamino": "Kamino is a lending protocol on Solana and one of Nudge's protocol integrations. You deposit tokens as collateral and take a loan. Nudge monitors your position in real time and alerts you if anything needs attention.",
       "nudge": "Nudge translates the DeFi world for you. It monitors your portfolio and loans, calculates your financial health score, and sends personalized alerts based on your behavioral profile.",
       "inventory": "Your inventory contains items you unlock along the journey — like the Wallet Key, the Kamino Map, and the Serenity Shield. Each item gives XP and tells your story.",
       "class": "Your class is defined by the behavioral quiz: Guardian (protector), Explorer (curious), Strategist (analytical), among others. Each class reflects your financial style.",

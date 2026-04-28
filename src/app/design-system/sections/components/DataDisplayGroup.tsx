@@ -110,13 +110,13 @@ export default function DataDisplayGroup({ copyCode, copied }: Props) {
       <ComponentDoc
         id="comp-kamino-card"
         name="KaminoCard"
-        description="Kamino lending position summary with collateral, debt, and Health Factor status badge."
+        description="Lending position summary (via Kamino protocol) with collateral, debt, and Health Factor status badge."
         forDesigner="Status badge next to HF value indicates zone (safe/attention/danger). Collateral and debt displayed as key-value rows. Card uses base card class."
         forDev="Uses card + status-badge classes. HF thresholds: safe (>1.5), attention (1.1-1.5), danger (<1.1). Position data from /api/position/[wallet] route."
         preview={
           <div className="card rounded-2xl max-w-[360px] w-full">
             <div className="flex items-center justify-between mb-3">
-              <span className="font-display text-[15px] font-semibold text-foreground">Kamino Position</span>
+              <span className="font-display text-[15px] font-semibold text-foreground">Lending Position</span>
               <span className="status-badge status-safe" style={{ fontSize: 10, padding: '3px 10px' }}>Safe</span>
             </div>
             <div className="space-y-2">
@@ -137,7 +137,7 @@ export default function DataDisplayGroup({ copyCode, copied }: Props) {
         }
         code={`<div className="card rounded-2xl">
   <div className="flex items-center justify-between mb-3">
-    <span className="font-display font-semibold">Kamino Position</span>
+    <span className="font-display font-semibold">Lending Position</span>
     <span className="status-badge status-safe">Safe</span>
   </div>
   <div className="flex justify-between">

@@ -10,7 +10,7 @@ import StatusHero from '@/components/dashboard/StatusHero';
 import PortfolioCard from '@/components/dashboard/PortfolioCard';
 import KaminoCard from '@/components/dashboard/KaminoCard';
 import BeginnerKaminoCard from '@/components/dashboard/BeginnerKaminoCard';
-import AddIntegrationCard from '@/components/dashboard/AddIntegrationCard';
+import IntegrationsGrid from '@/components/dashboard/IntegrationsGrid';
 import FirstStepsCard from '@/components/dashboard/FirstStepsCard';
 import AlertModal from '@/components/dashboard/AlertModal';
 import EducationModal, { type EducationTopicId } from '@/components/dashboard/EducationModal';
@@ -125,8 +125,8 @@ export default function PainelPage() {
           />
         )}
 
-        {/* 7. Integration placeholder */}
-        <AddIntegrationCard />
+        {/* 7. Integrations grid */}
+        <IntegrationsGrid />
 
         {/* Timestamp */}
         {data?.position.timestamp && (
