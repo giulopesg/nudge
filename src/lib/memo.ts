@@ -35,30 +35,36 @@ export function buildMemoPayload(hash: string, characterClass: string): string {
     hash,
     class: characterClass,
     v: 1,
+    ts: new Date().toISOString(),
   });
 }
 
 /**
  * Build a Transaction with a single Memo Program v2 instruction.
  */
-export function buildMemoTransaction(
+export async function buildMemoTransaction(
   payload: string,
   signer: PublicKey,
-): Transaction {
+  connection: Connection,
+): Promise<Transaction> {
   const instruction = new TransactionInstruction({
     programId: MEMO_PROGRAM_ID,
     keys: [{ pubkey: signer, isSigner: true, isWritable: false }],
     data: Buffer.from(payload, 'utf-8'),
   });
 
+  const { blockhash } = await connection.getLatestBlockhash('confirmed');
   const tx = new Transaction();
+  tx.recentBlockhash = blockhash;
+  tx.feePayer = signer;
   tx.add(instruction);
   return tx;
 }
 
 /**
- * Full registration flow: hash → build → send → confirm.
- * Returns the transaction signature on success.
+ * Build and send registration memo. Does NOT confirm — caller handles
+ * confirmation so the UI can show intermediate "confirming" state.
+ * Returns the tx signature and profile hash.
  */
 export async function sendRegistration(
   wallet: PublicKey,
@@ -70,10 +76,9 @@ export async function sendRegistration(
 ): Promise<{ txSignature: string; hash: string }> {
   const hash = await hashProfile(wallet.toBase58(), neurotags, goals);
   const payload = buildMemoPayload(hash, characterClass);
-  const tx = buildMemoTransaction(payload, wallet);
+  const tx = await buildMemoTransaction(payload, wallet, connection);
 
   const txSignature = await sendTransaction(tx, connection);
-  await connection.confirmTransaction(txSignature, 'confirmed');
 
   return { txSignature, hash };
 }

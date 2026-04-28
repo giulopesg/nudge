@@ -16,7 +16,6 @@ import AlertModal from '@/components/dashboard/AlertModal';
 import EducationModal, { type EducationTopicId } from '@/components/dashboard/EducationModal';
 
 export default function PainelPage() {
-  const { t } = useTranslation();
   const tDash = useTranslation('dashboard').t;
   const searchParams = useSearchParams();
   const demoParam = searchParams.get('demo');
@@ -27,9 +26,9 @@ export default function PainelPage() {
     data, isDemo, persona, commProfile, character,
     nudgeScore, portfolio, kaminoPosition, healthFactor, hasKamino,
     nudges, unreadCount,
-    neurotags, handleTopicRead,
+    handleTopicRead,
     requestLyraRecommendation,
-    showData, topicsRead, activities, hasProfile,
+    topicsRead, activities, hasProfile,
   } = useDashboard();
 
   const hasBalance = (portfolio?.totalValueUsd ?? 0) >= 1;

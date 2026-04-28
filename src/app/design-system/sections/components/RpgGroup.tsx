@@ -11,7 +11,6 @@ interface Props {
 }
 
 const ALL_TAGS = ['Cautelosa', 'Meticulosa', 'Aprendiz Visual', 'Conservadora', 'Analítica', 'Paciente'];
-const SLOT_ITEMS = ['\u{1F6E1}\uFE0F', '\u2728', '\u{1F4DA}', '\u{1F48E}', '\u{1F525}'];
 
 export default function RpgGroup({ copyCode, copied }: Props) {
   const [tag, setTag] = useState<Record<string, string | boolean | number>>({

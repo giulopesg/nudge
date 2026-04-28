@@ -1,7 +1,6 @@
 'use client';
 
 import ComponentDoc from '../ComponentDoc';
-import CopyInline from '../CopyInline';
 
 interface Props {
   copyCode: (code: string, id: string) => void;

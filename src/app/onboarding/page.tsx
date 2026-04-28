@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -30,18 +30,22 @@ export default function OnboardingPage() {
   const [goals, setGoals] = useState<GoalId[]>([]);
 
   // Deep-link: ?step=registration or ?step=goals for users who already have a profile
-  useEffect(() => {
+  const [prevDeepLinkKey, setPrevDeepLinkKey] = useState<string | null>(null);
+  const deepLinkKey = (searchParams.get('step') ?? '') + '|' + (publicKey?.toBase58() ?? '');
+  if (deepLinkKey !== prevDeepLinkKey) {
+    setPrevDeepLinkKey(deepLinkKey);
     const stepParam = searchParams.get('step');
-    if (stepParam !== 'registration' && stepParam !== 'goals') return;
-    if (!publicKey) return;
-    const profile = getProfile(publicKey.toBase58());
-    if (!profile) return;
-    setNeurotags(profile.neurotags);
-    setAnswers(profile.answers ?? null);
-    setGender(profile.gender ?? 'f');
-    setGoals(profile.goals ?? []);
-    setStep(stepParam);
-  }, [searchParams, publicKey]);
+    if ((stepParam === 'registration' || stepParam === 'goals') && publicKey) {
+      const profile = getProfile(publicKey.toBase58());
+      if (profile) {
+        setNeurotags(profile.neurotags);
+        setAnswers(profile.answers ?? null);
+        setGender(profile.gender ?? 'f');
+        setGoals(profile.goals ?? []);
+        setStep(stepParam);
+      }
+    }
+  }
 
   const handleQuizComplete = useCallback(
     (quizAnswers: QuizAnswers, quizGender: Gender) => {
@@ -75,12 +79,12 @@ export default function OnboardingPage() {
   );
 
   const handleRegistrationComplete = useCallback(
-    (txHash: string | null) => {
-      if (txHash && publicKey) {
+    (result: { txSignature: string; hash: string } | null) => {
+      if (result && publicKey) {
         const wallet = publicKey.toBase58();
         saveRegistration(wallet, {
-          txSignature: txHash,
-          hash: '',
+          txSignature: result.txSignature,
+          hash: result.hash,
           timestamp: new Date().toISOString(),
         });
         completeActivity(wallet, 'onchain-register');

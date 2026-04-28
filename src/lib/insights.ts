@@ -3,7 +3,6 @@
 
 import type { PortfolioBalance, NudgeScore } from './portfolio';
 import type { KaminoPosition } from './kamino';
-import type { CommProfile } from './communication';
 
 export type InsightType = 'info' | 'warning' | 'action';
 
@@ -32,7 +31,6 @@ export function generateInsights(
   portfolio: PortfolioBalance,
   score: NudgeScore,
   position: KaminoPosition | null,
-  _profile: CommProfile,
 ): Insight[] {
   const insights: Insight[] = [];
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { SectionTitle, strong, accent, mono } from './helpers';
+import { SectionTitle, strong, accent } from './helpers';
 
 export default function SectionCharacter() {
   return (

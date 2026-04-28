@@ -81,7 +81,7 @@ export default function StarfieldOverlay() {
   const mouseY = useRef(0.5);
   const targetX = useRef(0.5);
   const targetY = useRef(0.5);
-  const t0 = useRef(performance.now());
+  const t0 = useRef(0);
 
   const onMouseMove = useCallback((e: MouseEvent) => {
     targetX.current = e.clientX / window.innerWidth;
@@ -103,6 +103,7 @@ export default function StarfieldOverlay() {
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
     resize();
+    t0.current = performance.now();
     window.addEventListener('resize', resize);
     window.addEventListener('mousemove', onMouseMove);
 

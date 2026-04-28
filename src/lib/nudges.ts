@@ -69,7 +69,6 @@ function makeId(type: NudgeType): string {
 
 function checkHFAlert(
   enriched: EnrichedPosition,
-  _last: PositionSnapshot | null,
 ): Nudge | null {
   const hf = enriched.position.position?.healthFactor ?? null;
   if (hf === null) return null;
@@ -264,7 +263,7 @@ export function generateNudges(
   const welcome = checkWelcome(lastSnapshot);
   if (welcome) nudges.push(welcome);
 
-  const hfNudge = checkHFAlert(current, lastSnapshot);
+  const hfNudge = checkHFAlert(current);
   if (hfNudge) nudges.push(hfNudge);
 
   const scoreDrop = checkScoreDrop(current, lastSnapshot);

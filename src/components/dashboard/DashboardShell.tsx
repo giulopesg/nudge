@@ -47,11 +47,15 @@ function ShellInner({ children }: { children: React.ReactNode }) {
   }, []);
 
   // Auto-open chat when lyraAutoAction is requested
-  useEffect(() => {
-    if (lyraAutoAction && !chatOpen) {
+  const [prevLyraAutoAction, setPrevLyraAutoAction] = useState(lyraAutoAction);
+  if (lyraAutoAction && lyraAutoAction !== prevLyraAutoAction) {
+    setPrevLyraAutoAction(lyraAutoAction);
+    if (!chatOpen) {
       setChatOpen(true);
     }
-  }, [lyraAutoAction, chatOpen]);
+  } else if (!lyraAutoAction && prevLyraAutoAction) {
+    setPrevLyraAutoAction(null);
+  }
 
   return (
     <div className="dashboard-layout">

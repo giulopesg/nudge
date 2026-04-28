@@ -163,9 +163,12 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
   const healthFactor = kaminoPosition?.healthFactor;
   const hasKamino = kaminoPosition !== null;
 
-  const insights = (portfolio && nudgeScore)
-    ? generateInsights(portfolio, nudgeScore, kaminoPosition, commProfile)
-    : [];
+  const insights = useMemo(
+    () => (portfolio && nudgeScore)
+      ? generateInsights(portfolio, nudgeScore, kaminoPosition)
+      : [],
+    [portfolio, nudgeScore, kaminoPosition],
+  );
 
   // Goal progress
   const stablecoinPercent = portfolio
@@ -267,7 +270,6 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
 
     const newItems = toGrant.map((actId) => ACTIVITIES[actId].item);
     setPendingItemUnlocks((prev) => [...prev, ...newItems]);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showData, hasKamino, topicsRead, walletAddress, isDemo, neurotags.length, lyraTopicCount]);
 
   // Demo mode: grant Lyra read-status when 3+ topics explored

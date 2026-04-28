@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import GettingStarted from './sections/GettingStarted';
 import Foundations from './sections/Foundations';
 import Components from './sections/Components';
-import { CATEGORIES } from './sections/Components';
 import Patterns from './sections/Patterns';
 import FigmaIntegration from './sections/FigmaIntegration';
 

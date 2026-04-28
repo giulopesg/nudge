@@ -5,17 +5,17 @@ import { useTranslation } from 'react-i18next';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useConnection } from '@solana/wallet-adapter-react';
 import { useSearchParams } from 'next/navigation';
-import { hashProfile } from '@/lib/memo';
-import { sendRegistration } from '@/lib/memo';
+import { hashProfile, sendRegistration } from '@/lib/memo';
 import { getCharacterClass } from '@/lib/rpg';
+import { hasRegistration, getRegistration } from '@/lib/store';
 import type { NeurotageId, GoalId } from '@/lib/neurotags';
 
-type Status = 'idle' | 'signing' | 'confirming' | 'success' | 'error';
+type Status = 'idle' | 'signing' | 'confirming' | 'success' | 'error' | 'already';
 
 interface Props {
   neurotags: NeurotageId[];
   goals: GoalId[];
-  onComplete: (txHash: string | null) => void;
+  onComplete: (result: { txSignature: string; hash: string } | null) => void;
 }
 
 export default function RegistrationStep({ neurotags, goals, onComplete }: Props) {
@@ -32,12 +32,40 @@ export default function RegistrationStep({ neurotags, goals, onComplete }: Props
 
   const characterClass = getCharacterClass(neurotags);
 
+  // Duplicate guard — check if already registered
+  const walletKey = isDemo ? '' : publicKey?.toBase58() ?? '';
+  const [prevWalletKey, setPrevWalletKey] = useState('');
+  if (walletKey && walletKey !== prevWalletKey) {
+    setPrevWalletKey(walletKey);
+    if (hasRegistration(walletKey)) {
+      const reg = getRegistration(walletKey);
+      if (reg) {
+        setTxSignature(reg.txSignature);
+        setHash(reg.hash);
+        setStatus('already');
+      }
+    }
+  }
+
+  // Compute hash for display
   useEffect(() => {
     const wallet = isDemo ? 'DeMoWaLLeT...0000' : publicKey?.toBase58() ?? '';
-    if (wallet) {
+    if (wallet && !hash) {
       hashProfile(wallet, neurotags, goals).then(setHash);
     }
-  }, [publicKey, neurotags, goals, isDemo]);
+  }, [publicKey, neurotags, goals, isDemo, hash]);
+
+  const registerForCron = useCallback(async (wallet: string) => {
+    try {
+      await fetch('/api/monitor/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ wallet }),
+      });
+    } catch {
+      // Non-blocking — cron registration failure shouldn't block onboarding
+    }
+  }, []);
 
   const handleRegister = useCallback(async () => {
     if (isDemo) {
@@ -45,7 +73,8 @@ export default function RegistrationStep({ neurotags, goals, onComplete }: Props
       await new Promise((r) => setTimeout(r, 800));
       setStatus('confirming');
       await new Promise((r) => setTimeout(r, 1200));
-      setTxSignature('DeMo' + hash + 'FaKeTx1234567890');
+      const demoSig = 'DeMo' + hash + 'FaKeTx1234567890';
+      setTxSignature(demoSig);
       setStatus('success');
       return;
     }
@@ -55,6 +84,8 @@ export default function RegistrationStep({ neurotags, goals, onComplete }: Props
     try {
       setStatus('signing');
       setErrorMsg('');
+
+      // Phase 1: build + send (wallet signs here)
       const result = await sendRegistration(
         publicKey,
         connection,
@@ -63,23 +94,39 @@ export default function RegistrationStep({ neurotags, goals, onComplete }: Props
         goals,
         characterClass.name,
       );
-      setStatus('confirming');
       setTxSignature(result.txSignature);
       setHash(result.hash);
+
+      // Phase 2: confirm on-chain (user sees "confirming" state)
+      setStatus('confirming');
+      await connection.confirmTransaction(result.txSignature, 'confirmed');
+
+      // Phase 3: register for cron monitoring
+      await registerForCron(publicKey.toBase58());
+
       setStatus('success');
-    } catch {
+    } catch (err: unknown) {
       setStatus('error');
-      setErrorMsg(t('registration.error'));
+      const msg = err instanceof Error ? err.message : '';
+      if (msg.includes('User rejected') || msg.includes('rejected')) {
+        setErrorMsg(t('registration.errorRejected'));
+      } else {
+        setErrorMsg(t('registration.errorNetwork'));
+      }
     }
-  }, [isDemo, publicKey, sendTransaction, connection, neurotags, goals, characterClass.name, hash, t]);
+  }, [isDemo, publicKey, sendTransaction, connection, neurotags, goals, characterClass.name, hash, t, registerForCron]);
 
   const handleSkip = useCallback(() => {
     onComplete(null);
   }, [onComplete]);
 
   const handleGoToDashboard = useCallback(() => {
-    onComplete(txSignature);
-  }, [onComplete, txSignature]);
+    if (isDemo) {
+      onComplete(null);
+      return;
+    }
+    onComplete({ txSignature, hash });
+  }, [onComplete, txSignature, hash, isDemo]);
 
   return (
     <div className="flex flex-col items-center px-4 w-full max-w-md">
@@ -121,6 +168,31 @@ export default function RegistrationStep({ neurotags, goals, onComplete }: Props
 
       {/* Action area */}
       <div className="mt-6 w-full flex flex-col items-center gap-3">
+        {status === 'already' && (
+          <div className="flex flex-col items-center gap-3 w-full">
+            <div className="text-3xl">&#10003;</div>
+            <p className="text-[15px] font-semibold text-primary">
+              {t('registration.alreadyRegistered')}
+            </p>
+            {txSignature && (
+              <a
+                href={`https://solscan.io/tx/${txSignature}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[13px] text-plum-light hover:underline"
+              >
+                {t('registration.viewTx')} &#8599;
+              </a>
+            )}
+            <button
+              onClick={handleGoToDashboard}
+              className="n2-btn-primary mt-2 w-full"
+            >
+              {t('registration.goToDashboard')}
+            </button>
+          </div>
+        )}
+
         {status === 'idle' && (
           <>
             <button

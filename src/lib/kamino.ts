@@ -5,7 +5,6 @@ const RPC_URL =
   'https://api.mainnet-beta.solana.com';
 
 const KAMINO_MAIN_MARKET = '7u3HeHxYDLhnCoErrtycNokbQYbWGzLs6JSDqGAv5PfF';
-const KLEND_PROGRAM_ID = 'KLend2g3cP87ez4uTnDRPws38SA1pjhBboGPMHFXnPg';
 
 export type PositionStatus = 'safe' | 'attention' | 'danger';
 

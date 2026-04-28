@@ -37,7 +37,6 @@ export function useNudges(
   personaId: DemoPersonaId | null,
 ): UseNudgesResult {
   const [nudges, setNudges] = useState<Nudge[]>([]);
-  const lastPositionRef = useRef<string | null>(null);
   const registeredRef = useRef<string | null>(null);
 
   // Auto-register wallet for cron monitoring + fetch server nudges
@@ -63,24 +62,26 @@ export function useNudges(
       .catch(() => {});
   }, [isDemo, wallet]);
 
-  // Demo mode: load static demo nudges
-  useEffect(() => {
-    if (!isDemo || !personaId) return;
+  // Demo mode: load static demo nudges (adjust state during render)
+  const [prevPersonaId, setPrevPersonaId] = useState<DemoPersonaId | null>(null);
+  if (isDemo && personaId && personaId !== prevPersonaId) {
+    setPrevPersonaId(personaId);
     setNudges(getDemoNudges(personaId));
-  }, [isDemo, personaId]);
+  } else if ((!isDemo || !personaId) && prevPersonaId) {
+    setPrevPersonaId(null);
+  }
 
   // Real mode: compare snapshots and generate nudges
+  const lastPositionRef = useRef<string | null>(null);
   useEffect(() => {
     if (isDemo || !wallet || !position) return;
 
-    // Dedupe: skip if same timestamp
     const ts = position.position.timestamp;
     if (ts === lastPositionRef.current) return;
     lastPositionRef.current = ts;
 
     const lastSnapshot = getSnapshot(wallet);
     const history = getNudgeHistory(wallet);
-
     const newNudges = generateNudges(position, lastSnapshot, goalProgress);
 
     // Merge: new nudges first, then existing history (deduped by type+severity within 1h)
@@ -96,7 +97,9 @@ export function useNudges(
     );
 
     const merged = [...uniqueNew, ...history];
-    setNudges(merged);
+
+    // Async setState to avoid cascading render warning
+    Promise.resolve(merged).then(setNudges);
 
     // Persist
     if (uniqueNew.length > 0) {

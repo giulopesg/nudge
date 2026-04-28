@@ -75,7 +75,6 @@ export default function StatusHero({ nudgeScore, commProfile, hasKamino, onLearn
         overall={overall}
         zone={zone}
         metrics={metrics}
-        commProfile={commProfile}
         hasKamino={hasKamino}
         onLearnMore={onLearnScore}
       />

@@ -203,6 +203,9 @@
     "xpEarned": "+150 XP",
     "goToDashboard": "Go to dashboard",
     "error": "Registration failed. Your wallet may have rejected the transaction.",
+    "errorRejected": "Transaction rejected in wallet. Try again when you're ready.",
+    "errorNetwork": "Network error while confirming. Check your connection and try again.",
+    "alreadyRegistered": "Profile already registered on-chain!",
     "retry": "Try again",
     "demoSuccess": "Simulated registration in demo mode!"
   }

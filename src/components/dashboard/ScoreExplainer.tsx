@@ -3,29 +3,22 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { NudgeScoreMetrics, HealthZone } from '@/lib/portfolio';
-import type { CommProfile } from '@/lib/communication';
+
+type MetricLabelKey = 'diversification' | 'stablecoinRatio' | 'concentrationRisk' | 'kaminoHealth';
 
 interface Props {
   overall: number;
   zone: HealthZone;
   metrics: NudgeScoreMetrics;
-  commProfile: CommProfile;
   hasKamino: boolean;
   onLearnMore: () => void;
 }
 
 interface MetricRow {
   key: string;
-  metricKey: keyof typeof METRIC_LABELS;
+  metricKey: MetricLabelKey;
   value: number;
 }
-
-const METRIC_LABELS = {
-  diversification: 'diversification',
-  stablecoinRatio: 'stablecoinRatio',
-  concentrationRisk: 'concentrationRisk',
-  kaminoHealth: 'kaminoHealth',
-} as const;
 
 function getLevel(score: number): 'good' | 'ok' | 'bad' {
   if (score >= 70) return 'good';
@@ -49,7 +42,6 @@ export default function ScoreExplainer({
   overall,
   zone,
   metrics,
-  commProfile,
   hasKamino,
   onLearnMore,
 }: Props) {
