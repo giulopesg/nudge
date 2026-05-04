@@ -42,8 +42,8 @@ describe('DTCG structure validation', () => {
     }
   })
 
-  it('total token count is 42 (19 colors + 4 fonts + 9 spacings + 4 radii + 6 shadows)', () => {
-    expect(leaves).toHaveLength(42)
+  it('total token count is 76 (12+20 colors + 4+4 fonts + 11+11 spacings + 4+4 radii + 6 shadows)', () => {
+    expect(leaves).toHaveLength(76)
   })
 
   it('token types are from the expected set', () => {

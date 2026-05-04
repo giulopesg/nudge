@@ -33,8 +33,8 @@ describe('Color tokens', () => {
     expect(new Set(names).size).toBe(names.length)
   })
 
-  it('total color count is 19', () => {
-    expect(ALL_COLORS).toHaveLength(19)
+  it('total semantic color count is 20', () => {
+    expect(ALL_COLORS).toHaveLength(20)
   })
 })
 
@@ -62,8 +62,8 @@ describe('FONTS', () => {
 })
 
 describe('SPACING', () => {
-  it('has 9 values', () => {
-    expect(SPACING).toHaveLength(9)
+  it('has 11 values', () => {
+    expect(SPACING).toHaveLength(11)
   })
 
   it('all positive integers', () => {

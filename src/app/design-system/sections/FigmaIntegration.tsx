@@ -4,6 +4,7 @@ import { useState } from 'react';
 import CodeBlock from './CodeBlock';
 import CopyInline from './CopyInline';
 import {
+  PRIMITIVE_COLORS,
   BRAND_COLORS, SECONDARY_COLORS, STATUS_COLORS, SURFACE_COLORS, TEXT_COLORS,
 } from './foundationsData';
 
@@ -30,7 +31,7 @@ const STEPS = [
   {
     num: '02',
     title: 'Import in Figma',
-    desc: 'Open Tokens Studio plugin → Load → File → select design-tokens.json. Or use Variables Import plugin.',
+    desc: 'Open Tokens Studio plugin → Load → File → select design-tokens.json. The file contains two layers: "N2DS Primitives" (raw palette) and "N2DS Semantic" (intent tokens that alias primitives). Create two Figma variable collections to match.',
     action: 'none' as const,
   },
   {
@@ -43,20 +44,26 @@ const STEPS = [
 
 const SAMPLE_JSON = `{
   "n2ds": {
-    "color": {
-      "brand": {
-        "primary": {
-          "$type": "color",
-          "$value": "#A366FF",
-          "$description": "Brand, buttons, primary actions"
+    "primitive": {
+      "color": {
+        "orchid": {
+          "500": {
+            "$type": "color",
+            "$value": "#A366FF",
+            "$description": "Brand primary"
+          }
         }
       }
     },
-    "font": {
-      "lora": {
-        "$type": "fontFamily",
-        "$value": "Lora",
-        "$description": "Display / Titles"
+    "semantic": {
+      "color": {
+        "brand": {
+          "primary": {
+            "$type": "color",
+            "$value": "{n2ds.primitive.color.orchid.500}",
+            "$description": "Brand, buttons, primary actions"
+          }
+        }
       }
     }
   }
@@ -200,30 +207,59 @@ export default function FigmaIntegration({ copyCode, copied }: FigmaIntegrationP
         />
       </div>
 
-      {/* ── Variable Mapping Table ───── */}
-      <div>
+      {/* ── Primitive Palette Table ──── */}
+      <div className="mb-10">
         <h3 className="font-display text-[20px] font-bold text-foreground mb-6 tracking-wide flex items-center gap-3">
-          <span className="w-8 h-[1px] bg-primary inline-block" /> Variable Mapping
+          <span className="w-8 h-[1px] bg-primary inline-block" /> Primitive Palette
         </h3>
         <p className="font-sans text-[13px] text-text-secondary mb-4 leading-relaxed">
-          How CSS custom properties map to Figma variable names in the DTCG file.
+          Raw color values. These form the base palette — never used directly in components.
         </p>
         <div className="rounded-xl border border-surface-border overflow-hidden" style={{ background: 'var(--surface)' }}>
-          {/* Header */}
           <div className="grid grid-cols-3 gap-2 px-4 py-2.5 border-b border-surface-border"
             style={{ background: 'rgba(163,102,255,0.06)' }}>
             <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider font-semibold">CSS Variable</span>
-            <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider font-semibold">Figma Path</span>
+            <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider font-semibold">DTCG Path</span>
             <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider font-semibold">Value</span>
           </div>
-          {/* Rows */}
+          {PRIMITIVE_COLORS.map((p) => {
+            const [family, scale] = p.name.split('/');
+            return (
+              <div key={p.var} className="grid grid-cols-3 gap-2 px-4 py-2 border-b border-surface-border last:border-b-0 hover:bg-surface-hover transition-colors">
+                <code className="font-mono text-[11px] text-mint truncate">{p.var}</code>
+                <code className="font-mono text-[11px] text-text-secondary truncate">n2ds.primitive.color.{family}.{scale}</code>
+                <code className="font-mono text-[11px] text-text-muted truncate">{p.hex}</code>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Semantic Mapping Table ───── */}
+      <div>
+        <h3 className="font-display text-[20px] font-bold text-foreground mb-6 tracking-wide flex items-center gap-3">
+          <span className="w-8 h-[1px] bg-primary inline-block" /> Semantic Mapping
+        </h3>
+        <p className="font-sans text-[13px] text-text-secondary mb-4 leading-relaxed">
+          Intent-based tokens that components consume. Solid tokens alias a primitive; opacity tokens carry an <code className="text-primary">$extensions</code> reference.
+        </p>
+        <div className="rounded-xl border border-surface-border overflow-hidden" style={{ background: 'var(--surface)' }}>
+          <div className="grid grid-cols-4 gap-2 px-4 py-2.5 border-b border-surface-border"
+            style={{ background: 'rgba(163,102,255,0.06)' }}>
+            <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider font-semibold">CSS Variable</span>
+            <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider font-semibold">DTCG Path</span>
+            <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider font-semibold">Primitive</span>
+            <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider font-semibold">Value</span>
+          </div>
           {ALL_COLORS.map(({ group, colors }) =>
             colors.map((c) => {
               const key = c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '').replace(/^-+/, '');
+              const prim = 'primitive' in c ? (c as { primitive?: string }).primitive : undefined;
               return (
-                <div key={c.var} className="grid grid-cols-3 gap-2 px-4 py-2 border-b border-surface-border last:border-b-0 hover:bg-surface-hover transition-colors">
+                <div key={c.var} className="grid grid-cols-4 gap-2 px-4 py-2 border-b border-surface-border last:border-b-0 hover:bg-surface-hover transition-colors">
                   <code className="font-mono text-[11px] text-primary truncate">{c.var}</code>
-                  <code className="font-mono text-[11px] text-text-secondary truncate">n2ds.color.{group}.{key}</code>
+                  <code className="font-mono text-[11px] text-text-secondary truncate">n2ds.semantic.color.{group}.{key}</code>
+                  <code className="font-mono text-[11px] text-mint truncate">{prim ?? '—'}</code>
                   <code className="font-mono text-[11px] text-text-muted truncate">{c.hex}</code>
                 </div>
               );

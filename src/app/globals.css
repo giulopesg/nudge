@@ -7,47 +7,66 @@
 /* ===== Nudge Design System v2 — Feminine Cypherpunk ===== */
 
 :root {
-  /* Background — deep void */
-  --background: #07050E;
-  --surface: rgba(255, 248, 245, 0.03);
-  --surface-hover: rgba(255, 248, 245, 0.06);
-  --surface-border: rgba(163, 102, 255, 0.10);
+  /* === Primitives (do not use directly in components) === */
+  --p-void-950: #07050E;
+  --p-void-900: #0D0B15;
+  --p-cream-50: #FFF8F0;
+  --p-cream-100: #FFF8F5;
+  --p-orchid-500: #A366FF;
+  --p-orchid-400: #B87AFF;
+  --p-rose-500: #FF6B9D;
+  --p-rose-400: #FF8DB5;
+  --p-mint-500: #3DDBA4;
+  --p-emerald-500: #2ED88A;
+  --p-amber-500: #F5A623;
+  --p-coral-500: #FF4D6A;
 
-  /* Text — warm white */
-  --foreground: rgba(255, 248, 240, 0.92);
-  --text-secondary: rgba(255, 248, 240, 0.72);
-  --text-muted: rgba(255, 248, 240, 0.48);
+  /* === Semantic (what components consume) === */
 
-  /* Brand — orchid purple */
-  --primary: #A366FF;
-  --primary-hover: #B87AFF;
-  --primary-muted: rgba(163, 102, 255, 0.12);
-  --primary-glow: rgba(163, 102, 255, 0.3);
+  /* Background */
+  --background: var(--p-void-950);
+  --background-alt: var(--p-void-900);
 
-  /* Rose (secondary, was plum) */
-  --plum: #FF6B9D;
-  --plum-light: #FF8DB5;
-  --plum-muted: rgba(255, 107, 157, 0.15);
-  --plum-glow: rgba(255, 107, 157, 0.3);
+  /* Surface — cream-100 based */
+  --surface: rgba(255, 248, 245, 0.03);          /* cream-100 @ 3% */
+  --surface-hover: rgba(255, 248, 245, 0.06);    /* cream-100 @ 6% */
+  --surface-border: rgba(163, 102, 255, 0.10);   /* orchid-500 @ 10% */
+
+  /* Text — cream-50 based */
+  --foreground: rgba(255, 248, 240, 0.92);       /* cream-50 @ 92% */
+  --text-secondary: rgba(255, 248, 240, 0.72);   /* cream-50 @ 72% */
+  --text-muted: rgba(255, 248, 240, 0.48);       /* cream-50 @ 48% */
+
+  /* Brand — orchid */
+  --primary: var(--p-orchid-500);
+  --primary-hover: var(--p-orchid-400);
+  --primary-muted: rgba(163, 102, 255, 0.12);    /* orchid-500 @ 12% */
+  --primary-glow: rgba(163, 102, 255, 0.3);      /* orchid-500 @ 30% */
+
+  /* Rose (secondary) */
+  --plum: var(--p-rose-500);
+  --plum-light: var(--p-rose-400);
+  --plum-muted: rgba(255, 107, 157, 0.15);       /* rose-500 @ 15% */
+  --plum-glow: rgba(255, 107, 157, 0.3);         /* rose-500 @ 30% */
 
   /* Accent */
-  --mint: #3DDBA4;
+  --mint: var(--p-mint-500);
 
   /* Status */
-  --safe: #2ED88A;
-  --safe-bg: rgba(46, 216, 138, 0.1);
-  --safe-glow: rgba(46, 216, 138, 0.25);
-  --attention: #F5A623;
-  --attention-bg: rgba(245, 166, 35, 0.1);
-  --attention-glow: rgba(245, 166, 35, 0.25);
-  --danger: #FF4D6A;
-  --danger-bg: rgba(255, 77, 106, 0.1);
-  --danger-glow: rgba(255, 77, 106, 0.25);
+  --safe: var(--p-emerald-500);
+  --safe-bg: rgba(46, 216, 138, 0.1);            /* emerald-500 @ 10% */
+  --safe-glow: rgba(46, 216, 138, 0.25);         /* emerald-500 @ 25% */
+  --attention: var(--p-amber-500);
+  --attention-bg: rgba(245, 166, 35, 0.1);       /* amber-500 @ 10% */
+  --attention-glow: rgba(245, 166, 35, 0.25);    /* amber-500 @ 25% */
+  --danger: var(--p-coral-500);
+  --danger-bg: rgba(255, 77, 106, 0.1);          /* coral-500 @ 10% */
+  --danger-glow: rgba(255, 77, 106, 0.25);       /* coral-500 @ 25% */
 
-  /* XP / RPG */
-  --xp: #B57AFF;
-  --xp-muted: rgba(181, 122, 255, 0.12);
-  --xp-glow: rgba(181, 122, 255, 0.3);
+  /* XP / RPG — orchid-400 */
+  --xp: var(--p-orchid-400);
+  --xp-muted: rgba(184, 122, 255, 0.12);         /* orchid-400 @ 12% */
+  --xp-glow: rgba(184, 122, 255, 0.3);           /* orchid-400 @ 30% */
 
   /* Radius */
   --radius-sm: 8px;
@@ -58,6 +77,7 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
   --color-surface-hover: var(--surface-hover);
@@ -132,7 +152,7 @@ body {
 }
 
 .glow-xp {
-  box-shadow: 0 0 20px var(--xp-glow), inset 0 0 20px rgba(181, 122, 255, 0.05);
+  box-shadow: 0 0 20px var(--xp-glow), inset 0 0 20px rgba(184, 122, 255, 0.05);
 }
 
 .text-glow-primary {
@@ -289,7 +309,7 @@ body {
   text-transform: uppercase;
   color: var(--xp);
   background: var(--xp-muted);
-  border: 1px solid rgba(181, 122, 255, 0.3);
+  border: 1px solid rgba(184, 122, 255, 0.3);
   padding: 4px 10px;
   border-radius: var(--radius-full);
   box-shadow: 0 0 8px var(--xp-glow);
