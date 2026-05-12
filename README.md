@@ -168,8 +168,9 @@ public/                            # Avatars, backgrounds, icons
 ## Hackathon tracks
 
 - **Colosseum Frontier** (main) — Grand Champion $30K / Solana Foundation $10K
-- **Eitherway** — Kamino + Solflare integration ($5K + $3K + $3K)
-- **Superteam Brazil** — Built by a Brazilian woman developer
+- **Superteam Brasil** — Regional track for Brazilian builders ($10K pool)
+- **100xDevs** — Best products on Solana ($10K pool)
+- **Jupiter** — Not Your Regular Bounty (DX Report + integration)
 
 ## Author
 
